@@ -1,0 +1,19 @@
+{
+  "plugins": ["prettier"],
+  "extends": ["eslint:recommended", "airbnb-typescript", "prettier"],
+  "rules": {
+    "prettier/prettier": "error",
+    "react/jsx-filename-extension": [
+      2,
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    }
+  },
+  "parserOptions": {
+    "project": ["tsconfig.json"]
+  }
+}
