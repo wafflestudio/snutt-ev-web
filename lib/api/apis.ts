@@ -1,4 +1,4 @@
-import { ReviewDTO } from "../dto/review"
+import { ReviewDTO } from "@lib/dto/review"
 
 export function fetchRecentReviews(): Promise<ReviewDTO[]> {
   return new Promise((resolve) => {

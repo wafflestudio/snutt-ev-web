@@ -4,12 +4,12 @@ import { HeaderTap } from "./__components__/HeaderTap"
 import { useContainer } from "./__containers__"
 import { ReviewItem } from "./__components__/ReviewItem"
 
-export const HomeImpl = () => {
+export const TestImpl = () => {
   const { data, setSelectedTap, selectedTap } = useContainer()
 
   return (
     <Wrapper>
-      <Title>Home Impl </Title>
+      <Title>Test Impl </Title>
       <HeaderTap selectedTap={selectedTap} setSelection={setSelectedTap} />
       <ReviewList>
         {data ? (
