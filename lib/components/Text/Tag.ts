@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { resetMarPad } from "styles"
+import { resetMarPad } from "@lib/styles"
 import { COLORS } from "@lib/styles/colors"
 
 export const Tag = styled.span`
