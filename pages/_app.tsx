@@ -1,7 +1,7 @@
 import type { AppProps } from "next/app"
 import { QueryClient, QueryClientProvider } from "react-query"
 import { css, Global } from "@emotion/react"
-import { appleSDGNeo } from "styles/fonts"
+import { appleSDGNeo } from "@lib/styles/fonts"
 
 function MyApp({ Component, pageProps }: AppProps) {
   const queryClient = new QueryClient()
