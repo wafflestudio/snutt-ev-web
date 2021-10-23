@@ -1,17 +1,19 @@
 import styled from "@emotion/styled"
 import React from "react"
 import Image from "next/image"
+import { useRouter } from "next/router"
 
 import tab_search_off_icon from "../../../public/icons/search_off.svg"
 import filter_icon from "../../../public/icons/filter.svg"
 import arrow_back_icon from "../../../public/icons/arrow_back.svg"
 
 export const Searchbar = () => {
+    const router = useRouter()
+
     return (
         <div>
             <Wrapper>
-                {/* <HeaderBar> */}
-                <ArrowBackButton>
+                <ArrowBackButton onClick={() => router.back()}>
                     <Image src={arrow_back_icon} height={30} width={30}/>
                 </ArrowBackButton>
                 <InputBar>
@@ -23,7 +25,6 @@ export const Searchbar = () => {
                         <Image src={filter_icon} height={43} width={43}/>
                     </TagButton>
                 </InputBar>
-                {/* </HeaderBar> */}
             </Wrapper>
             <Line />
         </div>
