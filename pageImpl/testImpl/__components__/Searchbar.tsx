@@ -3,31 +3,28 @@ import React from "react"
 import Image from "next/image"
 import { useRouter } from "next/router"
 
-import tab_search_off_icon from "../../../public/icons/search_off.svg"
-import filter_icon from "../../../public/icons/filter.svg"
-import arrow_back_icon from "../../../public/icons/arrow_back.svg"
+import tab_search_off_icon from "@public/icons/search_off.svg"
+import filter_icon from "@public/icons/filter.svg"
+import arrow_back_icon from "@public/icons/arrow_back.svg"
 
 export const Searchbar = () => {
     const router = useRouter()
 
     return (
-        <div>
-            <Wrapper>
-                <ArrowBackButton onClick={() => router.back()}>
-                    <Image src={arrow_back_icon} height={30} width={30}/>
-                </ArrowBackButton>
-                <InputBar>
-                    <SearchButton>
-                        <Image src={tab_search_off_icon} height={43} width={43} stroke-witdh={1}/>
-                    </SearchButton>
-                    <Input placeholder="검색어를 입력하세요" />
-                    <TagButton>
-                        <Image src={filter_icon} height={43} width={43}/>
-                    </TagButton>
-                </InputBar>
-            </Wrapper>
-            <Line />
-        </div>
+        <Wrapper>
+            <ArrowBackButton onClick={() => router.back()}>
+                <Image src={arrow_back_icon} height={30} width={30}/>
+            </ArrowBackButton>
+            <InputBar>
+                <SearchButton>
+                    <Image src={tab_search_off_icon} height={43} width={43} stroke-witdh={1}/>
+                </SearchButton>
+                <Input placeholder="검색어를 입력하세요" />
+                <TagButton>
+                    <Image src={filter_icon} height={43} width={43}/>
+                </TagButton>
+            </InputBar>
+        </Wrapper>
     )
 }
 
@@ -35,11 +32,7 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-`
-
-const Line = styled.hr`
-    border-top: 0.5px #B3B3B3;
-    margin: 0px;
+    border-bottom: 1px solid #B3B3B3;
 `
 
 const InputBar = styled.div`
@@ -50,6 +43,7 @@ const InputBar = styled.div`
     border-width: 0px;
     margin-top: 4.5px;
     margin-bottom: 4.5px;
+    margin-right: 6px;
     
     display: flex;
     align-items: center;
@@ -61,7 +55,6 @@ const Input = styled.input`
     
     background: #F2F2F2;
     border: 0px;
-    height: 100%;
     width: 100%;
     
     margin-left: 8px;
