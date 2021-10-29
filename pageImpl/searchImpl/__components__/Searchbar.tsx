@@ -67,7 +67,7 @@ const Input = styled.input`
     margin-left: 8px;
     margin-right: 8px;
     
-    padding-top: 5px;
+    padding: 0 0 0 0;
     `
 
 const SearchButton = styled.button`

@@ -82,6 +82,10 @@ const Texts = styled.div`
 const SubjectText = styled.div`
     font-size: 14px;
     line-height: 17px;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 `
 
 const Rating = styled.div`
