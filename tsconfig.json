@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@lib/*": ["lib/*"],
-      "@pageImpl/*": ["pageImpl/*"]
+      "@pageImpl/*": ["pageImpl/*"],
+      "@public/*": ["public/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
