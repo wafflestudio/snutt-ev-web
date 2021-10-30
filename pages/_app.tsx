@@ -12,8 +12,9 @@ function MyApp({ Component, pageProps }: AppProps) {
           html,
           body {
             padding: 0;
-            margin: 0;
-            ${appleSDGNeo}
+            margin: 0 auto;
+            ${appleSDGNeo};
+            max-width: 414px;
           }
         `}
       />
