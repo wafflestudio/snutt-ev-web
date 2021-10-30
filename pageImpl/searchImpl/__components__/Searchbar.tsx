@@ -3,9 +3,9 @@ import React from "react"
 import Image from "next/image"
 import { useRouter } from "next/router"
 
-import tab_search_off_icon from "../../../public/icons/search_off.svg"
-import filter_icon from "../../../public/icons/filter.svg"
-import arrow_back_icon from "../../../public/icons/arrow_back.svg"
+import tab_search_off_icon from "@public/icons/search_off.svg"
+import filter_icon from "@public/icons/filter.svg"
+import arrow_back_icon from "@public/icons/arrow_back.svg"
 
 export const Searchbar = () => {
     const router = useRouter()

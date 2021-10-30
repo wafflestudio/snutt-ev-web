@@ -2,9 +2,9 @@ import styled from "@emotion/styled"
 import { SearchResultDTO } from "@lib/dto/searchResult"
 import Image from "next/image"
 
-import person_black from "../../../public/icons/person_black.svg"
-import tag_black from "../../../public/icons/tag_black.svg"
-import star_cyan from "../../../public/icons/star_cyan.svg"
+import person_black from "@public/icons/person_black.svg"
+import tag_black from "@public/icons/tag_black.svg"
+import star_cyan from "@public/icons/star_cyan.svg"
 
 interface Props {
     content: SearchResultDTO
@@ -31,13 +31,15 @@ export const SearchResultItem: React.FC<Props> = ({ content }) => {
                     <LecturerText>{content.lecturer}</LecturerText>
                 </Texts>
             </ItemBottom>
-            <Line />
         </Wrapper>
     )
 }
 
 const Wrapper = styled.div`
     padding-top: 10px;
+    padding-bottom: 12px;
+    
+    border-bottom: solid 1px rgba(196, 196, 196, 0.3);
 `
 
 const ItemTop = styled.div`

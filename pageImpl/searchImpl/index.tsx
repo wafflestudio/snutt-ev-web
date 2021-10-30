@@ -7,7 +7,7 @@ export const SearchImpl = () => {
     const { data } = useSearchContainer()
 
     return (
-        <div>
+        <Wrapper>
             <Searchbar />
             <SearchResultList>
                 {
@@ -18,13 +18,11 @@ export const SearchImpl = () => {
                     )
                 }
             </SearchResultList>
-        </div>
+        </Wrapper>
     )
 }
 
-const Wrapper = styled.div`
-
-`
+const Wrapper = styled.div``
 
 const SearchResultList = styled.div`
     padding-left: 20px;
