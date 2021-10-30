@@ -1,6 +1,6 @@
 import React from "react"
-import { Searchbar } from "@pageImpl/testImpl/__components__/Searchbar"
+import { SearchImpl } from "@pageImpl/searchImpl"
 
 export default function SearchView() {
-    return <Searchbar />
+  return <SearchImpl />
 }

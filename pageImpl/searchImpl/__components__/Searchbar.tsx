@@ -11,6 +11,7 @@ export const Searchbar = () => {
     const router = useRouter()
 
     return (
+
         <Wrapper>
             <ArrowBackButton onClick={() => router.back()}>
                 <Image src={arrow_back_icon} height={30} width={30}/>
@@ -32,7 +33,8 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom: 1px solid #B3B3B3;
+
+    border-bottom: 0.5px solid rgba(179, 179, 179, 0.3);
 `
 
 const InputBar = styled.div`
@@ -43,7 +45,6 @@ const InputBar = styled.div`
     border-width: 0px;
     margin-top: 4.5px;
     margin-bottom: 4.5px;
-    margin-right: 6px;
     
     display: flex;
     align-items: center;
@@ -51,16 +52,19 @@ const InputBar = styled.div`
 `
 
 const Input = styled.input`
+    font-family: AppleSDGothicNeo;
+    font-weight: normal;
     font-size: 18px;
     
     background: #F2F2F2;
     border: 0px;
+    height: 100%;
     width: 100%;
     
     margin-left: 8px;
     margin-right: 8px;
     
-    padding-top: 5px;
+    padding: 0 0 0 0;
     `
 
 const SearchButton = styled.button`
