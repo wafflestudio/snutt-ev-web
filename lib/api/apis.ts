@@ -29,12 +29,11 @@ export function fetchMyReviews(): Promise<ReviewDTO[]> {
   })
 }
 
-
 export function requestSearch(): Promise<SearchResultDTO[]> {
   return new Promise((resolve) => {
     setTimeout(
-      () => 
-      // dummy data
+      () =>
+        // dummy data
         resolve([
           {
             id: "aa",
@@ -60,8 +59,8 @@ export function requestSearch(): Promise<SearchResultDTO[]> {
             lecturer: "서정록",
             rating: 1.8,
           },
-        ]), 
-        1000,
+        ]),
+      1000,
     )
   })
 }
