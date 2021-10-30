@@ -11,23 +11,21 @@ export const Searchbar = () => {
     const router = useRouter()
 
     return (
-        <div>
-            <Wrapper>
-                <ArrowBackButton onClick={() => router.back()}>
-                    <Image src={arrow_back_icon} height={30} width={30}/>
-                </ArrowBackButton>
-                <InputBar>
-                    <SearchButton>
-                        <Image src={tab_search_off_icon} height={43} width={43} stroke-witdh={1}/>
-                    </SearchButton>
-                    <Input placeholder="검색어를 입력하세요" />
-                    <TagButton>
-                        <Image src={filter_icon} height={43} width={43}/>
-                    </TagButton>
-                </InputBar>
-            </Wrapper>
-            <Line />
-        </div>
+
+        <Wrapper>
+            <ArrowBackButton onClick={() => router.back()}>
+                <Image src={arrow_back_icon} height={30} width={30}/>
+            </ArrowBackButton>
+            <InputBar>
+                <SearchButton>
+                    <Image src={tab_search_off_icon} height={43} width={43} stroke-witdh={1}/>
+                </SearchButton>
+                <Input placeholder="검색어를 입력하세요" />
+                <TagButton>
+                    <Image src={filter_icon} height={43} width={43}/>
+                </TagButton>
+            </InputBar>
+        </Wrapper>
     )
 }
 
@@ -35,11 +33,8 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-`
 
-const Line = styled.hr`
-    border-top: 0.5px #B3B3B3;
-    margin: 0px;
+    border-bottom: 0.5px solid rgba(179, 179, 179, 0.3);
 `
 
 const InputBar = styled.div`
