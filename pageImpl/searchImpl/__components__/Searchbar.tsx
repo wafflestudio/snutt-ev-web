@@ -57,6 +57,8 @@ const InputBar = styled.div`
 `
 
 const Input = styled.input`
+    font-family: AppleSDGothicNeo;
+    font-weight: normal;
     font-size: 18px;
     
     background: #F2F2F2;

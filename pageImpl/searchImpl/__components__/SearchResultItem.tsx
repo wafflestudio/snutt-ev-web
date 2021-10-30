@@ -5,6 +5,7 @@ import Image from "next/image"
 import person_black from "@public/icons/person_black.svg"
 import tag_black from "@public/icons/tag_black.svg"
 import star_cyan from "@public/icons/star_cyan.svg"
+import { Subheading01 } from "@lib/components/Text"
 
 interface Props {
     content: SearchResultDTO
@@ -81,10 +82,7 @@ const Texts = styled.div`
     justify-content: space-between;
 `
 
-const SubjectText = styled.div`
-    font-size: 14px;
-    line-height: 17px;
-
+const SubjectText = styled(Subheading01)`
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -98,16 +96,22 @@ const Rating = styled.div`
     align-items: center;
 `
 
-const RatingText = styled.div`
+const RatingText = styled(Subheading01)`
     margin-left: 2px;
 `
 
 const InfoText = styled.div`
+    font-family: AppleSDGothicNeo;
+    font-weight: normal;
+
     font-size: 12px;
     line-height: 16.5px;
 `
 
 const LecturerText = styled.div`
+    font-family: AppleSDGothicNeo;
+    font-weight: normal;
+
     font-size: 12px;
     line-height: 16.5px;
 `
