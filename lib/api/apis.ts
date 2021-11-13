@@ -1,4 +1,4 @@
-import { ReviewDTO } from "@lib/dto/review"
+import { ReviewDetailDTO, ReviewDTO } from "@lib/dto/review"
 import { SearchResultDTO } from "@lib/dto/searchResult"
 
 export function fetchRecentReviews(): Promise<ReviewDTO[]> {
@@ -58,6 +58,40 @@ export function requestSearch(): Promise<SearchResultDTO[]> {
             grade: "석사",
             lecturer: "서정록",
             rating: 1.8,
+          },
+        ]),
+      1000,
+    )
+  })
+}
+
+export function fetchMainReviews(): Promise<ReviewDetailDTO[]> {
+  return new Promise((resolve) => {
+    setTimeout(
+      () =>
+        resolve([
+          {
+            id: "1",
+            name: "편집디자인",
+            point: 1,
+            semester: "2021-1",
+            contents: "짧은 리뷰",
+          },
+          {
+            id: "2",
+            name: "편집디자인",
+            point: 1,
+            semester: "2021-1",
+            contents:
+              "긴 리뷰. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요.강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요.강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. ",
+          },
+          {
+            id: "3",
+            name: "편집디자인",
+            point: 1,
+            semester: "2021-1",
+            contents:
+              "중간 리뷰. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요 ",
           },
         ]),
       1000,
