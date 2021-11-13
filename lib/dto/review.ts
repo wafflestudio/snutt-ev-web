@@ -3,3 +3,8 @@ export interface ReviewDTO {
   name: string
   point: number
 }
+
+export interface ReviewDetailDTO extends ReviewDTO {
+  semester: string
+  contents: string
+}
