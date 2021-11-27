@@ -15,7 +15,7 @@ export const SearchResultItem: React.FC<Props> = ({ content }) => {
     return (
         <Wrapper>
             <ItemTop>
-                <SubjectText>{content.subject}</SubjectText>
+                <SubjectText>{content.name}</SubjectText>
                 <Rating>
                     <Image src={star_cyan} height={15} width={15}/>
                     <RatingText>{content.rating}</RatingText>
