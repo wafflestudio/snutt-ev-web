@@ -1,4 +1,4 @@
-import { fetchMainReviews } from "@lib/api/apis"
+import { fetchMainReviews, fetchRecentLectures } from "@lib/api/apis"
 import { useQuery } from "react-query"
 
 export function useMainReviewContainer() {
@@ -7,7 +7,18 @@ export function useMainReviewContainer() {
   const { data, error } = querySearch
 
   return {
-    data,
+    curationData: data,
+    error,
+  }
+}
+
+export function useMainRecentContainer() {
+  const querySearch = useQuery("lectures/recent", fetchRecentLectures)
+
+  const { data, error } = querySearch
+
+  return {
+    recentLectureData: data,
     error,
   }
 }

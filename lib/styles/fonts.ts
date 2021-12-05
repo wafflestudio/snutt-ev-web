@@ -3,7 +3,7 @@ import { css } from "@emotion/react"
 export const appleSDGNeo = css`
   @font-face {
     font-family: "AppleSDGothicNeo";
-    src: url("/fonts/AppleSDGothicNeoM.ttf");
+    src: url("/fonts/AppleSDGothicNeoL.ttf");
     font-weight: normal;
   }
 

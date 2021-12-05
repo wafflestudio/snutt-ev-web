@@ -1,3 +1,4 @@
+import { RecentLectureDTO } from "@lib/dto/recentLecture"
 import { ReviewDetailDTO, ReviewDTO } from "@lib/dto/review"
 import { SearchResultDTO } from "@lib/dto/searchResult"
 
@@ -37,7 +38,7 @@ export function requestSearch(): Promise<SearchResultDTO[]> {
         resolve([
           {
             id: "aa",
-            subject: "소프트웨어 개발의 원리와 실습",
+            name: "소프트웨어 개발의 원리와 실습",
             department: "컴퓨터공학부",
             grade: "3학년",
             lecturer: "최한결",
@@ -45,7 +46,7 @@ export function requestSearch(): Promise<SearchResultDTO[]> {
           },
           {
             id: "bb",
-            subject: "편집디자인",
+            name: "편집디자인",
             department: "디자인학부(디자인전공)",
             grade: "3학년",
             lecturer: "서정민",
@@ -53,7 +54,7 @@ export function requestSearch(): Promise<SearchResultDTO[]> {
           },
           {
             id: "cc",
-            subject: "데이터사이언티스트를 위한 금융공학",
+            name: "데이터사이언티스트를 위한 금융공학",
             department: "데이터사이언스대학원",
             grade: "석사",
             lecturer: "서정록",
@@ -92,6 +93,41 @@ export function fetchMainReviews(): Promise<ReviewDetailDTO[]> {
             semester: "2021-1",
             contents:
               "중간 리뷰. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요 ",
+          },
+        ]),
+      1000,
+    )
+  })
+}
+
+export function fetchRecentLectures(): Promise<RecentLectureDTO[]> {
+  return new Promise((resolve) => {
+    setTimeout(
+      () =>
+        resolve([
+          {
+            id: "1",
+            name: "소프트웨어 개발의 원리와 실습",
+            department: "컴퓨터공학부",
+            grade: "3학년",
+            lecturer: "최한결",
+            location: "301-314",
+          },
+          {
+            id: "2",
+            name: "편집디자인",
+            department: "디자인학부(디자인전공)",
+            grade: "3학년",
+            lecturer: "서정민",
+            location: "ㅇㅓ디지",
+          },
+          {
+            id: "3",
+            name: "데이터사이언티스트를 위한 금융공학",
+            department: "데이터사이언스대학원",
+            grade: "석사",
+            lecturer: "서정록",
+            location: "123-4",
           },
         ]),
       1000,
