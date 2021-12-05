@@ -50,7 +50,7 @@ export const LectureCard = ({ lecture }: Props) => {
 }
 
 const Card = styled.div`
-  display: inline-block;
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
   min-width: 210px;
@@ -64,6 +64,7 @@ const Card = styled.div`
   margin: 0px 8px 0px 10px;
 `
 const CardTop = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
