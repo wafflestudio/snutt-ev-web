@@ -81,28 +81,28 @@ const CategoryDetail = styled(Detail)`
   margin-top: 10px;
   color: #b3b3b3;
 `
-const StyledToggleButtonGroup = styled(ToggleButtonGroup)(() => ({
-  "& .MuiToggleButtonGroup-grouped": {
-    marginRight: 10,
-    border: 0,
-    "&.Mui-disabled": {
-      border: "1px solid #777777",
-      height: 30,
-    },
-    "&.Mui-selected": {
-      border: "1px solid #777777",
-      backgroundColor: "#777777",
-      color: "#FFFFFF",
-    },
-    "&:not(:first-of-type)": {
-      border: "1px solid #777777",
-      borderRadius: 15,
-      height: 30,
-    },
-    "&:first-of-type": {
-      border: "1px solid #777777",
-      borderRadius: 15,
-      height: 30,
-    },
-  },
-}))
+const StyledToggleButtonGroup = styled(ToggleButtonGroup)`
+  & .MuiToggleButtonGroup-grouped {
+    margin-right: 10px;
+    border: 0;
+    &.Mui-disabled {
+      border: 1px solid #777777;
+      height: 30px;
+    }
+    &.Mui-selected {
+      border: 1px solid #777777;
+      background-color: #777777;
+      color: #ffffff;
+    }
+    &:not(:first-of-type) {
+      border: 1px solid #777777;
+      border-radius: 15px;
+      height: 30px;
+    }
+    &:first-of-type {
+      border: 1px solid #777777;
+      border-radius: 15px;
+      height: 30px;
+    }
+  }
+`
