@@ -1,6 +1,7 @@
 import { RecentLectureDTO } from "@lib/dto/recentLecture"
 import { ReviewDetailDTO, ReviewDTO } from "@lib/dto/review"
 import { SearchResultDTO } from "@lib/dto/searchResult"
+import { LectureSemesterDTO } from "@lib/dto/semeters"
 
 export function fetchRecentReviews(): Promise<ReviewDTO[]> {
   return new Promise((resolve) => {
@@ -128,6 +129,65 @@ export function fetchRecentLectures(): Promise<RecentLectureDTO[]> {
             grade: "석사",
             lecturer: "서정록",
             location: "123-4",
+          },
+        ]),
+      1000,
+    )
+  })
+}
+
+export function fetchLectureSemesters(): Promise<LectureSemesterDTO[]> {
+  return new Promise((resolve) => {
+    setTimeout(
+      () =>
+        resolve([
+          {
+            id: "1",
+            name: "소프트웨어 개발의 원리와 실습",
+            semester: "2022-1",
+            lecturer: "최한결",
+          },
+          {
+            id: "2",
+            name: "소프트웨어 개발의 원리와 실습",
+            semester: "2021-겨울",
+            lecturer: "최한결",
+          },
+          {
+            id: "3",
+            name: "소프트웨어 개발의 원리와 실습",
+            semester: "2021-2",
+            lecturer: "최한결",
+          },
+          {
+            id: "4",
+            name: "소프트웨어 개발의 원리와 실습",
+            semester: "2020-2",
+            lecturer: "최한결",
+          },
+          {
+            id: "5",
+            name: "소프트웨어 개발의 원리와 실습",
+            semester: "2019-2",
+            lecturer: "최한결",
+          },
+          {
+            id: "6",
+            name: "소프트웨어 개발의 원리와 실습",
+            semester: "2018-2",
+            lecturer: "최한결",
+          },
+          {
+            id: "7",
+            name: "소프트웨어 개발의 원리와 실습",
+            semester: "2017-2",
+            lecturer: "최한결",
+          },
+          {
+            id: "8",
+            name: "소프트웨어 개발의 원리와 실습",
+            semester: "2016-2",
+            lecturer: "최한결",
           },
         ]),
       1000,
