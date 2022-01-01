@@ -28,7 +28,11 @@ export const MainImpl = () => {
     LectureCategory.RECOMMEND,
   )
 
-  const onClickCategory = (e, category: LectureCategory) => {
+  const onClickCategory = (
+    e: React.MouseEvent<HTMLElement, MouseEvent>,
+    category: LectureCategory,
+  ) => {
+    e.preventDefault()
     if (category !== null) {
       setLectureCategory(category)
     }
