@@ -29,13 +29,3 @@ export const MainImpl = () => {
 }
 
 const Wrapper = styled.div``
-
-const SearchResultList = styled.div`
-  padding-left: 20px;
-  padding-right: 20px;
-`
-
-const SearchNoResult = styled.div`
-  font-size: 16px;
-  color: #777777;
-`
