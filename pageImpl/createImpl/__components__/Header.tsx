@@ -84,6 +84,7 @@ const SemesterSelectorContainer = styled.div`
   height: fit-content;
   width: fit-content;
   background-color: #ffffff;
+  z-index: 10;
 `
 
 const SemesterSelector = styled.button`
@@ -110,6 +111,7 @@ const SemesterButtonsContainer = styled.div`
   align-items: center;
   max-height: 200px;
   overflow-y: scroll;
+  background-color: #ffffff;
 `
 
 const SemesterButton = styled.button`
