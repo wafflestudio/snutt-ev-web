@@ -16,7 +16,7 @@ enum LectureCategory {
   BITTERSWEET,
 }
 
-var lectureCategoryText = {
+const lectureCategoryText = {
   [LectureCategory.RECOMMEND]: "학우들의 추천 강의",
   [LectureCategory.FAMOUS]: "졸업하기 전에 꼭 한번 들어볼만한 강의",
   [LectureCategory.HONEY]: "수업 부담이 크지 않고, 성적도 잘 주는 강의",
