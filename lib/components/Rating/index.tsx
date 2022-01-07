@@ -16,7 +16,7 @@ export const Rating = ({ rating }: Props) => {
       stars.push(
         <Image src={star_small_filled} alt={"star"} height={14} width={14} />,
       )
-    } else if (rating - i <= -0.25 && rating - i > -0.75) {
+    } else if (rating - i <= -0.25 && rating - i >= -0.75) {
       stars.push(
         <Image src={star_small_half} alt={"star"} height={14} width={14} />,
       )
