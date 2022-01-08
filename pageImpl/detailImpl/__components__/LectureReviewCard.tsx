@@ -3,12 +3,22 @@ import { Detail, Subheading01 } from "@lib/components/Text"
 import { COLORS } from "@lib/styles/colors"
 import { ReviewDetailDTO } from "@lib/dto/review"
 import { Rating } from "@lib/components/Rating"
+import ShowMoreText from "react-show-more-text"
+import { useState } from "react"
 
 interface Props {
   review: ReviewDetailDTO
 }
 
 export const LectureReviewCard = ({ review }: Props) => {
+  const [expanded, setExpanded] = useState(false)
+  const truncBy = 120
+
+  const text =
+    review.contents.length > truncBy && expanded
+      ? review.contents.slice(0, truncBy) + "..."
+      : review.contents
+
   return (
     <Wrapper>
       <Contents>
@@ -19,7 +29,15 @@ export const LectureReviewCard = ({ review }: Props) => {
           </SideInfo>
         </Header>
         <Review>
-          <Detail>{review.contents}</Detail>
+          <Detail>
+            {text}
+            {review.contents.length > truncBy && (
+              <MoreLessButton onClick={() => setExpanded((status) => !status)}>
+                {" "}
+                {expanded ? "더보기" : "접기"}
+              </MoreLessButton>
+            )}
+          </Detail>
         </Review>
       </Contents>
     </Wrapper>
@@ -28,7 +46,6 @@ export const LectureReviewCard = ({ review }: Props) => {
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 140px;
   padding: 20px 0 5px 0;
   box-sizing: border-box;
 `
@@ -38,7 +55,7 @@ const Contents = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding-bottom: 4px;
+  padding-bottom: 15px;
 `
 
 const Header = styled.div`
@@ -60,11 +77,10 @@ const SideInfo = styled.div`
 `
 
 const Review = styled.div`
+  display: inline-block;
   width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  word-wrap: break-word;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
+`
+
+const MoreLessButton = styled.a`
+  color: rgb(179, 179, 179);
 `
