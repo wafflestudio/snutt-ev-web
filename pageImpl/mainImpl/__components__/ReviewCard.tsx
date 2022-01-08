@@ -15,7 +15,7 @@ export const ReviewCard = ({ review }: Props) => {
         <Header>
           <LectureName>{review.name}</LectureName>
           <SideInfo>
-            <Rating rating={review.point} />
+            <Rating rating={review.point} size={14} />
             <Semester>{review.semester} 수강</Semester>
           </SideInfo>
         </Header>

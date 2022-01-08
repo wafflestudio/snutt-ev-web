@@ -9,7 +9,7 @@ interface Props {
   size: number
 }
 
-export const Rating = ({ rating, size = 14 }: Props) => {
+export const Rating = ({ rating, size }: Props) => {
   var stars = []
 
   for (var i = 1; i < 6; i++) {

@@ -3,7 +3,6 @@ import { Detail, Subheading01 } from "@lib/components/Text"
 import { COLORS } from "@lib/styles/colors"
 import { ReviewDetailDTO } from "@lib/dto/review"
 import { Rating } from "@lib/components/Rating"
-import ShowMoreText from "react-show-more-text"
 import { useState } from "react"
 
 interface Props {
@@ -23,7 +22,7 @@ export const LectureReviewCard = ({ review }: Props) => {
     <Wrapper>
       <Contents>
         <Header>
-          <Rating rating={review.point} />
+          <Rating rating={review.point} size={14} />
           <SideInfo>
             <Semester>{review.semester} 수강</Semester>
           </SideInfo>

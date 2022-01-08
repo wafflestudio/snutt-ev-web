@@ -41,8 +41,8 @@ export const SearchOptionSheet: React.FC<Props> = ({
       onClose={() => setOpened(false)}
       snapPoints={[420]}
     >
-      <Sheet.Container>
-        <Sheet.Content>
+      <Sheet.Container onViewportBoxUpdate={true}>
+        <Sheet.Content onViewportBoxUpdate={true}>
           <Wrapper>
             <HeaderArea>
               <Image

@@ -10,17 +10,7 @@ interface Props {
   lecture: RecentLectureDTO
 }
 
-const sampleLecture = {
-  id: "1",
-  name: "소프트웨어 개발의 원리와 실습",
-  department: "컴퓨터공학부",
-  grade: "3학년",
-  semester: "2022-2학기",
-  lecturer: "최한결",
-  location: "301-314",
-}
-
-export const CreateImpl = ({ lecture = sampleLecture }: Props) => {
+export const CreateImpl = ({ lecture }: Props) => {
   const { data: lectureSemesters } = useSemsetersContainer()
   const [isSemesterSelectorOpen, setIsSemesterSelectorOpen] = useState(false)
   const [selectedSemester, setSelectedSemester] = useState("") // ex) '2022 - 1학기'

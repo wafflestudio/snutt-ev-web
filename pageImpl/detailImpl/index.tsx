@@ -7,7 +7,6 @@ import { Detail, Subheading02, Title01 } from "@lib/components/Text"
 import arrow_back_icon from "@public/icons/arrow_back.svg"
 import write_icon from "@public/icons/write.svg"
 import star_small_filled from "@public/icons/star_small_filled.svg"
-import { color } from "@mui/material/node_modules/@mui/system"
 import { useLectureReviewContainer } from "./__containers__"
 import { LectureReviewCard } from "./__components__/LectureReviewCard"
 
