@@ -158,22 +158,22 @@ export function fetchTagInfos(): Promise<GetTagInfos> {
           results: [
             {
               tags: [
-                { name: "태그A1", id: 101 },
-                { name: "태그A2", id: 102 },
+                { name: "태그A1", id: 101, tagGroupId: 1 },
+                { name: "태그A2", id: 102, tagGroupId: 1 },
               ],
               tagGroup: { name: "태그그룹A", id: 1 },
             },
             {
               tags: [
-                { name: "태그B1", id: 201 },
-                { name: "태그B2", id: 202 },
+                { name: "태그B1", id: 201, tagGroupId: 2 },
+                { name: "태그B2", id: 202, tagGroupId: 2 },
               ],
               tagGroup: { name: "태그그룹B", id: 2 },
             },
             {
               tags: [
-                { name: "태그C1", id: 301 },
-                { name: "태그C2", id: 302 },
+                { name: "태그C1", id: 301, tagGroupId: 3 },
+                { name: "태그C2", id: 302, tagGroupId: 3 },
               ],
               tagGroup: { name: "태그그룹C", id: 3 },
             },

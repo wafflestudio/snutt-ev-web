@@ -1,4 +1,8 @@
 import { TagDTO } from "@lib/dto/core/tag"
+import styled from "@emotion/styled"
+import checked from "@public/icons/checked.svg"
+import unchecked from "@public/icons/unchecked.svg"
+import Image from "next/image"
 
 interface Props {
   tags: TagDTO[]
@@ -15,10 +19,10 @@ export const TagList: React.FC<Props> = ({
     <div>
       {tags.map((it) => (
         <TagItem
-          tag={it}
           isSelected={selectedTags.some((s) => s.name === it.name)}
           key={it.name}
           onClick={() => onToggleTag(it)}
+          text={it.name}
         />
       ))}
     </div>
@@ -26,9 +30,34 @@ export const TagList: React.FC<Props> = ({
 }
 
 const TagItem: React.FC<{
-  tag: TagDTO
   isSelected: boolean
+  text: string
   onClick: () => void
-}> = ({ tag, isSelected, onClick }) => {
-  return <div></div>
+}> = ({ isSelected, text, onClick }) => {
+  return (
+    <TagItemBox onClick={onClick}>
+      <Image
+        src={isSelected ? checked : unchecked}
+        alt="checked"
+        width={15}
+        height={15}
+      />
+      <TagItemText>{text}</TagItemText>
+    </TagItemBox>
+  )
 }
+
+const TagItemBox = styled.div`
+  display: flex;
+  flex-direction: row;
+`
+
+const TagItemText = styled.div`
+  font-family: "AppleSDGothicNeo";
+  font-size: 14px;
+  font-weight: 400;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: "#000000";
+`

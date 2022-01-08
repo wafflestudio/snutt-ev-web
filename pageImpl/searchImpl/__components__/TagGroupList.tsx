@@ -16,27 +16,31 @@ export const TagGroupList: React.FC<Props> = ({
     <Wrapper>
       {tagGroups.map((it) => (
         <TagGroupItem
-          tagGroup={it}
           isSelected={selectedTagGroup.name === it.name}
           key={it.name}
           onClick={() => {
             onTagGroupSelectionChange(it)
           }}
-        />
+        >
+          {it.name}
+        </TagGroupItem>
       ))}
     </Wrapper>
   )
 }
 
-const TagGroupItem: React.FC<{
-  tagGroup: TagGroupDTO
-  isSelected: boolean
-  onClick: () => void
-}> = ({ tagGroup, isSelected, onClick }) => {
-  return <div onClick={onClick}>{tagGroup.name}</div>
-}
+const TagGroupItem = styled.div<{ isSelected: boolean }>`
+  font-family: "AppleSDGothicNeo";
+  font-size: 17px;
+  font-weight: 700;
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: ${(props) => (props.isSelected ? "#000000" : "#b3b3b3")};
+`
 
 const Wrapper = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  width: 120px;
 `

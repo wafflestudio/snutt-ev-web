@@ -3,19 +3,24 @@ import { TagGroupList } from "./TagGroupList"
 import { useMemo, useState } from "react"
 import { TagList } from "./TagList"
 import { TagDTO, TagGroupDTO } from "@lib/dto/core/tag"
+import Sheet from "react-modal-sheet"
+import Image from "next/image"
+import exit from "@public/icons/exit.svg"
 
 interface Props {
   selectedTags: TagDTO[]
   tagGroupsWithTags: { tagGroup: TagGroupDTO; tags: TagDTO[] }[]
-  onSelectTag: (tag: TagDTO) => void
-  onDeselectTag: (tag: TagDTO) => void
+  toggleTagSelection: (tag: TagDTO) => void
+  isOpened: boolean
+  setOpened: (opened: boolean) => void
 }
 
 export const SearchOptionSheet: React.FC<Props> = ({
   selectedTags,
   tagGroupsWithTags,
-  onSelectTag,
-  onDeselectTag,
+  toggleTagSelection,
+  isOpened,
+  setOpened,
 }) => {
   const [selectedTagGroup, setSelectedTagGroup] = useState<TagGroupDTO>(
     tagGroupsWithTags[0]?.tagGroup,
@@ -31,33 +36,71 @@ export const SearchOptionSheet: React.FC<Props> = ({
   const tagGroups = tagGroupsWithTags.map((it) => it.tagGroup)
 
   return (
-    <div>
-      <TagGroupList
-        tagGroups={tagGroups}
-        selectedTagGroup={selectedTagGroup}
-        onTagGroupSelectionChange={setSelectedTagGroup}
-      />
-      <TagList
-        tags={visibleTags}
-        selectedTags={selectedTags}
-        onToggleTag={(tag) => {
-          if (selectedTags.some((s) => s.name === tag.name)) {
-            onDeselectTag(tag)
-          } else {
-            onSelectTag(tag)
-          }
-        }}
-      />
-      <SubmitButton />
-      <CloseButton />
-    </div>
+    <Sheet
+      isOpen={isOpened}
+      onClose={() => setOpened(false)}
+      snapPoints={[420]}
+    >
+      <Sheet.Container>
+        <Sheet.Content>
+          <Wrapper>
+            <HeaderArea>
+              <Image
+                onClick={() => setOpened(false)}
+                src={exit}
+                width={30}
+                layout="fixed"
+                height={30}
+              />
+            </HeaderArea>
+            <TagSelectWrapper>
+              <TagGroupList
+                tagGroups={tagGroups}
+                selectedTagGroup={selectedTagGroup}
+                onTagGroupSelectionChange={setSelectedTagGroup}
+              />
+              <TagList
+                tags={visibleTags}
+                selectedTags={selectedTags}
+                onToggleTag={toggleTagSelection}
+              />
+            </TagSelectWrapper>
+            <SubmitButton>필터 적용</SubmitButton>
+          </Wrapper>
+        </Sheet.Content>
+      </Sheet.Container>
+      <Sheet.Backdrop />
+    </Sheet>
   )
 }
 
-const SubmitButton = styled.div`
-  width: 100px;
+const Wrapper = styled.div`
+  display: flex;
+  height: 100%;
+  flex-direction: column;
 `
 
-const CloseButton = styled.div`
-  width: 100px;
+const HeaderArea = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-top: 20px;
+  padding-right: 20px;
+`
+
+const TagSelectWrapper = styled.div`
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+`
+
+const SubmitButton = styled.div`
+  background: #1bd0c8;
+  text-align: center;
+  font-family: "AppleSDGothicNeo";
+  color: white;
+  font-size: 17px;
+  font-weight: 700;
+  padding-top: 20px;
+  padding-bottom: 20px;
 `
