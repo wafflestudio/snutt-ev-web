@@ -69,7 +69,7 @@ export const SearchOptionSheet: React.FC<Props> = ({
           </Wrapper>
         </Sheet.Content>
       </Sheet.Container>
-      <Sheet.Backdrop />
+      <Sheet.Backdrop onViewportBoxUpdate={true} />
     </Sheet>
   )
 }

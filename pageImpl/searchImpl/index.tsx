@@ -5,7 +5,7 @@ import { SearchResultItem } from "./__components__/SearchResultItem"
 import { useState } from "react"
 import { SearchOptionSheet } from "./__components__/SearchOptionSheet"
 import { useTagContainer } from "./__containers__/filter"
-import { ActiveTagList } from "./__components__/ActiveTagList"
+import { ActiveTagList } from "./__components__/SelectedTagList"
 
 export const SearchImpl = () => {
   const { data } = useSearchContainer()
