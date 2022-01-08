@@ -2,6 +2,7 @@ import styled from "@emotion/styled"
 import { Detail, Subheading01 } from "@lib/components/Text"
 import { COLORS } from "@lib/styles/colors"
 import { ReviewDetailDTO } from "@lib/dto/review"
+import { Rating } from "@lib/components/Rating"
 
 interface Props {
   review: ReviewDetailDTO
@@ -14,7 +15,7 @@ export const ReviewCard = ({ review }: Props) => {
         <Header>
           <LectureName>{review.name}</LectureName>
           <SideInfo>
-            <Detail>별이 들어갈 자리</Detail>
+            <Rating rating={review.point} />
             <Semester>{review.semester} 수강</Semester>
           </SideInfo>
         </Header>
@@ -53,6 +54,7 @@ const LectureName = Subheading01
 
 const Semester = styled(Detail)`
   color: ${COLORS.darkGray};
+  text-align: right;
 `
 
 const SideInfo = styled.div`

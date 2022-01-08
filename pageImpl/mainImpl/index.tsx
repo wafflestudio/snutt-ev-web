@@ -4,10 +4,15 @@ import {
   useMainRecentContainer,
   useMainReviewContainer,
 } from "./__containers__"
-import { Detail, Subheading02, Title02, Tag } from "@lib/components/Text"
+import { Detail, Subheading02, Title02, Title01 } from "@lib/components/Text"
 import { RecentCarousel } from "./__components__/RecentCarousel"
 import { useState } from "react"
 import { ToggleButton, ToggleButtonGroup } from "@mui/material/"
+import { AppBar } from "@lib/components/Appbar"
+import Image from "next/image"
+
+import timetable from "@public/icons/timetable_on.svg"
+import write_icon from "@public/icons/write.svg"
 
 enum LectureCategory {
   RECOMMEND,
@@ -43,6 +48,13 @@ export const MainImpl = () => {
 
   return (
     <Wrapper>
+      <AppBar leftImageSrc={timetable} leftImageOnClick={() => {}}>
+        <AppBarContent>
+          <Title01 style={{ marginLeft: 12 }}>강의평</Title01>
+          <Image src={write_icon} alt={"write"} height={30} width={30} />
+        </AppBarContent>
+      </AppBar>
+
       {recentLectureData ? (
         <RecentCarousel lectureList={recentLectureData} />
       ) : (
@@ -77,8 +89,21 @@ export const MainImpl = () => {
 
 const Wrapper = styled.div``
 
+const AppBarContent = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-right: 12px;
+`
+
 const CategoryPicker = styled.div`
   padding: 20px 20px 0 20px;
+  position: sticky;
+  top: 45px;
+  background-color: white;
+  z-index: 50;
 `
 
 const CategoryDetail = styled(Detail)`
