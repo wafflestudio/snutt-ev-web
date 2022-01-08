@@ -11,7 +11,7 @@ export const ErrorView = ({ resetErrorBoundary }: Props) => {
   return (
     <Container>
       <Title02>에러가 발생했습니다.</Title02>
-      <Image src={errorCat} alt="error" width="168" height="176" />
+      {/* <Image src={errorCat} alt="error" width="168" height="176" /> */}
       {resetErrorBoundary &&
         // <button onClick={() => resetErrorBoundary()}>다시 불러오기</button>
         null}
