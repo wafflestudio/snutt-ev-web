@@ -25,6 +25,11 @@ export const CreateImpl = ({ lecture = sampleLecture }: Props) => {
   const [isSemesterSelectorOpen, setIsSemesterSelectorOpen] = useState(false)
   const [selectedSemester, setSelectedSemester] = useState("") // ex) '2022 - 1학기'
   const [step, setStep] = useState(0)
+  const [rating, setRating] = useState(0)
+
+  const handleRating = (rating: number) => {
+    setRating(rating)
+  }
 
   const handleSemesterSelector = () => {
     setIsSemesterSelectorOpen((status) => !status)
@@ -35,7 +40,10 @@ export const CreateImpl = ({ lecture = sampleLecture }: Props) => {
     setIsSemesterSelectorOpen((status) => !status)
   }
 
-  const stepComponents = [<EvalPolygon />, <EvalBasic />]
+  const stepComponents = [
+    <EvalPolygon />,
+    <EvalBasic handleRating={handleRating} rating={rating} />,
+  ]
   const complete = step === stepComponents.length - 1 ? "완료" : "다음"
 
   const stepNext = () => {
