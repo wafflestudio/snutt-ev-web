@@ -5,4 +5,5 @@ export interface RecentLectureDTO {
   grade: string
   lecturer: string
   location: string
+  semester: string
 }
