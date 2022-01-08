@@ -100,6 +100,10 @@ const AppBarContent = styled.div`
 
 const CategoryPicker = styled.div`
   padding: 20px 20px 0 20px;
+  position: sticky;
+  top: 45px;
+  background-color: white;
+  z-index: 50;
 `
 
 const CategoryDetail = styled(Detail)`

@@ -32,7 +32,12 @@ const Wrapper = styled.div`
   order: 1;
   height: 45px;
 
-  border-bottom: solid 1px rgba(151, 151, 151, 0.5);
+  position: sticky;
+  top: 0;
+
+  background-color: white;
+  border-bottom: solid 1px rgba(179, 179, 179, 0.3);
+  z-index: 99;
 `
 
 const AppBarLeft = styled.div`
