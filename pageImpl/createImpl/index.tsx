@@ -46,17 +46,6 @@ export const CreateImpl = ({ lecture = sampleLecture }: Props) => {
     setIsSemesterSelectorOpen((status) => !status)
   }
 
-  const stepComponents = [
-    <EvalPolygon />,
-    <EvalBasic
-      handleRating={handleRating}
-      rating={rating}
-      handleContent={handleContent}
-      content={content}
-    />,
-  ]
-  const complete = step === stepComponents.length - 1 ? "완료" : "다음"
-
   const stepNext = () => {
     if (step < stepComponents.length - 1) {
       setStep((step) => step + 1)
@@ -68,6 +57,19 @@ export const CreateImpl = ({ lecture = sampleLecture }: Props) => {
       setStep((step) => step - 1)
     }
   }
+
+  const stepComponents = [
+    <EvalPolygon />,
+    <EvalBasic
+      handleRating={handleRating}
+      rating={rating}
+      handleContent={handleContent}
+      content={content}
+      stepPrev={stepPrev}
+    />,
+  ]
+
+  const complete = step === stepComponents.length - 1 ? "완료" : "다음"
 
   return (
     <Container>
