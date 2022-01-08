@@ -2,6 +2,7 @@ import { RecentLectureDTO } from "@lib/dto/recentLecture"
 import { ReviewDetailDTO, ReviewDTO } from "@lib/dto/review"
 import { SearchResultDTO } from "@lib/dto/searchResult"
 import { LectureSemesterDTO } from "@lib/dto/semeters"
+import { GetTagInfos } from "../dto/tagInfos"
 
 export function fetchRecentReviews(): Promise<ReviewDTO[]> {
   return new Promise((resolve) => {
@@ -150,7 +151,42 @@ export function fetchRecentLectures(): Promise<RecentLectureDTO[]> {
   })
 }
 
-export function fetchLectureSemesters(): Promise<LectureSemesterDTO[]> {
+export function fetchTagInfos(): Promise<GetTagInfos> {
+  return new Promise((resolve) => {
+    setTimeout(
+      () =>
+        resolve({
+          results: [
+            {
+              tags: [
+                { name: "태그A1", id: 101, tagGroupId: 1 },
+                { name: "태그A2", id: 102, tagGroupId: 1 },
+              ],
+              tagGroup: { name: "태그그룹A", id: 1 },
+            },
+            {
+              tags: [
+                { name: "태그B1", id: 201, tagGroupId: 2 },
+                { name: "태그B2", id: 202, tagGroupId: 2 },
+              ],
+              tagGroup: { name: "태그그룹B", id: 2 },
+            },
+            {
+              tags: [
+                { name: "태그C1", id: 301, tagGroupId: 3 },
+                { name: "태그C2", id: 302, tagGroupId: 3 },
+              ],
+              tagGroup: { name: "태그그룹C", id: 3 },
+            },
+          ],
+        }),
+      1000,
+    )
+  })
+}
+
+
+ export function fetchLectureSemesters(): Promise<LectureSemesterDTO[]> {
   return new Promise((resolve) => {
     setTimeout(
       () =>
@@ -205,6 +241,53 @@ export function fetchLectureSemesters(): Promise<LectureSemesterDTO[]> {
           },
         ]),
       1000,
+    )
+  })
+}
+
+export function fetchLectureReviews(): Promise<ReviewDetailDTO[]> {
+  return new Promise((resolve) => {
+    setTimeout(
+      () =>
+        resolve([
+          {
+            name: "편집디자인",
+            point: 3,
+            semester: "2021-1",
+            contents: "짧은 리뷰",
+          },
+          {
+            id: "2",
+            name: "편집디자인",
+            point: 4,
+            semester: "2021-1",
+            contents:
+              "긴 리뷰. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요.강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요.강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. ",
+          },
+          {
+            id: "3",
+            name: "편집디자인",
+            point: 5,
+            semester: "2021-1",
+            contents:
+              "중간 리뷰. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요 ",
+          },
+          {
+            id: "4",
+            name: "편집디자인",
+            point: 1,
+            semester: "2021-1",
+            contents: "짧은 리뷰",
+          },
+          {
+            id: "5",
+            name: "편집디자인",
+            point: 2,
+            semester: "2021-1",
+            contents: "짧은 리뷰",
+          },
+        ]),
+      500,
     )
   })
 }
