@@ -1,9 +1,8 @@
 import styled from "@emotion/styled"
 import React from "react"
-import Image from "next/image"
 
-import tab_search_off_icon from "@public/icons/search_off.svg"
 import { useRouter } from "next/router"
+import SvgSearchOff from "@lib/components/Icons/SvgSearchOff"
 
 export const FakeSearchbar = () => {
   const router = useRouter()
@@ -16,13 +15,7 @@ export const FakeSearchbar = () => {
         }}
       >
         <SearchButton>
-          <Image
-            src={tab_search_off_icon}
-            alt={"search_icon"}
-            height={43}
-            width={43}
-            stroke-witdh={1}
-          />
+          <SvgSearchOff height={43} width={43} stroke-witdh={1} />
         </SearchButton>
         <Input
           placeholder="강의명, 교수명으로 검색해주세요"

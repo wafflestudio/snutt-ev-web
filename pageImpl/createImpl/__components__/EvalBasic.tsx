@@ -1,9 +1,8 @@
-import Image from "next/image"
 import styled from "@emotion/styled"
 import { Title02 } from "@lib/components/Text"
 import { resetMarPad } from "@lib/styles"
-import starEmpty from "@public/icons/star_small_empty.svg"
-import starFilled from "@public/icons/star_small_filled.svg"
+import SvgStarSmallEmpty from "@lib/components/Icons/SvgStarSmallEmpty"
+import SvgStarSmallFilled from "@lib/components/Icons/SvgStarSmallFilled"
 
 interface Props {
   stepPrev: () => void
@@ -21,12 +20,8 @@ export const EvalBasic = ({
   content,
 }: Props) => {
   const ratingImage = {
-    empty: (
-      <Image src={starEmpty} width="30px" height="30px" alt="empty star" />
-    ),
-    fiiled: (
-      <Image src={starFilled} width="30px" height="30px" alt="filled star" />
-    ),
+    empty: <SvgStarSmallEmpty width={30} height={30} />,
+    fiiled: <SvgStarSmallFilled width={30} height={30} />,
   }
 
   const ratings = [

@@ -1,11 +1,10 @@
 import styled from "@emotion/styled"
 import { SearchResultDTO } from "@lib/dto/searchResult"
-import Image from "next/image"
 
-import person_black from "@public/icons/person_black.svg"
-import tag_black from "@public/icons/tag_black.svg"
-import star_cyan from "@public/icons/star_cyan.svg"
 import { Subheading01 } from "@lib/components/Text"
+import SvgStarCyan from "@lib/components/Icons/SvgStarCyan"
+import SvgTagBlack from "@lib/components/Icons/SvgTagBlack"
+import SvgPersonBlack from "@lib/components/Icons/SvgPersonBlack"
 
 interface Props {
   content: SearchResultDTO
@@ -17,15 +16,15 @@ export const SearchResultItem: React.FC<Props> = ({ content }) => {
       <ItemTop>
         <SubjectText>{content.name}</SubjectText>
         <Rating>
-          <Image src={star_cyan} height={15} width={15} />
+          <SvgStarCyan height={15} width={15} />
           <RatingText>{content.rating}</RatingText>
         </Rating>
       </ItemTop>
 
       <ItemBottom>
         <Icons>
-          <Image src={tag_black} height={15} width={15} />
-          <Image src={person_black} height={15} width={15} />
+          <SvgTagBlack height={15} width={15} />
+          <SvgPersonBlack height={15} width={15} />
         </Icons>
         <Texts>
           <InfoText>

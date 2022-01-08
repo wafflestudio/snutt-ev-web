@@ -1,7 +1,7 @@
 import errorCat from "public/images/img-waffle-cat.png"
-import Image from "next/image"
 import styled from "@emotion/styled"
 import { Title02 } from "@lib/components/Text/Title"
+import Image from "next/image"
 
 interface Props {
   resetErrorBoundary?: (...args: Array<unknown>) => void

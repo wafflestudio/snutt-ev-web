@@ -1,8 +1,7 @@
 import styled from "@emotion/styled"
-import star_small_empty from "@public/icons/star_small_empty.svg"
-import star_small_half from "@public/icons/star_small_half.svg"
-import star_small_filled from "@public/icons/star_small_filled.svg"
-import Image from "next/image"
+import SvgStarSmallFilled from "../Icons/SvgStarSmallFilled"
+import SvgStarSmallHalf from "../Icons/SvgStarSmallHalf"
+import SvgStarSmallEmpty from "../Icons/SvgStarSmallEmpty"
 
 interface Props {
   rating: number
@@ -14,27 +13,11 @@ export const Rating = ({ rating, size }: Props) => {
 
   for (var i = 1; i < 6; i++) {
     if (rating - i > -0.25) {
-      stars.push(
-        <Image
-          src={star_small_filled}
-          alt={"star"}
-          height={size}
-          width={size}
-        />,
-      )
+      stars.push(<SvgStarSmallFilled height={size} width={size} />)
     } else if (rating - i <= -0.25 && rating - i >= -0.75) {
-      stars.push(
-        <Image src={star_small_half} alt={"star"} height={size} width={size} />,
-      )
+      stars.push(<SvgStarSmallHalf height={size} width={size} />)
     } else {
-      stars.push(
-        <Image
-          src={star_small_empty}
-          alt={"star"}
-          height={size}
-          width={size}
-        />,
-      )
+      stars.push(<SvgStarSmallEmpty height={size} width={size} />)
     }
   }
 

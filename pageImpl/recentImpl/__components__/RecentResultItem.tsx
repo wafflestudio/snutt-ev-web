@@ -1,11 +1,10 @@
 import styled from "@emotion/styled"
-import Image from "next/image"
 
-import person_black from "@public/icons/person_black.svg"
-import tag_black from "@public/icons/tag_black.svg"
-import write_icon from "@public/icons/write.svg"
 import { Subheading01 } from "@lib/components/Text"
 import { RecentLectureDTO } from "@lib/dto/recentLecture"
+import SvgTagBlack from "@lib/components/Icons/SvgTagBlack"
+import SvgPersonBlack from "@lib/components/Icons/SvgPersonBlack"
+import SvgWrite from "@lib/components/Icons/SvgWrite"
 
 interface Props {
   content: RecentLectureDTO
@@ -21,8 +20,8 @@ export const RecentLectureItem: React.FC<Props> = ({ content }) => {
       <ItemBottom>
         <ItemBottomLeft>
           <Icons>
-            <Image src={tag_black} alt={"tag"} height={15} width={15} />
-            <Image src={person_black} alt={"person"} height={15} width={15} />
+            <SvgTagBlack height={15} width={15} />
+            <SvgPersonBlack height={15} width={15} />
           </Icons>
           <Texts>
             <InfoText>
@@ -32,9 +31,7 @@ export const RecentLectureItem: React.FC<Props> = ({ content }) => {
           </Texts>
         </ItemBottomLeft>
         <ItemBottomRight>
-          <Image
-            src={write_icon}
-            alt={"pen"}
+          <SvgWrite
             height={30}
             width={30}
             onClick={() => {}} //TODO: go to create review page

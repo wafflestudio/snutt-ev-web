@@ -1,8 +1,6 @@
 import styled from "@emotion/styled"
+import SvgExitWhite from "@lib/components/Icons/SvgExitWhite"
 import { TagDTO } from "@lib/dto/core/tag"
-import exit_white from "@public/icons/exit_white.svg"
-import Image from "next/image"
-import { useState } from "react"
 
 interface Props {
   selectedTags: TagDTO[]
@@ -29,7 +27,7 @@ const TagItem: React.FC<{
   return (
     <TagItemBox onClick={onClick}>
       <TagText>{tag.name}</TagText>
-      <Image src={exit_white} layout="fixed" width={15} height={15} />
+      <SvgExitWhite width={15} height={15} />
     </TagItemBox>
   )
 }
