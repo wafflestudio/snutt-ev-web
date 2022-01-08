@@ -2,36 +2,48 @@ import styled from "@emotion/styled"
 import React from "react"
 import Image from "next/image"
 import { useRouter } from "next/router"
+import { useState } from "react"
 
 import tab_search_off_icon from "@public/icons/search_off.svg"
 import filter_icon from "@public/icons/filter.svg"
 import arrow_back_icon from "@public/icons/arrow_back.svg"
 import { AppBar } from "@lib/components/Appbar"
 
-export const Searchbar = () => {
+interface Props {
+  toggleOpenSearchSheet: () => void
+}
+
+export const Searchbar: React.FC<Props> = ({ toggleOpenSearchSheet }) => {
   const router = useRouter()
 
   return (
-    <AppBar
-      leftImageSrc={arrow_back_icon}
-      leftImageOnClick={() => router.back()}
-    >
-      <InputBar>
-        <SearchButton>
-          <Image
-            src={tab_search_off_icon}
-            alt={"tab_search_icon"}
-            height={43}
-            width={43}
-            stroke-witdh={1}
-          />
-        </SearchButton>
-        <Input placeholder="검색어를 입력하세요" />
-        <TagButton>
-          <Image src={filter_icon} alt={"tag_button"} height={43} width={43} />
-        </TagButton>
-      </InputBar>
-    </AppBar>
+    <>
+      <AppBar
+        leftImageSrc={arrow_back_icon}
+        leftImageOnClick={() => router.back()}
+      >
+        <InputBar>
+          <SearchButton>
+            <Image
+              src={tab_search_off_icon}
+              alt={"tab_search_icon"}
+              height={43}
+              width={43}
+              stroke-witdh={1}
+            />
+          </SearchButton>
+          <Input placeholder="검색어를 입력하세요" />
+          <TagButton onClick={toggleOpenSearchSheet}>
+            <Image
+              src={filter_icon}
+              alt={"tag_button"}
+              height={43}
+              width={43}
+            />
+          </TagButton>
+        </InputBar>
+      </AppBar>
+    </>
   )
 }
 
