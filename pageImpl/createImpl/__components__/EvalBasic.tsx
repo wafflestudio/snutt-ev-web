@@ -9,9 +9,17 @@ interface Props {
   stepPrev: () => void
   handleRating: (rating: number) => void
   rating: number
+  content: string
+  handleContent: (content: string) => void
 }
 
-export const EvalBasic = ({ stepPrev, handleRating, rating }: Props) => {
+export const EvalBasic = ({
+  stepPrev,
+  handleRating,
+  rating,
+  handleContent,
+  content,
+}: Props) => {
   const ratingImage = {
     empty: (
       <Image src={starEmpty} width="30px" height="30px" alt="empty star" />
@@ -44,6 +52,9 @@ export const EvalBasic = ({ stepPrev, handleRating, rating }: Props) => {
     },
   ]
 
+  const placeHolder =
+    "강의에 대한 솔직한 리뷰를 남겨주세요. \nex) 과제, 출석, 교수님, 시험 난이도, 팀플 유무 등"
+
   return (
     <Container>
       <Title02>별점</Title02>
@@ -55,6 +66,11 @@ export const EvalBasic = ({ stepPrev, handleRating, rating }: Props) => {
           </RatingButton>
         ))}
       </RatingContainer>
+      <ContentTextarea
+        value={content}
+        onChange={(e) => handleContent(e.target.value)}
+        placeholder={placeHolder}
+      />
     </Container>
   )
 }
@@ -83,9 +99,26 @@ const SubTitle = styled.p`
 const RatingContainer = styled.div`
   display: flex;
   margin-top: 4px;
+  margin-bottom: 24px;
 `
 
 const RatingButton = styled.button`
   background-color: transparent;
   border: none;
+`
+
+const ContentTextarea = styled.textarea`
+  width: 100%;
+  height: 400px;
+  background-color: #f9f9f9;
+  border: 1px solid rgba(98, 98, 98, 0.5);
+  box-sizing: border-box;
+  border-radius: 12px;
+  font-family: AppleSDGothicNeo;
+  font-size: 14px;
+  line-height: 19px;
+  padding: 12px;
+  overflow-y: scroll;
+  color: #777777;
+  outline: none;
 `
