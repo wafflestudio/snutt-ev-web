@@ -24,4 +24,3 @@ const SvgTabSearchOff = (props: SVGProps<SVGSVGElement>) => (
 )
 
 export default SvgTabSearchOff
-
