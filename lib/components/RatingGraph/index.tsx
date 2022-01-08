@@ -29,8 +29,9 @@ export const RatingGraph = ({
       height={height}
       viewBox={`0 0 ${height} ${width}`}
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
     >
+      <path d={`M 0 ${yMid} L ${width} ${yMid}`} stroke="rgb(194, 194, 194)" />
+      <path d={`M ${xMid} 0 L ${xMid} ${height}`} stroke="rgb(194, 194, 194)" />
       <path
         d={`M ${teachingSkillX} ${yMid} L ${xMid} ${gradeSatisfactionY} L ${lifeBalanceX} ${yMid} L ${xMid} ${gainsY} L ${teachingSkillX} ${yMid} Z`}
         fill="#1BD0C8"
