@@ -6,23 +6,34 @@ import Image from "next/image"
 
 interface Props {
   rating: number
+  size: number
 }
 
-export const Rating = ({ rating }: Props) => {
+export const Rating = ({ rating, size = 14 }: Props) => {
   var stars = []
 
   for (var i = 1; i < 6; i++) {
     if (rating - i > -0.25) {
       stars.push(
-        <Image src={star_small_filled} alt={"star"} height={14} width={14} />,
+        <Image
+          src={star_small_filled}
+          alt={"star"}
+          height={size}
+          width={size}
+        />,
       )
     } else if (rating - i <= -0.25 && rating - i >= -0.75) {
       stars.push(
-        <Image src={star_small_half} alt={"star"} height={14} width={14} />,
+        <Image src={star_small_half} alt={"star"} height={size} width={size} />,
       )
     } else {
       stars.push(
-        <Image src={star_small_empty} alt={"star"} height={14} width={14} />,
+        <Image
+          src={star_small_empty}
+          alt={"star"}
+          height={size}
+          width={size}
+        />,
       )
     }
   }
