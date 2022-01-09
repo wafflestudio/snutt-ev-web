@@ -14,7 +14,7 @@ export const LectureReviewCard = ({ review }: Props) => {
   const truncBy = 120
 
   const text =
-    review.contents.length > truncBy && expanded
+    review.contents.length > truncBy && !expanded
       ? review.contents.slice(0, truncBy) + "..."
       : review.contents
 
@@ -33,7 +33,7 @@ export const LectureReviewCard = ({ review }: Props) => {
             {review.contents.length > truncBy && (
               <MoreLessButton onClick={() => setExpanded((status) => !status)}>
                 {" "}
-                {expanded ? "더보기" : "접기"}
+                {expanded ? "접기" : "더보기"}
               </MoreLessButton>
             )}
           </Detail>
