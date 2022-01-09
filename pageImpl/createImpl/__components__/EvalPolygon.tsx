@@ -1,7 +1,7 @@
 import styled from "@emotion/styled"
 import { Title01 } from "@lib/components/Text"
-import polygon from "@public/images/polygon.svg"
 import SvgTooltip from "@lib/components/Icons/SvgTooltip"
+import { RatingGraph } from "@lib/components/RatingGraph"
 
 export const EvalPolygon = () => {
   return (
@@ -10,8 +10,16 @@ export const EvalPolygon = () => {
         <Title01>점을 움직여 네가지 항목을 평가해주세요</Title01>
         <SvgTooltip width={30} height={30} />
       </Row>
-      {/* TODO: 일단 모양만 넣어둔 것 */}
-      <img src={polygon} width="300px" height="300px" alt="polygon" />
+      <GraphWrapper>
+        <RatingGraph
+          gradeSatisfaction={3}
+          lifeBalance={5}
+          gains={5}
+          teachingSkill={5}
+          height={300}
+          width={300}
+        />
+      </GraphWrapper>
     </Container>
   )
 }
@@ -22,7 +30,7 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 408px;
+  height: 60vh;
   padding-top: 28px;
 `
 
@@ -31,4 +39,10 @@ const Row = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+`
+
+const GraphWrapper = styled.div`
+  height: 300px;
+  width: 300px;
+  position: relative;
 `

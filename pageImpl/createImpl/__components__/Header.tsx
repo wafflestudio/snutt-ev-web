@@ -25,7 +25,7 @@ export const Header = ({
     <Container>
       <Column
         style={{
-          maxWidth: "200px",
+          // maxWidth: "200px",
           overflow: "hidden",
           textOverflow: "ellipsis",
           wordWrap: "break-word",
@@ -34,7 +34,7 @@ export const Header = ({
           marginTop: "10px",
         }}
       >
-        <Title01>{lecture.name}야야ㄴㄹㄴㄹ야</Title01>
+        <Title01>{lecture.name}</Title01>
         <Subheading02>{lecture.lecturer}</Subheading02>
       </Column>
       <SemesterSelectorContainer>

@@ -4,18 +4,27 @@ import { RecentLectureDTO } from "@lib/dto/recentLecture"
 import { FakeSearchbar } from "./FakeSearchbar"
 import { LectureCard } from "./LectureCard"
 import { COLORS } from "@lib/styles/colors"
+import { useRouter } from "next/router"
 
 interface Props {
   lectureList: RecentLectureDTO[]
 }
 
 export const RecentCarousel = ({ lectureList }: Props) => {
+  const router = useRouter()
+
   return (
     <Wrapper>
       <FakeSearchbar />
       <CarouselHeader>
         <Title02>지난 학기 강의평을 남겨주세요</Title02>
-        <Subheading02>강의 목록 &gt;</Subheading02>
+        <Subheading02
+          onClick={() => {
+            router.push("/recent")
+          }}
+        >
+          강의 목록 &gt;
+        </Subheading02>
       </CarouselHeader>
       <SubjectCardCarousel>
         {lectureList.map((lecture) => (
