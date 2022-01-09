@@ -17,7 +17,7 @@
     "paths": {
       "@lib/*": ["lib/*"],
       "@pageImpl/*": ["pageImpl/*"],
-      "@public/*": ["public/*"],
+      "@public/*": ["public/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

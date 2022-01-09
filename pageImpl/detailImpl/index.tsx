@@ -1,14 +1,15 @@
 import styled from "@emotion/styled"
 import { AppBar } from "@lib/components/Appbar"
 import { useRouter } from "next/router"
-import Image from "next/image"
 import { Detail, Subheading02, Title01 } from "@lib/components/Text"
 import { useLectureReviewContainer } from "./__containers__"
 import { LectureReviewCard } from "./__components__/LectureReviewCard"
 
-import arrow_back_icon from "@public/icons/arrow_back.svg"
-import write_icon from "@public/icons/write.svg"
-import star_small_filled from "@public/icons/star_small_filled.svg"
+import { useLectureReviewContainer } from "./__containers__"
+import { LectureReviewCard } from "./__components__/LectureReviewCard"
+import SvgWrite from "@lib/components/Icons/SvgWrite"
+import SvgStarSmallFilled from "@lib/components/Icons/SvgStarSmallFilled"
+import SvgArrowBack from "@lib/components/Icons/SvgArrowBack"
 import { RatingGraph } from "@lib/components/RatingGraph"
 
 export const DetailImpl = () => {
@@ -19,12 +20,13 @@ export const DetailImpl = () => {
   return (
     <Wrapper>
       <AppBar
-        leftImageSrc={arrow_back_icon}
-        leftImageOnClick={() => router.back()}
+        LeftImage={() => (
+          <SvgArrowBack width={30} height={30} onClick={() => router.back()} />
+        )}
       >
         <AppBarContent>
           <Title01 style={{ marginLeft: 12 }}>강의평</Title01>
-          <Image src={write_icon} alt={"write"} height={30} width={30} />
+          <SvgWrite height={30} width={30} />
         </AppBarContent>
       </AppBar>
 
@@ -36,13 +38,8 @@ export const DetailImpl = () => {
           </ReviewSummaryLeft>
           <ReviewSummaryRight>
             <ReviewScore>
-              <Image
-                src={star_small_filled}
-                alt={"star"}
-                height={19}
-                width={19}
-              />
-              <Title01 style={{ marginLeft: 6 }}>3.8</Title01>
+              <SvgStarSmallFilled height={19} width={19} />
+              <Title01 style={{ marginLeft: 6, marginTop: 0 }}>3.8</Title01>
             </ReviewScore>
             <ReviewCount>(n)개의 강의평</ReviewCount>
           </ReviewSummaryRight>

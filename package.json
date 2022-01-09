@@ -21,6 +21,7 @@
     "react-query": "^3.21.0"
   },
   "devDependencies": {
+    "@svgr/cli": "^6.1.2",
     "@types/react": "17.0.16",
     "eslint": "7.32.0",
     "eslint-config-next": "11.0.1",

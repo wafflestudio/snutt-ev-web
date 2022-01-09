@@ -1,8 +1,7 @@
 import { TagDTO } from "@lib/dto/core/tag"
 import styled from "@emotion/styled"
-import checked from "@public/icons/checked.svg"
-import unchecked from "@public/icons/unchecked.svg"
-import Image from "next/image"
+import SvgChecked from "@lib/components/Icons/SvgChecked"
+import SvgUnchecked from "@lib/components/Icons/SvgUnchecked"
 
 interface Props {
   tags: TagDTO[]
@@ -36,12 +35,11 @@ const TagItem: React.FC<{
 }> = ({ isSelected, text, onClick }) => {
   return (
     <TagItemBox onClick={onClick}>
-      <Image
-        src={isSelected ? checked : unchecked}
-        alt="checked"
-        width={15}
-        height={15}
-      />
+      {isSelected ? (
+        <SvgChecked width={15} height={15} />
+      ) : (
+        <SvgUnchecked width={15} height={15} />
+      )}
       <TagItemText>{text}</TagItemText>
     </TagItemBox>
   )
@@ -50,6 +48,7 @@ const TagItem: React.FC<{
 const TagItemBox = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
 `
 
 const TagItemText = styled.div`

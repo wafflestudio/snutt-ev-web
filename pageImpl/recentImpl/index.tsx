@@ -1,5 +1,6 @@
 import styled from "@emotion/styled/"
 import { AppBar } from "@lib/components/Appbar"
+import SvgArrowBack from "@lib/components/Icons/SvgArrowBack"
 import { Title01, Title02 } from "@lib/components/Text"
 import arrow_back_icon from "@public/icons/arrow_back.svg"
 import { useRouter } from "next/router"
@@ -14,8 +15,9 @@ export const RecentImpl = () => {
   return (
     <Wrapper>
       <AppBar
-        leftImageSrc={arrow_back_icon}
-        leftImageOnClick={() => router.back()}
+        LeftImage={() => (
+          <SvgArrowBack width={30} height={30} onClick={() => router.back()} />
+        )}
       >
         <Title01 style={{ marginLeft: 12 }}>학기?</Title01>
       </AppBar>

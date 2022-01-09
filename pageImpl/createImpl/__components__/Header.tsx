@@ -1,9 +1,8 @@
-import Image from "next/image"
 import styled from "@emotion/styled"
 import { Subheading02, Title01 } from "@lib/components/Text"
 import { RecentLectureDTO } from "@lib/dto/recentLecture"
-import iconDown from "@public/icons/arrow_down.svg"
 import { LectureSemesterDTO } from "@lib/dto/semeters"
+import SvgArrowDown from "@lib/components/Icons/SvgArrowDown"
 
 interface Props {
   lecture: RecentLectureDTO
@@ -41,7 +40,7 @@ export const Header = ({
       <SemesterSelectorContainer>
         <SemesterSelector onClick={handleSemesterSelector}>
           {selectedSemester || lecture.semester}
-          <Image src={iconDown} width="10" alt="select semester" />
+          <SvgArrowDown width="10" />
         </SemesterSelector>
         {isSemesterSelectorOpen && (
           <SemesterButtonsContainer>

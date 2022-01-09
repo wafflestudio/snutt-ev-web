@@ -4,8 +4,7 @@ import { useMemo, useState } from "react"
 import { TagList } from "./TagList"
 import { TagDTO, TagGroupDTO } from "@lib/dto/core/tag"
 import Sheet from "react-modal-sheet"
-import Image from "next/image"
-import exit from "@public/icons/exit.svg"
+import SvgExit from "@lib/components/Icons/SvgExit"
 
 interface Props {
   selectedTags: TagDTO[]
@@ -41,16 +40,14 @@ export const SearchOptionSheet: React.FC<Props> = ({
       onClose={() => setOpened(false)}
       snapPoints={[420]}
     >
-      <Sheet.Container>
-        <Sheet.Content>
+      <Sheet.Container onViewportBoxUpdate={true}>
+        <Sheet.Content onViewportBoxUpdate={true}>
           <Wrapper>
             <HeaderArea>
-              <Image
-                onClick={() => setOpened(false)}
-                src={exit}
+              <SvgExit
                 width={30}
-                layout="fixed"
                 height={30}
+                onClick={() => setOpened(false)}
               />
             </HeaderArea>
             <TagSelectWrapper>

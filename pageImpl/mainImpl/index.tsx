@@ -9,10 +9,9 @@ import { RecentCarousel } from "./__components__/RecentCarousel"
 import { useState } from "react"
 import { ToggleButton, ToggleButtonGroup } from "@mui/material/"
 import { AppBar } from "@lib/components/Appbar"
-import Image from "next/image"
 
-import timetable from "@public/icons/timetable_on.svg"
-import write_icon from "@public/icons/write.svg"
+import SvgWrite from "@lib/components/Icons/SvgWrite"
+import SvgTimetableOn from "@lib/components/Icons/SvgTimetableOn"
 
 enum LectureCategory {
   RECOMMEND,
@@ -48,10 +47,10 @@ export const MainImpl = () => {
 
   return (
     <Wrapper>
-      <AppBar leftImageSrc={timetable} leftImageOnClick={() => {}}>
+      <AppBar LeftImage={() => <SvgTimetableOn />}>
         <AppBarContent>
           <Title01 style={{ marginLeft: 12 }}>강의평</Title01>
-          <Image src={write_icon} alt={"write"} height={30} width={30} />
+          <SvgWrite height={30} width={30} />
         </AppBarContent>
       </AppBar>
 
