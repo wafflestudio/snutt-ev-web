@@ -16,7 +16,8 @@ export default function useScrollLoader(loadMore: () => {}) {
       threshold: 0,
     }
     const observer = new IntersectionObserver(handleObserver, option)
-    if (loader.current) observer.observe(loader.current)
+    const cur = loader.current
+    if (cur) observer.observe(cur)
   })
 
   return {
