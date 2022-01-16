@@ -83,9 +83,7 @@ export const CreateImpl = ({ lecture }: Props) => {
             }}
           />
         )}
-      >
-        <Title01></Title01>
-      </AppBar>
+      />
       <Container>
         <Header
           lecture={lecture}
