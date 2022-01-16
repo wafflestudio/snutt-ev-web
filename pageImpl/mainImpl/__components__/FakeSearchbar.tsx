@@ -15,7 +15,7 @@ export const FakeSearchbar = () => {
         }}
       >
         <SearchButton>
-          <SvgSearchOff height={43} width={43} stroke-witdh={1} />
+          <SvgSearchOff height={35} width={30} stroke-witdh={1} />
         </SearchButton>
         <Input
           placeholder="강의명, 교수명으로 검색해주세요"
@@ -60,7 +60,7 @@ const Input = styled.input`
   height: 100%;
   width: 100%;
 
-  margin-left: 8px;
+  margin-left: 5px;
   margin-right: 8px;
 
   padding: 0 0 0 0;
