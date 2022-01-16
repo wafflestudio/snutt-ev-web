@@ -114,6 +114,7 @@ const CategoryPicker = styled.div`
 
 const CategoryDetail = styled(Detail)`
   margin-top: 10px;
+  padding-bottom: 10px;
   color: #b3b3b3;
 `
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)`
