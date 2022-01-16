@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { SearchResultDTO } from "@lib/dto/searchResult"
+import { LectureDTO } from "@lib/dto/core/lecture"
 
 import { Subheading01 } from "@lib/components/Text"
 import SvgStarCyan from "@lib/components/Icons/SvgStarCyan"
@@ -7,14 +7,14 @@ import SvgTagBlack from "@lib/components/Icons/SvgTagBlack"
 import SvgPersonBlack from "@lib/components/Icons/SvgPersonBlack"
 
 interface Props {
-  content: SearchResultDTO
+  content: LectureDTO
 }
 
 export const SearchResultItem: React.FC<Props> = ({ content }) => {
   return (
     <Wrapper>
       <ItemTop>
-        <SubjectText>{content.name}</SubjectText>
+        <SubjectText>{content.title}</SubjectText>
         <Rating>
           <SvgStarCyan height={15} width={15} />
           <RatingText>{content.rating}</RatingText>
@@ -28,9 +28,9 @@ export const SearchResultItem: React.FC<Props> = ({ content }) => {
         </Icons>
         <Texts>
           <InfoText>
-            {content.department}, {content.grade}
+            {content.department}, {content.academic_year}
           </InfoText>
-          <LecturerText>{content.lecturer}</LecturerText>
+          <LecturerText>{content.instructor}</LecturerText>
         </Texts>
       </ItemBottom>
     </Wrapper>

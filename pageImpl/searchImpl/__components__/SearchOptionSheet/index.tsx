@@ -2,7 +2,8 @@ import styled from "@emotion/styled"
 import { TagGroupList } from "./TagGroupList"
 import { useMemo, useState } from "react"
 import { TagList } from "./TagList"
-import { TagDTO, TagGroupDTO } from "@lib/dto/core/tag"
+import { TagDTO } from "@lib/dto/core/tag"
+import { TagGroupDTO } from "@lib/dto/core/tagGroup"
 import Sheet from "react-modal-sheet"
 import SvgExit from "@lib/components/Icons/SvgExit"
 
@@ -26,7 +27,6 @@ export const SearchOptionSheet: React.FC<Props> = ({
   const [selectedTagGroup, setSelectedTagGroup] = useState<TagGroupDTO>(
     tagGroupsWithTags[0]?.tagGroup,
   )
-
   const visibleTags = useMemo(() => {
     return (
       tagGroupsWithTags.find((it) => it.tagGroup.id === selectedTagGroup.id)
@@ -53,7 +53,7 @@ export const SearchOptionSheet: React.FC<Props> = ({
               <TagList
                 tags={visibleTags}
                 selectedTags={selectedTags}
-                onToggleTag={oggleTagSelection}
+                onToggleTag={onToggleTag}
               />
             </TagSelectWrapper>
             <SubmitButton onClick={onClickSubmit}>필터 적용</SubmitButton>

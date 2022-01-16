@@ -1,8 +1,9 @@
 import { RecentLectureDTO } from "@lib/dto/recentLecture"
 import { ReviewDetailDTO, ReviewDTO } from "@lib/dto/review"
-import { SearchResultDTO } from "@lib/dto/searchResult"
+import { LectureDTO } from "@lib/dto/core/lecture"
 import { LectureSemesterDTO } from "@lib/dto/semeters"
-import { GetTagInfos } from "../dto/tagInfos"
+import { GetTagInfosResult } from "../dto/getTagInfos"
+import { GetLecturesQuery, GetLecturesResult } from "@lib/dto/getLectures"
 
 export function fetchRecentReviews(): Promise<ReviewDTO[]> {
   return new Promise((resolve) => {
@@ -32,7 +33,7 @@ export function fetchMyReviews(): Promise<ReviewDTO[]> {
   })
 }
 
-export function requestSearch(): Promise<SearchResultDTO[]> {
+export function requestSearch(): Promise<LectureDTO[]> {
   return new Promise((resolve) => {
     setTimeout(
       () =>
@@ -154,7 +155,7 @@ export function fetchRecentLectures(): Promise<RecentLectureDTO[]> {
   })
 }
 
-export function fetchTagInfos(): Promise<GetTagInfos> {
+export function fetchTagInfos(): Promise<GetTagInfosResult> {
   return new Promise((resolve) => {
     setTimeout(
       () =>
@@ -293,4 +294,30 @@ export function fetchLectureReviews(): Promise<ReviewDetailDTO[]> {
       500,
     )
   })
+}
+
+export function getLectures(
+  query: GetLecturesQuery,
+): Promise<GetLecturesResult> {
+  return new Promise((resolve) =>
+    setTimeout(() => {
+      const next = query.page + 1
+      resolve({
+        content: [
+          {
+            classification: "string",
+            department: "string",
+            academic_year: "string",
+            course_number: "string",
+            title: `string query of ${query.tags}`,
+            credit: 3,
+            instructor: "asdf",
+            category: "asdf",
+            rating: 4,
+          },
+        ],
+        next_page: next > 30 ? undefined : next,
+      })
+    }, 500),
+  )
 }
