@@ -50,7 +50,7 @@ export const MainImpl = () => {
 
   return (
     <Wrapper>
-      <AppBar LeftImage={() => <SvgTimetableOn />}>
+      <AppBar LeftImage={() => <SvgTimetableOn height={30} width={30} />}>
         <AppBarContent>
           <Title01 style={{ marginLeft: 12 }}>강의평</Title01>
           <SvgWrite
@@ -114,6 +114,7 @@ const CategoryPicker = styled.div`
 
 const CategoryDetail = styled(Detail)`
   margin-top: 10px;
+  padding-bottom: 10px;
   color: #b3b3b3;
 `
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)`
@@ -138,6 +139,11 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)`
       border: 1px solid #777777;
       border-radius: 15px;
       height: 30px;
+    }
+    &:hover {
+      border: 1px solid #777777;
+      background-color: #777777;
+      color: #ffffff;
     }
   }
 `
