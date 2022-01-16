@@ -2,7 +2,6 @@ import styled from "@emotion/styled"
 import React from "react"
 import { useRouter } from "next/router"
 
-import arrow_back_icon from "@public/icons/arrow_back.svg"
 import { AppBar } from "@lib/components/Appbar"
 import SvgSearchOff from "@lib/components/Icons/SvgSearchOff"
 import SvgFilter from "@lib/components/Icons/SvgFilter"
@@ -10,9 +9,17 @@ import SvgArrowBack from "@lib/components/Icons/SvgArrowBack"
 
 interface Props {
   toggleOpenSearchSheet: () => void
+  textQuery?: string
+  onChangeTextQuery: (text: string) => void
+  onRefreshQuery: () => void
 }
 
-export const Searchbar: React.FC<Props> = ({ toggleOpenSearchSheet }) => {
+export const Searchbar: React.FC<Props> = ({
+  toggleOpenSearchSheet,
+  textQuery,
+  onChangeTextQuery,
+  onRefreshQuery,
+}) => {
   const router = useRouter()
 
   return (
@@ -24,9 +31,20 @@ export const Searchbar: React.FC<Props> = ({ toggleOpenSearchSheet }) => {
       >
         <InputBar>
           <SearchButton>
-            <SvgSearchOff height={30} width={30} stroke-witdh={1} />
+            <SvgSearchOff
+              height={30}
+              width={30}
+              stroke-witdh={1}
+              onClick={onRefreshQuery}
+            />
           </SearchButton>
-          <Input placeholder="검색어를 입력하세요" />
+          <Input
+            placeholder="검색어를 입력하세요"
+            value={textQuery}
+            onChange={(e) => {
+              onChangeTextQuery(e.target.value)
+            }}
+          />
           <TagButton onClick={toggleOpenSearchSheet}>
             <SvgFilter height={30} width={30} />
           </TagButton>

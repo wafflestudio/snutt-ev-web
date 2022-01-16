@@ -1,22 +1,29 @@
 import styled from "@emotion/styled"
 import { Searchbar } from "./__components__/Searchbar"
-import { useSearchContainer } from "./__containers__/search"
 import { SearchResultItem } from "./__components__/SearchResultItem"
-import { useState } from "react"
+import React, { useState } from "react"
 import { SearchOptionSheet } from "./__components__/SearchOptionSheet"
-import { useTagContainer } from "./__containers__/filter"
+import { useTagContainer } from "./__containers__/useTagContainer"
 import { ActiveTagList } from "./__components__/SelectedTagList"
+import useScrollLoader from "@lib/hooks/useScrollLoader"
+import useSearchOptionContainer from "./__containers__/useSearchOptionContainer"
 
 export const SearchImpl = () => {
-  const { data } = useSearchContainer()
   const {
     tagGroupWithTags,
-    error,
-    isLoading,
     selectedTags,
     toggleTagSelection,
+    currentlyAppliedQuery,
+    refreshQueries,
   } = useTagContainer()
+  const { searchResult, fetchNextPage } = useSearchOptionContainer(
+    currentlyAppliedQuery?.tags ?? [],
+    currentlyAppliedQuery?.textQuery,
+  )
+
+  const { loaderRef } = useScrollLoader(fetchNextPage)
   const [isSearchSheetOpen, setIsSearchSheetOpen] = useState(false)
+  const [textQuery, setTextQuery] = useState<string>()
 
   return (
     <Wrapper>
@@ -24,14 +31,29 @@ export const SearchImpl = () => {
         toggleOpenSearchSheet={() => {
           setIsSearchSheetOpen((prev) => !prev)
         }}
+        textQuery={textQuery}
+        onChangeTextQuery={setTextQuery}
+        onRefreshQuery={refreshQueries}
       />
       <ActiveTagList
         selectedTags={selectedTags}
         onDeleteTag={toggleTagSelection}
       />
       <SearchResultList>
-        {data ? (
-          data.map((it) => <SearchResultItem content={it} key={it.id} />)
+        {searchResult?.pages ? (
+          <React.Fragment>
+            {searchResult?.pages?.map((content, i) => (
+              <React.Fragment>
+                {content.content.map((it) => (
+                  <SearchResultItem
+                    content={it}
+                    key={it.course_number + it.instructor}
+                  />
+                ))}
+              </React.Fragment>
+            ))}
+            <div ref={loaderRef} />
+          </React.Fragment>
         ) : (
           <SearchNoResult>강의명, 교수명으로 검색하세요</SearchNoResult>
         )}
@@ -39,9 +61,10 @@ export const SearchImpl = () => {
       <SearchOptionSheet
         selectedTags={selectedTags || []}
         tagGroupsWithTags={tagGroupWithTags || []}
-        toggleTagSelection={toggleTagSelection}
+        onToggleTag={toggleTagSelection}
         isOpened={isSearchSheetOpen}
-        setOpened={setIsSearchSheetOpen}
+        onClose={() => setIsSearchSheetOpen(false)}
+        onClickSubmit={refreshQueries}
       />
     </Wrapper>
   )

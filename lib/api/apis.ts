@@ -1,8 +1,9 @@
 import { RecentLectureDTO } from "@lib/dto/recentLecture"
 import { ReviewDetailDTO, ReviewDTO } from "@lib/dto/review"
-import { SearchResultDTO } from "@lib/dto/searchResult"
+import { LectureDTO } from "@lib/dto/core/lecture"
 import { LectureSemesterDTO } from "@lib/dto/semeters"
-import { GetTagInfos } from "../dto/tagInfos"
+import { GetTagInfosResult } from "../dto/getTagInfos"
+import { GetLecturesQuery, GetLecturesResult } from "@lib/dto/getLectures"
 
 export function fetchRecentReviews(): Promise<ReviewDTO[]> {
   return new Promise((resolve) => {
@@ -28,42 +29,6 @@ export function fetchMyReviews(): Promise<ReviewDTO[]> {
           { id: "cm", name: "내 리뷰다 c", point: 3 },
         ]),
       3000,
-    )
-  })
-}
-
-export function requestSearch(): Promise<SearchResultDTO[]> {
-  return new Promise((resolve) => {
-    setTimeout(
-      () =>
-        // dummy data
-        resolve([
-          {
-            id: "aa",
-            name: "소프트웨어 개발의 원리와 실습",
-            department: "컴퓨터공학부",
-            grade: "3학년",
-            lecturer: "최한결",
-            rating: 3.8,
-          },
-          {
-            id: "bb",
-            name: "편집디자인",
-            department: "디자인학부(디자인전공)",
-            grade: "3학년",
-            lecturer: "서정민",
-            rating: 2.8,
-          },
-          {
-            id: "cc",
-            name: "데이터사이언티스트를 위한 금융공학",
-            department: "데이터사이언스대학원",
-            grade: "석사",
-            lecturer: "서정록",
-            rating: 1.8,
-          },
-        ]),
-      1000,
     )
   })
 }
@@ -154,7 +119,7 @@ export function fetchRecentLectures(): Promise<RecentLectureDTO[]> {
   })
 }
 
-export function fetchTagInfos(): Promise<GetTagInfos> {
+export function fetchTagInfos(): Promise<GetTagInfosResult> {
   return new Promise((resolve) => {
     setTimeout(
       () =>
@@ -162,22 +127,22 @@ export function fetchTagInfos(): Promise<GetTagInfos> {
           results: [
             {
               tags: [
-                { name: "태그A1", id: 101, tagGroupId: 1 },
-                { name: "태그A2", id: 102, tagGroupId: 1 },
+                { name: "태그A1", id: 101 },
+                { name: "태그A2", id: 102 },
               ],
               tagGroup: { name: "태그그룹A", id: 1 },
             },
             {
               tags: [
-                { name: "태그B1", id: 201, tagGroupId: 2 },
-                { name: "태그B2", id: 202, tagGroupId: 2 },
+                { name: "태그B1", id: 201 },
+                { name: "태그B2", id: 202 },
               ],
               tagGroup: { name: "태그그룹B", id: 2 },
             },
             {
               tags: [
-                { name: "태그C1", id: 301, tagGroupId: 3 },
-                { name: "태그C2", id: 302, tagGroupId: 3 },
+                { name: "태그C1", id: 301 },
+                { name: "태그C2", id: 302 },
               ],
               tagGroup: { name: "태그그룹C", id: 3 },
             },
@@ -293,4 +258,30 @@ export function fetchLectureReviews(): Promise<ReviewDetailDTO[]> {
       500,
     )
   })
+}
+
+export function getLectures(
+  query: GetLecturesQuery,
+): Promise<GetLecturesResult> {
+  return new Promise((resolve) =>
+    setTimeout(() => {
+      const next = query.page + 1
+      resolve({
+        content: [
+          {
+            classification: "string",
+            department: "string",
+            academic_year: "string",
+            course_number: "string",
+            title: `string query of ${query.tags}`,
+            credit: 3,
+            instructor: "asdf",
+            category: "asdf",
+            rating: 4,
+          },
+        ],
+        next_page: next > 30 ? undefined : next,
+      })
+    }, 500),
+  )
 }

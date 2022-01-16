@@ -2,29 +2,31 @@ import styled from "@emotion/styled"
 import { TagGroupList } from "./TagGroupList"
 import { useMemo, useState } from "react"
 import { TagList } from "./TagList"
-import { TagDTO, TagGroupDTO } from "@lib/dto/core/tag"
+import { TagDTO } from "@lib/dto/core/tag"
+import { TagGroupDTO } from "@lib/dto/core/tagGroup"
 import Sheet from "react-modal-sheet"
 import SvgExit from "@lib/components/Icons/SvgExit"
 
 interface Props {
   selectedTags: TagDTO[]
   tagGroupsWithTags: { tagGroup: TagGroupDTO; tags: TagDTO[] }[]
-  toggleTagSelection: (tag: TagDTO) => void
+  onToggleTag: (tag: TagDTO) => void
   isOpened: boolean
-  setOpened: (opened: boolean) => void
+  onClose: () => void
+  onClickSubmit: () => void
 }
 
 export const SearchOptionSheet: React.FC<Props> = ({
   selectedTags,
   tagGroupsWithTags,
-  toggleTagSelection,
+  onToggleTag,
   isOpened,
-  setOpened,
+  onClose: onClose,
+  onClickSubmit,
 }) => {
   const [selectedTagGroup, setSelectedTagGroup] = useState<TagGroupDTO>(
     tagGroupsWithTags[0]?.tagGroup,
   )
-
   const visibleTags = useMemo(() => {
     return (
       tagGroupsWithTags.find((it) => it.tagGroup.id === selectedTagGroup.id)
@@ -35,20 +37,12 @@ export const SearchOptionSheet: React.FC<Props> = ({
   const tagGroups = tagGroupsWithTags.map((it) => it.tagGroup)
 
   return (
-    <Sheet
-      isOpen={isOpened}
-      onClose={() => setOpened(false)}
-      snapPoints={[420]}
-    >
+    <Sheet isOpen={isOpened} onClose={onClose} snapPoints={[420]}>
       <Sheet.Container onViewportBoxUpdate={true}>
         <Sheet.Content onViewportBoxUpdate={true}>
           <Wrapper>
             <HeaderArea>
-              <SvgExit
-                width={30}
-                height={30}
-                onClick={() => setOpened(false)}
-              />
+              <SvgExit width={30} height={30} onClick={onClose} />
             </HeaderArea>
             <TagSelectWrapper>
               <TagGroupList
@@ -59,10 +53,10 @@ export const SearchOptionSheet: React.FC<Props> = ({
               <TagList
                 tags={visibleTags}
                 selectedTags={selectedTags}
-                onToggleTag={toggleTagSelection}
+                onToggleTag={onToggleTag}
               />
             </TagSelectWrapper>
-            <SubmitButton>필터 적용</SubmitButton>
+            <SubmitButton onClick={onClickSubmit}>필터 적용</SubmitButton>
           </Wrapper>
         </Sheet.Content>
       </Sheet.Container>
