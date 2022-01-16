@@ -1,68 +1,22 @@
 import styled from "@emotion/styled"
-import { Title01 } from "@lib/components/Text"
+import { DetailHighlight, Title01 } from "@lib/components/Text"
 import SvgTooltip from "@lib/components/Icons/SvgTooltip"
 import { RatingGraph } from "@lib/components/RatingGraph"
 import { SliderUnstyled } from "@mui/material"
-import { useState } from "react"
+import { usePolygonContainer } from "../__containers__"
 
 export const EvalPolygon = () => {
-  const defaultRight = 3
-  const [right, setRight] = useState(defaultRight)
-  const handleSliderRight = (
-    e: TouchEvent,
-    newValue: number,
-    activeThumb: number,
-  ) => {
-    if (newValue < 1) {
-      setRight(1)
-    } else {
-      setRight(newValue)
-    }
-  }
-
-  const defaultLeft = 3
-  const [left, setLeft] = useState(defaultLeft)
-  const handleSliderLeft = (
-    e: TouchEvent,
-    newValue: number,
-    activeThumb: number,
-  ) => {
-    const realValue = 5 - newValue
-    if (realValue < 1) {
-      setLeft(1)
-    } else {
-      setLeft(realValue)
-    }
-  }
-
-  const defaultTop = 3
-  const [top, setTop] = useState(defaultTop)
-  const handleSliderTop = (
-    e: TouchEvent,
-    newValue: number,
-    activeThumb: number,
-  ) => {
-    if (newValue < 1) {
-      setTop(1)
-    } else {
-      setTop(newValue)
-    }
-  }
-
-  const defaultBottom = 3
-  const [bottom, setBottom] = useState(defaultBottom)
-  const handleSliderBottom = (
-    e: TouchEvent,
-    newValue: number,
-    activeThumb: number,
-  ) => {
-    const realValue = 5 - newValue
-    if (realValue < 1) {
-      setBottom(1)
-    } else {
-      setBottom(realValue)
-    }
-  }
+  const {
+    defaultValue,
+    left,
+    right,
+    top,
+    bottom,
+    handleSliderLeft,
+    handleSliderRight,
+    handleSliderTop,
+    handleSliderBottom,
+  } = usePolygonContainer()
 
   return (
     <Container>
@@ -84,7 +38,7 @@ export const EvalPolygon = () => {
           min={0}
           max={5}
           step={1}
-          defaultValue={defaultRight}
+          defaultValue={defaultValue}
           valueLabelDisplay={"off"}
           value={right}
           onChange={handleSliderRight}
@@ -94,7 +48,7 @@ export const EvalPolygon = () => {
           min={0}
           max={5}
           step={1}
-          defaultValue={defaultTop}
+          defaultValue={defaultValue}
           valueLabelDisplay={"off"}
           value={top}
           onChange={handleSliderTop}
@@ -106,7 +60,7 @@ export const EvalPolygon = () => {
           min={0}
           max={5}
           step={1}
-          defaultValue={defaultTop}
+          defaultValue={defaultValue}
           valueLabelDisplay={"off"}
           value={5 - left}
           onChange={handleSliderLeft}
@@ -116,12 +70,18 @@ export const EvalPolygon = () => {
           min={0}
           max={5}
           step={1}
-          defaultValue={defaultBottom}
+          defaultValue={defaultValue}
           valueLabelDisplay={"off"}
           value={5 - bottom}
           onChange={handleSliderBottom}
           orientation={"vertical"}
         />
+        <AxisLabel>
+          <YAxisPositive>성적 만족도</YAxisPositive>
+          <YAxisNegative>얻어가는 것</YAxisNegative>
+          <XAxisNegative>강의력</XAxisNegative>
+          <XAxisPositive>수라밸</XAxisPositive>
+        </AxisLabel>
       </GraphWrapper>
     </Container>
   )
@@ -148,6 +108,7 @@ const GraphWrapper = styled.div`
   height: 300px;
   width: 300px;
   position: relative;
+  margin-top: 30px;
 `
 
 const CustomSlider = styled(SliderUnstyled)`
@@ -204,7 +165,7 @@ const CustomSliderRight = styled(CustomSliderHorizontal)`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(0, -50%);
+  transform: translate(-2px, -50%);
 `
 
 const CustomSliderLeft = styled(CustomSliderHorizontal)`
@@ -225,4 +186,42 @@ const CustomSliderBottom = styled(CustomSliderVertical)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, 8px);
+`
+const AxisLabel = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+`
+
+const YAxisPositive = styled(DetailHighlight)`
+  position: absolute;
+  top: -5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`
+
+const YAxisNegative = styled(DetailHighlight)`
+  position: absolute;
+  left: 50%;
+  top: 105%;
+  transform: translate(-50%, -50%);
+`
+const XAxisNegative = styled(DetailHighlight)`
+  position: absolute;
+  top: 56%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  white-space: nowrap;
+`
+const XAxisPositive = styled(DetailHighlight)`
+  position: absolute;
+  top: 56%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  white-space: nowrap;
 `
