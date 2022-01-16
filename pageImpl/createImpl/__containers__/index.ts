@@ -33,7 +33,6 @@ export function usePolygonContainer() {
   ) => {
     const realValue = value
     const nextValue = realValue < 1 ? 1 : realValue
-    console.log(score)
     setScore((prev) => ({
       ...prev,
       [direction]: nextValue,
