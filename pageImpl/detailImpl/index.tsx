@@ -5,8 +5,6 @@ import { Detail, Subheading02, Title01 } from "@lib/components/Text"
 import { useLectureReviewContainer } from "./__containers__"
 import { LectureReviewCard } from "./__components__/LectureReviewCard"
 
-import { useLectureReviewContainer } from "./__containers__"
-import { LectureReviewCard } from "./__components__/LectureReviewCard"
 import SvgWrite from "@lib/components/Icons/SvgWrite"
 import SvgStarSmallFilled from "@lib/components/Icons/SvgStarSmallFilled"
 import SvgArrowBack from "@lib/components/Icons/SvgArrowBack"

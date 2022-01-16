@@ -12,6 +12,7 @@ import { AppBar } from "@lib/components/Appbar"
 
 import SvgWrite from "@lib/components/Icons/SvgWrite"
 import SvgTimetableOn from "@lib/components/Icons/SvgTimetableOn"
+import { useRouter } from "next/router"
 
 enum LectureCategory {
   RECOMMEND,
@@ -28,6 +29,8 @@ const lectureCategoryText = {
 }
 
 export const MainImpl = () => {
+  const router = useRouter()
+
   const [lectureCategory, setLectureCategory] = useState(
     LectureCategory.RECOMMEND,
   )
@@ -50,7 +53,11 @@ export const MainImpl = () => {
       <AppBar LeftImage={() => <SvgTimetableOn />}>
         <AppBarContent>
           <Title01 style={{ marginLeft: 12 }}>강의평</Title01>
-          <SvgWrite height={30} width={30} />
+          <SvgWrite
+            height={30}
+            width={30}
+            onClick={() => router.push("/create")}
+          />
         </AppBarContent>
       </AppBar>
 
