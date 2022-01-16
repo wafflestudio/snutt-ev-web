@@ -1,10 +1,7 @@
 import axios from "axios"
 import Cookies from "js-cookie"
 
-const baseURL =
-  process.env.NODE_ENV === "production"
-    ? "https://snutt-api.wafflestudio.com/"
-    : "https://snutt-api-dev.wafflestudio.com/"
+export const baseURL = process.env.NEXT_PUBLIC_API_URL
 
 const apikey = Cookies.get("x-access-apikey") || ""
 const token = Cookies.get("x-access-token") || ""
