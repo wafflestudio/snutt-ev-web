@@ -5,7 +5,7 @@ import { SvgWaffleCat } from "@lib/components/Icons/SvgWaffleCat"
 import { AppBar } from "@lib/components/Appbar"
 import SvgTimetableOn from "@lib/components/Icons/SvgTimetableOn"
 
-export default function custom404() {
+export default function Custom404() {
   return (
     <>
       <AppBar LeftImage={() => <SvgTimetableOn height={30} width={30} />}>
