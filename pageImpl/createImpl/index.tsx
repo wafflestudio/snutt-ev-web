@@ -1,10 +1,13 @@
 import styled from "@emotion/styled"
-import { useSemsetersContainer } from "./__containers__"
+import { usePolygonContainer, useSemsetersContainer } from "./__containers__"
 import { RecentLectureDTO } from "@lib/dto/recentLecture"
 import { Fragment, useState } from "react"
 import { Header } from "./__components__/Header"
 import { EvalPolygon } from "./__components__/EvalPolygon"
 import { EvalBasic } from "./__components__/EvalBasic"
+import { AppBar } from "@lib/components/Appbar"
+import SvgArrowBack from "@lib/components/Icons/SvgArrowBack"
+import router from "next/router"
 
 interface Props {
   lecture: RecentLectureDTO
@@ -18,6 +21,18 @@ export const CreateImpl = ({ lecture }: Props) => {
   const [content, setContent] = useState("")
 
   const [step, setStep] = useState(0)
+
+  const {
+    defaultValue,
+    left,
+    right,
+    top,
+    bottom,
+    handleSliderLeft,
+    handleSliderRight,
+    handleSliderTop,
+    handleSliderBottom,
+  } = usePolygonContainer()
 
   const handleRating = (rating: number) => {
     setRating(rating)
@@ -49,7 +64,17 @@ export const CreateImpl = ({ lecture }: Props) => {
   }
 
   const stepComponents = [
-    <EvalPolygon />,
+    <EvalPolygon
+      defaultValue={defaultValue}
+      left={left}
+      right={right}
+      top={top}
+      bottom={bottom}
+      handleSliderLeft={handleSliderLeft}
+      handleSliderRight={handleSliderRight}
+      handleSliderTop={handleSliderTop}
+      handleSliderBottom={handleSliderBottom}
+    />,
     <EvalBasic
       handleRating={handleRating}
       rating={rating}
@@ -62,25 +87,40 @@ export const CreateImpl = ({ lecture }: Props) => {
   const complete = step === stepComponents.length - 1 ? "완료" : "다음"
 
   return (
-    <Container>
-      <Header
-        lecture={lecture}
-        selectedSemester={selectedSemester}
-        isSemesterSelectorOpen={isSemesterSelectorOpen}
-        handleSemesterSelector={handleSemesterSelector}
-        handleSelectedSemester={handleSelectedSemester}
-        lectureSemesters={lectureSemesters}
-      ></Header>
-      {stepComponents.map((component, index) => {
-        if (step === index) {
-          return <Fragment key={index}>{component}</Fragment>
-        }
-        return null
-      })}
-      <Complete onClick={stepNext}>{complete}</Complete>
-    </Container>
+    <Wrapper>
+      <AppBar
+        LeftImage={() => (
+          <SvgArrowBack
+            height={30}
+            width={30}
+            onClick={() => {
+              step === 1 ? stepPrev() : router.back()
+            }}
+          />
+        )}
+      ></AppBar>
+      <Container>
+        <Header
+          lecture={lecture}
+          selectedSemester={selectedSemester}
+          isSemesterSelectorOpen={isSemesterSelectorOpen}
+          handleSemesterSelector={handleSemesterSelector}
+          handleSelectedSemester={handleSelectedSemester}
+          lectureSemesters={lectureSemesters}
+        ></Header>
+        {stepComponents.map((component, index) => {
+          if (step === index) {
+            return <Fragment key={index}>{component}</Fragment>
+          }
+          return null
+        })}
+        <Complete onClick={stepNext}>{complete}</Complete>
+      </Container>
+    </Wrapper>
   )
 }
+
+const Wrapper = styled.div``
 
 const Container = styled.div`
   padding: 10px 20px 0px 20px;

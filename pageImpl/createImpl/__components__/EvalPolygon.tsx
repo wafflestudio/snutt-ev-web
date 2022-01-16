@@ -3,21 +3,46 @@ import { DetailHighlight, Title01 } from "@lib/components/Text"
 import SvgTooltip from "@lib/components/Icons/SvgTooltip"
 import { RatingGraph } from "@lib/components/RatingGraph"
 import { SliderUnstyled } from "@mui/material"
-import { usePolygonContainer } from "../__containers__"
 
-export const EvalPolygon = () => {
-  const {
-    defaultValue,
-    left,
-    right,
-    top,
-    bottom,
-    handleSliderLeft,
-    handleSliderRight,
-    handleSliderTop,
-    handleSliderBottom,
-  } = usePolygonContainer()
+interface Props {
+  defaultValue: number
+  left: number
+  right: number
+  top: number
+  bottom: number
+  handleSliderLeft: (
+    e: TouchEvent,
+    newValue: number,
+    activeThumb: number,
+  ) => void
+  handleSliderRight: (
+    e: TouchEvent,
+    newValue: number,
+    activeThumb: number,
+  ) => void
+  handleSliderTop: (
+    e: TouchEvent,
+    newValue: number,
+    activeThumb: number,
+  ) => void
+  handleSliderBottom: (
+    e: TouchEvent,
+    newValue: number,
+    activeThumb: number,
+  ) => void
+}
 
+export const EvalPolygon = ({
+  defaultValue,
+  left,
+  right,
+  top,
+  bottom,
+  handleSliderLeft,
+  handleSliderRight,
+  handleSliderTop,
+  handleSliderBottom,
+}: Props) => {
   return (
     <Container>
       <Row>
