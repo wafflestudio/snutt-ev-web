@@ -8,6 +8,7 @@ import { EvalBasic } from "./__components__/EvalBasic"
 import { AppBar } from "@lib/components/Appbar"
 import SvgArrowBack from "@lib/components/Icons/SvgArrowBack"
 import router from "next/router"
+import { Title01 } from "@lib/components/Text"
 
 interface Props {
   lecture: RecentLectureDTO
@@ -22,17 +23,7 @@ export const CreateImpl = ({ lecture }: Props) => {
 
   const [step, setStep] = useState(0)
 
-  const {
-    defaultValue,
-    left,
-    right,
-    top,
-    bottom,
-    handleSliderLeft,
-    handleSliderRight,
-    handleSliderTop,
-    handleSliderBottom,
-  } = usePolygonContainer()
+  const { defaultValue, score, updateScore } = usePolygonContainer()
 
   const handleRating = (rating: number) => {
     setRating(rating)
@@ -66,14 +57,8 @@ export const CreateImpl = ({ lecture }: Props) => {
   const stepComponents = [
     <EvalPolygon
       defaultValue={defaultValue}
-      left={left}
-      right={right}
-      top={top}
-      bottom={bottom}
-      handleSliderLeft={handleSliderLeft}
-      handleSliderRight={handleSliderRight}
-      handleSliderTop={handleSliderTop}
-      handleSliderBottom={handleSliderBottom}
+      score={score}
+      handleUpdateScore={updateScore}
     />,
     <EvalBasic
       handleRating={handleRating}
@@ -98,7 +83,7 @@ export const CreateImpl = ({ lecture }: Props) => {
             }}
           />
         )}
-      ></AppBar>
+      />
       <Container>
         <Header
           lecture={lecture}

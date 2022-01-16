@@ -3,10 +3,9 @@ import { ReactNode } from "react"
 
 interface Props {
   LeftImage: React.FC
-  children: ReactNode
 }
 
-export const AppBar = ({ LeftImage, children }: Props) => {
+export const AppBar: React.FC<Props> = ({ LeftImage, children }) => {
   return (
     <Wrapper>
       <AppBarLeft>
