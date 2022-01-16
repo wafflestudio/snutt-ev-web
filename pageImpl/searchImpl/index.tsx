@@ -39,9 +39,10 @@ export const SearchImpl = () => {
       <SearchOptionSheet
         selectedTags={selectedTags || []}
         tagGroupsWithTags={tagGroupWithTags || []}
-        toggleTagSelection={toggleTagSelection}
+        onToggleTag={toggleTagSelection}
         isOpened={isSearchSheetOpen}
-        setOpened={setIsSearchSheetOpen}
+        onClose={() => setIsSearchSheetOpen(false)}
+        onClickSubmit={() => { /* FIXME: sanggggg */ }}
       />
     </Wrapper>
   )
