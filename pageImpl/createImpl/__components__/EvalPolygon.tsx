@@ -6,43 +6,24 @@ import { SliderUnstyled } from "@mui/material"
 
 interface Props {
   defaultValue: number
-  left: number
-  right: number
-  top: number
-  bottom: number
-  handleSliderLeft: (
-    e: TouchEvent,
-    newValue: number,
-    activeThumb: number,
-  ) => void
-  handleSliderRight: (
-    e: TouchEvent,
-    newValue: number,
-    activeThumb: number,
-  ) => void
-  handleSliderTop: (
-    e: TouchEvent,
-    newValue: number,
-    activeThumb: number,
-  ) => void
-  handleSliderBottom: (
-    e: TouchEvent,
-    newValue: number,
-    activeThumb: number,
+  score: {
+    top: number
+    left: number
+    right: number
+    bottom: number
+  }
+  handleUpdateScore: (
+    value: number,
+    direction: "top" | "left" | "bottom" | "right",
   ) => void
 }
 
 export const EvalPolygon = ({
   defaultValue,
-  left,
-  right,
-  top,
-  bottom,
-  handleSliderLeft,
-  handleSliderRight,
-  handleSliderTop,
-  handleSliderBottom,
+  score,
+  handleUpdateScore,
 }: Props) => {
+  const { top, left, bottom, right } = score
   return (
     <Container>
       <Row>
@@ -66,7 +47,9 @@ export const EvalPolygon = ({
           defaultValue={defaultValue}
           valueLabelDisplay={"off"}
           value={right}
-          onChange={handleSliderRight}
+          onChange={(e, newValue) =>
+            handleUpdateScore(newValue as number, "right")
+          }
         />
         <CustomSliderTop
           marks
@@ -76,7 +59,9 @@ export const EvalPolygon = ({
           defaultValue={defaultValue}
           valueLabelDisplay={"off"}
           value={top}
-          onChange={handleSliderTop}
+          onChange={(e, newValue) =>
+            handleUpdateScore(newValue as number, "top")
+          }
           orientation={"vertical"}
         />
         <CustomSliderLeft
@@ -88,7 +73,9 @@ export const EvalPolygon = ({
           defaultValue={defaultValue}
           valueLabelDisplay={"off"}
           value={5 - left}
-          onChange={handleSliderLeft}
+          onChange={(e, newValue) =>
+            handleUpdateScore(newValue as number, "left")
+          }
         />
         <CustomSliderBottom
           marks
@@ -98,7 +85,9 @@ export const EvalPolygon = ({
           defaultValue={defaultValue}
           valueLabelDisplay={"off"}
           value={5 - bottom}
-          onChange={handleSliderBottom}
+          onChange={(e, newValue) =>
+            handleUpdateScore(newValue as number, "bottom")
+          }
           orientation={"vertical"}
         />
         <AxisLabel>
