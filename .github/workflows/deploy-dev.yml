@@ -1,11 +1,5 @@
 name: deploy-dev
 
-# on:
-#   push:
-#     branches: [ dev ]
-#   pull_request:
-#     branches: [ dev ]
-
 on:
   workflow_run:
     workflows: ["build"]
