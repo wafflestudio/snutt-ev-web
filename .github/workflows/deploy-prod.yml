@@ -32,8 +32,8 @@ jobs:
     - name: Deploy to S3 and Invalidate Cloudfront
       id: deploy-s3
       env:
-        AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-        AWS_CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }}
+        AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET_PROD }}
+        AWS_CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID_PROD }}
       run: |
         aws s3 sync ./out $AWS_S3_BUCKET --delete
         aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
