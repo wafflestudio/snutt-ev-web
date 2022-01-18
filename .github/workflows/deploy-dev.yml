@@ -1,17 +1,17 @@
-name: CD-DEV
-
-on:
-  push:
-    branches: [ dev ]
-  pull_request:
-    branches: [ dev ]
+name: deploy-dev
 
 # on:
-#   workflow_run:
-#     workflows: ["CI"]
-#     branches: [main]
-#     types:
-#       - completed
+#   push:
+#     branches: [ dev ]
+#   pull_request:
+#     branches: [ dev ]
+
+on:
+  workflow_run:
+    workflows: ["build"]
+    branches: [dev]
+    types:
+      - completed
 
 jobs:
   deploy:
