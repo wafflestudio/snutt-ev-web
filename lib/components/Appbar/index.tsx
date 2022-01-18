@@ -21,7 +21,7 @@ const Wrapper = styled.div`
   flex-direction: row;
   align-items: center;
   order: 1;
-  height: 45px;
+  height: 56px;
 
   position: sticky;
   top: 0;
