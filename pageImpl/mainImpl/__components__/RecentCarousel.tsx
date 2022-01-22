@@ -1,9 +1,7 @@
 import styled from "@emotion/styled"
-import { Subheading02, Title02 } from "@lib/components/Text"
+import { Subheading02, Title01 } from "@lib/components/Text"
 import { RecentLectureDTO } from "@lib/dto/recentLecture"
-import { FakeSearchbar } from "./FakeSearchbar"
 import { LectureCard } from "./LectureCard"
-import { COLORS } from "@lib/styles/colors"
 import { useRouter } from "next/router"
 
 interface Props {
@@ -15,9 +13,9 @@ export const RecentCarousel = ({ lectureList }: Props) => {
 
   return (
     <Wrapper>
-      <FakeSearchbar />
+      {/* <FakeSearchbar /> */}
       <CarouselHeader>
-        <Title02>지난 학기 강의평을 남겨주세요</Title02>
+        <Title01>최근 강의평을 남겨주세요</Title01>
         <Subheading02
           onClick={() => {
             router.push("/recent")
@@ -36,13 +34,11 @@ export const RecentCarousel = ({ lectureList }: Props) => {
 }
 
 const Wrapper = styled.div`
-  border-bottom: 1px solid ${COLORS.gray};
-  padding-bottom: 20px;
-  margin: 0px 20px 0px 20px;
+  border-bottom: 12px solid rgb(0, 0, 0, 0.03);
+  padding: 0 20px 20px 20px;
 `
 
 const CarouselHeader = styled.div`
-  /* padding: 0px 20px; */
   margin-bottom: 10px;
   margin-top: 11px;
 
@@ -58,4 +54,7 @@ const SubjectCardCarousel = styled.div`
   width: 100vw;
   position: relative;
   left: calc(-50vw + 50%);
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `

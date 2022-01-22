@@ -15,10 +15,10 @@ export const ReviewCard = ({ review }: Props) => {
       <Contents>
         <Header>
           <LectureName>{review.name}</LectureName>
-          <SideInfo>
-            <Rating rating={review.point} size={14} />
+          <RatingInfo>
+            <Rating rating={review.point} size={12} />
             <Semester>{review.semester} 수강</Semester>
-          </SideInfo>
+          </RatingInfo>
         </Header>
         <Review>
           <CollapsableText text={review.contents} />
@@ -30,7 +30,7 @@ export const ReviewCard = ({ review }: Props) => {
 
 const Wrapper = styled.div`
   width: 100%;
-  padding: 20px 20px 5px 20px;
+  padding: 20px 20px 0px 20px;
   box-sizing: border-box;
 `
 
@@ -44,8 +44,9 @@ const Contents = styled.div`
 const Header = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: left;
   margin-bottom: 12px;
 `
 
@@ -53,12 +54,17 @@ const LectureName = Subheading01
 
 const Semester = styled(Detail)`
   color: ${COLORS.darkGray};
-  text-align: right;
+  text-align: left;
+  font-size: 11px;
+  margin-left: 8px;
+  line-height: 100%;
 `
 
-const SideInfo = styled.div`
+const RatingInfo = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  margin-top: 3px;
+  align-items: center;
 `
 
 const Review = styled.div``
