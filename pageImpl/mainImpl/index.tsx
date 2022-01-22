@@ -53,11 +53,6 @@ export const MainImpl = () => {
       <AppBar LeftImage={() => <SvgTimetableOn height={30} width={30} />}>
         <AppBarContent>
           <Title01 style={{ marginLeft: 12 }}>강의평</Title01>
-          <SvgWrite
-            height={30}
-            width={30}
-            onClick={() => router.push("/create")}
-          />
         </AppBarContent>
       </AppBar>
 
