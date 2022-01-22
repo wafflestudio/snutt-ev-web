@@ -73,9 +73,9 @@ export const EvalPolygon = ({
           defaultValue={defaultValue}
           valueLabelDisplay={"off"}
           value={5 - left}
-          onChange={(e, newValue) =>
-            handleUpdateScore(newValue as number, "left")
-          }
+          onChange={(e, newValue) => {
+            handleUpdateScore(5 - (newValue as number), "left")
+          }}
         />
         <CustomSliderBottom
           marks
@@ -85,9 +85,9 @@ export const EvalPolygon = ({
           defaultValue={defaultValue}
           valueLabelDisplay={"off"}
           value={5 - bottom}
-          onChange={(e, newValue) =>
-            handleUpdateScore(newValue as number, "bottom")
-          }
+          onChange={(e, newValue) => {
+            handleUpdateScore(5 - (newValue as number), "bottom")
+          }}
           orientation={"vertical"}
         />
         <AxisLabel>

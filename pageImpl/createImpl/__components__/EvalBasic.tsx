@@ -21,29 +21,29 @@ export const EvalBasic = ({
 }: Props) => {
   const ratingImage = {
     empty: <SvgStarSmallEmpty width={30} height={30} />,
-    fiiled: <SvgStarSmallFilled width={30} height={30} />,
+    filled: <SvgStarSmallFilled width={30} height={30} />,
   }
 
   const ratings = [
     {
       empty: ratingImage.empty,
-      fiiled: ratingImage.fiiled,
+      filled: ratingImage.filled,
     },
     {
       empty: ratingImage.empty,
-      fiiled: ratingImage.fiiled,
+      filled: ratingImage.filled,
     },
     {
       empty: ratingImage.empty,
-      fiiled: ratingImage.fiiled,
+      filled: ratingImage.filled,
     },
     {
       empty: ratingImage.empty,
-      fiiled: ratingImage.fiiled,
+      filled: ratingImage.filled,
     },
     {
       empty: ratingImage.empty,
-      fiiled: ratingImage.fiiled,
+      filled: ratingImage.filled,
     },
   ]
 
@@ -57,7 +57,7 @@ export const EvalBasic = ({
       <RatingContainer>
         {ratings.map((star, index) => (
           <RatingButton key={index} onClick={() => handleRating(index)}>
-            {rating < index ? star.empty : star.fiiled}
+            {rating < index ? star.empty : star.filled}
           </RatingButton>
         ))}
       </RatingContainer>

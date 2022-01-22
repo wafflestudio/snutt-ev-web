@@ -4,14 +4,14 @@ import {
   useMainRecentContainer,
   useMainReviewContainer,
 } from "./__containers__"
-import { Detail, Subheading02, Title02, Title01 } from "@lib/components/Text"
+import { Subheading02, Title01 } from "@lib/components/Text"
 import { RecentCarousel } from "./__components__/RecentCarousel"
 import { useState } from "react"
 import { ToggleButton, ToggleButtonGroup } from "@mui/material/"
 import { AppBar } from "@lib/components/Appbar"
 
-import SvgWrite from "@lib/components/Icons/SvgWrite"
 import SvgTimetableOn from "@lib/components/Icons/SvgTimetableOn"
+import SvgSearchOff from "@lib/components/Icons/SvgSearchOff"
 import { useRouter } from "next/router"
 
 enum LectureCategory {
@@ -53,10 +53,10 @@ export const MainImpl = () => {
       <AppBar LeftImage={() => <SvgTimetableOn height={30} width={30} />}>
         <AppBarContent>
           <Title01 style={{ marginLeft: 12 }}>강의평</Title01>
-          <SvgWrite
+          <SvgSearchOff
             height={30}
             width={30}
-            onClick={() => router.push("/create")}
+            onClick={() => router.push("/search")}
           />
         </AppBarContent>
       </AppBar>
@@ -68,7 +68,7 @@ export const MainImpl = () => {
       )}
 
       <CategoryPicker>
-        <Title02 style={{ marginBottom: 10 }}>교양 강의평 둘러보기</Title02>
+        <Title01 style={{ marginBottom: 10 }}>교양 강의평 둘러보기</Title01>
         <StyledToggleButtonGroup
           value={lectureCategory}
           exclusive
@@ -112,12 +112,14 @@ const CategoryPicker = styled.div`
   z-index: 50;
 `
 
-const CategoryDetail = styled(Detail)`
+const CategoryDetail = styled(Subheading02)`
   margin-top: 10px;
   padding-bottom: 10px;
   color: #b3b3b3;
 `
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)`
+  margin-top: 6px;
+
   & .MuiToggleButtonGroup-grouped {
     margin-right: 10px;
     border: 0;
@@ -140,7 +142,7 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)`
       border-radius: 15px;
       height: 30px;
     }
-    &:hover {
+    &.Mui-selected :hover {
       border: 1px solid #777777;
       background-color: #777777;
       color: #ffffff;

@@ -3,6 +3,7 @@ import { Detail, Subheading01 } from "@lib/components/Text"
 import { COLORS } from "@lib/styles/colors"
 import { ReviewDetailDTO } from "@lib/dto/review"
 import { Rating } from "@lib/components/Rating"
+import { CollapsableText } from "@lib/components/CollapsableText"
 
 interface Props {
   review: ReviewDetailDTO
@@ -14,13 +15,13 @@ export const ReviewCard = ({ review }: Props) => {
       <Contents>
         <Header>
           <LectureName>{review.name}</LectureName>
-          <SideInfo>
-            <Rating rating={review.point} size={14} />
+          <RatingInfo>
+            <Rating rating={review.point} size={12} />
             <Semester>{review.semester} 수강</Semester>
-          </SideInfo>
+          </RatingInfo>
         </Header>
         <Review>
-          <Detail>{review.contents}</Detail>
+          <CollapsableText text={review.contents} />
         </Review>
       </Contents>
     </Wrapper>
@@ -29,24 +30,23 @@ export const ReviewCard = ({ review }: Props) => {
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 140px;
-  padding: 20px 20px 5px 20px;
+  padding: 20px 20px 0px 20px;
   box-sizing: border-box;
 `
 
 const Contents = styled.div`
   border-bottom: 1px solid ${COLORS.gray};
-  height: 100%;
   display: flex;
   flex-direction: column;
-  padding-bottom: 4px;
+  padding-bottom: 15px;
 `
 
 const Header = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: left;
   margin-bottom: 12px;
 `
 
@@ -54,20 +54,17 @@ const LectureName = Subheading01
 
 const Semester = styled(Detail)`
   color: ${COLORS.darkGray};
-  text-align: right;
+  text-align: left;
+  font-size: 11px;
+  margin-left: 8px;
+  line-height: 100%;
 `
 
-const SideInfo = styled.div`
+const RatingInfo = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  margin-top: 3px;
+  align-items: center;
 `
 
-const Review = styled.div`
-  width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  word-wrap: break-word;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-`
+const Review = styled.div``
