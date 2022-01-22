@@ -30,6 +30,9 @@ function MyApp({ Component, pageProps }: AppProps) {
             ${appleSDGNeo};
             max-width: 414px;
           }
+          ::-webkit-scrollbar {
+            display: none;
+          }
         `}
       />
 

@@ -3,6 +3,7 @@ import { Detail, Subheading01 } from "@lib/components/Text"
 import { COLORS } from "@lib/styles/colors"
 import { ReviewDetailDTO } from "@lib/dto/review"
 import { Rating } from "@lib/components/Rating"
+import { CollapsableText } from "@lib/components/CollapsableText"
 
 interface Props {
   review: ReviewDetailDTO
@@ -20,7 +21,7 @@ export const ReviewCard = ({ review }: Props) => {
           </SideInfo>
         </Header>
         <Review>
-          <Detail>{review.contents}</Detail>
+          <CollapsableText text={review.contents} />
         </Review>
       </Contents>
     </Wrapper>
@@ -29,17 +30,15 @@ export const ReviewCard = ({ review }: Props) => {
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 140px;
   padding: 20px 20px 5px 20px;
   box-sizing: border-box;
 `
 
 const Contents = styled.div`
   border-bottom: 1px solid ${COLORS.gray};
-  height: 100%;
   display: flex;
   flex-direction: column;
-  padding-bottom: 4px;
+  padding-bottom: 15px;
 `
 
 const Header = styled.div`
@@ -62,12 +61,4 @@ const SideInfo = styled.div`
   flex-direction: column;
 `
 
-const Review = styled.div`
-  width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  word-wrap: break-word;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-`
+const Review = styled.div``
