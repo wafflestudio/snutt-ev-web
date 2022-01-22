@@ -15,8 +15,8 @@ export const LectureReviewCard = ({ review }: Props) => {
     <Wrapper>
       <Contents>
         <Header>
-          <Rating rating={review.point} size={14} />
           <SideInfo>
+            <Rating rating={review.point} size={12} />
             <Semester>{review.semester} 수강</Semester>
           </SideInfo>
         </Header>
@@ -52,12 +52,14 @@ const Header = styled.div`
 
 const Semester = styled(Detail)`
   color: ${COLORS.darkGray};
-  text-align: right;
+  text-align: left;
+  font-size: 10px;
+  margin-left: 8px;
 `
 
 const SideInfo = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 `
 
 const Review = styled.div`
