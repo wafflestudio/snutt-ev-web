@@ -4,20 +4,13 @@ import { COLORS } from "@lib/styles/colors"
 import { ReviewDetailDTO } from "@lib/dto/review"
 import { Rating } from "@lib/components/Rating"
 import { useState } from "react"
+import { CollapsableText } from "@lib/components/CollapsableText"
 
 interface Props {
   review: ReviewDetailDTO
 }
 
 export const LectureReviewCard = ({ review }: Props) => {
-  const [expanded, setExpanded] = useState(false)
-  const truncBy = 120
-
-  const text =
-    review.contents.length > truncBy && !expanded
-      ? review.contents.slice(0, truncBy) + "..."
-      : review.contents
-
   return (
     <Wrapper>
       <Contents>
@@ -28,15 +21,7 @@ export const LectureReviewCard = ({ review }: Props) => {
           </SideInfo>
         </Header>
         <Review>
-          <Detail>
-            {text}
-            {review.contents.length > truncBy && (
-              <MoreLessButton onClick={() => setExpanded((status) => !status)}>
-                {" "}
-                {expanded ? "접기" : "더보기"}
-              </MoreLessButton>
-            )}
-          </Detail>
+          <CollapsableText text={review.contents} />
         </Review>
       </Contents>
     </Wrapper>
@@ -78,8 +63,4 @@ const SideInfo = styled.div`
 const Review = styled.div`
   display: inline-block;
   width: 100%;
-`
-
-const MoreLessButton = styled.a`
-  color: rgb(179, 179, 179);
 `

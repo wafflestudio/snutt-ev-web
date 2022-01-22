@@ -10,7 +10,6 @@ import { useState } from "react"
 import { ToggleButton, ToggleButtonGroup } from "@mui/material/"
 import { AppBar } from "@lib/components/Appbar"
 
-import SvgWrite from "@lib/components/Icons/SvgWrite"
 import SvgTimetableOn from "@lib/components/Icons/SvgTimetableOn"
 import { useRouter } from "next/router"
 
@@ -135,7 +134,7 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)`
       border-radius: 15px;
       height: 30px;
     }
-    &:hover {
+    &.Mui-selected :hover {
       border: 1px solid #777777;
       background-color: #777777;
       color: #ffffff;
