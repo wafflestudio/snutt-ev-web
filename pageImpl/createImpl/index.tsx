@@ -64,7 +64,7 @@ export const CreateImpl = () => {
 
     selectedSemester
       ? await postLectureEvaluation(selectedSemester?.id, query)
-      : console.log("???")
+      : console.log("???")  // Fix me
   }
 
   const stepNext = () => {
