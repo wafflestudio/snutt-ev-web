@@ -3,10 +3,10 @@ import { Detail, Subheading01 } from "@lib/components/Text"
 import { COLORS } from "@lib/styles/colors"
 import { Rating } from "@lib/components/Rating"
 import { CollapsableText } from "@lib/components/CollapsableText"
-import { EvaluationDTO } from "@lib/dto/core/evaluation"
+import { MainEvaluationDTO } from "@lib/dto/core/mainEvaluation"
 
 interface Props {
-  evaluation: EvaluationDTO
+  evaluation: MainEvaluationDTO
 }
 
 export const EvaluationCard = ({ evaluation }: Props) => {
@@ -14,7 +14,7 @@ export const EvaluationCard = ({ evaluation }: Props) => {
     <Wrapper>
       <Contents>
         <Header>
-          <LectureName>{evaluation.lecture_id}</LectureName>
+          <LectureName>{evaluation.lecture_title}</LectureName>
           <RatingInfo>
             <Rating rating={evaluation.rating} size={12} />
             <Semester>
