@@ -19,7 +19,7 @@ export const RecentImpl = () => {
           <SvgArrowBack width={30} height={30} onClick={() => router.back()} />
         )}
       >
-        <Title01 style={{ marginLeft: 12 }}>학기?</Title01>
+        <Title01 style={{ marginLeft: 12 }}>최근 강의 목록</Title01>
       </AppBar>
 
       <RecentLectureList>
