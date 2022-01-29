@@ -5,9 +5,10 @@ import { ReviewDetailDTO } from "@lib/dto/review"
 import { Rating } from "@lib/components/Rating"
 import { useState } from "react"
 import { CollapsableText } from "@lib/components/CollapsableText"
+import { EvaluationDTO } from "@lib/dto/core/evaluation"
 
 interface Props {
-  review: ReviewDetailDTO
+  review: EvaluationDTO
 }
 
 export const LectureReviewCard = ({ review }: Props) => {
@@ -16,12 +17,14 @@ export const LectureReviewCard = ({ review }: Props) => {
       <Contents>
         <Header>
           <SideInfo>
-            <Rating rating={review.point} size={12} />
-            <Semester>{review.semester} 수강</Semester>
+            <Rating rating={review.rating} size={12} />
+            <Semester>
+              {review.year}-{review.semester} 수강
+            </Semester>
           </SideInfo>
         </Header>
         <Review>
-          <CollapsableText text={review.contents} />
+          <CollapsableText text={review.content} />
         </Review>
       </Contents>
     </Wrapper>

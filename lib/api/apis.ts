@@ -4,6 +4,11 @@ import { LectureSemesterDTO } from "@lib/dto/semeters"
 import { GetTagInfosResult } from "../dto/getTagInfos"
 import { GetLecturesQuery, GetLecturesResult } from "@lib/dto/getLectures"
 import SnuttApi from "./request"
+import { GetEvaluationSummaryResponse } from "@lib/dto/getEvaluationSummary"
+import {
+  GetEvaluationsQuery,
+  GetEvaluationsResult,
+} from "@lib/dto/getEvaluations"
 
 export function fetchRecentReviews(): Promise<ReviewDTO[]> {
   return new Promise((resolve) => {
@@ -182,52 +187,20 @@ export function fetchLectureSemesters(): Promise<LectureSemesterDTO[]> {
   })
 }
 
-export function fetchLectureReviews(): Promise<ReviewDetailDTO[]> {
-  return new Promise((resolve) => {
-    setTimeout(
-      () =>
-        resolve([
-          {
-            id: "1",
-            name: "편집디자인",
-            point: 3,
-            semester: "2021-1",
-            contents: "짧은 리뷰",
-          },
-          {
-            id: "2",
-            name: "편집디자인",
-            point: 4,
-            semester: "2021-1",
-            contents:
-              "긴 리뷰. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요.강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요.강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. ",
-          },
-          {
-            id: "3",
-            name: "편집디자인",
-            point: 5,
-            semester: "2021-1",
-            contents:
-              "중간 리뷰. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요 ",
-          },
-          {
-            id: "4",
-            name: "편집디자인",
-            point: 1,
-            semester: "2021-1",
-            contents: "짧은 리뷰",
-          },
-          {
-            id: "5",
-            name: "편집디자인",
-            point: 2,
-            semester: "2021-1",
-            contents: "짧은 리뷰",
-          },
-        ]),
-      500,
-    )
-  })
+export async function fetchLectureEvaluations(
+  params: GetEvaluationsQuery,
+): Promise<GetEvaluationsResult> {
+  return SnuttApi.get<GetEvaluationsResult>(
+    `/lectures/${params.id}/evaluations`,
+  )
+}
+
+export async function fetchEvaluationSummary(
+  id: number,
+): Promise<GetEvaluationSummaryResponse> {
+  return SnuttApi.get<GetEvaluationSummaryResponse>(
+    `/lectures/${id}/evaluation-summary`,
+  )
 }
 
 export function getLectures(

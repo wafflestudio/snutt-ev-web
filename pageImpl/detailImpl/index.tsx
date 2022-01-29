@@ -2,18 +2,28 @@ import styled from "@emotion/styled"
 import { AppBar } from "@lib/components/Appbar"
 import { useRouter } from "next/router"
 import { Detail, Subheading02, Title01 } from "@lib/components/Text"
-import { useLectureReviewContainer } from "./__containers__"
+import { useEvaluationSummaryContainer } from "./__containers__/useEvaluationSummaryContainer"
 import { LectureReviewCard } from "./__components__/LectureReviewCard"
 
 import SvgWrite from "@lib/components/Icons/SvgWrite"
 import SvgStarSmallFilled from "@lib/components/Icons/SvgStarSmallFilled"
 import SvgArrowBack from "@lib/components/Icons/SvgArrowBack"
 import { RatingGraph } from "@lib/components/RatingGraph"
+import { useLectureEvaluationsContainer } from "@pageImpl/detailImpl/__containers__/useLectureEvaluationsContainer"
+import { GetEvaluationsQuery } from "@lib/dto/getEvaluations"
 
 export const DetailImpl = () => {
   const router = useRouter()
+  const { id } = router.query
 
-  const { reviewData } = useLectureReviewContainer()
+  // FIXME: 페이지네이션 추가
+  const mockQuery: GetEvaluationsQuery = {
+    id: Number(id),
+    cursor: "",
+  }
+
+  const { summaryData } = useEvaluationSummaryContainer(Number(id))
+  const { evaluationData } = useLectureEvaluationsContainer(mockQuery)
 
   return (
     <Wrapper>
@@ -24,22 +34,28 @@ export const DetailImpl = () => {
       >
         <AppBarContent>
           <Title01 style={{ marginLeft: 12 }}>강의평</Title01>
-          <SvgWrite height={30} width={30} />
+          <SvgWrite
+            height={30}
+            width={30}
+            onClick={() => router.push("/create/" + id)}
+          />
         </AppBarContent>
       </AppBar>
 
       <Content>
         <ReviewSummary>
           <ReviewSummaryLeft>
-            <Title01>(강의명)</Title01>
-            <InstructorName>(교수명)</InstructorName>
+            <Title01>{summaryData?.title}</Title01>
+            <InstructorName>{summaryData?.instructor}</InstructorName>
           </ReviewSummaryLeft>
           <ReviewSummaryRight>
             <ReviewScore>
               <SvgStarSmallFilled height={19} width={19} />
-              <Title01 style={{ marginLeft: 6, marginTop: 0 }}>3.8</Title01>
+              <Title01 style={{ marginLeft: 6, marginTop: 0 }}>
+                {summaryData?.summary.avg_rating}
+              </Title01>
             </ReviewScore>
-            <ReviewCount>(n)개의 강의평</ReviewCount>
+            <ReviewCount>{evaluationData?.total_count}개의 강의평</ReviewCount>
           </ReviewSummaryRight>
         </ReviewSummary>
 
@@ -51,10 +67,12 @@ export const DetailImpl = () => {
             <YAxisLabel>강의력</YAxisLabel>
             <GraphWrapper>
               <RatingGraph
-                gradeSatisfaction={2}
-                lifeBalance={4}
-                gains={3}
-                teachingSkill={3}
+                gradeSatisfaction={Number(
+                  summaryData?.summary.avg_grade_satisfaction,
+                )}
+                lifeBalance={Number(summaryData?.summary.avg_life_balance)}
+                gains={Number(summaryData?.summary.avg_gains)}
+                teachingSkill={Number(summaryData?.summary.avg_teaching_skill)}
                 height={280}
                 width={280}
               />
@@ -67,8 +85,8 @@ export const DetailImpl = () => {
         </ReviewDiagram>
 
         <ReviewList>
-          {reviewData ? (
-            reviewData.map((it) => (
+          {evaluationData?.content.length !== 0 ? (
+            evaluationData?.content.map((it) => (
               <LectureReviewCard review={it} key={it.id} />
             ))
           ) : (
