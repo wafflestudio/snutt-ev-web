@@ -24,6 +24,7 @@ export const DetailImpl = () => {
   const { searchResult, fetchNextPage, totalCount } =
     useLectureEvaluationsContainer(Number(id))
   const { loaderRef } = useScrollLoader(fetchNextPage)
+
   const [moreSheetItem, setMoreSheetItem] = useState<EvaluationDTO | undefined>(
     undefined,
   )
