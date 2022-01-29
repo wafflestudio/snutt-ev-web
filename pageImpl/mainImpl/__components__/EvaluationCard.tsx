@@ -18,7 +18,7 @@ export const EvaluationCard = ({ evaluation }: Props) => {
           <RatingInfo>
             <Rating rating={evaluation.rating} size={12} />
             <Semester>
-              {evaluation.year}-{evaluation.semester} 수강
+              {evaluation.year}년 {evaluation.semester}학기
             </Semester>
           </RatingInfo>
         </Header>

@@ -7,14 +7,17 @@ import SvgPersonBlack from "@lib/components/Icons/SvgPersonBlack"
 import SvgMapBlack from "@lib/components/Icons/SvgMapBlack"
 import { LatestLectureDTO } from "@lib/dto/core/latestLecture"
 import { SemesterIntToString } from "@lib/util"
+import { useRouter } from "next/router"
 
 interface Props {
   lecture: LatestLectureDTO
 }
 
 export const LectureCard = ({ lecture }: Props) => {
+  const router = useRouter()
+
   return (
-    <Card>
+    <Card onClick={() => router.push(`/create/${lecture.id}`)}>
       <CardTop>
         <LectureName>{lecture.title}</LectureName>
         <SvgWrite height={20} width={20} />

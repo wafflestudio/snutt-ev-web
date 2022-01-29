@@ -1,6 +1,5 @@
 import styled from "@emotion/styled"
 import { Subheading02, Title01 } from "@lib/components/Text"
-import { RecentLectureDTO } from "@lib/dto/recentLecture"
 import { LectureCard } from "./LectureCard"
 import { useRouter } from "next/router"
 import { LatestLectureDTO } from "@lib/dto/core/latestLecture"
