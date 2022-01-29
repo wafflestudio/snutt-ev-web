@@ -1,7 +1,7 @@
 import styled from "@emotion/styled"
 import { EvaluationCard } from "./__components__/EvaluationCard"
 import {
-  useContainer,
+  useRecommendationTagsContainer,
   useMainEvaluationContainer,
   useMainRecentContainer,
 } from "./__containers__"
@@ -21,7 +21,7 @@ export const MainImpl = () => {
   const router = useRouter()
 
   const [selectedTag, setSelectedTag] = useState<TagDTO | undefined>(undefined)
-  const { recommendationTags } = useContainer()
+  const { recommendationTags } = useRecommendationTagsContainer()
   const { recentLectureData } = useMainRecentContainer()
   const { searchResult, fetchNextPage } =
     useMainEvaluationContainer(selectedTag)
@@ -86,6 +86,7 @@ export const MainImpl = () => {
           <div ref={loaderRef} />
         </React.Fragment>
       ) : (
+        // FIXME: Empty placeholder
         <div>asdf</div>
       )}
     </Wrapper>

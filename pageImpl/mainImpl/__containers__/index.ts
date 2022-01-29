@@ -7,7 +7,7 @@ import {
 import { TagDTO } from "@lib/dto/core/tag"
 import { useInfiniteQuery, useQuery } from "react-query"
 
-export function useContainer() {
+export function useRecommendationTagsContainer() {
   const { data } = useQuery("mainTags", getMainTagInfos)
   return { recommendationTags: data?.tags ?? [] }
 }
