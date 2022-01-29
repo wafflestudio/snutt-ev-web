@@ -21,7 +21,7 @@ export const RecentCarousel = ({ lectureList }: Props) => {
             router.push("/recent")
           }}
         >
-          강의 목록 &gt;
+          더보기 &gt;
         </Subheading02>
       </CarouselHeader>
       <SubjectCardCarousel>
