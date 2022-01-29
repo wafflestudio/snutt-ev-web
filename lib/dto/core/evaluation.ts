@@ -11,7 +11,7 @@ export interface EvaluationDTO {
   like_count: number
   dislike_count: number
   is_hidden: boolean
-  is_reported: boolean
+  is_reportable: boolean
   year: number
   semester: number
   is_modifiable: boolean
