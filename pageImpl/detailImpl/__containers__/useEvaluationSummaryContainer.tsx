@@ -8,7 +8,7 @@ export function useEvaluationSummaryContainer(id: number) {
     GetEvaluationSummaryResponse,
     ApiError
   >(["evaluationSummary", id], () => fetchEvaluationSummary(id), {
-    enabled: !isNaN(id),
+    enabled: false,
   })
 
   return {
