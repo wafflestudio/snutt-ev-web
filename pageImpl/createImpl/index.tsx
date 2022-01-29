@@ -1,24 +1,34 @@
 import styled from "@emotion/styled"
-import { usePolygonContainer, useSemsetersContainer } from "./__containers__"
-import { RecentLectureDTO } from "@lib/dto/recentLecture"
-import { Fragment, useState } from "react"
+import { usePolygonContainer, useSemestersContainer } from "./__containers__"
+import { Fragment, useEffect, useState } from "react"
 import { Header } from "./__components__/Header"
 import { EvalPolygon } from "./__components__/EvalPolygon"
 import { EvalBasic } from "./__components__/EvalBasic"
 import { AppBar } from "@lib/components/Appbar"
 import SvgArrowBack from "@lib/components/Icons/SvgArrowBack"
-import router from "next/router"
-import { Title01 } from "@lib/components/Text"
+import { useRouter } from "next/router"
+import { postLectureEvaluation } from "@lib/api/apis"
+import { PostEvaluationQuery } from "@lib/dto/postEvaluation"
+import { SemesterLectureDTO } from "@lib/dto/core/semesterLecture"
 
-interface Props {
-  lecture: RecentLectureDTO
-}
+export const CreateImpl = () => {
+  const router = useRouter()
+  const id = Number(router.query["id"])
 
-export const CreateImpl = ({ lecture }: Props) => {
-  const { data: lectureSemesters } = useSemsetersContainer()
+  const { data: lectureSemesters } = useSemestersContainer(id)
   const [isSemesterSelectorOpen, setIsSemesterSelectorOpen] = useState(false)
-  const [selectedSemester, setSelectedSemester] = useState("") // ex) '2022 - 1학기'
-  const [rating, setRating] = useState(0)
+  const [selectedSemester, setSelectedSemester] = useState<
+    SemesterLectureDTO | undefined
+  >(undefined)
+
+  useEffect(() => {
+    const latestLectureSemester = lectureSemesters?.semester_lectures[0]
+    if (latestLectureSemester) {
+      setSelectedSemester(latestLectureSemester)
+    }
+  }, [lectureSemesters])
+
+  const [rating, setRating] = useState(-1)
   const [content, setContent] = useState("")
 
   const [step, setStep] = useState(0)
@@ -37,14 +47,33 @@ export const CreateImpl = ({ lecture }: Props) => {
     setIsSemesterSelectorOpen((status) => !status)
   }
 
-  const handleSelectedSemester = (semester: string) => {
-    setSelectedSemester(semester)
+  const handleSelectedSemester = (semesterLecture: SemesterLectureDTO) => {
+    setSelectedSemester(semesterLecture)
     setIsSemesterSelectorOpen((status) => !status)
+  }
+
+  const postEvaluation = async () => {
+    const query: PostEvaluationQuery = {
+      content: content,
+      grade_satisfaction: score.top,
+      teaching_skill: score.left,
+      gains: score.bottom,
+      life_balance: score.right,
+      rating: rating + 1,
+    }
+
+    selectedSemester
+      ? await postLectureEvaluation(selectedSemester?.id, query)
+      : console.log("???")
   }
 
   const stepNext = () => {
     if (step < stepComponents.length - 1) {
       setStep((step) => step + 1)
+    } else {
+      postEvaluation()
+        .then(() => router.push(`/detail/${id}`))
+        .catch((e) => console.log(e))
     }
   }
 
@@ -56,11 +85,13 @@ export const CreateImpl = ({ lecture }: Props) => {
 
   const stepComponents = [
     <EvalPolygon
+      key={1}
       defaultValue={defaultValue}
       score={score}
       handleUpdateScore={updateScore}
     />,
     <EvalBasic
+      key={2}
       handleRating={handleRating}
       rating={rating}
       handleContent={handleContent}
@@ -86,13 +117,14 @@ export const CreateImpl = ({ lecture }: Props) => {
       />
       <Container>
         <Header
-          lecture={lecture}
+          lectureName={lectureSemesters?.title}
+          lectureInstructor={lectureSemesters?.instructor}
           selectedSemester={selectedSemester}
           isSemesterSelectorOpen={isSemesterSelectorOpen}
           handleSemesterSelector={handleSemesterSelector}
           handleSelectedSemester={handleSelectedSemester}
-          lectureSemesters={lectureSemesters}
-        ></Header>
+          lectureSemesters={lectureSemesters?.semester_lectures}
+        />
         {stepComponents.map((component, index) => {
           if (step === index) {
             return <Fragment key={index}>{component}</Fragment>

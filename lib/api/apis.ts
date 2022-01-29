@@ -1,6 +1,6 @@
 import { RecentLectureDTO } from "@lib/dto/recentLecture"
 import { ReviewDetailDTO, ReviewDTO } from "@lib/dto/review"
-import { LectureSemesterDTO } from "@lib/dto/semeters"
+import { GetSemesterLecturesResult } from "@lib/dto/getSemesterLectures"
 import { GetTagInfosResult } from "../dto/getTagInfos"
 import { GetLecturesQuery, GetLecturesResult } from "@lib/dto/getLectures"
 import SnuttApi from "./request"
@@ -9,6 +9,10 @@ import {
   GetEvaluationsQuery,
   GetEvaluationsResult,
 } from "@lib/dto/getEvaluations"
+import {
+  PostEvaluationQuery,
+  PostEvaluationResult,
+} from "@lib/dto/postEvaluation"
 
 export function fetchRecentReviews(): Promise<ReviewDTO[]> {
   return new Promise((resolve) => {
@@ -128,63 +132,19 @@ export async function fetchTagInfos(): Promise<GetTagInfosResult> {
   return SnuttApi.get<GetTagInfosResult>("/tags/search")
 }
 
-export function fetchLectureSemesters(): Promise<LectureSemesterDTO[]> {
-  return new Promise((resolve) => {
-    setTimeout(
-      () =>
-        resolve([
-          {
-            id: "1",
-            name: "소프트웨어 개발의 원리와 실습",
-            semester: "2022-1",
-            lecturer: "최한결",
-          },
-          {
-            id: "2",
-            name: "소프트웨어 개발의 원리와 실습",
-            semester: "2021-겨울",
-            lecturer: "최한결",
-          },
-          {
-            id: "3",
-            name: "소프트웨어 개발의 원리와 실습",
-            semester: "2021-2",
-            lecturer: "최한결",
-          },
-          {
-            id: "4",
-            name: "소프트웨어 개발의 원리와 실습",
-            semester: "2020-2",
-            lecturer: "최한결",
-          },
-          {
-            id: "5",
-            name: "소프트웨어 개발의 원리와 실습",
-            semester: "2019-2",
-            lecturer: "최한결",
-          },
-          {
-            id: "6",
-            name: "소프트웨어 개발의 원리와 실습",
-            semester: "2018-2",
-            lecturer: "최한결",
-          },
-          {
-            id: "7",
-            name: "소프트웨어 개발의 원리와 실습",
-            semester: "2017-2",
-            lecturer: "최한결",
-          },
-          {
-            id: "8",
-            name: "소프트웨어 개발의 원리와 실습",
-            semester: "2016-2",
-            lecturer: "최한결",
-          },
-        ]),
-      1000,
-    )
-  })
+export async function fetchSemesterLectures(
+  id: number,
+): Promise<GetSemesterLecturesResult> {
+  return SnuttApi.get<GetSemesterLecturesResult>(
+    `/lectures/${id}/semester-lectures`,
+  )
+}
+
+export async function postLectureEvaluation(
+  id: number,
+  query: PostEvaluationQuery,
+): Promise<PostEvaluationResult> {
+  return SnuttApi.post(`/semester-lectures/${id}/evaluations`, query)
 }
 
 export async function fetchLectureEvaluations(

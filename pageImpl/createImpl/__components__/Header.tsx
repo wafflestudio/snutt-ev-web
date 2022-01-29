@@ -1,20 +1,22 @@
 import styled from "@emotion/styled"
 import { Subheading02, Title01 } from "@lib/components/Text"
-import { RecentLectureDTO } from "@lib/dto/recentLecture"
-import { LectureSemesterDTO } from "@lib/dto/semeters"
+import { SemesterLectureDTO } from "@lib/dto/core/semesterLecture"
 import SvgArrowDown from "@lib/components/Icons/SvgArrowDown"
+import { SemesterIntToString } from "@lib/util"
 
 interface Props {
-  lecture: RecentLectureDTO
-  handleSelectedSemester: (semester: string) => void
+  lectureName: string | undefined
+  lectureInstructor: string | undefined
+  handleSelectedSemester: (semesterLecture: SemesterLectureDTO) => void
   handleSemesterSelector: () => void
   isSemesterSelectorOpen: boolean
-  selectedSemester: string
-  lectureSemesters?: LectureSemesterDTO[]
+  selectedSemester: SemesterLectureDTO | undefined
+  lectureSemesters?: SemesterLectureDTO[]
 }
 
 export const Header = ({
-  lecture,
+  lectureName,
+  lectureInstructor,
   handleSelectedSemester,
   handleSemesterSelector,
   selectedSemester,
@@ -34,12 +36,17 @@ export const Header = ({
           marginTop: "10px",
         }}
       >
-        <Title01>{lecture.name}</Title01>
-        <Subheading02>{lecture.lecturer}</Subheading02>
+        <Title01>{lectureName}</Title01>
+        <Subheading02>{lectureInstructor}</Subheading02>
       </Column>
       <SemesterSelectorContainer>
         <SemesterSelector onClick={handleSemesterSelector}>
-          {selectedSemester || lecture.semester}
+          {selectedSemester
+            ? `${selectedSemester.year}-${SemesterIntToString(
+                selectedSemester.semester,
+              )}학기`
+            : ""}
+
           <SvgArrowDown width="10" />
         </SemesterSelector>
         {isSemesterSelectorOpen && (
@@ -47,9 +54,9 @@ export const Header = ({
             {lectureSemesters?.map((lecture) => (
               <SemesterButton
                 key={lecture.id}
-                onClick={() => handleSelectedSemester(lecture.semester)}
+                onClick={() => handleSelectedSemester(lecture)}
               >
-                {lecture.semester}
+                {`${lecture.year}-${SemesterIntToString(lecture.semester)}학기`}
               </SemesterButton>
             ))}
           </SemesterButtonsContainer>
