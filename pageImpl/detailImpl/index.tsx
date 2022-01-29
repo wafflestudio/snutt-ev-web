@@ -10,11 +10,11 @@ import SvgStarSmallFilled from "@lib/components/Icons/SvgStarSmallFilled"
 import SvgArrowBack from "@lib/components/Icons/SvgArrowBack"
 import { RatingGraph } from "@lib/components/RatingGraph"
 import { useLectureEvaluationsContainer } from "@pageImpl/detailImpl/__containers__/useLectureEvaluationsContainer"
-import { GetEvaluationsQuery } from "@lib/dto/getEvaluations"
 import useScrollLoader from "@lib/hooks/useScrollLoader"
 import React, { useState } from "react"
 import EvaluationModifySheet from "./__components__/EvaluationModifySheet"
 import { EvaluationDTO } from "@lib/dto/core/evaluation"
+import { useMyLectureEvaluationsContainer } from "./__containers__/useMyLectureEvaluationsContainer"
 
 export const DetailImpl = () => {
   const router = useRouter()
@@ -24,6 +24,7 @@ export const DetailImpl = () => {
   const { searchResult, fetchNextPage } = useLectureEvaluationsContainer(
     Number(id),
   )
+  const { myReviewResult } = useMyLectureEvaluationsContainer(Number(id))
   const { loaderRef } = useScrollLoader(fetchNextPage)
 
   const [moreSheetItem, setMoreSheetItem] = useState<EvaluationDTO | undefined>(
@@ -103,6 +104,16 @@ export const DetailImpl = () => {
           </ReviewDiagram>
 
           <ReviewList>
+            {myReviewResult?.evaluations.map((content, index) => (
+              <LectureReviewCard
+                review={content}
+                key={content.id}
+                onMoreClick={() => {
+                  setMoreSheetItem(content)
+                }}
+                isMyReivew
+              />
+            ))}
             {searchResult?.pages ? (
               <React.Fragment>
                 {searchResult?.pages?.map((content, i) => (
