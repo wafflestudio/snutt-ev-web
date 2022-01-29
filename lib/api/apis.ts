@@ -4,6 +4,16 @@ import { LectureSemesterDTO } from "@lib/dto/semeters"
 import { GetTagInfosResult } from "../dto/getTagInfos"
 import { GetLecturesQuery, GetLecturesResult } from "@lib/dto/getLectures"
 import SnuttApi from "./request"
+import { GetEvaluationSummaryResponse } from "@lib/dto/getEvaluationSummary"
+import {
+  GetEvaluationsQuery,
+  GetEvaluationsResult,
+} from "@lib/dto/getEvaluations"
+import { GetMainTagInfosResult } from "@lib/dto/getMainTagInfos"
+import {
+  GetMainTagEvaluationsResult,
+  GetMainTagEvalutionsQuery,
+} from "@lib/dto/getMainTagEvaluations"
 
 export function fetchRecentReviews(): Promise<ReviewDTO[]> {
   return new Promise((resolve) => {
@@ -182,76 +192,40 @@ export function fetchLectureSemesters(): Promise<LectureSemesterDTO[]> {
   })
 }
 
-export function fetchLectureReviews(): Promise<ReviewDetailDTO[]> {
-  return new Promise((resolve) => {
-    setTimeout(
-      () =>
-        resolve([
-          {
-            id: "1",
-            name: "편집디자인",
-            point: 3,
-            semester: "2021-1",
-            contents: "짧은 리뷰",
-          },
-          {
-            id: "2",
-            name: "편집디자인",
-            point: 4,
-            semester: "2021-1",
-            contents:
-              "긴 리뷰. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요.강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요.강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. ",
-          },
-          {
-            id: "3",
-            name: "편집디자인",
-            point: 5,
-            semester: "2021-1",
-            contents:
-              "중간 리뷰. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요. 강의평 내용을 입력하세요 ",
-          },
-          {
-            id: "4",
-            name: "편집디자인",
-            point: 1,
-            semester: "2021-1",
-            contents: "짧은 리뷰",
-          },
-          {
-            id: "5",
-            name: "편집디자인",
-            point: 2,
-            semester: "2021-1",
-            contents: "짧은 리뷰",
-          },
-        ]),
-      500,
-    )
-  })
+export async function fetchLectureEvaluations(
+  id: number,
+  params: GetEvaluationsQuery,
+): Promise<GetEvaluationsResult> {
+  return SnuttApi.get<GetEvaluationsResult>(
+    `/lectures/${id}/evaluations`,
+    params,
+  )
+}
+
+export async function fetchEvaluationSummary(
+  id: number,
+): Promise<GetEvaluationSummaryResponse> {
+  return SnuttApi.get<GetEvaluationSummaryResponse>(
+    `/lectures/${id}/evaluation-summary`,
+  )
 }
 
 export function getLectures(
   query: GetLecturesQuery,
 ): Promise<GetLecturesResult> {
-  return new Promise((resolve) =>
-    setTimeout(() => {
-      const next = query.page + 1
-      resolve({
-        content: [
-          {
-            classification: "string",
-            department: "string",
-            academic_year: "string",
-            course_number: "string",
-            title: `string query of ${query.tags}`,
-            credit: 3,
-            instructor: "asdf",
-            category: "asdf",
-            rating: 4,
-          },
-        ],
-        next_page: next > 30 ? undefined : next,
-      })
-    }, 500),
+  return SnuttApi.get<GetLecturesResult>("/lectures", query)
+}
+
+export function getMainTagInfos(): Promise<GetMainTagInfosResult> {
+  return SnuttApi.get<GetMainTagInfosResult>("/tags/main")
+}
+
+export function getMainTagEvaluations(
+  id: number,
+  query: GetMainTagEvalutionsQuery,
+): Promise<GetMainTagEvaluationsResult> {
+  return SnuttApi.get<GetMainTagEvaluationsResult, GetMainTagEvalutionsQuery>(
+    `/tags/main/${id}/evaluations`,
+    query,
   )
 }

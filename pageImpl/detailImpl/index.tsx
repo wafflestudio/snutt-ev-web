@@ -2,18 +2,26 @@ import styled from "@emotion/styled"
 import { AppBar } from "@lib/components/Appbar"
 import { useRouter } from "next/router"
 import { Detail, Subheading02, Title01 } from "@lib/components/Text"
-import { useLectureReviewContainer } from "./__containers__"
+import { useEvaluationSummaryContainer } from "./__containers__/useEvaluationSummaryContainer"
 import { LectureReviewCard } from "./__components__/LectureReviewCard"
 
 import SvgWrite from "@lib/components/Icons/SvgWrite"
 import SvgStarSmallFilled from "@lib/components/Icons/SvgStarSmallFilled"
 import SvgArrowBack from "@lib/components/Icons/SvgArrowBack"
 import { RatingGraph } from "@lib/components/RatingGraph"
+import { useLectureEvaluationsContainer } from "@pageImpl/detailImpl/__containers__/useLectureEvaluationsContainer"
+import { GetEvaluationsQuery } from "@lib/dto/getEvaluations"
+import useScrollLoader from "@lib/hooks/useScrollLoader"
+import React from "react"
 
 export const DetailImpl = () => {
   const router = useRouter()
+  const { id } = router.query
 
-  const { reviewData } = useLectureReviewContainer()
+  const { summaryData } = useEvaluationSummaryContainer(Number(id))
+  const { searchResult, fetchNextPage, totalCount } =
+    useLectureEvaluationsContainer(Number(id))
+  const { loaderRef } = useScrollLoader(fetchNextPage)
 
   return (
     <Wrapper>
@@ -24,22 +32,28 @@ export const DetailImpl = () => {
       >
         <AppBarContent>
           <Title01 style={{ marginLeft: 12 }}>강의평</Title01>
-          <SvgWrite height={30} width={30} />
+          <SvgWrite
+            height={30}
+            width={30}
+            onClick={() => router.push("/create/" + id)}
+          />
         </AppBarContent>
       </AppBar>
 
       <Content>
         <ReviewSummary>
           <ReviewSummaryLeft>
-            <Title01>(강의명)</Title01>
-            <InstructorName>(교수명)</InstructorName>
+            <Title01>{summaryData?.title}</Title01>
+            <InstructorName>{summaryData?.instructor}</InstructorName>
           </ReviewSummaryLeft>
           <ReviewSummaryRight>
             <ReviewScore>
               <SvgStarSmallFilled height={19} width={19} />
-              <Title01 style={{ marginLeft: 6, marginTop: 0 }}>3.8</Title01>
+              <Title01 style={{ marginLeft: 6, marginTop: 0 }}>
+                {summaryData?.summary?.avg_rating}
+              </Title01>
             </ReviewScore>
-            <ReviewCount>(n)개의 강의평</ReviewCount>
+            <ReviewCount>{totalCount}개의 강의평</ReviewCount>
           </ReviewSummaryRight>
         </ReviewSummary>
 
@@ -51,10 +65,12 @@ export const DetailImpl = () => {
             <YAxisLabel>강의력</YAxisLabel>
             <GraphWrapper>
               <RatingGraph
-                gradeSatisfaction={2}
-                lifeBalance={4}
-                gains={3}
-                teachingSkill={3}
+                gradeSatisfaction={
+                  summaryData?.summary?.avg_grade_satisfaction ?? 0
+                }
+                lifeBalance={summaryData?.summary?.avg_life_balance ?? 0}
+                gains={summaryData?.summary?.avg_gains ?? 0}
+                teachingSkill={summaryData?.summary?.avg_teaching_skill ?? 0}
                 height={280}
                 width={280}
               />
@@ -67,11 +83,19 @@ export const DetailImpl = () => {
         </ReviewDiagram>
 
         <ReviewList>
-          {reviewData ? (
-            reviewData.map((it) => (
-              <LectureReviewCard review={it} key={it.id} />
-            ))
+          {searchResult?.pages ? (
+            <React.Fragment>
+              {searchResult?.pages?.map((content, i) => (
+                <React.Fragment>
+                  {content.content.map((it) => (
+                    <LectureReviewCard review={it} key={it.id} />
+                  ))}
+                </React.Fragment>
+              ))}
+              <div ref={loaderRef} />
+            </React.Fragment>
           ) : (
+            // FIXME: Empty placeholder
             <Subheading02>대충 아직 없으니 적어달라는 문구</Subheading02>
           )}
         </ReviewList>

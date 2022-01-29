@@ -9,7 +9,7 @@ import SvgExit from "@lib/components/Icons/SvgExit"
 
 interface Props {
   selectedTags: TagDTO[]
-  tagGroupsWithTags: { tagGroup: TagGroupDTO; tags: TagDTO[] }[]
+  tagGroups: TagGroupDTO[]
   onToggleTag: (tag: TagDTO) => void
   isOpened: boolean
   onClose: () => void
@@ -18,23 +18,19 @@ interface Props {
 
 export const SearchOptionSheet: React.FC<Props> = ({
   selectedTags,
-  tagGroupsWithTags,
+  tagGroups,
   onToggleTag,
   isOpened,
   onClose: onClose,
   onClickSubmit,
 }) => {
   const [selectedTagGroup, setSelectedTagGroup] = useState<TagGroupDTO>(
-    tagGroupsWithTags[0]?.tagGroup,
+    tagGroups[0],
   )
-  const visibleTags = useMemo(() => {
-    return (
-      tagGroupsWithTags.find((it) => it.tagGroup.id === selectedTagGroup.id)
-        ?.tags ?? []
-    )
-  }, [selectedTagGroup, tagGroupsWithTags])
 
-  const tagGroups = tagGroupsWithTags.map((it) => it.tagGroup)
+  const visibleTags = useMemo(() => {
+    return selectedTagGroup.tags
+  }, [selectedTagGroup, tagGroups])
 
   return (
     <Sheet isOpen={isOpened} onClose={onClose} snapPoints={[420]}>

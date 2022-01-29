@@ -1,4 +1,4 @@
-import { useInfiniteQuery, useQuery } from "react-query"
+import { useQuery } from "react-query"
 import { GetTagInfosResult } from "../../../lib/dto/getTagInfos"
 import { ApiError } from "../../../lib/dto/core/error"
 import { useState } from "react"
@@ -33,12 +33,14 @@ export function useTagContainer() {
   }
 
   return {
-    tagGroupWithTags: data?.results,
+    tagGroups: data?.tag_groups,
     error,
     isLoading,
     selectedTags,
     toggleTagSelection,
     currentlyAppliedQuery,
     refreshQueries,
+    selectedTextQuery: textQuery,
+    updateTextQuery: setTextQuery,
   }
 }

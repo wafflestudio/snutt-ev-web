@@ -1,27 +1,29 @@
 import styled from "@emotion/styled"
 import { Detail, Subheading01 } from "@lib/components/Text"
 import { COLORS } from "@lib/styles/colors"
-import { ReviewDetailDTO } from "@lib/dto/review"
 import { Rating } from "@lib/components/Rating"
 import { CollapsableText } from "@lib/components/CollapsableText"
+import { EvaluationDTO } from "@lib/dto/core/evaluation"
 
 interface Props {
-  review: ReviewDetailDTO
+  evaluation: EvaluationDTO
 }
 
-export const ReviewCard = ({ review }: Props) => {
+export const EvaluationCard = ({ evaluation }: Props) => {
   return (
     <Wrapper>
       <Contents>
         <Header>
-          <LectureName>{review.name}</LectureName>
+          <LectureName>{evaluation.lecture_id}</LectureName>
           <RatingInfo>
-            <Rating rating={review.point} size={12} />
-            <Semester>{review.semester} 수강</Semester>
+            <Rating rating={evaluation.rating} size={12} />
+            <Semester>
+              {evaluation.year}-{evaluation.semester} 수강
+            </Semester>
           </RatingInfo>
         </Header>
         <Review>
-          <CollapsableText text={review.contents} />
+          <CollapsableText text={evaluation.content} />
         </Review>
       </Contents>
     </Wrapper>
