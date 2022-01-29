@@ -71,7 +71,7 @@ export const MainImpl = () => {
             <ToggleButton value={it}>{it.name}</ToggleButton>
           ))}
         </StyledToggleButtonGroup>
-        <CategoryDetail>{selectedTag?.name}</CategoryDetail>
+        <CategoryDetail>{selectedTag?.description}</CategoryDetail>
       </CategoryPicker>
 
       {searchResult?.pages ? (
@@ -87,7 +87,7 @@ export const MainImpl = () => {
         </React.Fragment>
       ) : (
         // FIXME: Empty placeholder
-        <div>asdf</div>
+        <div>로딩중</div>
       )}
     </Wrapper>
   )
@@ -115,7 +115,7 @@ const CategoryPicker = styled.div`
 const CategoryDetail = styled(Subheading02)`
   margin-top: 10px;
   padding-bottom: 10px;
-  color: #b3b3b3;
+  color: rgb(119, 119, 119);
 `
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)`
   margin-top: 6px;
@@ -129,7 +129,7 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)`
     }
     &.Mui-selected {
       border: 1px solid #777777;
-      background-color: #777777;
+      background-color: rgb(119, 119, 119, 1);
       color: #ffffff;
     }
     &:not(:first-of-type) {
@@ -142,7 +142,7 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)`
       border-radius: 15px;
       height: 30px;
     }
-    &.Mui-selected :hover {
+    &.Mui-selected:hover {
       border: 1px solid #777777;
       background-color: #777777;
       color: #ffffff;
