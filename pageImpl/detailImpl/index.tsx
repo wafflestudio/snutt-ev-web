@@ -10,19 +10,21 @@ import SvgStarSmallFilled from "@lib/components/Icons/SvgStarSmallFilled"
 import SvgArrowBack from "@lib/components/Icons/SvgArrowBack"
 import { RatingGraph } from "@lib/components/RatingGraph"
 import { useLectureEvaluationsContainer } from "@pageImpl/detailImpl/__containers__/useLectureEvaluationsContainer"
-import { GetEvaluationsQuery } from "@lib/dto/getEvaluations"
 import useScrollLoader from "@lib/hooks/useScrollLoader"
 import React, { useState } from "react"
 import EvaluationModifySheet from "./__components__/EvaluationModifySheet"
 import { EvaluationDTO } from "@lib/dto/core/evaluation"
+import { useMyLectureEvaluationsContainer } from "./__containers__/useMyLectureEvaluationsContainer"
 
 export const DetailImpl = () => {
   const router = useRouter()
   const { id } = router.query
 
   const { summaryData } = useEvaluationSummaryContainer(Number(id))
-  const { searchResult, fetchNextPage, totalCount } =
-    useLectureEvaluationsContainer(Number(id))
+  const { searchResult, fetchNextPage } = useLectureEvaluationsContainer(
+    Number(id),
+  )
+  const { myReviewResult } = useMyLectureEvaluationsContainer(Number(id))
   const { loaderRef } = useScrollLoader(fetchNextPage)
 
   const [moreSheetItem, setMoreSheetItem] = useState<EvaluationDTO | undefined>(
@@ -61,10 +63,16 @@ export const DetailImpl = () => {
               <ReviewScore>
                 <SvgStarSmallFilled height={19} width={19} />
                 <Title01 style={{ marginLeft: 6, marginTop: 0 }}>
-                  {summaryData?.summary?.avg_rating}
+                  {summaryData?.evaluation?.avg_rating?.toFixed(1)}
                 </Title01>
               </ReviewScore>
-              <ReviewCount>{totalCount}개의 강의평</ReviewCount>
+              <ReviewCount>
+                {
+                  searchResult?.pages[searchResult?.pages.length - 1]
+                    .total_count
+                }
+                개의 강의평
+              </ReviewCount>
             </ReviewSummaryRight>
           </ReviewSummary>
 
@@ -77,11 +85,13 @@ export const DetailImpl = () => {
               <GraphWrapper>
                 <RatingGraph
                   gradeSatisfaction={
-                    summaryData?.summary?.avg_grade_satisfaction ?? 0
+                    summaryData?.evaluation?.avg_grade_satisfaction ?? 0
                   }
-                  lifeBalance={summaryData?.summary?.avg_life_balance ?? 0}
-                  gains={summaryData?.summary?.avg_gains ?? 0}
-                  teachingSkill={summaryData?.summary?.avg_teaching_skill ?? 0}
+                  lifeBalance={summaryData?.evaluation?.avg_life_balance ?? 0}
+                  gains={summaryData?.evaluation?.avg_gains ?? 0}
+                  teachingSkill={
+                    summaryData?.evaluation?.avg_teaching_skill ?? 0
+                  }
                   height={280}
                   width={280}
                 />
@@ -94,6 +104,16 @@ export const DetailImpl = () => {
           </ReviewDiagram>
 
           <ReviewList>
+            {myReviewResult?.evaluations.map((content, index) => (
+              <LectureReviewCard
+                review={content}
+                key={content.id}
+                onMoreClick={() => {
+                  setMoreSheetItem(content)
+                }}
+                isMyReivew
+              />
+            ))}
             {searchResult?.pages ? (
               <React.Fragment>
                 {searchResult?.pages?.map((content, i) => (

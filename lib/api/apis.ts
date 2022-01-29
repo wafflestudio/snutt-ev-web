@@ -8,6 +8,7 @@ import { GetEvaluationSummaryResponse } from "@lib/dto/getEvaluationSummary"
 import {
   GetEvaluationsQuery,
   GetEvaluationsResult,
+  GetMyEvaluationsResult,
 } from "@lib/dto/getEvaluations"
 import {
   PostEvaluationQuery,
@@ -126,6 +127,14 @@ export async function fetchLectureEvaluations(
   return SnuttApi.get<GetEvaluationsResult>(
     `/lectures/${id}/evaluations`,
     params,
+  )
+}
+
+export async function fetchMyLectureEvaluations(
+  id: number,
+): Promise<GetMyEvaluationsResult> {
+  return SnuttApi.get<GetMyEvaluationsResult>(
+    `/lectures/${id}/evaluations/users/me`,
   )
 }
 
