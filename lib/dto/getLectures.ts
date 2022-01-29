@@ -3,7 +3,7 @@ import { TagDTO } from "./core/tag"
 
 export interface GetLecturesQuery {
   query?: string
-  tags: number[] 
+  tags: number[]
   page: number
 }
 

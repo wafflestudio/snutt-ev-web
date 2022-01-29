@@ -1,4 +1,4 @@
-import { TagDTO } from "./tag";
+import { TagDTO } from "./tag"
 
 export interface TagGroupDTO {
   id: number
