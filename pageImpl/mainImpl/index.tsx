@@ -3,7 +3,7 @@ import { EvaluationCard } from "./__components__/EvaluationCard"
 import {
   useRecommendationTagsContainer,
   useMainEvaluationContainer,
-  useMainRecentContainer,
+  useMainLatestLectureContainer,
 } from "./__containers__"
 import { Subheading02, Title01 } from "@lib/components/Text"
 import { RecentCarousel } from "./__components__/RecentCarousel"
@@ -22,7 +22,7 @@ export const MainImpl = () => {
 
   const [selectedTag, setSelectedTag] = useState<TagDTO | undefined>(undefined)
   const { recommendationTags } = useRecommendationTagsContainer()
-  const { recentLectureData } = useMainRecentContainer()
+  const { recentLectureData } = useMainLatestLectureContainer()
   const { searchResult, fetchNextPage } =
     useMainEvaluationContainer(selectedTag)
   const { loaderRef } = useScrollLoader(fetchNextPage)
@@ -55,7 +55,11 @@ export const MainImpl = () => {
       </AppBar>
 
       {recentLectureData ? (
-        <RecentCarousel lectureList={recentLectureData} />
+        recentLectureData.length === 0 ? (
+          <></>
+        ) : (
+          <RecentCarousel lectureList={recentLectureData} />
+        )
       ) : (
         <Subheading02>데이터 로딩 OR 에러</Subheading02>
       )}
@@ -71,7 +75,7 @@ export const MainImpl = () => {
             <ToggleButton value={it}>{it.name}</ToggleButton>
           ))}
         </StyledToggleButtonGroup>
-        <CategoryDetail>{selectedTag?.name}</CategoryDetail>
+        <CategoryDetail>{selectedTag?.description}</CategoryDetail>
       </CategoryPicker>
 
       {searchResult?.pages ? (
@@ -87,7 +91,7 @@ export const MainImpl = () => {
         </React.Fragment>
       ) : (
         // FIXME: Empty placeholder
-        <div>asdf</div>
+        <div>로딩중</div>
       )}
     </Wrapper>
   )
@@ -115,7 +119,7 @@ const CategoryPicker = styled.div`
 const CategoryDetail = styled(Subheading02)`
   margin-top: 10px;
   padding-bottom: 10px;
-  color: #b3b3b3;
+  color: rgb(119, 119, 119);
 `
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)`
   margin-top: 6px;
@@ -129,7 +133,7 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)`
     }
     &.Mui-selected {
       border: 1px solid #777777;
-      background-color: #777777;
+      background-color: rgb(119, 119, 119, 1);
       color: #ffffff;
     }
     &:not(:first-of-type) {
@@ -142,7 +146,7 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)`
       border-radius: 15px;
       height: 30px;
     }
-    &.Mui-selected :hover {
+    &.Mui-selected:hover {
       border: 1px solid #777777;
       background-color: #777777;
       color: #ffffff;
