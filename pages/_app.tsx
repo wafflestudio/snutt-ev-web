@@ -1,5 +1,6 @@
 import { Suspense } from "react"
 import type { AppProps } from "next/app"
+import Head from "next/head"
 import {
   QueryClient,
   QueryClientProvider,
@@ -20,37 +21,42 @@ function MyApp({ Component, pageProps }: AppProps) {
     },
   })
   return (
-    <QueryClientProvider client={queryClient}>
-      <Global
-        styles={css`
-          html,
-          body {
-            padding: 0;
-            margin: 0 auto;
-            ${appleSDGNeo};
-            max-width: 414px;
-          }
-          ::-webkit-scrollbar {
-            display: none;
-          }
-        `}
-      />
+    <>
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+        />
+      </Head>
+      <QueryClientProvider client={queryClient}>
+        <Global
+          styles={css`
+            html,
+            body {
+              padding: 0;
+              margin: 0 auto;
+              ${appleSDGNeo};
+              max-width: 414px;
+            }
+          `}
+        />
 
-      <QueryErrorResetBoundary>
-        {({ reset }) => (
-          <ErrorBoundary
-            onReset={reset}
-            fallbackRender={({ resetErrorBoundary }) => (
-              <ErrorView resetErrorBoundary={resetErrorBoundary} />
-            )}
-          >
-            <Suspense fallback={<h1>로딩중이에요</h1>}>
-              <Component {...pageProps} />
-            </Suspense>
-          </ErrorBoundary>
-        )}
-      </QueryErrorResetBoundary>
-    </QueryClientProvider>
+        <QueryErrorResetBoundary>
+          {({ reset }) => (
+            <ErrorBoundary
+              onReset={reset}
+              fallbackRender={({ resetErrorBoundary }) => (
+                <ErrorView resetErrorBoundary={resetErrorBoundary} />
+              )}
+            >
+              <Suspense fallback={<h1>로딩중이에요</h1>}>
+                <Component {...pageProps} />
+              </Suspense>
+            </ErrorBoundary>
+          )}
+        </QueryErrorResetBoundary>
+      </QueryClientProvider>
+    </>
   )
 }
 
