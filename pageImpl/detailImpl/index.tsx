@@ -16,6 +16,7 @@ export const DetailImpl = () => {
   const router = useRouter()
   const { id } = router.query
 
+  // FIXME: 페이지네이션 추가
   const mockQuery: GetEvaluationsQuery = {
     id: Number(id),
     cursor: "",
