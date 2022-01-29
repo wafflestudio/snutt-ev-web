@@ -1,5 +1,6 @@
 export interface EvaluationDTO {
   id: number
+  lecture_id: number
   user_id: string
   content: string
   grade_satisfaction: number
