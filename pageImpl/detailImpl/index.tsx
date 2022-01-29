@@ -12,7 +12,9 @@ import { RatingGraph } from "@lib/components/RatingGraph"
 import { useLectureEvaluationsContainer } from "@pageImpl/detailImpl/__containers__/useLectureEvaluationsContainer"
 import { GetEvaluationsQuery } from "@lib/dto/getEvaluations"
 import useScrollLoader from "@lib/hooks/useScrollLoader"
-import React from "react"
+import React, { useState } from "react"
+import EvaluationModifySheet from "./__components__/EvaluationModifySheet"
+import { EvaluationDTO } from "@lib/dto/core/evaluation"
 
 export const DetailImpl = () => {
   const router = useRouter()
@@ -22,85 +24,108 @@ export const DetailImpl = () => {
   const { searchResult, fetchNextPage, totalCount } =
     useLectureEvaluationsContainer(Number(id))
   const { loaderRef } = useScrollLoader(fetchNextPage)
+  const [moreSheetItem, setMoreSheetItem] = useState<EvaluationDTO | undefined>(
+    undefined,
+  )
 
   return (
-    <Wrapper>
-      <AppBar
-        LeftImage={() => (
-          <SvgArrowBack width={30} height={30} onClick={() => router.back()} />
-        )}
-      >
-        <AppBarContent>
-          <Title01 style={{ marginLeft: 12 }}>강의평</Title01>
-          <SvgWrite
-            height={30}
-            width={30}
-            onClick={() => router.push("/create/" + id)}
-          />
-        </AppBarContent>
-      </AppBar>
-
-      <Content>
-        <ReviewSummary>
-          <ReviewSummaryLeft>
-            <Title01>{summaryData?.title}</Title01>
-            <InstructorName>{summaryData?.instructor}</InstructorName>
-          </ReviewSummaryLeft>
-          <ReviewSummaryRight>
-            <ReviewScore>
-              <SvgStarSmallFilled height={19} width={19} />
-              <Title01 style={{ marginLeft: 6, marginTop: 0 }}>
-                {summaryData?.summary?.avg_rating}
-              </Title01>
-            </ReviewScore>
-            <ReviewCount>{totalCount}개의 강의평</ReviewCount>
-          </ReviewSummaryRight>
-        </ReviewSummary>
-
-        <ReviewDiagram>
-          <DiagramTop>
-            <AxisLabel style={{ marginBottom: 10 }}>성적 만족도</AxisLabel>
-          </DiagramTop>
-          <DiagramMiddle>
-            <YAxisLabel>강의력</YAxisLabel>
-            <GraphWrapper>
-              <RatingGraph
-                gradeSatisfaction={
-                  summaryData?.summary?.avg_grade_satisfaction ?? 0
-                }
-                lifeBalance={summaryData?.summary?.avg_life_balance ?? 0}
-                gains={summaryData?.summary?.avg_gains ?? 0}
-                teachingSkill={summaryData?.summary?.avg_teaching_skill ?? 0}
-                height={280}
-                width={280}
-              />
-            </GraphWrapper>
-            <YAxisLabel>수라밸</YAxisLabel>
-          </DiagramMiddle>
-          <DiagramBottom>
-            <AxisLabel>얻어가는 것</AxisLabel>
-          </DiagramBottom>
-        </ReviewDiagram>
-
-        <ReviewList>
-          {searchResult?.pages ? (
-            <React.Fragment>
-              {searchResult?.pages?.map((content, i) => (
-                <React.Fragment>
-                  {content.content.map((it) => (
-                    <LectureReviewCard review={it} key={it.id} />
-                  ))}
-                </React.Fragment>
-              ))}
-              <div ref={loaderRef} />
-            </React.Fragment>
-          ) : (
-            // FIXME: Empty placeholder
-            <Subheading02>대충 아직 없으니 적어달라는 문구</Subheading02>
+    <>
+      <Wrapper>
+        <AppBar
+          LeftImage={() => (
+            <SvgArrowBack
+              width={30}
+              height={30}
+              onClick={() => router.back()}
+            />
           )}
-        </ReviewList>
-      </Content>
-    </Wrapper>
+        >
+          <AppBarContent>
+            <Title01 style={{ marginLeft: 12 }}>강의평</Title01>
+            <SvgWrite
+              height={30}
+              width={30}
+              onClick={() => router.push("/create/" + id)}
+            />
+          </AppBarContent>
+        </AppBar>
+
+        <Content>
+          <ReviewSummary>
+            <ReviewSummaryLeft>
+              <Title01>{summaryData?.title}</Title01>
+              <InstructorName>{summaryData?.instructor}</InstructorName>
+            </ReviewSummaryLeft>
+            <ReviewSummaryRight>
+              <ReviewScore>
+                <SvgStarSmallFilled height={19} width={19} />
+                <Title01 style={{ marginLeft: 6, marginTop: 0 }}>
+                  {summaryData?.summary?.avg_rating}
+                </Title01>
+              </ReviewScore>
+              <ReviewCount>{totalCount}개의 강의평</ReviewCount>
+            </ReviewSummaryRight>
+          </ReviewSummary>
+
+          <ReviewDiagram>
+            <DiagramTop>
+              <AxisLabel style={{ marginBottom: 10 }}>성적 만족도</AxisLabel>
+            </DiagramTop>
+            <DiagramMiddle>
+              <YAxisLabel>강의력</YAxisLabel>
+              <GraphWrapper>
+                <RatingGraph
+                  gradeSatisfaction={
+                    summaryData?.summary?.avg_grade_satisfaction ?? 0
+                  }
+                  lifeBalance={summaryData?.summary?.avg_life_balance ?? 0}
+                  gains={summaryData?.summary?.avg_gains ?? 0}
+                  teachingSkill={summaryData?.summary?.avg_teaching_skill ?? 0}
+                  height={280}
+                  width={280}
+                />
+              </GraphWrapper>
+              <YAxisLabel>수라밸</YAxisLabel>
+            </DiagramMiddle>
+            <DiagramBottom>
+              <AxisLabel>얻어가는 것</AxisLabel>
+            </DiagramBottom>
+          </ReviewDiagram>
+
+          <ReviewList>
+            {searchResult?.pages ? (
+              <React.Fragment>
+                {searchResult?.pages?.map((content, i) => (
+                  <React.Fragment>
+                    {content.content.map((it) => (
+                      <LectureReviewCard
+                        review={it}
+                        key={it.id}
+                        onMoreClick={() => {
+                          setMoreSheetItem(it)
+                        }}
+                      />
+                    ))}
+                  </React.Fragment>
+                ))}
+                <div ref={loaderRef} />
+              </React.Fragment>
+            ) : (
+              // FIXME: Empty placeholder
+              <Subheading02>대충 아직 없으니 적어달라는 문구</Subheading02>
+            )}
+          </ReviewList>
+        </Content>
+      </Wrapper>
+      <EvaluationModifySheet
+        isOpened={moreSheetItem !== undefined}
+        onClose={() => {
+          setMoreSheetItem(undefined)
+        }}
+        isModifiable={moreSheetItem?.is_modifiable ?? false}
+        isReportable={moreSheetItem?.is_reportable ?? false}
+      />
+    </>
   )
 }
 
