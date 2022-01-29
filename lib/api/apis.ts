@@ -9,6 +9,7 @@ import {
   GetEvaluationsQuery,
   GetEvaluationsResult,
 } from "@lib/dto/getEvaluations"
+import { GetMainTagInfosResult } from "@lib/dto/getMainTagInfos"
 
 export function fetchRecentReviews(): Promise<ReviewDTO[]> {
   return new Promise((resolve) => {
@@ -207,4 +208,8 @@ export function getLectures(
   query: GetLecturesQuery,
 ): Promise<GetLecturesResult> {
   return SnuttApi.get<GetLecturesResult>("/lectures", query)
+}
+
+export function getMainTagInfos(): Promise<GetMainTagInfosResult> {
+  return SnuttApi.get<GetMainTagInfosResult>("/tags/main")
 }

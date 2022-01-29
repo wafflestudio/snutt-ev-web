@@ -1,18 +1,20 @@
 import styled from "@emotion/styled"
 import { ReviewCard } from "./__components__/ReviewCard"
 import {
+  useContainer,
   useMainRecentContainer,
   useMainReviewContainer,
 } from "./__containers__"
 import { Subheading02, Title01 } from "@lib/components/Text"
 import { RecentCarousel } from "./__components__/RecentCarousel"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ToggleButton, ToggleButtonGroup } from "@mui/material/"
 import { AppBar } from "@lib/components/Appbar"
 
 import SvgTimetableOn from "@lib/components/Icons/SvgTimetableOn"
 import SvgSearchOff from "@lib/components/Icons/SvgSearchOff"
 import { useRouter } from "next/router"
+import { TagDTO } from "@lib/dto/core/tag"
 
 enum LectureCategory {
   RECOMMEND,
@@ -31,22 +33,24 @@ const lectureCategoryText = {
 export const MainImpl = () => {
   const router = useRouter()
 
-  const [lectureCategory, setLectureCategory] = useState(
-    LectureCategory.RECOMMEND,
-  )
-
-  const onClickCategory = (
-    e: React.MouseEvent<HTMLElement, MouseEvent>,
-    category: LectureCategory,
-  ) => {
-    e.preventDefault()
-    if (category !== null) {
-      setLectureCategory(category)
-    }
-  }
-
+  const [selectedTag, setSelectedTag] = useState<TagDTO | undefined>(undefined)
+  const { recommendationTags } = useContainer()
   const { curationData } = useMainReviewContainer()
   const { recentLectureData } = useMainRecentContainer()
+
+  useEffect(() => {
+    setSelectedTag(recommendationTags[0])
+  }, [recommendationTags])
+
+  const handleClickRecommendationTag = (
+    e: React.MouseEvent<HTMLElement, MouseEvent>,
+    tag?: TagDTO,
+  ) => {
+    e.preventDefault()
+    if (tag) {
+      setSelectedTag(tag)
+    }
+  }
 
   return (
     <Wrapper>
@@ -70,18 +74,15 @@ export const MainImpl = () => {
       <CategoryPicker>
         <Title01 style={{ marginBottom: 10 }}>교양 강의평 둘러보기</Title01>
         <StyledToggleButtonGroup
-          value={lectureCategory}
+          value={selectedTag}
           exclusive
-          onChange={onClickCategory}
+          onChange={handleClickRecommendationTag}
         >
-          <ToggleButton value={LectureCategory.RECOMMEND}>추천</ToggleButton>
-          <ToggleButton value={LectureCategory.FAMOUS}>명강</ToggleButton>
-          <ToggleButton value={LectureCategory.HONEY}>꿀강</ToggleButton>
-          <ToggleButton value={LectureCategory.BITTERSWEET}>
-            고진감래
-          </ToggleButton>
+          {recommendationTags.map((it) => (
+            <ToggleButton value={it}>{it.name}</ToggleButton>
+          ))}
         </StyledToggleButtonGroup>
-        <CategoryDetail>{lectureCategoryText[lectureCategory]}</CategoryDetail>
+        <CategoryDetail>{selectedTag?.name}</CategoryDetail>
       </CategoryPicker>
 
       {curationData ? (
