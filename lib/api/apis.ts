@@ -4,7 +4,7 @@ import { LectureDTO } from "@lib/dto/core/lecture"
 import { LectureSemesterDTO } from "@lib/dto/semeters"
 import { GetTagInfosResult } from "../dto/getTagInfos"
 import { GetLecturesQuery, GetLecturesResult } from "@lib/dto/getLectures"
-import SnuttApi, { createApi } from "./request"
+import SnuttApi from "./request"
 
 export function fetchRecentReviews(): Promise<ReviewDTO[]> {
   return new Promise((resolve) => {
