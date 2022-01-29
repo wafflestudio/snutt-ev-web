@@ -193,10 +193,12 @@ export function fetchLectureSemesters(): Promise<LectureSemesterDTO[]> {
 }
 
 export async function fetchLectureEvaluations(
+  id: number,
   params: GetEvaluationsQuery,
 ): Promise<GetEvaluationsResult> {
   return SnuttApi.get<GetEvaluationsResult>(
-    `/lectures/${params.id}/evaluations`,
+    `/lectures/${id}/evaluations`,
+    params,
   )
 }
 

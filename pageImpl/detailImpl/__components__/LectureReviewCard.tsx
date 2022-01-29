@@ -21,6 +21,7 @@ export const LectureReviewCard = ({ review }: Props) => {
             <Semester>
               {review.year}-{review.semester} 수강
             </Semester>
+            <div>더보기</div>
           </SideInfo>
         </Header>
         <Review>

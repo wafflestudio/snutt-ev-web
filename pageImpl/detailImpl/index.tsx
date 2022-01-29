@@ -11,19 +11,17 @@ import SvgArrowBack from "@lib/components/Icons/SvgArrowBack"
 import { RatingGraph } from "@lib/components/RatingGraph"
 import { useLectureEvaluationsContainer } from "@pageImpl/detailImpl/__containers__/useLectureEvaluationsContainer"
 import { GetEvaluationsQuery } from "@lib/dto/getEvaluations"
+import useScrollLoader from "@lib/hooks/useScrollLoader"
+import React from "react"
 
 export const DetailImpl = () => {
   const router = useRouter()
   const { id } = router.query
 
-  // FIXME: 페이지네이션 추가
-  const mockQuery: GetEvaluationsQuery = {
-    id: Number(id),
-    cursor: "",
-  }
-
   const { summaryData } = useEvaluationSummaryContainer(Number(id))
-  const { evaluationData } = useLectureEvaluationsContainer(mockQuery)
+  const { searchResult, fetchNextPage, totalCount } =
+    useLectureEvaluationsContainer(Number(id))
+  const { loaderRef } = useScrollLoader(fetchNextPage)
 
   return (
     <Wrapper>
@@ -52,10 +50,10 @@ export const DetailImpl = () => {
             <ReviewScore>
               <SvgStarSmallFilled height={19} width={19} />
               <Title01 style={{ marginLeft: 6, marginTop: 0 }}>
-                {summaryData?.summary.avg_rating}
+                {summaryData?.summary?.avg_rating}
               </Title01>
             </ReviewScore>
-            <ReviewCount>{evaluationData?.total_count}개의 강의평</ReviewCount>
+            <ReviewCount>{totalCount}개의 강의평</ReviewCount>
           </ReviewSummaryRight>
         </ReviewSummary>
 
@@ -67,12 +65,12 @@ export const DetailImpl = () => {
             <YAxisLabel>강의력</YAxisLabel>
             <GraphWrapper>
               <RatingGraph
-                gradeSatisfaction={Number(
-                  summaryData?.summary.avg_grade_satisfaction,
-                )}
-                lifeBalance={Number(summaryData?.summary.avg_life_balance)}
-                gains={Number(summaryData?.summary.avg_gains)}
-                teachingSkill={Number(summaryData?.summary.avg_teaching_skill)}
+                gradeSatisfaction={
+                  summaryData?.summary?.avg_grade_satisfaction ?? 0
+                }
+                lifeBalance={summaryData?.summary?.avg_life_balance ?? 0}
+                gains={summaryData?.summary?.avg_gains ?? 0}
+                teachingSkill={summaryData?.summary?.avg_teaching_skill ?? 0}
                 height={280}
                 width={280}
               />
@@ -85,11 +83,19 @@ export const DetailImpl = () => {
         </ReviewDiagram>
 
         <ReviewList>
-          {evaluationData?.content.length !== 0 ? (
-            evaluationData?.content.map((it) => (
-              <LectureReviewCard review={it} key={it.id} />
-            ))
+          {searchResult?.pages ? (
+            <React.Fragment>
+              {searchResult?.pages?.map((content, i) => (
+                <React.Fragment>
+                  {content.content.map((it) => (
+                    <LectureReviewCard review={it} key={it.id} />
+                  ))}
+                </React.Fragment>
+              ))}
+              <div ref={loaderRef} />
+            </React.Fragment>
           ) : (
+            // FIXME: Empty placeholder
             <Subheading02>대충 아직 없으니 적어달라는 문구</Subheading02>
           )}
         </ReviewList>
