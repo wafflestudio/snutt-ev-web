@@ -1,9 +1,15 @@
-import { fetchLectureSemesters } from "@lib/api/apis"
+import { fetchSemesterLectures } from "@lib/api/apis"
 import { useState } from "react"
 import { useQuery } from "react-query"
 
-export function useSemsetersContainer() {
-  const querySearch = useQuery("lecturesemester", fetchLectureSemesters)
+export function useSemestersContainer(id: number) {
+  const querySearch = useQuery(
+    ["lectureSemester", id],
+    () => fetchSemesterLectures(id),
+    {
+      enabled: !isNaN(id),
+    },
+  )
   const { data, error } = querySearch
 
   return {
