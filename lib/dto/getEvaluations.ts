@@ -11,3 +11,7 @@ export interface GetEvaluationsResult {
   last: boolean
   total_count: number
 }
+
+export interface GetMyEvaluationsResult {
+  evaluations: EvaluationDTO[]
+}
