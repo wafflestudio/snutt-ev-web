@@ -4,6 +4,7 @@ import { LectureDTO } from "@lib/dto/core/lecture"
 import { LectureSemesterDTO } from "@lib/dto/semeters"
 import { GetTagInfosResult } from "../dto/getTagInfos"
 import { GetLecturesQuery, GetLecturesResult } from "@lib/dto/getLectures"
+import SnuttApi from "./request"
 
 export function fetchRecentReviews(): Promise<ReviewDTO[]> {
   return new Promise((resolve) => {
@@ -119,38 +120,9 @@ export function fetchRecentLectures(): Promise<RecentLectureDTO[]> {
   })
 }
 
-export function fetchTagInfos(): Promise<GetTagInfosResult> {
-  return new Promise((resolve) => {
-    setTimeout(
-      () =>
-        resolve({
-          results: [
-            {
-              tags: [
-                { name: "태그A1", id: 101 },
-                { name: "태그A2", id: 102 },
-              ],
-              tagGroup: { name: "태그그룹A", id: 1 },
-            },
-            {
-              tags: [
-                { name: "태그B1", id: 201 },
-                { name: "태그B2", id: 202 },
-              ],
-              tagGroup: { name: "태그그룹B", id: 2 },
-            },
-            {
-              tags: [
-                { name: "태그C1", id: 301 },
-                { name: "태그C2", id: 302 },
-              ],
-              tagGroup: { name: "태그그룹C", id: 3 },
-            },
-          ],
-        }),
-      1000,
-    )
-  })
+export async function fetchTagInfos(): Promise<GetTagInfosResult> {
+  const data = await SnuttApi.get<GetTagInfosResult>("/tags/search")
+  return data
 }
 
 export function fetchLectureSemesters(): Promise<LectureSemesterDTO[]> {
