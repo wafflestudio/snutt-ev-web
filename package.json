@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@svgr/cli": "^6.1.2",
+    "@svgr/webpack": "^6.2.0",
     "@types/js-cookie": "^3.0.1",
     "@types/qs": "^6.9.7",
     "@types/react": "17.0.16",

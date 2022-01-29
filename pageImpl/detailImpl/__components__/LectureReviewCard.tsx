@@ -6,12 +6,14 @@ import { Rating } from "@lib/components/Rating"
 import { useState } from "react"
 import { CollapsableText } from "@lib/components/CollapsableText"
 import { EvaluationDTO } from "@lib/dto/core/evaluation"
+import MoreVerticalIcon from "../../../public/icons/more_vertical.svg"
 
 interface Props {
   review: EvaluationDTO
+  onMoreClick: () => void
 }
 
-export const LectureReviewCard = ({ review }: Props) => {
+export const LectureReviewCard = ({ review, onMoreClick }: Props) => {
   return (
     <Wrapper>
       <Contents>
@@ -21,7 +23,10 @@ export const LectureReviewCard = ({ review }: Props) => {
             <Semester>
               {review.year}-{review.semester} 수강
             </Semester>
-            <div>더보기</div>
+            <div style={{ flexGrow: 1 }} />
+            <div onClick={onMoreClick}>
+              <MoreVerticalIcon />
+            </div>
           </SideInfo>
         </Header>
         <Review>
@@ -62,6 +67,7 @@ const Semester = styled(Detail)`
 `
 
 const SideInfo = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
 `
