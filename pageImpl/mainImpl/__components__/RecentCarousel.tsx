@@ -51,8 +51,8 @@ const SubjectCardCarousel = styled.div`
   display: flex;
   overflow-x: scroll;
   white-space: nowrap;
-  width: 100%;
-  position: relative;
+  width: calc(100% + 40px);
+  margin-left: -20px;
   ::-webkit-scrollbar {
     display: none;
   }
