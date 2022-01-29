@@ -3,11 +3,13 @@ import { TagDTO } from "./core/tag"
 
 export interface GetLecturesQuery {
   query?: string
-  tags: TagDTO[]
+  tags: number[]
   page: number
 }
 
 export interface GetLecturesResult {
   content: LectureDTO[]
-  next_page?: number
+  page?: number
+  size: number
+  last: boolean
 }

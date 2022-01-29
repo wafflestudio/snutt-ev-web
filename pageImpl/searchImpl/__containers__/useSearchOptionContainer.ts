@@ -16,11 +16,11 @@ export default function useSearchOptionContainer(
     ({ pageParam }) =>
       getLectures({
         query: textQuery,
-        tags: selectedTags ?? [],
+        tags: (selectedTags ?? []).map((it) => it.id),
         page: pageParam,
       }),
     {
-      getNextPageParam: (lastPage, pages) => lastPage.next_page,
+      getNextPageParam: (lastPage, pages) => (lastPage.page ?? 0) + 1,
     },
   )
   return {
