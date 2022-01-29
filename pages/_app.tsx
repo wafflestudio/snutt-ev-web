@@ -36,7 +36,7 @@ function MyApp({ Component, pageProps }: AppProps) {
               padding: 0;
               margin: 0 auto;
               ${appleSDGNeo};
-              max-width: 414px;
+              max-width: 768px;
             }
           `}
         />

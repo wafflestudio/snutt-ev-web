@@ -206,25 +206,5 @@ export async function fetchEvaluationSummary(
 export function getLectures(
   query: GetLecturesQuery,
 ): Promise<GetLecturesResult> {
-  return new Promise((resolve) =>
-    setTimeout(() => {
-      const next = query.page + 1
-      resolve({
-        content: [
-          {
-            classification: "string",
-            department: "string",
-            academic_year: "string",
-            course_number: "string",
-            title: `string query of ${query.tags}`,
-            credit: 3,
-            instructor: "asdf",
-            category: "asdf",
-            rating: 4,
-          },
-        ],
-        next_page: next > 30 ? undefined : next,
-      })
-    }, 500),
-  )
+  return SnuttApi.get<GetLecturesResult>("/lectures", query)
 }

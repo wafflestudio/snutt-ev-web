@@ -10,12 +10,15 @@ import useSearchOptionContainer from "./__containers__/useSearchOptionContainer"
 
 export const SearchImpl = () => {
   const {
-    tagGroupWithTags,
+    tagGroups,
     selectedTags,
     toggleTagSelection,
     currentlyAppliedQuery,
     refreshQueries,
+    selectedTextQuery,
+    updateTextQuery
   } = useTagContainer()
+
   const { searchResult, fetchNextPage } = useSearchOptionContainer(
     currentlyAppliedQuery?.tags ?? [],
     currentlyAppliedQuery?.textQuery,
@@ -23,7 +26,6 @@ export const SearchImpl = () => {
 
   const { loaderRef } = useScrollLoader(fetchNextPage)
   const [isSearchSheetOpen, setIsSearchSheetOpen] = useState(false)
-  const [textQuery, setTextQuery] = useState<string>()
 
   return (
     <Wrapper>
@@ -31,8 +33,8 @@ export const SearchImpl = () => {
         toggleOpenSearchSheet={() => {
           setIsSearchSheetOpen((prev) => !prev)
         }}
-        textQuery={textQuery}
-        onChangeTextQuery={setTextQuery}
+        textQuery={selectedTextQuery}
+        onChangeTextQuery={updateTextQuery}
         onRefreshQuery={refreshQueries}
       />
       <ActiveTagList
@@ -60,7 +62,7 @@ export const SearchImpl = () => {
       </SearchResultList>
       <SearchOptionSheet
         selectedTags={selectedTags || []}
-        tagGroupsWithTags={tagGroupWithTags || []}
+        tagGroups={tagGroups || []}
         onToggleTag={toggleTagSelection}
         isOpened={isSearchSheetOpen}
         onClose={() => setIsSearchSheetOpen(false)}

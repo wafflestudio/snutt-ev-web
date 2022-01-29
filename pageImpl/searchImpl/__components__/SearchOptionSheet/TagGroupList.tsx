@@ -3,7 +3,7 @@ import { TagGroupDTO } from "@lib/dto/core/tagGroup"
 
 interface Props {
   tagGroups: TagGroupDTO[]
-  selectedTagGroup: TagGroupDTO
+  selectedTagGroup?: TagGroupDTO
   onTagGroupSelectionChange: (tagGroup: TagGroupDTO) => void
 }
 
@@ -16,7 +16,7 @@ export const TagGroupList: React.FC<Props> = ({
     <Wrapper>
       {tagGroups.map((it) => (
         <TagGroupItem
-          isSelected={selectedTagGroup.name === it.name}
+          isSelected={selectedTagGroup?.name === it.name}
           key={it.name}
           onClick={() => {
             onTagGroupSelectionChange(it)
