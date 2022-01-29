@@ -1,4 +1,4 @@
-import { fetchEvaluationSummary, fetchLectureReviews } from "@lib/api/apis"
+import { fetchEvaluationSummary } from "@lib/api/apis"
 import { useQuery } from "react-query"
 import { GetEvaluationSummaryResponse } from "@lib/dto/getEvaluationSummary"
 import { ApiError } from "@lib/dto/core/error"
