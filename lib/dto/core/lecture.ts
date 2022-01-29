@@ -8,5 +8,7 @@ export interface LectureDTO {
   credit: number
   instructor: string
   category: string
-  rating: number
+  evaluation: {
+    avg_rating: number
+  }
 }

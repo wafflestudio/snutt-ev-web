@@ -5,19 +5,26 @@ import { Subheading01 } from "@lib/components/Text"
 import SvgStarCyan from "@lib/components/Icons/SvgStarCyan"
 import SvgTagBlack from "@lib/components/Icons/SvgTagBlack"
 import SvgPersonBlack from "@lib/components/Icons/SvgPersonBlack"
+import { useRouter } from "next/router"
 
 interface Props {
   content: LectureDTO
 }
 
 export const SearchResultItem: React.FC<Props> = ({ content }) => {
+  const router = useRouter()
+
+  const rating = content.evaluation.avg_rating
+    ? content.evaluation.avg_rating.toFixed(1)
+    : 0
+
   return (
-    <Wrapper>
+    <Wrapper onClick={() => router.push(`/detail/${content.id}`)}>
       <ItemTop>
         <SubjectText>{content.title}</SubjectText>
         <Rating>
           <SvgStarCyan height={15} width={15} />
-          <RatingText>{content.rating}</RatingText>
+          <RatingText>{rating}</RatingText>
         </Rating>
       </ItemTop>
 
