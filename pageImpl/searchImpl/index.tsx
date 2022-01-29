@@ -10,7 +10,7 @@ import useSearchOptionContainer from "./__containers__/useSearchOptionContainer"
 
 export const SearchImpl = () => {
   const {
-    tagGroupWithTags,
+    tagGroups,
     selectedTags,
     toggleTagSelection,
     currentlyAppliedQuery,
@@ -60,7 +60,7 @@ export const SearchImpl = () => {
       </SearchResultList>
       <SearchOptionSheet
         selectedTags={selectedTags || []}
-        tagGroupsWithTags={tagGroupWithTags || []}
+        tagGroups={tagGroups || []}
         onToggleTag={toggleTagSelection}
         isOpened={isSearchSheetOpen}
         onClose={() => setIsSearchSheetOpen(false)}

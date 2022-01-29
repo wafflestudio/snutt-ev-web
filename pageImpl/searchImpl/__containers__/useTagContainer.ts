@@ -33,7 +33,7 @@ export function useTagContainer() {
   }
 
   return {
-    tagGroupWithTags: data?.results,
+    tagGroups: data?.tag_groups,
     error,
     isLoading,
     selectedTags,
