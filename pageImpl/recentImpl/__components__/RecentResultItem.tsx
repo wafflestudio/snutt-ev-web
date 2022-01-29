@@ -5,16 +5,17 @@ import { RecentLectureDTO } from "@lib/dto/recentLecture"
 import SvgTagBlack from "@lib/components/Icons/SvgTagBlack"
 import SvgPersonBlack from "@lib/components/Icons/SvgPersonBlack"
 import SvgWrite from "@lib/components/Icons/SvgWrite"
+import { LatestLectureDTO } from "@lib/dto/core/latestLecture"
 
 interface Props {
-  content: RecentLectureDTO
+  content: LatestLectureDTO
 }
 
 export const RecentLectureItem: React.FC<Props> = ({ content }) => {
   return (
     <Wrapper>
       <ItemTop>
-        <SubjectText>{content.name}</SubjectText>
+        <SubjectText>{content.title}</SubjectText>
       </ItemTop>
 
       <ItemBottom>
@@ -25,9 +26,9 @@ export const RecentLectureItem: React.FC<Props> = ({ content }) => {
           </Icons>
           <Texts>
             <InfoText>
-              {content.department}, {content.grade}
+              {content.department}, {content.academic_year}
             </InfoText>
-            <LecturerText>{content.lecturer}</LecturerText>
+            <LecturerText>{content.instructor}</LecturerText>
           </Texts>
         </ItemBottomLeft>
         <ItemBottomRight>

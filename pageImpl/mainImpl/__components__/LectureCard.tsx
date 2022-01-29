@@ -1,21 +1,22 @@
 import styled from "@emotion/styled"
 import { Detail, Subheading01 } from "@lib/components/Text"
-import { RecentLectureDTO } from "@lib/dto/recentLecture"
 
 import SvgWrite from "@lib/components/Icons/SvgWrite"
 import SvgTagBlack from "@lib/components/Icons/SvgTagBlack"
 import SvgPersonBlack from "@lib/components/Icons/SvgPersonBlack"
 import SvgMapBlack from "@lib/components/Icons/SvgMapBlack"
+import { LatestLectureDTO } from "@lib/dto/core/latestLecture"
+import { SemesterIntToString } from "@lib/util"
 
 interface Props {
-  lecture: RecentLectureDTO
+  lecture: LatestLectureDTO
 }
 
 export const LectureCard = ({ lecture }: Props) => {
   return (
     <Card>
       <CardTop>
-        <LectureName>{lecture.name}</LectureName>
+        <LectureName>{lecture.title}</LectureName>
         <SvgWrite height={20} width={20} />
       </CardTop>
 
@@ -27,10 +28,12 @@ export const LectureCard = ({ lecture }: Props) => {
         </Icons>
         <Texts>
           <Detail>
-            {lecture.department}, {lecture.grade}
+            {lecture.department}, {lecture.academic_year}
           </Detail>
-          <Detail>{lecture.lecturer}</Detail>
-          <Detail>{lecture.location}</Detail>
+          <Detail>{lecture.instructor}</Detail>
+          <Detail>{`${lecture.taken_year}년 ${SemesterIntToString(
+            lecture.taken_semester,
+          )}학기`}</Detail>
         </Texts>
       </CardBottom>
     </Card>

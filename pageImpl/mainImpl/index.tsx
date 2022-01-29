@@ -3,7 +3,7 @@ import { EvaluationCard } from "./__components__/EvaluationCard"
 import {
   useRecommendationTagsContainer,
   useMainEvaluationContainer,
-  useMainRecentContainer,
+  useMainLatestLectureContainer,
 } from "./__containers__"
 import { Subheading02, Title01 } from "@lib/components/Text"
 import { RecentCarousel } from "./__components__/RecentCarousel"
@@ -22,7 +22,7 @@ export const MainImpl = () => {
 
   const [selectedTag, setSelectedTag] = useState<TagDTO | undefined>(undefined)
   const { recommendationTags } = useRecommendationTagsContainer()
-  const { recentLectureData } = useMainRecentContainer()
+  const { recentLectureData } = useMainLatestLectureContainer()
   const { searchResult, fetchNextPage } =
     useMainEvaluationContainer(selectedTag)
   const { loaderRef } = useScrollLoader(fetchNextPage)
@@ -55,7 +55,11 @@ export const MainImpl = () => {
       </AppBar>
 
       {recentLectureData ? (
-        <RecentCarousel lectureList={recentLectureData} />
+        recentLectureData.length === 0 ? (
+          <></>
+        ) : (
+          <RecentCarousel lectureList={recentLectureData} />
+        )
       ) : (
         <Subheading02>데이터 로딩 OR 에러</Subheading02>
       )}

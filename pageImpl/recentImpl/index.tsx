@@ -5,11 +5,12 @@ import { Title01, Title02 } from "@lib/components/Text"
 import { useRouter } from "next/router"
 import { RecentLectureItem } from "./__components__/RecentResultItem"
 import { useRecentLectureContainer } from "./__containers__"
+import { useMainLatestLectureContainer } from "@pageImpl/mainImpl/__containers__"
 
 export const RecentImpl = () => {
   const router = useRouter()
 
-  const { recentLectureList } = useRecentLectureContainer()
+  const { recentLectureData } = useMainLatestLectureContainer()
 
   return (
     <Wrapper>
@@ -22,8 +23,8 @@ export const RecentImpl = () => {
       </AppBar>
 
       <RecentLectureList>
-        {recentLectureList ? (
-          recentLectureList.map((it) => (
+        {recentLectureData ? (
+          recentLectureData.map((it) => (
             <RecentLectureItem content={it} key={it.id} />
           ))
         ) : (
