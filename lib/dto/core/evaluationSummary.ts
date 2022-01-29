@@ -8,7 +8,7 @@ export interface EvaluationSummaryDTO {
   academic_year: string
   category: string
   classification: string
-  summary: SummaryDTO
+  evaluation: SummaryDTO
 }
 
 export interface SummaryDTO {

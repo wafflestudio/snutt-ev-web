@@ -7,15 +7,21 @@ import { useState } from "react"
 import { CollapsableText } from "@lib/components/CollapsableText"
 import { EvaluationDTO } from "@lib/dto/core/evaluation"
 import MoreVerticalIcon from "../../../public/icons/more_vertical.svg"
+import { css } from "@emotion/react"
 
 interface Props {
   review: EvaluationDTO
   onMoreClick: () => void
+  isMyReivew?: boolean
 }
 
-export const LectureReviewCard = ({ review, onMoreClick }: Props) => {
+export const LectureReviewCard = ({
+  review,
+  onMoreClick,
+  isMyReivew = false,
+}: Props) => {
   return (
-    <Wrapper>
+    <Wrapper isMintColor={isMyReivew}>
       <Contents>
         <Header>
           <SideInfo>
@@ -37,10 +43,13 @@ export const LectureReviewCard = ({ review, onMoreClick }: Props) => {
   )
 }
 
-const Wrapper = styled.div`
-  width: 100%;
-  padding: 20px 0 5px 0;
+const Wrapper = styled.div<{ isMintColor: boolean }>`
+  width: calc(100% + 40px);
+  padding: 20px 20px 5px 20px;
   box-sizing: border-box;
+  margin-left: -20px;
+  background-color: ${(props) =>
+    props.isMintColor && "rgba(27, 208, 200, 0.05)"};
 `
 
 const Contents = styled.div`

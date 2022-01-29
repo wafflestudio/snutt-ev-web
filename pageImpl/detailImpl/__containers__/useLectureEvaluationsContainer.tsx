@@ -1,14 +1,7 @@
-import { useInfiniteQuery, useQuery } from "react-query"
-import {
-  GetEvaluationsQuery,
-  GetEvaluationsResult,
-} from "@lib/dto/getEvaluations"
-import { ApiError } from "@lib/dto/core/error"
+import { useInfiniteQuery } from "react-query"
 import { fetchLectureEvaluations } from "@lib/api/apis"
-import { useState } from "react"
 
 export function useLectureEvaluationsContainer(id: number) {
-  // const [totalCount, setTotalCount] = useState<number>(0)
   const {
     data: searchResult,
     isFetchingNextPage,
@@ -20,7 +13,6 @@ export function useLectureEvaluationsContainer(id: number) {
       const data = await fetchLectureEvaluations(id, {
         cursor: pageParam,
       })
-      // setTotalCount(data.total_count)
       return data
     },
     {
@@ -33,7 +25,6 @@ export function useLectureEvaluationsContainer(id: number) {
   )
 
   return {
-    totalCount: 0,
     searchResult,
     fetchNextPage,
   }
