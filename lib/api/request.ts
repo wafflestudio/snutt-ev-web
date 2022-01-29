@@ -28,9 +28,12 @@ const SnuttApi = {
     queryParams: T | undefined = undefined,
   ): Promise<R> {
     var path = url
-    if (queryParams !== undefined) {
-      path = `${url}?${qs.stringify(queryParams)}`
+    var queryString = qs.stringify(queryParams)
+
+    if (queryString !== "") {
+      path = `${url}?${queryString}`
     }
+
     try {
       const result = await axiosInstance
         .get<R, AxiosResponse<R>, T>(path)

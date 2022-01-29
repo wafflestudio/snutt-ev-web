@@ -40,5 +40,7 @@ export function useTagContainer() {
     toggleTagSelection,
     currentlyAppliedQuery,
     refreshQueries,
+    selectedTextQuery: textQuery,
+    updateTextQuery: setTextQuery,
   }
 }

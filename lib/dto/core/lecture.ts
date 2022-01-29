@@ -1,4 +1,5 @@
 export interface LectureDTO {
+  id: number
   classification: string
   department: string
   academic_year: string
