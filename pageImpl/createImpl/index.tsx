@@ -53,6 +53,11 @@ export const CreateImpl = () => {
   }
 
   const postEvaluation = async () => {
+    if (rating < 0) {
+      window.alert("별점을 매겨주세요")
+      return
+    }
+
     const query: PostEvaluationQuery = {
       content: content,
       grade_satisfaction: score.top,
@@ -62,9 +67,16 @@ export const CreateImpl = () => {
       rating: rating + 1,
     }
 
-    selectedSemester
-      ? await postLectureEvaluation(selectedSemester?.id, query)
-      : console.log("???")
+    if (selectedSemester?.id) {
+      try {
+        const response = await postLectureEvaluation(selectedSemester.id, query)
+        router.push(`/detail/${id}`)
+      } catch (errorCode) {
+        alert("이미 작성한 강의평이 존재합니다")
+      }
+    } else {
+      window.alert("Error")
+    }
   }
 
   const stepNext = () => {
@@ -72,8 +84,6 @@ export const CreateImpl = () => {
       setStep((step) => step + 1)
     } else {
       postEvaluation()
-        .then(() => router.push(`/detail/${id}`))
-        .catch((e) => console.log(e))
     }
   }
 

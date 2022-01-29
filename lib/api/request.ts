@@ -50,7 +50,11 @@ const SnuttApi = {
         .post<R, AxiosResponse<R>, T>(url, body)
         .then((response) => response.data)
     } catch (e) {
-      throw "temp error because ErrorBoundary cannot handle axios error..."
+      if (e.response.data.error.code === 29001) {
+        throw e.response.data.error.code
+      } else {
+        throw "temp error because ErrorBoundary cannot handle axios error..."
+      }
     }
   },
 
