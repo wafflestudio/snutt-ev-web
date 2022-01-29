@@ -18,6 +18,7 @@ import {
   GetMainTagEvaluationsResult,
   GetMainTagEvalutionsQuery,
 } from "@lib/dto/getMainTagEvaluations"
+import { GetLatestLecturesResult } from "@lib/dto/getLatestLectures"
 
 export function fetchRecentReviews(): Promise<ReviewDTO[]> {
   return new Promise((resolve) => {
@@ -95,42 +96,8 @@ export function fetchMainReviews(): Promise<ReviewDetailDTO[]> {
   })
 }
 
-export function fetchRecentLectures(): Promise<RecentLectureDTO[]> {
-  return new Promise((resolve) => {
-    setTimeout(
-      () =>
-        resolve([
-          {
-            id: "1",
-            name: "소프트웨어 개발의 원리와 실습",
-            department: "컴퓨터공학부",
-            semester: "2021-2",
-            grade: "3학년",
-            lecturer: "최한결",
-            location: "301-314",
-          },
-          {
-            id: "2",
-            name: "편집디자인",
-            department: "디자인학부(디자인전공)",
-            semester: "2021-2",
-            grade: "3학년",
-            lecturer: "서정민",
-            location: "ㅇㅓ디지",
-          },
-          {
-            id: "3",
-            name: "데이터사이언티스트를 위한 금융공학",
-            semester: "2021-2",
-            department: "데이터사이언스대학원",
-            grade: "석사",
-            lecturer: "서정록",
-            location: "123-4",
-          },
-        ]),
-      1000,
-    )
-  })
+export async function fetchLatestLectures(): Promise<GetLatestLecturesResult> {
+  return SnuttApi.get<GetLatestLecturesResult>("/users/me/lectures/latest")
 }
 
 export async function fetchTagInfos(): Promise<GetTagInfosResult> {

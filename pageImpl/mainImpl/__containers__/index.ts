@@ -1,6 +1,6 @@
 import {
   fetchMainReviews,
-  fetchRecentLectures,
+  fetchLatestLectures,
   getMainTagEvaluations,
   getMainTagInfos,
 } from "@lib/api/apis"
@@ -54,13 +54,14 @@ export function useMainEvaluationContainer(selectedTag?: TagDTO) {
   }
 }
 
-export function useMainRecentContainer() {
-  const querySearch = useQuery("lectures/recent", fetchRecentLectures)
+export function useMainLatestLectureContainer() {
+  const querySearch = useQuery("latestLectures", fetchLatestLectures)
 
   const { data, error } = querySearch
 
   return {
-    recentLectureData: data,
+    recentLectureData: data?.content,
+    totalCount: data?.total_count,
     error,
   }
 }
