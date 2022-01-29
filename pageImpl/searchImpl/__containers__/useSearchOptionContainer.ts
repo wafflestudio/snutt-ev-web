@@ -20,7 +20,14 @@ export default function useSearchOptionContainer(
         page: pageParam,
       }),
     {
-      getNextPageParam: (lastPage, pages) => (lastPage.page ?? 0) + 1,
+      getNextPageParam: (lastPage, pages) => {
+        if (lastPage.last) {
+          return undefined
+        }
+        return (lastPage.page ?? 0) + 1
+      },
+      retryDelay: 2000,
+      retry: 5,
     },
   )
   return {

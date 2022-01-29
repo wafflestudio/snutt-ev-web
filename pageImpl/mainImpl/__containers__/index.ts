@@ -33,12 +33,16 @@ export function useMainEvaluationContainer(selectedTag?: TagDTO) {
     ["tagEvaluations", selectedTag],
     ({ pageParam }) =>
       getMainTagEvaluations(selectedTag?.id ?? 1, {
-        cursor: undefined,
+        cursor: pageParam,
       }),
     {
-      getNextPageParam: (lastPage, pages) => lastPage.cursor,
+      getNextPageParam: (lastPage, pages) => {
+        return lastPage.cursor ?? undefined
+      },
       enabled: selectedTag !== undefined,
       suspense: false,
+      retryDelay: 2000,
+      retry: 5,
     },
   )
 

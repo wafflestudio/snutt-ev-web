@@ -1,7 +1,6 @@
 import { EvaluationDTO } from "@lib/dto/core/evaluation"
 
 export interface GetEvaluationsQuery {
-  id: number
   cursor: string
 }
 
