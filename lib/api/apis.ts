@@ -13,6 +13,11 @@ import {
   PostEvaluationQuery,
   PostEvaluationResult,
 } from "@lib/dto/postEvaluation"
+import { GetMainTagInfosResult } from "@lib/dto/getMainTagInfos"
+import {
+  GetMainTagEvaluationsResult,
+  GetMainTagEvalutionsQuery,
+} from "@lib/dto/getMainTagEvaluations"
 
 export function fetchRecentReviews(): Promise<ReviewDTO[]> {
   return new Promise((resolve) => {
@@ -148,10 +153,12 @@ export async function postLectureEvaluation(
 }
 
 export async function fetchLectureEvaluations(
+  id: number,
   params: GetEvaluationsQuery,
 ): Promise<GetEvaluationsResult> {
   return SnuttApi.get<GetEvaluationsResult>(
-    `/lectures/${params.id}/evaluations`,
+    `/lectures/${id}/evaluations`,
+    params,
   )
 }
 
@@ -167,4 +174,18 @@ export function getLectures(
   query: GetLecturesQuery,
 ): Promise<GetLecturesResult> {
   return SnuttApi.get<GetLecturesResult>("/lectures", query)
+}
+
+export function getMainTagInfos(): Promise<GetMainTagInfosResult> {
+  return SnuttApi.get<GetMainTagInfosResult>("/tags/main")
+}
+
+export function getMainTagEvaluations(
+  id: number,
+  query: GetMainTagEvalutionsQuery,
+): Promise<GetMainTagEvaluationsResult> {
+  return SnuttApi.get<GetMainTagEvaluationsResult, GetMainTagEvalutionsQuery>(
+    `/tags/main/${id}/evaluations`,
+    query,
+  )
 }

@@ -1,52 +1,45 @@
 import styled from "@emotion/styled"
-import { ReviewCard } from "./__components__/ReviewCard"
+import { EvaluationCard } from "./__components__/EvaluationCard"
 import {
+  useRecommendationTagsContainer,
+  useMainEvaluationContainer,
   useMainRecentContainer,
-  useMainReviewContainer,
 } from "./__containers__"
 import { Subheading02, Title01 } from "@lib/components/Text"
 import { RecentCarousel } from "./__components__/RecentCarousel"
-import { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { ToggleButton, ToggleButtonGroup } from "@mui/material/"
 import { AppBar } from "@lib/components/Appbar"
 
 import SvgTimetableOn from "@lib/components/Icons/SvgTimetableOn"
 import SvgSearchOff from "@lib/components/Icons/SvgSearchOff"
 import { useRouter } from "next/router"
-
-enum LectureCategory {
-  RECOMMEND,
-  FAMOUS,
-  HONEY,
-  BITTERSWEET,
-}
-
-const lectureCategoryText = {
-  [LectureCategory.RECOMMEND]: "학우들의 추천 강의",
-  [LectureCategory.FAMOUS]: "졸업하기 전에 꼭 한번 들어볼만한 강의",
-  [LectureCategory.HONEY]: "수업 부담이 크지 않고, 성적도 잘 주는 강의",
-  [LectureCategory.BITTERSWEET]: "공과 시간을 들인 만큼 거두는 것이 많은 강의",
-}
+import { TagDTO } from "@lib/dto/core/tag"
+import useScrollLoader from "@lib/hooks/useScrollLoader"
 
 export const MainImpl = () => {
   const router = useRouter()
 
-  const [lectureCategory, setLectureCategory] = useState(
-    LectureCategory.RECOMMEND,
-  )
+  const [selectedTag, setSelectedTag] = useState<TagDTO | undefined>(undefined)
+  const { recommendationTags } = useRecommendationTagsContainer()
+  const { recentLectureData } = useMainRecentContainer()
+  const { searchResult, fetchNextPage } =
+    useMainEvaluationContainer(selectedTag)
+  const { loaderRef } = useScrollLoader(fetchNextPage)
 
-  const onClickCategory = (
+  useEffect(() => {
+    setSelectedTag(recommendationTags[0])
+  }, [recommendationTags])
+
+  const handleClickRecommendationTag = (
     e: React.MouseEvent<HTMLElement, MouseEvent>,
-    category: LectureCategory,
+    tag?: TagDTO,
   ) => {
     e.preventDefault()
-    if (category !== null) {
-      setLectureCategory(category)
+    if (tag) {
+      setSelectedTag(tag)
     }
   }
-
-  const { curationData } = useMainReviewContainer()
-  const { recentLectureData } = useMainRecentContainer()
 
   return (
     <Wrapper>
@@ -70,24 +63,31 @@ export const MainImpl = () => {
       <CategoryPicker>
         <Title01 style={{ marginBottom: 10 }}>교양 강의평 둘러보기</Title01>
         <StyledToggleButtonGroup
-          value={lectureCategory}
+          value={selectedTag}
           exclusive
-          onChange={onClickCategory}
+          onChange={handleClickRecommendationTag}
         >
-          <ToggleButton value={LectureCategory.RECOMMEND}>추천</ToggleButton>
-          <ToggleButton value={LectureCategory.FAMOUS}>명강</ToggleButton>
-          <ToggleButton value={LectureCategory.HONEY}>꿀강</ToggleButton>
-          <ToggleButton value={LectureCategory.BITTERSWEET}>
-            고진감래
-          </ToggleButton>
+          {recommendationTags.map((it) => (
+            <ToggleButton value={it}>{it.name}</ToggleButton>
+          ))}
         </StyledToggleButtonGroup>
-        <CategoryDetail>{lectureCategoryText[lectureCategory]}</CategoryDetail>
+        <CategoryDetail>{selectedTag?.name}</CategoryDetail>
       </CategoryPicker>
 
-      {curationData ? (
-        curationData.map((it) => <ReviewCard review={it} key={it.id} />)
+      {searchResult?.pages ? (
+        <React.Fragment>
+          {searchResult?.pages?.map((content, i) => (
+            <React.Fragment>
+              {content.content.map((it) => (
+                <EvaluationCard evaluation={it} key={it.id} />
+              ))}
+            </React.Fragment>
+          ))}
+          <div ref={loaderRef} />
+        </React.Fragment>
       ) : (
-        <Subheading02>데이터 로딩 OR 에러</Subheading02>
+        // FIXME: Empty placeholder
+        <div>asdf</div>
       )}
     </Wrapper>
   )
