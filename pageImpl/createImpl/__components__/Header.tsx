@@ -5,12 +5,12 @@ import SvgArrowDown from "@lib/components/Icons/SvgArrowDown"
 import { SemesterIntToString } from "@lib/util"
 
 interface Props {
-  lectureName: string | undefined
-  lectureInstructor: string | undefined
+  lectureName?: string
+  lectureInstructor?: string
   handleSelectedSemester: (semesterLecture: SemesterLectureDTO) => void
   handleSemesterSelector: () => void
   isSemesterSelectorOpen: boolean
-  selectedSemester: SemesterLectureDTO | undefined
+  selectedSemester?: SemesterLectureDTO
   lectureSemesters?: SemesterLectureDTO[]
 }
 
