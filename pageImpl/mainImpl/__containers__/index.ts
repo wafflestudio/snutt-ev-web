@@ -38,6 +38,7 @@ export function useMainEvaluationContainer(selectedTag?: TagDTO) {
     {
       getNextPageParam: (lastPage, pages) => lastPage.cursor,
       enabled: selectedTag !== undefined,
+      suspense: false,
     },
   )
 
