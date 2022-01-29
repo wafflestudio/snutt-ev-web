@@ -4,6 +4,7 @@ import { COLORS } from "@lib/styles/colors"
 import { Rating } from "@lib/components/Rating"
 import { CollapsableText } from "@lib/components/CollapsableText"
 import { MainEvaluationDTO } from "@lib/dto/core/mainEvaluation"
+import { SemesterIntToString } from "@lib/util"
 
 interface Props {
   evaluation: MainEvaluationDTO
@@ -14,11 +15,11 @@ export const EvaluationCard = ({ evaluation }: Props) => {
     <Wrapper>
       <Contents>
         <Header>
-          <LectureName>{evaluation.lecture_title}</LectureName>
+          <LectureName>{evaluation.lecture_title} : [교수명]</LectureName>
           <RatingInfo>
             <Rating rating={evaluation.rating} size={12} />
             <Semester>
-              {evaluation.year}-{evaluation.semester} 수강
+              {evaluation.year}년 {SemesterIntToString(evaluation.semester)}학기
             </Semester>
           </RatingInfo>
         </Header>

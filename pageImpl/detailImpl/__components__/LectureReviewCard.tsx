@@ -27,7 +27,7 @@ export const LectureReviewCard = ({
           <SideInfo>
             <Rating rating={review.rating} size={12} />
             <Semester>
-              {review.year}-{review.semester} 수강
+              {review.year}년 {review.semester}학기 수강
             </Semester>
             <div style={{ flexGrow: 1 }} />
             <div onClick={onMoreClick}>

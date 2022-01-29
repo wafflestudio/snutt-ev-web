@@ -7,7 +7,7 @@ export function SemesterIntToString(semester: number | undefined) {
     case 3:
       return "2"
     case 4:
-      return "3"
+      return "겨울"
     case undefined:
       return ""
   }

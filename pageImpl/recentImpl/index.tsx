@@ -4,7 +4,6 @@ import SvgArrowBack from "@lib/components/Icons/SvgArrowBack"
 import { Title01, Title02 } from "@lib/components/Text"
 import { useRouter } from "next/router"
 import { RecentLectureItem } from "./__components__/RecentResultItem"
-import { useRecentLectureContainer } from "./__containers__"
 import { useMainLatestLectureContainer } from "@pageImpl/mainImpl/__containers__"
 
 export const RecentImpl = () => {
@@ -19,7 +18,7 @@ export const RecentImpl = () => {
           <SvgArrowBack width={30} height={30} onClick={() => router.back()} />
         )}
       >
-        <Title01 style={{ marginLeft: 12 }}>학기?</Title01>
+        <Title01 style={{ marginLeft: 12 }}>최근 강의 목록</Title01>
       </AppBar>
 
       <RecentLectureList>
