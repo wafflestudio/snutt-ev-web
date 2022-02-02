@@ -1,10 +1,11 @@
 import styled from "@emotion/styled"
 import { Subheading02, Title02 } from "@lib/components/Text"
+import SurprisedCatImage from "@public/icons/surprised_cat.svg"
 
 export const EmptyReviewPlaceholder = () => {
   return (
     <Wrapper>
-      <Title02 style={{ marginTop: "25vh" }}>느낌표 있는 고양이</Title02>
+      <SurprisedCatImage />
       <Subheading02 style={{ marginTop: 20 }}>
         아직 강의평이 없습니다.
       </Subheading02>
@@ -18,10 +19,12 @@ export const EmptyReviewPlaceholder = () => {
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
+  margin-top: 25vh;
 
   display: flex;
   flex-direction: column;
   align-content: center;
+  align-items: center;
   justify-content: center;
 
   text-align: center;

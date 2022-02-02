@@ -7,6 +7,7 @@ import { LectureReviewCard } from "./__components__/LectureReviewCard"
 
 import SvgWrite from "@lib/components/Icons/SvgWrite"
 import SvgStarSmallFilled from "@lib/components/Icons/SvgStarSmallFilled"
+import SvgStarSmallEmpty from "@lib/components/Icons/SvgStarSmallEmpty"
 import SvgArrowBack from "@lib/components/Icons/SvgArrowBack"
 import { RatingGraph } from "@lib/components/RatingGraph"
 import { useLectureEvaluationsContainer } from "@pageImpl/detailImpl/__containers__/useLectureEvaluationsContainer"
@@ -65,7 +66,11 @@ export const DetailImpl = () => {
             </ReviewSummaryLeft>
             <ReviewSummaryRight>
               <ReviewScore>
-                <SvgStarSmallFilled height={19} width={19} />
+                {isEmpty ? (
+                  <SvgStarSmallEmpty height={19} width={19} />
+                ) : (
+                  <SvgStarSmallFilled height={19} width={19} />
+                )}
                 <Title01 style={{ marginLeft: 6, marginTop: 0 }}>
                   {summaryData?.evaluation?.avg_rating?.toFixed(1)}
                 </Title01>
