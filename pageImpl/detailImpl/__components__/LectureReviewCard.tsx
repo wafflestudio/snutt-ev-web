@@ -1,13 +1,10 @@
 import styled from "@emotion/styled"
 import { Detail, Subheading01 } from "@lib/components/Text"
 import { COLORS } from "@lib/styles/colors"
-import { ReviewDetailDTO } from "@lib/dto/review"
 import { Rating } from "@lib/components/Rating"
-import { useState } from "react"
 import { CollapsableText } from "@lib/components/CollapsableText"
 import { EvaluationDTO } from "@lib/dto/core/evaluation"
-import MoreVerticalIcon from "../../../public/icons/more_vertical.svg"
-import { css } from "@emotion/react"
+import MoreVerticalIcon from "@public/icons/more_vertical.svg"
 import { SemesterIntToString } from "@lib/util"
 
 interface Props {

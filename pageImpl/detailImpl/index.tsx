@@ -15,6 +15,7 @@ import React, { useState } from "react"
 import EvaluationModifySheet from "./__components__/EvaluationModifySheet"
 import { EvaluationDTO } from "@lib/dto/core/evaluation"
 import { useMyLectureEvaluationsContainer } from "./__containers__/useMyLectureEvaluationsContainer"
+import { EmptyReviewPlaceholder } from "./__components__/EmptyReviewPlaceholder"
 
 export const DetailImpl = () => {
   const router = useRouter()
@@ -30,6 +31,9 @@ export const DetailImpl = () => {
   const [moreSheetItem, setMoreSheetItem] = useState<EvaluationDTO | undefined>(
     undefined,
   )
+
+  const count = searchResult?.pages[searchResult?.pages.length - 1].total_count
+  const isEmpty = count === 0 && myReviewResult?.evaluations.length === 0
 
   return (
     <>
@@ -66,76 +70,75 @@ export const DetailImpl = () => {
                   {summaryData?.evaluation?.avg_rating?.toFixed(1)}
                 </Title01>
               </ReviewScore>
-              <ReviewCount>
-                {
-                  searchResult?.pages[searchResult?.pages.length - 1]
-                    .total_count
-                }
-                개의 강의평
-              </ReviewCount>
+              <ReviewCount>{count}개의 강의평</ReviewCount>
             </ReviewSummaryRight>
           </ReviewSummary>
 
-          <ReviewDiagram>
-            <DiagramTop>
-              <AxisLabel style={{ marginBottom: 10 }}>성적 만족도</AxisLabel>
-            </DiagramTop>
-            <DiagramMiddle>
-              <YAxisLabel>강의력</YAxisLabel>
-              <GraphWrapper>
-                <RatingGraph
-                  gradeSatisfaction={
-                    summaryData?.evaluation?.avg_grade_satisfaction ?? 0
-                  }
-                  lifeBalance={summaryData?.evaluation?.avg_life_balance ?? 0}
-                  gains={summaryData?.evaluation?.avg_gains ?? 0}
-                  teachingSkill={
-                    summaryData?.evaluation?.avg_teaching_skill ?? 0
-                  }
-                  height={280}
-                  width={280}
-                />
-              </GraphWrapper>
-              <YAxisLabel>수라밸</YAxisLabel>
-            </DiagramMiddle>
-            <DiagramBottom>
-              <AxisLabel>얻어가는 것</AxisLabel>
-            </DiagramBottom>
-          </ReviewDiagram>
+          {isEmpty ? (
+            <EmptyReviewPlaceholder />
+          ) : (
+            <EvaluationDetail>
+              <ReviewDiagram>
+                <DiagramTop>
+                  <AxisLabel style={{ marginBottom: 10 }}>
+                    성적 만족도
+                  </AxisLabel>
+                </DiagramTop>
+                <DiagramMiddle>
+                  <YAxisLabel>강의력</YAxisLabel>
+                  <GraphWrapper>
+                    <RatingGraph
+                      gradeSatisfaction={
+                        summaryData?.evaluation?.avg_grade_satisfaction ?? 0
+                      }
+                      lifeBalance={
+                        summaryData?.evaluation?.avg_life_balance ?? 0
+                      }
+                      gains={summaryData?.evaluation?.avg_gains ?? 0}
+                      teachingSkill={
+                        summaryData?.evaluation?.avg_teaching_skill ?? 0
+                      }
+                      height={280}
+                      width={280}
+                    />
+                  </GraphWrapper>
+                  <YAxisLabel>수라밸</YAxisLabel>
+                </DiagramMiddle>
+                <DiagramBottom>
+                  <AxisLabel>얻어가는 것</AxisLabel>
+                </DiagramBottom>
+              </ReviewDiagram>
 
-          <ReviewList>
-            {myReviewResult?.evaluations.map((content, index) => (
-              <LectureReviewCard
-                review={content}
-                key={content.id}
-                onMoreClick={() => {
-                  setMoreSheetItem(content)
-                }}
-                isMyReivew
-              />
-            ))}
-            {searchResult?.pages ? (
-              <React.Fragment>
-                {searchResult?.pages?.map((content, i) => (
-                  <React.Fragment key={i}>
-                    {content.content.map((it) => (
-                      <LectureReviewCard
-                        review={it}
-                        key={it.id}
-                        onMoreClick={() => {
-                          setMoreSheetItem(it)
-                        }}
-                      />
-                    ))}
-                  </React.Fragment>
+              <ReviewList>
+                {myReviewResult?.evaluations.map((content, index) => (
+                  <LectureReviewCard
+                    review={content}
+                    key={content.id}
+                    onMoreClick={() => {
+                      setMoreSheetItem(content)
+                    }}
+                    isMyReivew
+                  />
                 ))}
-                <div ref={loaderRef} />
-              </React.Fragment>
-            ) : (
-              // FIXME: Empty placeholder
-              <Subheading02>대충 아직 없으니 적어달라는 문구</Subheading02>
-            )}
-          </ReviewList>
+                <React.Fragment>
+                  {searchResult?.pages?.map((content, i) => (
+                    <React.Fragment key={i}>
+                      {content.content.map((it) => (
+                        <LectureReviewCard
+                          review={it}
+                          key={it.id}
+                          onMoreClick={() => {
+                            setMoreSheetItem(it)
+                          }}
+                        />
+                      ))}
+                    </React.Fragment>
+                  ))}
+                  <div ref={loaderRef} />
+                </React.Fragment>
+              </ReviewList>
+            </EvaluationDetail>
+          )}
         </Content>
       </Wrapper>
       <EvaluationModifySheet
@@ -165,6 +168,14 @@ const Content = styled.div`
   padding: 0 20px 0 20px;
   display: flex;
   flex-direction: column;
+  height: 100%;
+`
+
+const EvaluationDetail = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
 `
 
 const ReviewSummary = styled.div`
