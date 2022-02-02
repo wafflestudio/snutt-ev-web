@@ -139,7 +139,10 @@ const Row = styled.div`
   justify-content: space-between;
 `
 
-const TooltipButton = styled.div``
+const TooltipButton = styled.button`
+  border: none;
+  background-color: white;
+`
 
 const CustomTooltip = styled(Tooltip)`
   & .css-1hjrgzd-MuiTooltip-tooltip {
