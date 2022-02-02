@@ -15,10 +15,12 @@ export const EvaluationCard = ({ evaluation }: Props) => {
   const router = useRouter()
 
   return (
-    <Wrapper onClick={() => router.push(`/detail/${evaluation.lecture.id}`)}>
+    <Wrapper>
       <Contents>
         <Header>
-          <LectureName>
+          <LectureName
+            onClick={() => router.push(`/detail/${evaluation.lecture.id}`)}
+          >
             {evaluation.lecture.title} : {evaluation.lecture.instructor}
           </LectureName>
           <RatingInfo>
