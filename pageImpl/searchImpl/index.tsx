@@ -7,6 +7,8 @@ import { useTagContainer } from "./__containers__/useTagContainer"
 import { ActiveTagList } from "./__components__/SelectedTagList"
 import useScrollLoader from "@lib/hooks/useScrollLoader"
 import useSearchOptionContainer from "./__containers__/useSearchOptionContainer"
+import { SearchNoResult } from "./__components__/SearchNoResult"
+import { SearchInitialPage } from "./__components__/SearchInitialPage"
 
 export const SearchImpl = () => {
   const {
@@ -42,7 +44,11 @@ export const SearchImpl = () => {
         onDeleteTag={toggleTagSelection}
       />
       <SearchResultList>
-        {searchResult?.pages ? (
+        {/* FIXME: skip api request if input is "" */}
+        {currentlyAppliedQuery?.textQuery === undefined ||
+        currentlyAppliedQuery?.textQuery === "" ? (
+          <SearchInitialPage />
+        ) : searchResult?.pages[0].content.length !== 0 ? (
           <React.Fragment>
             {searchResult?.pages?.map((content, i) => (
               <React.Fragment key={i}>
@@ -57,7 +63,7 @@ export const SearchImpl = () => {
             <div ref={loaderRef} />
           </React.Fragment>
         ) : (
-          <SearchNoResult>강의명, 교수명으로 검색하세요</SearchNoResult>
+          <SearchNoResult />
         )}
       </SearchResultList>
       <SearchOptionSheet
@@ -77,9 +83,4 @@ const Wrapper = styled.div``
 const SearchResultList = styled.div`
   padding-left: 20px;
   padding-right: 20px;
-`
-
-const SearchNoResult = styled.div`
-  font-size: 16px;
-  color: #777777;
 `
