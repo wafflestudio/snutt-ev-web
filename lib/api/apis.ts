@@ -22,7 +22,10 @@ import {
   DeleteEvaluationParams,
   DeleteEvaluationResult,
 } from "@lib/dto/deleteEvaluation"
-import { PostReportEvaluationParams, PostReportEvaluationResult } from "@lib/dto/postReportEvaluation"
+import {
+  PostReportEvaluationParams,
+  PostReportEvaluationResult,
+} from "@lib/dto/postReportEvaluation"
 
 export async function fetchLatestLectures(): Promise<GetLatestLecturesResult> {
   return SnuttApi.get<GetLatestLecturesResult>("/users/me/lectures/latest")
@@ -100,9 +103,12 @@ export function deleteEvaluation(id: number): Promise<DeleteEvaluationResult> {
   )
 }
 
-export function postReportEvaluation(id: number, params: PostReportEvaluationParams): Promise<DeleteEvaluationResult> {
+export function postReportEvaluation(
+  id: number,
+  params: PostReportEvaluationParams,
+): Promise<DeleteEvaluationResult> {
   return SnuttApi.post<PostReportEvaluationResult, PostReportEvaluationParams>(
     `/evaluations/${id}/report`,
-    params
+    params,
   )
 }
