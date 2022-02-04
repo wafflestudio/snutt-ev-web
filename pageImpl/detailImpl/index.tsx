@@ -50,6 +50,9 @@ export const DetailImpl = () => {
       queryClient.invalidateQueries("evaluationSummary")
       queryClient.invalidateQueries("lectureEvaluation")
     },
+    onError: () => {
+      console.error("강의평 삭제에 실패하였습니다.")
+    },
   })
   const [deleteTargetId, setDeleteTargetId] = useState<number | undefined>(
     undefined,
@@ -73,6 +76,9 @@ export const DetailImpl = () => {
       onSuccess: () => {
         queryClient.invalidateQueries("evaluationSummary")
         queryClient.invalidateQueries("lectureEvaluation")
+      },
+      onError: () => {
+        console.error("강의평 신고에 실패하였습니다.")
       },
     },
   )
