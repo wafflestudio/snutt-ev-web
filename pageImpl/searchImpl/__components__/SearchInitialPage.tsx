@@ -27,7 +27,9 @@ const Wrapper = styled.div`
   align-content: center;
   align-items: center;
   justify-content: center;
-  margin-top: 20vh;
+  position: absolute;
+  left: 0;
+  top: -10vh;
 `
 
 const Title = styled(Title01)`

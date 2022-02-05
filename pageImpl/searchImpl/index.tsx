@@ -29,6 +29,11 @@ export const SearchImpl = () => {
   const { loaderRef } = useScrollLoader(fetchNextPage)
   const [isSearchSheetOpen, setIsSearchSheetOpen] = useState(false)
 
+  const isEmptyQuery =
+    currentlyAppliedQuery?.textQuery === undefined ||
+    (currentlyAppliedQuery?.textQuery === "" &&
+      currentlyAppliedQuery?.tags.length === 0)
+
   return (
     <Wrapper>
       <Searchbar
@@ -45,8 +50,7 @@ export const SearchImpl = () => {
       />
       <SearchResultList>
         {/* FIXME: skip api request if input is "" */}
-        {currentlyAppliedQuery?.textQuery === undefined ||
-        currentlyAppliedQuery?.textQuery === "" ? (
+        {isEmptyQuery ? (
           <SearchInitialPage />
         ) : searchResult?.pages[0].content.length !== 0 ? (
           <React.Fragment>
