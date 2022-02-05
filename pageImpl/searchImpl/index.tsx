@@ -76,7 +76,10 @@ export const SearchImpl = () => {
         onToggleTag={toggleTagSelection}
         isOpened={isSearchSheetOpen}
         onClose={() => setIsSearchSheetOpen(false)}
-        onClickSubmit={refreshQueries}
+        onClickSubmit={() => {
+          refreshQueries
+          setIsSearchSheetOpen(false)
+        }}
       />
     </Wrapper>
   )
