@@ -28,7 +28,10 @@ const SnuttApi = {
     queryParams: T | undefined = undefined,
   ): Promise<R> {
     var path = url
-    var queryString = qs.stringify(queryParams)
+    var queryString = qs.stringify(queryParams, {
+      encode: false,
+      arrayFormat: "comma",
+    })
 
     if (queryString !== "") {
       path = `${url}?${queryString}`
