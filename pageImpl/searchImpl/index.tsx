@@ -30,9 +30,14 @@ export const SearchImpl = () => {
   const [isSearchSheetOpen, setIsSearchSheetOpen] = useState(false)
 
   const isEmptyQuery =
-    (currentlyAppliedQuery?.textQuery === undefined ||
-      currentlyAppliedQuery?.textQuery === "") &&
-    currentlyAppliedQuery?.tags.length === 0
+    currentlyAppliedQuery === undefined ||
+    (currentlyAppliedQuery?.textQuery === "" &&
+      currentlyAppliedQuery?.tags.length === 0)
+
+  console.log(currentlyAppliedQuery)
+  console.log(currentlyAppliedQuery?.textQuery)
+  console.log(currentlyAppliedQuery?.tags)
+  console.log(isEmptyQuery)
 
   return (
     <Wrapper>
