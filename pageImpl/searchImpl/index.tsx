@@ -34,11 +34,6 @@ export const SearchImpl = () => {
     (currentlyAppliedQuery?.textQuery === "" &&
       currentlyAppliedQuery?.tags.length === 0)
 
-  console.log(currentlyAppliedQuery)
-  console.log(currentlyAppliedQuery?.textQuery)
-  console.log(currentlyAppliedQuery?.tags)
-  console.log(isEmptyQuery)
-
   return (
     <Wrapper>
       <Searchbar
