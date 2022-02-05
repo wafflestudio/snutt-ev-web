@@ -49,7 +49,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <ErrorView resetErrorBoundary={resetErrorBoundary} />
               )}
             >
-              <Suspense fallback={<h1>로딩중이에요</h1>}>
+              <Suspense fallback={<></>}>
                 <Component {...pageProps} />
               </Suspense>
             </ErrorBoundary>
