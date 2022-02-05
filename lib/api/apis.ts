@@ -18,6 +18,14 @@ import {
   GetMainTagEvalutionsQuery,
 } from "@lib/dto/getMainTagEvaluations"
 import { GetLatestLecturesResult } from "@lib/dto/getLatestLectures"
+import {
+  DeleteEvaluationParams,
+  DeleteEvaluationResult,
+} from "@lib/dto/deleteEvaluation"
+import {
+  PostReportEvaluationParams,
+  PostReportEvaluationResult,
+} from "@lib/dto/postReportEvaluation"
 
 export async function fetchLatestLectures(): Promise<GetLatestLecturesResult> {
   return SnuttApi.get<GetLatestLecturesResult>("/users/me/lectures/latest")
@@ -85,5 +93,22 @@ export function getMainTagEvaluations(
   return SnuttApi.get<GetMainTagEvaluationsResult, GetMainTagEvalutionsQuery>(
     `/tags/main/${id}/evaluations`,
     query,
+  )
+}
+
+export function deleteEvaluation(id: number): Promise<DeleteEvaluationResult> {
+  return SnuttApi.delete<DeleteEvaluationResult, DeleteEvaluationParams>(
+    `/evaluations/${id}`,
+    {},
+  )
+}
+
+export function postReportEvaluation(
+  id: number,
+  params: PostReportEvaluationParams,
+): Promise<DeleteEvaluationResult> {
+  return SnuttApi.post<PostReportEvaluationResult, PostReportEvaluationParams>(
+    `/evaluations/${id}/report`,
+    params,
   )
 }
