@@ -19,7 +19,7 @@ export const EvaluationCard = ({ evaluation }: Props) => {
       <Contents>
         <Header>
           <LectureName
-            onClick={() => router.push(`/detail/${evaluation.lecture.id}`)}
+            onClick={() => router.push(`/detail?id=${evaluation.lecture.id}`)}
           >
             {evaluation.lecture.title} : {evaluation.lecture.instructor}
           </LectureName>

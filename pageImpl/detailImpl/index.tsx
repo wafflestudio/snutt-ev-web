@@ -114,7 +114,7 @@ export const DetailImpl = () => {
         <SvgWrite
           height={30}
           width={30}
-          onClick={() => router.push("/create/" + id)}
+          onClick={() => router.push(`/create?id=${id}`)}
         />
       </AppBarContent>
     </AppBar>
