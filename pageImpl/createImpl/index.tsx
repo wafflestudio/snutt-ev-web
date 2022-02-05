@@ -70,7 +70,7 @@ export const CreateImpl = () => {
     if (selectedSemester?.id) {
       try {
         await postLectureEvaluation(selectedSemester.id, query)
-        router.push(`/detail/${id}`)
+        router.push(`/detail?=${id}`)
       } catch (errorCode) {
         if (errorCode === 29001) {
           alert("이미 작성한 강의평이 존재합니다")
