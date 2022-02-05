@@ -12,7 +12,7 @@ import SvgArrowBack from "@lib/components/Icons/SvgArrowBack"
 import { RatingGraph } from "@lib/components/RatingGraph"
 import { useLectureEvaluationsContainer } from "@pageImpl/detailImpl/__containers__/useLectureEvaluationsContainer"
 import useScrollLoader from "@lib/hooks/useScrollLoader"
-import React, { useState } from "react"
+import React, { Fragment, useState } from "react"
 import EvaluationModifySheet from "./__components__/EvaluationModifySheet"
 import { EvaluationDTO } from "@lib/dto/core/evaluation"
 import { useMyLectureEvaluationsContainer } from "./__containers__/useMyLectureEvaluationsContainer"
@@ -36,28 +36,34 @@ export const DetailImpl = () => {
   const count = searchResult?.pages[searchResult?.pages.length - 1].total_count
   const isEmpty = count === 0 && myReviewResult?.evaluations.length === 0
 
+  const appBar = (
+    <AppBar
+      LeftImage={() => (
+        <SvgArrowBack width={30} height={30} onClick={() => router.back()} />
+      )}
+    >
+      <AppBarContent>
+        <Title01 style={{ marginLeft: 12 }}>강의평</Title01>
+        <SvgWrite
+          height={30}
+          width={30}
+          onClick={() => router.push("/create/" + id)}
+        />
+      </AppBarContent>
+    </AppBar>
+  )
+
+  if (searchResult === undefined || myReviewResult === undefined) {
+    return (
+      <>
+        <Wrapper>{appBar}</Wrapper>
+      </>
+    )
+  }
   return (
     <>
       <Wrapper>
-        <AppBar
-          LeftImage={() => (
-            <SvgArrowBack
-              width={30}
-              height={30}
-              onClick={() => router.back()}
-            />
-          )}
-        >
-          <AppBarContent>
-            <Title01 style={{ marginLeft: 12 }}>강의평</Title01>
-            <SvgWrite
-              height={30}
-              width={30}
-              onClick={() => router.push("/create/" + id)}
-            />
-          </AppBarContent>
-        </AppBar>
-
+        {appBar}
         <Content>
           <ReviewSummary>
             <ReviewSummaryLeft>
