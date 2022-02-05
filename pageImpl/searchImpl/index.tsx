@@ -30,9 +30,9 @@ export const SearchImpl = () => {
   const [isSearchSheetOpen, setIsSearchSheetOpen] = useState(false)
 
   const isEmptyQuery =
-    currentlyAppliedQuery?.textQuery === undefined ||
-    (currentlyAppliedQuery?.textQuery === "" &&
-      currentlyAppliedQuery?.tags.length === 0)
+    (currentlyAppliedQuery?.textQuery === undefined ||
+      currentlyAppliedQuery?.textQuery === "") &&
+    currentlyAppliedQuery?.tags.length === 0
 
   return (
     <Wrapper>
@@ -77,7 +77,7 @@ export const SearchImpl = () => {
         isOpened={isSearchSheetOpen}
         onClose={() => setIsSearchSheetOpen(false)}
         onClickSubmit={() => {
-          refreshQueries
+          refreshQueries()
           setIsSearchSheetOpen(false)
         }}
       />
