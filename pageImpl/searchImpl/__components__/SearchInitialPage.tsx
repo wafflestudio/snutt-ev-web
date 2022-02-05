@@ -29,7 +29,7 @@ const Wrapper = styled.div`
   justify-content: center;
   position: absolute;
   left: 0;
-  top: -10vh;
+  top: 0;
 `
 
 const Title = styled(Title01)`
