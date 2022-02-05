@@ -19,7 +19,7 @@ export const SearchResultItem: React.FC<Props> = ({ content }) => {
     : 0
 
   return (
-    <Wrapper onClick={() => router.push(`/detail/${content.id}`)}>
+    <Wrapper onClick={() => router.push(`/detail?id=${content.id}`)}>
       <ItemTop>
         <SubjectText>{content.title}</SubjectText>
         <Rating>
