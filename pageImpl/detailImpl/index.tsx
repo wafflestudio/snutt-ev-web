@@ -11,10 +11,22 @@ import SvgArrowBack from "@lib/components/Icons/SvgArrowBack"
 import { RatingGraph } from "@lib/components/RatingGraph"
 import { useLectureEvaluationsContainer } from "@pageImpl/detailImpl/__containers__/useLectureEvaluationsContainer"
 import useScrollLoader from "@lib/hooks/useScrollLoader"
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
 import EvaluationModifySheet from "./__components__/EvaluationModifySheet"
 import { EvaluationDTO } from "@lib/dto/core/evaluation"
 import { useMyLectureEvaluationsContainer } from "./__containers__/useMyLectureEvaluationsContainer"
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Modal,
+  TextField,
+} from "@mui/material"
+import { deleteEvaluation, postReportEvaluation } from "@lib/api/apis"
+import { useMutation, useQueryClient } from "react-query"
 
 export const DetailImpl = () => {
   const router = useRouter()
@@ -27,13 +39,130 @@ export const DetailImpl = () => {
   const { myReviewResult } = useMyLectureEvaluationsContainer(Number(id))
   const { loaderRef } = useScrollLoader(fetchNextPage)
 
+  const queryClient = useQueryClient()
+
   const [moreSheetItem, setMoreSheetItem] = useState<EvaluationDTO | undefined>(
     undefined,
   )
 
+  const deleteMutation = useMutation(deleteEvaluation, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("evaluationSummary")
+      queryClient.invalidateQueries("lectureEvaluation")
+    },
+    onError: () => {
+      console.error("강의평 삭제에 실패하였습니다.")
+    },
+  })
+  const [deleteTargetId, setDeleteTargetId] = useState<number | undefined>(
+    undefined,
+  )
+  const handleDeleteEvaluation = () => {
+    setDeleteTargetId(moreSheetItem?.id)
+    setMoreSheetItem(undefined)
+  }
+  const handleDeleteEvaluationConfirm = async () => {
+    const target = deleteTargetId
+    setDeleteTargetId(undefined)
+    if (target !== undefined) {
+      deleteMutation.mutate(target)
+    }
+  }
+
+  const reportMutation = useMutation(
+    ({ id, content }: { id: number; content: string }) =>
+      postReportEvaluation(id, { content }),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("evaluationSummary")
+        queryClient.invalidateQueries("lectureEvaluation")
+      },
+      onError: () => {
+        console.error("강의평 신고에 실패하였습니다.")
+      },
+    },
+  )
+  const [reportReason, setReportReason] = useState<string>("")
+  const [reportTargetId, setReportTargetId] = useState<number | undefined>(
+    undefined,
+  )
+  const handleReportEvaluation = () => {
+    setReportTargetId(moreSheetItem?.id)
+    setMoreSheetItem(undefined)
+  }
+  const handleReportEvaluationConfirm = async () => {
+    const target = reportTargetId
+    setReportTargetId(undefined)
+    if (target !== undefined) {
+      reportMutation.mutate({ id: target, content: reportReason ?? "" })
+    }
+  }
+
   return (
     <>
       <Wrapper>
+        <Dialog
+          open={deleteTargetId !== undefined}
+          onClose={() => {
+            setDeleteTargetId(undefined)
+          }}
+        >
+          <DialogTitle>이 강의평을 삭제하시겠습니까?</DialogTitle>
+          <DialogActions>
+            <Button
+              onClick={() => {
+                setDeleteTargetId(undefined)
+              }}
+            >
+              취소
+            </Button>
+            <Button
+              onClick={() => {
+                handleDeleteEvaluationConfirm()
+              }}
+            >
+              삭제
+            </Button>
+          </DialogActions>
+        </Dialog>
+        <Dialog
+          open={reportTargetId !== undefined}
+          onClose={() => {
+            setReportTargetId(undefined)
+          }}
+        >
+          <DialogTitle>강의평 신고</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              강의평 신고 사유를 적어주세요.
+            </DialogContentText>
+            <TextField
+              autoFocus
+              margin="dense"
+              fullWidth
+              variant="standard"
+              onChange={(e) => {
+                setReportReason(e.target.value)
+              }}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={() => {
+                setReportTargetId(undefined)
+              }}
+            >
+              취소
+            </Button>
+            <Button
+              onClick={() => {
+                handleReportEvaluationConfirm()
+              }}
+            >
+              신고
+            </Button>
+          </DialogActions>
+        </Dialog>
         <AppBar
           LeftImage={() => (
             <SvgArrowBack
@@ -143,6 +272,8 @@ export const DetailImpl = () => {
         onClose={() => {
           setMoreSheetItem(undefined)
         }}
+        onReportClicked={handleReportEvaluation}
+        onDeleteClicked={handleDeleteEvaluation}
         isModifiable={moreSheetItem?.is_modifiable ?? false}
         isReportable={moreSheetItem?.is_reportable ?? false}
       />

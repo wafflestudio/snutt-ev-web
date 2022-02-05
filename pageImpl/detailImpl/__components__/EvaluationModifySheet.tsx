@@ -8,6 +8,8 @@ import { Subheading02 } from "@lib/components/Text"
 interface Props {
   isOpened: boolean
   onClose: () => void
+  onDeleteClicked: () => void
+  onReportClicked: () => void
   isModifiable: boolean
   isReportable: boolean
 }
@@ -15,40 +17,51 @@ interface Props {
 const EvaluationModifySheet: React.FC<Props> = ({
   isOpened,
   onClose,
+  onDeleteClicked,
+  onReportClicked,
   isModifiable,
   isReportable,
 }) => {
   return (
-    <Sheet isOpen={isOpened} onClose={onClose} snapPoints={[75]} disableDrag>
-      <Sheet.Container onViewportBoxUpdate={true}>
-        <Sheet.Content onViewportBoxUpdate={true}>
-          <Wrapper>
-            {isModifiable && (
-              <DeleteContainer>
-                <TrashIcon />
-                <Subheading02 style={{ marginLeft: "25px" }}>
-                  강의평 삭제
-                </Subheading02>
-              </DeleteContainer>
-            )}
-            {isReportable && (
-              <ReportContainer>
-                <ReportIcon />
-                <Subheading02 style={{ marginLeft: "25px" }}>
-                  강의평 신고하기
-                </Subheading02>
-              </ReportContainer>
-            )}
-          </Wrapper>
-        </Sheet.Content>
-      </Sheet.Container>
-      <Sheet.Backdrop
-        onViewportBoxUpdate={true}
-        onTap={() => {
-          onClose()
-        }}
-      />
-    </Sheet>
+    <>
+      {isOpened && (
+        <Sheet
+          isOpen={isOpened}
+          onClose={onClose}
+          snapPoints={[75]}
+          disableDrag
+        >
+          <Sheet.Container onViewportBoxUpdate={true}>
+            <Sheet.Content onViewportBoxUpdate={true}>
+              <Wrapper>
+                {isModifiable && (
+                  <DeleteContainer onClick={onDeleteClicked}>
+                    <TrashIcon />
+                    <Subheading02 style={{ marginLeft: "25px" }}>
+                      강의평 삭제
+                    </Subheading02>
+                  </DeleteContainer>
+                )}
+                {isReportable && (
+                  <ReportContainer onClick={onReportClicked}>
+                    <ReportIcon />
+                    <Subheading02 style={{ marginLeft: "25px" }}>
+                      강의평 신고하기
+                    </Subheading02>
+                  </ReportContainer>
+                )}
+              </Wrapper>
+            </Sheet.Content>
+          </Sheet.Container>
+          <Sheet.Backdrop
+            onViewportBoxUpdate={true}
+            onTap={() => {
+              onClose()
+            }}
+          />
+        </Sheet>
+      )}
+    </>
   )
 }
 
