@@ -16,7 +16,7 @@ export const RecentLectureItem: React.FC<Props> = ({ content }) => {
   const router = useRouter()
 
   return (
-    <Wrapper onClick={() => router.push(`/create?=${content.id}`)}>
+    <Wrapper onClick={() => router.push(`/create?id=${content.id}`)}>
       <ItemTop>
         <SubjectText>{content.title}</SubjectText>
       </ItemTop>

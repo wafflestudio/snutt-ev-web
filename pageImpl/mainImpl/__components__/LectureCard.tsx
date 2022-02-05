@@ -17,7 +17,7 @@ export const LectureCard = ({ lecture }: Props) => {
   const router = useRouter()
 
   return (
-    <Card onClick={() => router.push(`/create?=${lecture.id}`)}>
+    <Card onClick={() => router.push(`/create?id=${lecture.id}`)}>
       <CardTop>
         <LectureName>{lecture.title}</LectureName>
         <SvgWrite height={20} width={20} />
