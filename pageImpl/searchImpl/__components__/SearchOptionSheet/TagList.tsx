@@ -15,7 +15,7 @@ export const TagList: React.FC<Props> = ({
   onToggleTag,
 }) => {
   return (
-    <div>
+    <Wrapper>
       {tags.map((it) => (
         <TagItem
           isSelected={selectedTags.some((s) => s.name === it.name)}
@@ -24,7 +24,7 @@ export const TagList: React.FC<Props> = ({
           text={it.name}
         />
       ))}
-    </div>
+    </Wrapper>
   )
 }
 
@@ -44,6 +44,11 @@ const TagItem: React.FC<{
     </TagItemBox>
   )
 }
+
+const Wrapper = styled.div`
+  overflow-y: scroll;
+  width: calc(100% - 120px);
+`
 
 const TagItemBox = styled.div`
   display: flex;

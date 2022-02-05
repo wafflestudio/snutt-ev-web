@@ -11,6 +11,7 @@ export function useEvaluationSummaryContainer(id: number) {
     enabled: !isNaN(id),
     retryDelay: 2000,
     retry: 4,
+    suspense: false,
   })
 
   return {

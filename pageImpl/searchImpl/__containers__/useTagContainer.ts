@@ -3,7 +3,7 @@ import { GetTagInfosResult } from "../../../lib/dto/getTagInfos"
 import { ApiError } from "../../../lib/dto/core/error"
 import { useState } from "react"
 import { TagDTO } from "../../../lib/dto/core/tag"
-import { fetchTagInfos, getLectures } from "@lib/api/apis"
+import { fetchTagInfos } from "@lib/api/apis"
 
 export function useTagContainer() {
   const [currentlyAppliedQuery, setCurrentAppliedQuery] =

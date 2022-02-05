@@ -28,6 +28,7 @@ export default function useSearchOptionContainer(
       },
       retryDelay: 2000,
       retry: 5,
+      suspense: false,
     },
   )
   return {

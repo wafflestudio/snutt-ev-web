@@ -4,7 +4,7 @@ import { Detail, Subheading01 } from "@lib/components/Text"
 import SvgWrite from "@lib/components/Icons/SvgWrite"
 import SvgTagBlack from "@lib/components/Icons/SvgTagBlack"
 import SvgPersonBlack from "@lib/components/Icons/SvgPersonBlack"
-import SvgMapBlack from "@lib/components/Icons/SvgMapBlack"
+import SvgClockBlack from "@public/icons/clock_black.svg"
 import { LatestLectureDTO } from "@lib/dto/core/latestLecture"
 import { SemesterIntToString } from "@lib/util"
 import { useRouter } from "next/router"
@@ -27,7 +27,7 @@ export const LectureCard = ({ lecture }: Props) => {
         <Icons>
           <SvgTagBlack height={15} width={15} />
           <SvgPersonBlack height={15} width={15} />
-          <SvgMapBlack height={15} width={15} />
+          <SvgClockBlack />
         </Icons>
         <Texts>
           <Detail>
@@ -85,6 +85,13 @@ const Icons = styled.div`
 
   padding-top: 1px;
   padding-bottom: 1px;
+`
+
+const ClockIcon = styled.div`
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  object-fit: cover;
 `
 
 const Texts = styled.div`

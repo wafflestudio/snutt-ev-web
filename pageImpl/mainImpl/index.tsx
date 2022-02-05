@@ -16,6 +16,7 @@ import SvgSearchOff from "@lib/components/Icons/SvgSearchOff"
 import { useRouter } from "next/router"
 import { TagDTO } from "@lib/dto/core/tag"
 import useScrollLoader from "@lib/hooks/useScrollLoader"
+import { EmptyReviewPlaceholder } from "@pageImpl/detailImpl/__components__/EmptyReviewPlaceholder"
 
 export const MainImpl = () => {
   const router = useRouter()
@@ -81,16 +82,20 @@ export const MainImpl = () => {
       </CategoryPicker>
 
       {searchResult?.pages ? (
-        <React.Fragment>
-          {searchResult?.pages?.map((content, i) => (
-            <React.Fragment key={i}>
-              {content.content.map((it) => (
-                <EvaluationCard evaluation={it} key={it.id} />
-              ))}
-            </React.Fragment>
-          ))}
-          <div ref={loaderRef} />
-        </React.Fragment>
+        searchResult?.pages.length === 0 ? (
+          <EmptyReviewPlaceholder />
+        ) : (
+          <React.Fragment>
+            {searchResult?.pages?.map((content, i) => (
+              <React.Fragment key={i}>
+                {content.content.map((it) => (
+                  <EvaluationCard evaluation={it} key={it.id} />
+                ))}
+              </React.Fragment>
+            ))}
+            <div ref={loaderRef} />
+          </React.Fragment>
+        )
       ) : (
         // FIXME: Empty placeholder
         <div>로딩중</div>

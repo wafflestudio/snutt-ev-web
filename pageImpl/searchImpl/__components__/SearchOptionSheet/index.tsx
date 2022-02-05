@@ -79,6 +79,9 @@ const TagSelectWrapper = styled.div`
   flex-grow: 1;
   display: flex;
   flex-direction: row;
+  height: calc(
+    100% - 50px - 64px
+  ); // subtract height of header and height of button
 `
 
 const SubmitButton = styled.div`

@@ -12,8 +12,11 @@ export interface MainEvaluationDTO {
   is_hidden: boolean
   year: number
   semester: number
-  lecture_id: number
-  lecture_title: string
+  lecture: {
+    id: number
+    title: string
+    instructor: string
+  }
   is_modifiable: boolean
   is_reportable: boolean
 }

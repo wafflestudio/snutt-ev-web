@@ -44,6 +44,9 @@ export const Searchbar: React.FC<Props> = ({
             onChange={(e) => {
               onChangeTextQuery(e.target.value)
             }}
+            onKeyPress={(e) => {
+              e.key === "Enter" && onRefreshQuery()
+            }}
           />
           <TagButton onClick={toggleOpenSearchSheet}>
             <SvgFilter height={30} width={30} />
