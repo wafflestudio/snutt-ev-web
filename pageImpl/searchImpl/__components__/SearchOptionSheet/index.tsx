@@ -2,15 +2,15 @@ import styled from "@emotion/styled"
 import { TagGroupList } from "./TagGroupList"
 import { useMemo, useState } from "react"
 import { TagList } from "./TagList"
-import { TagDTO } from "@lib/dto/core/tag"
-import { TagGroupDTO } from "@lib/dto/core/tagGroup"
+import { TagColorDTO } from "@lib/dto/core/tag"
+import { TagGroupWithColor } from "@lib/dto/core/tagGroup"
 import Sheet from "react-modal-sheet"
 import SvgExit from "@lib/components/Icons/SvgExit"
 
 interface Props {
-  selectedTags: TagDTO[]
-  tagGroups: TagGroupDTO[]
-  onToggleTag: (tag: TagDTO) => void
+  selectedTags: TagColorDTO[]
+  tagGroups: TagGroupWithColor[]
+  onToggleTag: (tag: TagColorDTO) => void
   isOpened: boolean
   onClose: () => void
   onClickSubmit: () => void
@@ -24,7 +24,7 @@ export const SearchOptionSheet: React.FC<Props> = ({
   onClose: onClose,
   onClickSubmit,
 }) => {
-  const [selectedTagGroup, setSelectedTagGroup] = useState<TagGroupDTO>(
+  const [selectedTagGroup, setSelectedTagGroup] = useState<TagGroupWithColor>(
     tagGroups[0],
   )
 

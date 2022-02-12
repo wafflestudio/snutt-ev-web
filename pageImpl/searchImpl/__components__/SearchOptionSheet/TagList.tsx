@@ -1,12 +1,12 @@
-import { TagDTO } from "@lib/dto/core/tag"
+import { TagColorDTO, TagDTO } from "@lib/dto/core/tag"
 import styled from "@emotion/styled"
 import SvgChecked from "@lib/components/Icons/SvgChecked"
 import SvgUnchecked from "@lib/components/Icons/SvgUnchecked"
 
 interface Props {
-  tags: TagDTO[]
-  selectedTags: TagDTO[]
-  onToggleTag: (tag: TagDTO) => void
+  tags: TagColorDTO[]
+  selectedTags: TagColorDTO[]
+  onToggleTag: (tag: TagColorDTO) => void
 }
 
 export const TagList: React.FC<Props> = ({
