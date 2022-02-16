@@ -199,7 +199,11 @@ export const DetailImpl = () => {
           <ReviewSummary>
             <ReviewSummaryLeft>
               <Title01>{summaryData?.title}</Title01>
-              <InstructorName>{summaryData?.instructor}</InstructorName>
+              <InstructorName>
+                {summaryData?.instructor} ({summaryData?.department},{" "}
+                {summaryData?.academic_year}) - {summaryData?.classification}(
+                {summaryData?.credit}학점)
+              </InstructorName>
             </ReviewSummaryLeft>
             <ReviewSummaryRight>
               <ReviewScore>
