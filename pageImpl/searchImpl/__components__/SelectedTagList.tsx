@@ -1,10 +1,10 @@
 import styled from "@emotion/styled"
 import SvgExitWhite from "@lib/components/Icons/SvgExitWhite"
-import { TagDTO } from "@lib/dto/core/tag"
+import { TagWithColor } from "@lib/dto/core/tag"
 
 interface Props {
-  selectedTags: TagDTO[]
-  onDeleteTag: (tag: TagDTO) => void
+  selectedTags: TagWithColor[]
+  onDeleteTag: (tag: TagWithColor) => void
 }
 
 export const ActiveTagList: React.FC<Props> = ({
@@ -21,11 +21,11 @@ export const ActiveTagList: React.FC<Props> = ({
 }
 
 const TagItem: React.FC<{
-  tag: TagDTO
+  tag: TagWithColor
   onClick: () => void
 }> = ({ tag, onClick }) => {
   return (
-    <TagItemBox onClick={onClick}>
+    <TagItemBox onClick={onClick} style={{ backgroundColor: tag.color }}>
       <TagText>{tag.name}</TagText>
       <SvgExitWhite width={15} height={15} />
     </TagItemBox>
@@ -47,7 +47,6 @@ const TagItemBox = styled.div`
   align-items: center;
   justify-content: center;
   height: 20px;
-  background: #857e7e;
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 6px;

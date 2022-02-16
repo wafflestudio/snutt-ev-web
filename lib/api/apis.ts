@@ -1,5 +1,5 @@
 import { GetSemesterLecturesResult } from "@lib/dto/getSemesterLectures"
-import { GetTagInfosResult } from "../dto/getTagInfos"
+import { GetTagInfosProcessedResult } from "../dto/getTagInfos"
 import { GetLecturesQuery, GetLecturesResult } from "@lib/dto/getLectures"
 import SnuttApi from "./request"
 import { GetEvaluationSummaryResponse } from "@lib/dto/getEvaluationSummary"
@@ -31,8 +31,8 @@ export async function fetchLatestLectures(): Promise<GetLatestLecturesResult> {
   return SnuttApi.get<GetLatestLecturesResult>("/users/me/lectures/latest")
 }
 
-export async function fetchTagInfos(): Promise<GetTagInfosResult> {
-  return SnuttApi.get<GetTagInfosResult>("/tags/search")
+export async function fetchTagInfos(): Promise<GetTagInfosProcessedResult> {
+  return SnuttApi.get<GetTagInfosProcessedResult>("/tags/search")
 }
 
 export async function fetchSemesterLectures(
