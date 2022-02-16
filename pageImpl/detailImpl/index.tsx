@@ -106,16 +106,16 @@ export const DetailImpl = () => {
   const appBar = (
     <AppBar
       LeftImage={() => (
-        <SvgArrowBack width={30} height={30} onClick={() => router.back()} />
+        <BackButton onClick={() => router.back()}>
+          <SvgArrowBack width={30} height={30} />
+        </BackButton>
       )}
     >
       <AppBarContent>
         <Title01 style={{ marginLeft: 12 }}>강의평</Title01>
-        <SvgWrite
-          height={30}
-          width={30}
-          onClick={() => router.push(`/create?id=${id}`)}
-        />
+        <WriteButton onClick={() => router.push(`/create?id=${id}`)}>
+          <SvgWrite height={30} width={30} />
+        </WriteButton>
       </AppBarContent>
     </AppBar>
   )
@@ -302,6 +302,23 @@ export const DetailImpl = () => {
 }
 
 const Wrapper = styled.div``
+
+const BackButton = styled.button`
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border: none;
+  padding: 0;
+`
+
+const WriteButton = styled.button`
+  width: 30px;
+  height: 30px;
+  z-index: 9999;
+  background: transparent;
+  border: none;
+  padding: 0;
+`
 
 const AppBarContent = styled.div`
   display: flex;
