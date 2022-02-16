@@ -1,8 +1,4 @@
-import { TagGroupDTO, TagGroupWithColor } from "./core/tagGroup"
-
-export interface GetTagInfosResult {
-  tag_groups: TagGroupDTO[]
-}
+import { TagGroupWithColor } from "./core/tagGroup"
 
 export interface GetTagInfosProcessedResult {
   tag_groups: TagGroupWithColor[]

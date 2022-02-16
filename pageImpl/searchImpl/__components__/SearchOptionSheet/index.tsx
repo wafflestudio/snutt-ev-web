@@ -2,15 +2,15 @@ import styled from "@emotion/styled"
 import { TagGroupList } from "./TagGroupList"
 import { useMemo, useState } from "react"
 import { TagList } from "./TagList"
-import { TagColorDTO } from "@lib/dto/core/tag"
+import { TagWithColor } from "@lib/dto/core/tag"
 import { TagGroupWithColor } from "@lib/dto/core/tagGroup"
 import Sheet from "react-modal-sheet"
 import SvgExit from "@lib/components/Icons/SvgExit"
 
 interface Props {
-  selectedTags: TagColorDTO[]
+  selectedTags: TagWithColor[]
   tagGroups: TagGroupWithColor[]
-  onToggleTag: (tag: TagColorDTO) => void
+  onToggleTag: (tag: TagWithColor) => void
   isOpened: boolean
   onClose: () => void
   onClickSubmit: () => void
