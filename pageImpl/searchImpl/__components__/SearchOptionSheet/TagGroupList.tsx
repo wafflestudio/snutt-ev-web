@@ -1,10 +1,10 @@
 import styled from "@emotion/styled"
-import { TagGroupDTO } from "@lib/dto/core/tagGroup"
+import { TagGroupWithColor } from "@lib/dto/core/tagGroup"
 
 interface Props {
-  tagGroups: TagGroupDTO[]
-  selectedTagGroup?: TagGroupDTO
-  onTagGroupSelectionChange: (tagGroup: TagGroupDTO) => void
+  tagGroups: TagGroupWithColor[]
+  selectedTagGroup?: TagGroupWithColor
+  onTagGroupSelectionChange: (tagGroup: TagGroupWithColor) => void
 }
 
 export const TagGroupList: React.FC<Props> = ({
