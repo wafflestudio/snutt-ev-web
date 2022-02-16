@@ -5,7 +5,7 @@ export interface TagDTO {
   description: string
 }
 
-export interface TagColorDTO {
+export interface TagWithColor {
   id: number
   name: string
   ordering: number

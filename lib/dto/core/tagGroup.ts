@@ -1,4 +1,4 @@
-import { TagColorDTO, TagDTO } from "./tag"
+import { TagWithColor, TagDTO } from "./tag"
 
 export interface TagGroupDTO {
   id: number
@@ -13,5 +13,5 @@ export interface TagGroupWithColor {
   name: string
   ordering: number
   color: string
-  tags: TagColorDTO[]
+  tags: TagWithColor[]
 }
