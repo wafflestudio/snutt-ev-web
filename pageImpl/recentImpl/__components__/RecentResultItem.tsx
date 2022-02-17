@@ -1,7 +1,6 @@
 import styled from "@emotion/styled"
 
 import { Subheading01 } from "@lib/components/Text"
-import { RecentLectureDTO } from "@lib/dto/recentLecture"
 import SvgTagBlack from "@lib/components/Icons/SvgTagBlack"
 import SvgPersonBlack from "@lib/components/Icons/SvgPersonBlack"
 import SvgWrite from "@lib/components/Icons/SvgWrite"
@@ -16,7 +15,7 @@ export const RecentLectureItem: React.FC<Props> = ({ content }) => {
   const router = useRouter()
 
   return (
-    <Wrapper onClick={() => router.push(`/create?id=${content.id}`)}>
+    <Wrapper onClick={() => router.push(`/detail?id=${content.id}`)}>
       <ItemTop>
         <SubjectText>{content.title}</SubjectText>
       </ItemTop>
@@ -35,11 +34,14 @@ export const RecentLectureItem: React.FC<Props> = ({ content }) => {
           </Texts>
         </ItemBottomLeft>
         <ItemBottomRight>
-          <SvgWrite
-            height={30}
-            width={30}
-            onClick={() => {}} //TODO: go to create review page
-          />
+          <WriteButton
+            onClick={(e) => {
+              router.push(`/create?id=${content.id}`)
+              e.stopPropagation()
+            }}
+          >
+            <SvgWrite height={30} width={30} />
+          </WriteButton>
         </ItemBottomRight>
       </ItemBottom>
     </Wrapper>
@@ -117,4 +119,13 @@ const LecturerText = styled.div`
 
   font-size: 12px;
   line-height: 16.5px;
+`
+
+const WriteButton = styled.button`
+  width: 30px;
+  height: 30px;
+  z-index: 9999;
+  background: transparent;
+  border: none;
+  padding: 0;
 `

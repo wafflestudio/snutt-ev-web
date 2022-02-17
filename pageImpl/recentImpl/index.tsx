@@ -17,7 +17,9 @@ export const RecentImpl = () => {
     <Wrapper>
       <AppBar
         LeftImage={() => (
-          <SvgArrowBack width={30} height={30} onClick={() => router.back()} />
+          <BackButton onClick={() => router.back()}>
+            <SvgArrowBack width={30} height={30} />
+          </BackButton>
         )}
       >
         <Title01 style={{ marginLeft: 12 }}>최근 강의 목록</Title01>
@@ -46,6 +48,14 @@ export const RecentImpl = () => {
 }
 
 const Wrapper = styled.div``
+
+const BackButton = styled.button`
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border: none;
+  padding: 0;
+`
 
 const RecentLectureList = styled.div``
 
