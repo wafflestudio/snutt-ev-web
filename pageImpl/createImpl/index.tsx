@@ -70,7 +70,7 @@ export const CreateImpl = () => {
     if (selectedSemester?.id) {
       try {
         await postLectureEvaluation(selectedSemester.id, query)
-        router.push(`/detail?=${id}`)
+        router.push(`/detail?id=${id}`)
       } catch (errorCode) {
         if (errorCode === 29001) {
           alert("이미 작성한 강의평이 존재합니다")
@@ -120,13 +120,13 @@ export const CreateImpl = () => {
     <Wrapper>
       <AppBar
         LeftImage={() => (
-          <SvgArrowBack
-            height={30}
-            width={30}
+          <BackButton
             onClick={() => {
               step === 1 ? stepPrev() : router.back()
             }}
-          />
+          >
+            <SvgArrowBack width={30} height={30} />
+          </BackButton>
         )}
       />
       <Container>
@@ -152,6 +152,14 @@ export const CreateImpl = () => {
 }
 
 const Wrapper = styled.div``
+
+const BackButton = styled.button`
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border: none;
+  padding: 0;
+`
 
 const Container = styled.div`
   padding: 10px 20px 0px 20px;
