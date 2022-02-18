@@ -176,16 +176,6 @@ export const CreateImpl = () => {
             handleSemesterSelector={handleSemesterSelector}
             handleSelectedSemester={handleSelectedSemester}
             lectureSemesters={lectureSemesters?.semester_lectures}
-        />
-        <Container>
-          <Header
-            lectureName={lectureSemesters?.title}
-            lectureInstructor={lectureSemesters?.instructor}
-            selectedSemester={selectedSemester}
-            isSemesterSelectorOpen={isSemesterSelectorOpen}
-            handleSemesterSelector={handleSemesterSelector}
-            handleSelectedSemester={handleSelectedSemester}
-            lectureSemesters={lectureSemesters?.semester_lectures}
           />
           {stepComponents.map((component, index) => {
             if (step === index) {
