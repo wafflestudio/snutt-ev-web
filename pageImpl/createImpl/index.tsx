@@ -114,7 +114,8 @@ export const CreateImpl = () => {
         }
       }
     } else {
-      window.alert("Error")
+      setIsDialogOpen((status) => !status)
+      setDialogErrorMessage("에러가 발생했습니다")
     }
   }
 
