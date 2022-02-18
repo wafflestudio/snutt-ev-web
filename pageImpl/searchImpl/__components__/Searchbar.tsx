@@ -26,7 +26,9 @@ export const Searchbar: React.FC<Props> = ({
     <>
       <AppBar
         LeftImage={() => (
-          <SvgArrowBack width={30} height={30} onClick={() => router.back()} />
+          <BackButton onClick={() => router.back()}>
+            <SvgArrowBack width={30} height={30} />
+          </BackButton>
         )}
       >
         <InputBar>
@@ -84,6 +86,13 @@ const Input = styled.input`
   margin-right: 8px;
 
   padding: 0 0 0 0;
+`
+const BackButton = styled.button`
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border: none;
+  padding: 0;
 `
 
 const SearchButton = styled.button`

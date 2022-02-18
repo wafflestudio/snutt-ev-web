@@ -8,6 +8,7 @@ import SvgClockBlack from "@public/icons/clock_black.svg"
 import { LatestLectureDTO } from "@lib/dto/core/latestLecture"
 import { SemesterIntToString } from "@lib/util"
 import { useRouter } from "next/router"
+import { Button } from "@mui/material"
 
 interface Props {
   lecture: LatestLectureDTO
@@ -17,10 +18,17 @@ export const LectureCard = ({ lecture }: Props) => {
   const router = useRouter()
 
   return (
-    <Card onClick={() => router.push(`/create?id=${lecture.id}`)}>
+    <Card onClick={() => router.push(`/detail?id=${lecture.id}`)}>
       <CardTop>
         <LectureName>{lecture.title}</LectureName>
-        <SvgWrite height={20} width={20} />
+        <WriteButton
+          onClick={(e) => {
+            router.push(`/create?id=${lecture.id}`)
+            e.stopPropagation()
+          }}
+        >
+          <SvgWrite height={20} width={20} />
+        </WriteButton>
       </CardTop>
 
       <CardBottom>
@@ -67,6 +75,15 @@ const CardTop = styled.div`
   font-weight: bold;
 `
 
+const WriteButton = styled.button`
+  width: 20px;
+  height: 20px;
+  z-index: 9999;
+  background: transparent;
+  border: none;
+  padding: 0;
+`
+
 const CardBottom = styled.div`
   display: flex;
   flex-direction: row;
@@ -85,13 +102,6 @@ const Icons = styled.div`
 
   padding-top: 1px;
   padding-bottom: 1px;
-`
-
-const ClockIcon = styled.div`
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-  object-fit: cover;
 `
 
 const Texts = styled.div`

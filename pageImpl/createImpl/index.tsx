@@ -158,14 +158,24 @@ export const CreateImpl = () => {
       <Wrapper>
         <AppBar
           LeftImage={() => (
-            <SvgArrowBack
-              height={30}
-              width={30}
+            <BackButton
               onClick={() => {
                 step === 1 ? stepPrev() : router.back()
               }}
-            />
+            >
+              <SvgArrowBack width={30} height={30} />
+            </BackButton>
           )}
+        />
+        <Container>
+          <Header
+            lectureName={lectureSemesters?.title}
+            lectureInstructor={lectureSemesters?.instructor}
+            selectedSemester={selectedSemester}
+            isSemesterSelectorOpen={isSemesterSelectorOpen}
+            handleSemesterSelector={handleSemesterSelector}
+            handleSelectedSemester={handleSelectedSemester}
+            lectureSemesters={lectureSemesters?.semester_lectures}
         />
         <Container>
           <Header
@@ -191,6 +201,14 @@ export const CreateImpl = () => {
 }
 
 const Wrapper = styled.div``
+
+const BackButton = styled.button`
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border: none;
+  padding: 0;
+`
 
 const Container = styled.div`
   padding: 10px 20px 0px 20px;
