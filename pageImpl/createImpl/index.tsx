@@ -103,7 +103,7 @@ export const CreateImpl = () => {
     if (selectedSemester?.id) {
       try {
         await postLectureEvaluation(selectedSemester.id, query)
-        router.push(`/detail?=${id}`)
+        router.push(`/detail?id=${id}`)
       } catch (errorCode) {
         if (errorCode === 29001) {
           setIsDialogOpen((status) => !status)
