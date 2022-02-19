@@ -35,9 +35,8 @@ export const DetailImpl = () => {
   const { id } = router.query
 
   const { summaryData } = useEvaluationSummaryContainer(Number(id))
-  const { searchResult, fetchNextPage } = useLectureEvaluationsContainer(
-    Number(id),
-  )
+  const { searchResult, fetchNextPage, isFetchingNextPage, hasNextPage } =
+    useLectureEvaluationsContainer(Number(id))
   const { myReviewResult } = useMyLectureEvaluationsContainer(Number(id))
   const { loaderRef } = useScrollLoader(fetchNextPage)
 
@@ -280,7 +279,9 @@ export const DetailImpl = () => {
                       ))}
                     </React.Fragment>
                   ))}
-                  <div ref={loaderRef} />
+                  {hasNextPage && !isFetchingNextPage && (
+                    <div ref={loaderRef} />
+                  )}
                 </React.Fragment>
               </ReviewList>
             </EvaluationDetail>

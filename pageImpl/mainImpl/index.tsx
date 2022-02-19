@@ -24,7 +24,7 @@ export const MainImpl = () => {
   const [selectedTag, setSelectedTag] = useState<TagDTO | undefined>(undefined)
   const { recommendationTags } = useRecommendationTagsContainer()
   const { recentLectureData } = useMainLatestLectureContainer()
-  const { searchResult, fetchNextPage } =
+  const { searchResult, fetchNextPage, isFetchingNextPage, hasNextPage } =
     useMainEvaluationContainer(selectedTag)
   const { loaderRef } = useScrollLoader(fetchNextPage)
 
@@ -93,7 +93,7 @@ export const MainImpl = () => {
                 ))}
               </React.Fragment>
             ))}
-            <div ref={loaderRef} />
+            {hasNextPage && !isFetchingNextPage && <div ref={loaderRef} />}
           </React.Fragment>
         )
       ) : (
