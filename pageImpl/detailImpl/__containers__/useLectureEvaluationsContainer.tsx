@@ -27,5 +27,7 @@ export function useLectureEvaluationsContainer(id: number) {
   return {
     searchResult,
     fetchNextPage,
+    isFetchingNextPage,
+    hasNextPage,
   }
 }
