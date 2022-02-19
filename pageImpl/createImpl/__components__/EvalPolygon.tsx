@@ -5,6 +5,7 @@ import { RatingGraph } from "@lib/components/RatingGraph"
 import { SliderUnstyled, Tooltip, ClickAwayListener } from "@mui/material"
 import { useState } from "react"
 import { TootTipContent } from "./ToolTipContent"
+import { RatingTooltip } from "@lib/components/Tooltip"
 
 interface Props {
   defaultValue: number
@@ -26,30 +27,12 @@ export const EvalPolygon = ({
   handleUpdateScore,
 }: Props) => {
   const { top, left, bottom, right } = score
-  const [tooltipOpen, setTooltipOpen] = useState(false)
 
   return (
     <Container>
       <Row>
         <Title01>점을 움직여 네가지 항목을 평가해주세요</Title01>
-        <ClickAwayListener onClickAway={() => setTooltipOpen(false)}>
-          <CustomTooltip
-            PopperProps={{
-              disablePortal: true,
-            }}
-            onClose={() => setTooltipOpen(false)}
-            open={tooltipOpen}
-            disableFocusListener
-            disableHoverListener
-            disableTouchListener
-            title={<TootTipContent />}
-            arrow
-          >
-            <TooltipButton onClick={() => setTooltipOpen(true)}>
-              <SvgTooltip width={30} height={30} />
-            </TooltipButton>
-          </CustomTooltip>
-        </ClickAwayListener>
+        <RatingTooltip />
       </Row>
       <GraphWrapper>
         <RatingGraph
@@ -137,17 +120,6 @@ const Row = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`
-
-const TooltipButton = styled.button`
-  border: none;
-  background-color: white;
-`
-
-const CustomTooltip = styled(Tooltip)`
-  & .css-1hjrgzd-MuiTooltip-tooltip {
-    background-color: black;
-  }
 `
 
 const GraphWrapper = styled.div`

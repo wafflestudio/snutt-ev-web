@@ -29,6 +29,7 @@ import {
 import { deleteEvaluation, postReportEvaluation } from "@lib/api/apis"
 import { useMutation, useQueryClient } from "react-query"
 import { EmptyReviewPlaceholder } from "./__components__/EmptyReviewPlaceholder"
+import { RatingTooltip } from "@lib/components/Tooltip"
 
 export const DetailImpl = () => {
   const router = useRouter()
@@ -223,6 +224,9 @@ export const DetailImpl = () => {
             <EmptyReviewPlaceholder />
           ) : (
             <EvaluationDetail>
+              <PositionedRatingToolTip>
+                <RatingTooltip />
+              </PositionedRatingToolTip>
               <ReviewDiagram>
                 <DiagramTop>
                   <AxisLabel style={{ marginBottom: 10 }}>
@@ -342,6 +346,7 @@ const EvaluationDetail = styled.div`
   flex-direction: column;
   align-content: center;
   justify-content: center;
+  position: relative;
 `
 
 const ReviewSummary = styled.div`
@@ -392,6 +397,8 @@ const ReviewDiagram = styled.div`
   align-self: center;
   padding: 8px 0 8px 0;
   margin-bottom: 10px;
+
+  position: relative;
 `
 
 const DiagramTop = styled.div``
@@ -426,3 +433,10 @@ const GraphWrapper = styled.div`
 `
 
 const ReviewList = styled.div``
+
+const PositionedRatingToolTip = styled.div`
+  top: 10px;
+  right: 0;
+  background-color: black;
+  position: absolute;
+`
