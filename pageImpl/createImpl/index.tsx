@@ -1,6 +1,6 @@
+import { Fragment, useEffect, useState } from "react"
 import styled from "@emotion/styled"
 import { usePolygonContainer, useSemestersContainer } from "./__containers__"
-import { Fragment, useEffect, useState } from "react"
 import { Header } from "./__components__/Header"
 import { EvalPolygon } from "./__components__/EvalPolygon"
 import { EvalBasic } from "./__components__/EvalBasic"
@@ -10,6 +10,7 @@ import { useRouter } from "next/router"
 import { postLectureEvaluation } from "@lib/api/apis"
 import { PostEvaluationQuery } from "@lib/dto/postEvaluation"
 import { SemesterLectureDTO } from "@lib/dto/core/semesterLecture"
+import { Dialog, DialogTitle, DialogActions, Button } from "@mui/material"
 
 export const CreateImpl = () => {
   const router = useRouter()
@@ -32,6 +33,8 @@ export const CreateImpl = () => {
   const [content, setContent] = useState("")
 
   const [step, setStep] = useState(0)
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [dialogErrorMessage, setDialogErrorMessage] = useState("")
 
   const { defaultValue, score, updateScore } = usePolygonContainer()
 
@@ -52,9 +55,39 @@ export const CreateImpl = () => {
     setIsSemesterSelectorOpen((status) => !status)
   }
 
+  const InvalidationDialog = () => (
+    <Dialog
+      open={isDialogOpen}
+      onClose={() => {
+        setIsDialogOpen((status) => !status)
+      }}
+    >
+      <DialogTitle>{dialogErrorMessage}</DialogTitle>
+      <DialogActions>
+        <Button
+          onClick={() => {
+            setIsDialogOpen((status) => !status)
+          }}
+        >
+          확인
+        </Button>
+      </DialogActions>
+    </Dialog>
+  )
+
+  const validateInput = () => {
+    if (rating === -1) {
+      return false
+    }
+
+    return true
+  }
+
   const postEvaluation = async () => {
-    if (rating < 0) {
-      window.alert("별점을 매겨주세요")
+    if (!validateInput()) {
+      setIsDialogOpen((status) => !status)
+      setDialogErrorMessage("별점을 입력해주세요")
+
       return
     }
 
@@ -73,13 +106,16 @@ export const CreateImpl = () => {
         router.push(`/detail?id=${id}`)
       } catch (errorCode) {
         if (errorCode === 29001) {
-          alert("이미 작성한 강의평이 존재합니다")
+          setIsDialogOpen((status) => !status)
+          setDialogErrorMessage("이미 작성한 강의평이 존재합니다")
         } else {
-          alert("Error")
+          setIsDialogOpen((status) => !status)
+          setDialogErrorMessage("에러가 발생했습니다")
         }
       }
     } else {
-      window.alert("Error")
+      setIsDialogOpen((status) => !status)
+      setDialogErrorMessage("에러가 발생했습니다")
     }
   }
 
@@ -117,37 +153,40 @@ export const CreateImpl = () => {
   const complete = step === stepComponents.length - 1 ? "완료" : "다음"
 
   return (
-    <Wrapper>
-      <AppBar
-        LeftImage={() => (
-          <BackButton
-            onClick={() => {
-              step === 1 ? stepPrev() : router.back()
-            }}
-          >
-            <SvgArrowBack width={30} height={30} />
-          </BackButton>
-        )}
-      />
-      <Container>
-        <Header
-          lectureName={lectureSemesters?.title}
-          lectureInstructor={lectureSemesters?.instructor}
-          selectedSemester={selectedSemester}
-          isSemesterSelectorOpen={isSemesterSelectorOpen}
-          handleSemesterSelector={handleSemesterSelector}
-          handleSelectedSemester={handleSelectedSemester}
-          lectureSemesters={lectureSemesters?.semester_lectures}
+    <>
+      <InvalidationDialog />
+      <Wrapper>
+        <AppBar
+          LeftImage={() => (
+            <BackButton
+              onClick={() => {
+                step === 1 ? stepPrev() : router.back()
+              }}
+            >
+              <SvgArrowBack width={30} height={30} />
+            </BackButton>
+          )}
         />
-        {stepComponents.map((component, index) => {
-          if (step === index) {
-            return <Fragment key={index}>{component}</Fragment>
-          }
-          return null
-        })}
-        <Complete onClick={stepNext}>{complete}</Complete>
-      </Container>
-    </Wrapper>
+        <Container>
+          <Header
+            lectureName={lectureSemesters?.title}
+            lectureInstructor={lectureSemesters?.instructor}
+            selectedSemester={selectedSemester}
+            isSemesterSelectorOpen={isSemesterSelectorOpen}
+            handleSemesterSelector={handleSemesterSelector}
+            handleSelectedSemester={handleSelectedSemester}
+            lectureSemesters={lectureSemesters?.semester_lectures}
+          />
+          {stepComponents.map((component, index) => {
+            if (step === index) {
+              return <Fragment key={index}>{component}</Fragment>
+            }
+            return null
+          })}
+          <Complete onClick={stepNext}>{complete}</Complete>
+        </Container>
+      </Wrapper>
+    </>
   )
 }
 
