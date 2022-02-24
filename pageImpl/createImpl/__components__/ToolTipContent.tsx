@@ -1,5 +1,4 @@
 import { Title01, Title02 } from "@lib/components/Text"
-import { Fragment } from "react"
 import styled from "@emotion/styled"
 
 export const TootTipContent = () => {
@@ -24,9 +23,36 @@ export const TootTipContent = () => {
 }
 
 const Wrapper = styled.div`
-  position: absolute;
-  background-color: #ffffff;
-  border: 1px solid #000000;
-  border-radius: 16px;
-  padding: 24px;
+  & {
+    position: absolute;
+    background: #f2f2f2;
+    border: 1px solid #c4c4c4;
+    padding: 14px;
+    width: 248px;
+    right: 0;
+    top: 48px;
+    border-radius: 6px;
+  }
+
+  &:before {
+    top: -15px;
+    right: 3px;
+    content: "";
+    border-right: 11px solid transparent;
+    border-left: 11px solid transparent;
+    border-bottom: 24px solid #f2f2f2;
+    position: absolute;
+    z-index: 10;
+  }
+
+  &:after {
+    top: -16px;
+    right: 1px;
+    content: "";
+    border-right: 13px solid transparent;
+    border-left: 13px solid transparent;
+    border-bottom: 26px solid #c4c4c4;
+    position: absolute;
+    z-index: -10;
+  }
 `
