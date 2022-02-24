@@ -399,6 +399,7 @@ const ReviewDiagram = styled.div`
   margin-bottom: 10px;
 
   position: relative;
+  z-index: -10;
 `
 
 const DiagramTop = styled.div``
