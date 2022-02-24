@@ -111,7 +111,6 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 60vh;
   padding-top: 28px;
 `
 
@@ -126,7 +125,7 @@ const GraphWrapper = styled.div`
   height: 300px;
   width: 300px;
   position: relative;
-  margin-top: 30px;
+  margin-top: 72px;
   z-index: -10;
 `
 
