@@ -5,13 +5,13 @@ import styled from "@emotion/styled"
 
 export const RatingTooltip = () => {
   const [tooltipOpen, setTooltipOpen] = useState(false)
-  const buttonIconRef = useRef(null)
+  const buttonRef = useRef(null)
 
   const onClickOutsideButton = (e: Event) => {
     e.preventDefault()
     if (
-      buttonIconRef.current &&
-      (buttonIconRef.current as any).contains(e.target) === false
+      buttonRef.current &&
+      (buttonRef.current as any).contains(e.target) === false
     ) {
       setTooltipOpen(false)
     }
@@ -29,7 +29,7 @@ export const RatingTooltip = () => {
     <Wrapper>
       <TooltipButton
         onClick={() => setTooltipOpen(!tooltipOpen)}
-        ref={buttonIconRef}
+        ref={buttonRef}
       >
         <SvgTooltip width={30} height={30} />
       </TooltipButton>
