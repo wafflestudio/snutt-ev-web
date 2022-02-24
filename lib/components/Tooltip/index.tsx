@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, MouseEvent } from "react"
+import { useState, useRef, useEffect } from "react"
 import { TootTipContent } from "@pageImpl/createImpl/__components__/ToolTipContent"
 import SvgTooltip from "@lib/components/Icons/SvgTooltip"
 import styled from "@emotion/styled"
@@ -7,9 +7,12 @@ export const RatingTooltip = () => {
   const [tooltipOpen, setTooltipOpen] = useState(false)
   const buttonIconRef = useRef(null)
 
-  const onClickOutsideButton = (e: MouseEvent<HTMLElement>) => {
+  const onClickOutsideButton = (e: Event) => {
     e.preventDefault()
-    if (buttonIconRef.current && !buttonIconRef.current.contains(e.target)) {
+    if (
+      buttonIconRef.current &&
+      (buttonIconRef.current as any).contains(e.target) === false
+    ) {
       setTooltipOpen(false)
     }
   }
