@@ -1,35 +1,38 @@
-import { ClickAwayListener, TooltipProps } from "@mui/material"
+import { useState, useRef, useEffect, MouseEvent } from "react"
 import { TootTipContent } from "@pageImpl/createImpl/__components__/ToolTipContent"
 import SvgTooltip from "@lib/components/Icons/SvgTooltip"
 import styled from "@emotion/styled"
-import Tooltip, { tooltipClasses } from "@mui/material/Tooltip"
-import { useState } from "react"
 
 export const RatingTooltip = () => {
   const [tooltipOpen, setTooltipOpen] = useState(false)
+  const buttonIconRef = useRef(null)
 
-  return
-  ;<TootTipContent />
-  // return (
-  //   <ClickAwayListener onClickAway={() => setTooltipOpen(false)}>
-  //     <CustomTooltip
-  //       PopperProps={{
-  //         disablePortal: true,
-  //       }}
-  //       onClose={() => setTooltipOpen(false)}
-  //       open={tooltipOpen}
-  //       disableFocusListener
-  //       disableHoverListener
-  //       disableTouchListener
-  //       title={<TootTipContent />}
-  //       arrow
-  //     >
-  //       <TooltipButton onClick={() => setTooltipOpen(true)}>
-  //         <SvgTooltip width={30} height={30} />
-  //       </TooltipButton>
-  //     </CustomTooltip>
-  //   </ClickAwayListener>
-  // )
+  const onClickOutsideButton = (e: MouseEvent<HTMLElement>) => {
+    e.preventDefault()
+    if (buttonIconRef.current && !buttonIconRef.current.contains(e.target)) {
+      setTooltipOpen(false)
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener("click", onClickOutsideButton)
+
+    return () => {
+      document.removeEventListener("click", onClickOutsideButton)
+    }
+  }, [])
+
+  return (
+    <Wrapper>
+      <TooltipButton
+        onClick={() => setTooltipOpen(!tooltipOpen)}
+        ref={buttonIconRef}
+      >
+        <SvgTooltip width={30} height={30} />
+      </TooltipButton>
+      {tooltipOpen && <TootTipContent />}
+    </Wrapper>
+  )
 }
 
 const TooltipButton = styled.button`
@@ -37,22 +40,10 @@ const TooltipButton = styled.button`
   background-color: white;
   display: flex;
   align-items: center;
-  //background-color: black;
+  justify-content: center;
+  padding-right: 0;
 `
 
-const LightTooltip = styled(({ className, ...props }: TooltipProps) => (
-  <Tooltip {...props} classes={{ popper: className }} />
-))(({ theme }) => ({
-  [`& .${tooltipClasses.tooltip}`]: {
-    // backgroundColor: theme.palette.common.white,
-    color: "rgba(0, 0, 0, 0.87)",
-    // boxShadow: theme.shadows[1],
-    fontSize: 11,
-  },
-}))
-
-const CustomTooltip = styled(Tooltip)`
-  & .MuiTooltip-tooltip {
-    background-color: black;
-  }
+const Wrapper = styled.div`
+  position: relative;
 `
