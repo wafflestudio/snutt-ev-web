@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 import { AppBar } from "@lib/components/Appbar"
-import { useRouter } from "next/router"
+import { Router, useRouter } from "next/router"
 import { Detail, Subheading02, Title01 } from "@lib/components/Text"
 import { useEvaluationSummaryContainer } from "./__containers__/useEvaluationSummaryContainer"
 import { LectureReviewCard } from "./__components__/LectureReviewCard"
@@ -103,10 +103,18 @@ export const DetailImpl = () => {
   const count = searchResult?.pages[searchResult?.pages.length - 1].total_count
   const isEmpty = count === 0 && myReviewResult?.evaluations.length === 0
 
+  const goBack = () => {
+    if (((router as Router).components["/detail"] as any).initial) {
+      router.replace("/main")
+    } else {
+      router.back()
+    }
+  }
+
   const appBar = (
     <AppBar
       LeftImage={() => (
-        <BackButton onClick={() => router.back()}>
+        <BackButton onClick={goBack}>
           <SvgArrowBack width={30} height={30} />
         </BackButton>
       )}
