@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 import { AppBar } from "@lib/components/Appbar"
-import { useRouter } from "next/router"
+import { Router, useRouter } from "next/router"
 import { Detail, Subheading02, Title01 } from "@lib/components/Text"
 import { useEvaluationSummaryContainer } from "./__containers__/useEvaluationSummaryContainer"
 import { LectureReviewCard } from "./__components__/LectureReviewCard"
@@ -29,6 +29,7 @@ import {
 import { deleteEvaluation, postReportEvaluation } from "@lib/api/apis"
 import { useMutation, useQueryClient } from "react-query"
 import { EmptyReviewPlaceholder } from "./__components__/EmptyReviewPlaceholder"
+import { RatingTooltip } from "@lib/components/Tooltip"
 
 export const DetailImpl = () => {
   const router = useRouter()
@@ -102,10 +103,18 @@ export const DetailImpl = () => {
   const count = searchResult?.pages[searchResult?.pages.length - 1].total_count
   const isEmpty = count === 0 && myReviewResult?.evaluations.length === 0
 
+  const goBack = () => {
+    if (((router as Router).components["/detail"] as any).initial) {
+      router.replace("/main")
+    } else {
+      router.back()
+    }
+  }
+
   const appBar = (
     <AppBar
       LeftImage={() => (
-        <BackButton onClick={() => router.back()}>
+        <BackButton onClick={goBack}>
           <SvgArrowBack width={30} height={30} />
         </BackButton>
       )}
@@ -223,6 +232,9 @@ export const DetailImpl = () => {
             <EmptyReviewPlaceholder />
           ) : (
             <EvaluationDetail>
+              <PositionedRatingToolTip>
+                <RatingTooltip />
+              </PositionedRatingToolTip>
               <ReviewDiagram>
                 <DiagramTop>
                   <AxisLabel style={{ marginBottom: 10 }}>
@@ -342,6 +354,7 @@ const EvaluationDetail = styled.div`
   flex-direction: column;
   align-content: center;
   justify-content: center;
+  position: relative;
 `
 
 const ReviewSummary = styled.div`
@@ -392,6 +405,9 @@ const ReviewDiagram = styled.div`
   align-self: center;
   padding: 8px 0 8px 0;
   margin-bottom: 10px;
+
+  position: relative;
+  z-index: -10;
 `
 
 const DiagramTop = styled.div``
@@ -426,3 +442,10 @@ const GraphWrapper = styled.div`
 `
 
 const ReviewList = styled.div``
+
+const PositionedRatingToolTip = styled.div`
+  top: 10px;
+  right: 0;
+  background-color: black;
+  position: absolute;
+`
