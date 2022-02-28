@@ -126,7 +126,6 @@ const GraphWrapper = styled.div`
   width: 300px;
   position: relative;
   margin-top: 72px;
-  z-index: -10;
 `
 
 const CustomSlider = styled(SliderUnstyled)`

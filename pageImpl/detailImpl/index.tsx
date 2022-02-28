@@ -446,6 +446,5 @@ const ReviewList = styled.div``
 const PositionedRatingToolTip = styled.div`
   top: 10px;
   right: 0;
-  background-color: black;
   position: absolute;
 `
