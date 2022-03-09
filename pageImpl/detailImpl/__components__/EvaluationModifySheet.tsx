@@ -31,8 +31,8 @@ const EvaluationModifySheet: React.FC<Props> = ({
           snapPoints={[75]}
           disableDrag
         >
-          <Sheet.Container onViewportBoxUpdate={true}>
-            <Sheet.Content onViewportBoxUpdate={true}>
+          <Sheet.Container>
+            <Sheet.Content>
               <Wrapper>
                 {isModifiable && (
                   <DeleteContainer onClick={onDeleteClicked}>
@@ -54,7 +54,6 @@ const EvaluationModifySheet: React.FC<Props> = ({
             </Sheet.Content>
           </Sheet.Container>
           <Sheet.Backdrop
-            onViewportBoxUpdate={true}
             onTap={() => {
               onClose()
             }}

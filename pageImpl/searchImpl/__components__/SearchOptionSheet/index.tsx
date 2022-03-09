@@ -34,8 +34,8 @@ export const SearchOptionSheet: React.FC<Props> = ({
 
   return (
     <Sheet isOpen={isOpened} onClose={onClose} snapPoints={[420]}>
-      <Sheet.Container onViewportBoxUpdate={true}>
-        <Sheet.Content onViewportBoxUpdate={true}>
+      <Sheet.Container>
+        <Sheet.Content>
           <Wrapper>
             <HeaderArea>
               <SvgExit width={30} height={30} onClick={onClose} />
@@ -56,7 +56,7 @@ export const SearchOptionSheet: React.FC<Props> = ({
           </Wrapper>
         </Sheet.Content>
       </Sheet.Container>
-      <Sheet.Backdrop onViewportBoxUpdate={true} />
+      <Sheet.Backdrop onTap={onClose} />
     </Sheet>
   )
 }
