@@ -37,48 +37,28 @@ const SnuttApi = {
       path = `${url}?${queryString}`
     }
 
-    try {
-      const result = await axiosInstance
-        .get<R, AxiosResponse<R>, T>(path)
-        .then((response) => response.data)
-      return result
-    } catch (e) {
-      throw "temp error because ErrorBoundary cannot handle axios error..."
-    }
+    const result = await axiosInstance
+      .get<R, AxiosResponse<R>, T>(path)
+      .then((response) => response.data)
+    return result
   },
 
   async post<R, T>(url: string, body: T): Promise<R> {
-    try {
-      return await axiosInstance
-        .post<R, AxiosResponse<R>, T>(url, body)
-        .then((response) => response.data)
-    } catch (e) {
-      if (e.response.data.error.code === 29001) {
-        throw e.response.data.error.code
-      } else {
-        throw "temp error because ErrorBoundary cannot handle axios error..."
-      }
-    }
+    return await axiosInstance
+      .post<R, AxiosResponse<R>, T>(url, body)
+      .then((response) => response.data)
   },
 
   async delete<R, T>(url: string, body: T): Promise<R> {
-    try {
-      return await axiosInstance
-        .delete<R, AxiosResponse<R>, T>(url, body)
-        .then((response) => response.data)
-    } catch (e) {
-      throw "temp error because ErrorBoundary cannot handle axios error..."
-    }
+    return await axiosInstance
+      .delete<R, AxiosResponse<R>, T>(url, body)
+      .then((response) => response.data)
   },
 
   async put<R, T>(url: string, body: T): Promise<R> {
-    try {
-      return await axiosInstance
-        .put<R, AxiosResponse<R>, T>(url, body)
-        .then((response) => response.data)
-    } catch (e) {
-      throw "temp error because ErrorBoundary cannot handle axios error..."
-    }
+    return await axiosInstance
+      .put<R, AxiosResponse<R>, T>(url, body)
+      .then((response) => response.data)
   },
 }
 
