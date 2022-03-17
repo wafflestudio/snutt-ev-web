@@ -22,10 +22,11 @@ export const SearchImpl = () => {
     updateTextQuery,
   } = useTagContainer()
 
-  const { searchResult, fetchNextPage } = useSearchOptionContainer(
-    currentlyAppliedQuery?.tags ?? [],
-    currentlyAppliedQuery?.textQuery,
-  )
+  const { searchResult, isFetchingNextPage, hasNextPage, fetchNextPage } =
+    useSearchOptionContainer(
+      currentlyAppliedQuery?.tags ?? [],
+      currentlyAppliedQuery?.textQuery,
+    )
 
   const { loaderRef } = useScrollLoader(fetchNextPage)
   const [isSearchSheetOpen, setIsSearchSheetOpen] = useState(false)
@@ -65,7 +66,7 @@ export const SearchImpl = () => {
                 ))}
               </React.Fragment>
             ))}
-            <div ref={loaderRef} />
+            {hasNextPage && !isFetchingNextPage && <div ref={loaderRef} />}
             {isFetchingNextPage && <SearchResultLoading />}
           </React.Fragment>
         ) : (
