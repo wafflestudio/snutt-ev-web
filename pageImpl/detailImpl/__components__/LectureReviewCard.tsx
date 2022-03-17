@@ -10,16 +10,16 @@ import { SemesterIntToString } from "@lib/util"
 interface Props {
   review: EvaluationDTO
   onMoreClick: () => void
-  isMyReivew?: boolean
+  isMyReview?: boolean
 }
 
 export const LectureReviewCard = ({
   review,
   onMoreClick,
-  isMyReivew = false,
+  isMyReview = false,
 }: Props) => {
   return (
-    <Wrapper isMintColor={isMyReivew}>
+    <Wrapper isMintColor={isMyReview}>
       <Contents>
         <Header>
           <SideInfo>

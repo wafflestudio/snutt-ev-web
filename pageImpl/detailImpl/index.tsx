@@ -274,7 +274,7 @@ export const DetailImpl = () => {
                     onMoreClick={() => {
                       setMoreSheetItem(content)
                     }}
-                    isMyReivew
+                    isMyReview
                   />
                 ))}
                 <React.Fragment>
