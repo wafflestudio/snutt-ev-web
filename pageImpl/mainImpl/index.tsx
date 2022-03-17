@@ -16,7 +16,8 @@ import SvgSearchOff from "@lib/components/Icons/SvgSearchOff"
 import { useRouter } from "next/router"
 import { TagDTO } from "@lib/dto/core/tag"
 import useScrollLoader from "@lib/hooks/useScrollLoader"
-import { EmptyReviewPlaceholder } from "@pageImpl/detailImpl/__components__/EmptyReviewPlaceholder"
+import { EmptyReviewPlaceholder } from "@lib/components/Miscellaneous/EmptyReviewPlaceholder"
+import { SearchResultLoading } from "@lib/components/Miscellaneous/Loading"
 
 export const MainImpl = () => {
   const router = useRouter()
@@ -82,7 +83,7 @@ export const MainImpl = () => {
       </CategoryPicker>
 
       {searchResult?.pages ? (
-        searchResult?.pages.length === 0 ? (
+        searchResult?.pages[0].content.length === 0 ? (
           <EmptyReviewPlaceholder />
         ) : (
           <React.Fragment>
@@ -94,11 +95,11 @@ export const MainImpl = () => {
               </React.Fragment>
             ))}
             {hasNextPage && !isFetchingNextPage && <div ref={loaderRef} />}
+            {isFetchingNextPage && <SearchResultLoading />}
           </React.Fragment>
         )
       ) : (
-        // FIXME: Empty placeholder
-        <div>로딩중</div>
+        <SearchResultLoading />
       )}
     </Wrapper>
   )

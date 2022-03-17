@@ -9,6 +9,7 @@ import useScrollLoader from "@lib/hooks/useScrollLoader"
 import useSearchOptionContainer from "./__containers__/useSearchOptionContainer"
 import { SearchNoResult } from "./__components__/SearchNoResult"
 import { SearchInitialPage } from "./__components__/SearchInitialPage"
+import { SearchResultLoading } from "@lib/components/Miscellaneous/Loading"
 
 export const SearchImpl = () => {
   const {
@@ -65,6 +66,7 @@ export const SearchImpl = () => {
               </React.Fragment>
             ))}
             <div ref={loaderRef} />
+            {isFetchingNextPage && <SearchResultLoading />}
           </React.Fragment>
         ) : (
           <SearchNoResult />

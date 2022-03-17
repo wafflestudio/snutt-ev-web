@@ -28,8 +28,9 @@ import {
 } from "@mui/material"
 import { deleteEvaluation, postReportEvaluation } from "@lib/api/apis"
 import { useMutation, useQueryClient } from "react-query"
-import { EmptyReviewPlaceholder } from "./__components__/EmptyReviewPlaceholder"
+import { EmptyReviewPlaceholder } from "@lib/components/Miscellaneous/EmptyReviewPlaceholder"
 import { RatingTooltip } from "@lib/components/Tooltip"
+import { SearchResultLoading } from "@lib/components/Miscellaneous/Loading"
 
 export const DetailImpl = () => {
   const router = useRouter()
@@ -294,6 +295,7 @@ export const DetailImpl = () => {
                   {hasNextPage && !isFetchingNextPage && (
                     <div ref={loaderRef} />
                   )}
+                  {isFetchingNextPage && <SearchResultLoading />}
                 </React.Fragment>
               </ReviewList>
             </EvaluationDetail>
