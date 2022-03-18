@@ -9,6 +9,7 @@ import useScrollLoader from "@lib/hooks/useScrollLoader"
 import useSearchOptionContainer from "./__containers__/useSearchOptionContainer"
 import { SearchNoResult } from "./__components__/SearchNoResult"
 import { SearchInitialPage } from "./__components__/SearchInitialPage"
+import { SearchResultLoading } from "@lib/components/Miscellaneous/Loading"
 
 export const SearchImpl = () => {
   const {
@@ -21,10 +22,11 @@ export const SearchImpl = () => {
     updateTextQuery,
   } = useTagContainer()
 
-  const { searchResult, fetchNextPage } = useSearchOptionContainer(
-    currentlyAppliedQuery?.tags ?? [],
-    currentlyAppliedQuery?.textQuery,
-  )
+  const { searchResult, isFetchingNextPage, hasNextPage, fetchNextPage } =
+    useSearchOptionContainer(
+      currentlyAppliedQuery?.tags ?? [],
+      currentlyAppliedQuery?.textQuery,
+    )
 
   const { loaderRef } = useScrollLoader(fetchNextPage)
   const [isSearchSheetOpen, setIsSearchSheetOpen] = useState(false)
@@ -64,7 +66,8 @@ export const SearchImpl = () => {
                 ))}
               </React.Fragment>
             ))}
-            <div ref={loaderRef} />
+            {hasNextPage && !isFetchingNextPage && <div ref={loaderRef} />}
+            {isFetchingNextPage && <SearchResultLoading />}
           </React.Fragment>
         ) : (
           <SearchNoResult />
