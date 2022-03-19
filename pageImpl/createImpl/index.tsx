@@ -171,6 +171,8 @@ export const CreateImpl = () => {
           <Header
             lectureName={lectureSemesters?.title}
             lectureInstructor={lectureSemesters?.instructor}
+            lectureCredit={lectureSemesters?.credit}
+            lectureClassification={lectureSemesters?.classification}
             selectedSemester={selectedSemester}
             isSemesterSelectorOpen={isSemesterSelectorOpen}
             handleSemesterSelector={handleSemesterSelector}
@@ -190,7 +192,9 @@ export const CreateImpl = () => {
   )
 }
 
-const Wrapper = styled.div``
+const Wrapper = styled.div`
+  margin-bottom: 90px;
+`
 
 const BackButton = styled.button`
   width: 30px;
@@ -201,7 +205,7 @@ const BackButton = styled.button`
 `
 
 const Container = styled.div`
-  padding: 10px 20px 0px 20px;
+  padding: 0px 20px 0px 20px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;

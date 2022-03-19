@@ -7,6 +7,8 @@ import { SemesterIntToString } from "@lib/util"
 interface Props {
   lectureName?: string
   lectureInstructor?: string
+  lectureCredit?: number
+  lectureClassification?: string
   handleSelectedSemester: (semesterLecture: SemesterLectureDTO) => void
   handleSemesterSelector: () => void
   isSemesterSelectorOpen: boolean
@@ -17,6 +19,8 @@ interface Props {
 export const Header = ({
   lectureName,
   lectureInstructor,
+  lectureCredit,
+  lectureClassification,
   handleSelectedSemester,
   handleSemesterSelector,
   selectedSemester,
@@ -27,7 +31,7 @@ export const Header = ({
     <Container>
       <Column
         style={{
-          // maxWidth: "200px",
+          maxWidth: "200px",
           overflow: "hidden",
           textOverflow: "ellipsis",
           wordWrap: "break-word",
@@ -36,32 +40,38 @@ export const Header = ({
           marginTop: "10px",
         }}
       >
-        <Title01>{lectureName}</Title01>
-        <Subheading02>{lectureInstructor}</Subheading02>
+        <LectureName>{lectureName}</LectureName>
+        <LectureInstructor>
+          {lectureInstructor} / {lectureCredit}학점 ({lectureClassification})
+        </LectureInstructor>
       </Column>
-      <SemesterSelectorContainer>
-        <SemesterSelector onClick={handleSemesterSelector}>
-          {selectedSemester
-            ? `${selectedSemester.year}-${SemesterIntToString(
-                selectedSemester.semester,
-              )}학기`
-            : ""}
+      <SelectorWrapper>
+        <SemesterSelectorContainer>
+          <SemesterSelector onClick={handleSemesterSelector}>
+            {selectedSemester
+              ? `${selectedSemester.year}-${SemesterIntToString(
+                  selectedSemester.semester,
+                )}학기`
+              : ""}
 
-          <SvgArrowDown width="10" />
-        </SemesterSelector>
-        {isSemesterSelectorOpen && (
-          <SemesterButtonsContainer>
-            {lectureSemesters?.map((lecture) => (
-              <SemesterButton
-                key={lecture.id}
-                onClick={() => handleSelectedSemester(lecture)}
-              >
-                {`${lecture.year}-${SemesterIntToString(lecture.semester)}학기`}
-              </SemesterButton>
-            ))}
-          </SemesterButtonsContainer>
-        )}
-      </SemesterSelectorContainer>
+            <SvgArrowDown width="10" />
+          </SemesterSelector>
+          {isSemesterSelectorOpen && (
+            <SemesterButtonsContainer>
+              {lectureSemesters?.map((lecture) => (
+                <SemesterButton
+                  key={lecture.id}
+                  onClick={() => handleSelectedSemester(lecture)}
+                >
+                  {`${lecture.year}-${SemesterIntToString(
+                    lecture.semester,
+                  )}학기`}
+                </SemesterButton>
+              ))}
+            </SemesterButtonsContainer>
+          )}
+        </SemesterSelectorContainer>
+      </SelectorWrapper>
     </Container>
   )
 }
@@ -71,8 +81,9 @@ const Container = styled.div`
   justify-content: space-between;
   /* align-items: center; */
   width: 100%;
-  height: 56px;
+  min-height: 58.5px;
   border-bottom: 1px solid #f2f2f2;
+  //padding: 10px 0px 0px 0px;
 `
 
 const Column = styled.div`
@@ -90,6 +101,23 @@ const SemesterSelectorContainer = styled.div`
   height: fit-content;
   width: fit-content;
   background-color: #ffffff;
+  margin-left: 10px;
+  align-self: center;
+`
+
+const LectureName = styled(Title01)`
+  white-space: normal;
+`
+
+const LectureInstructor = styled(Subheading02)`
+  margin-top: 3px;
+  margin-bottom: 10px;
+  color: rgb(119, 119, 119);
+`
+
+const SelectorWrapper = styled.div`
+  position: absolute;
+  right: 20px;
   z-index: 10;
 `
 
