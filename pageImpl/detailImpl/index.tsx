@@ -50,8 +50,9 @@ export const DetailImpl = () => {
 
   const deleteMutation = useMutation(deleteEvaluation, {
     onSuccess: () => {
-      queryClient.invalidateQueries("evaluationSummary")
-      queryClient.invalidateQueries("lectureEvaluation")
+      queryClient.invalidateQueries(["evaluationSummary", Number(id)])
+      queryClient.invalidateQueries(["myLectureEvaluation", Number(id)])
+      queryClient.invalidateQueries(["lectureEvaluation", Number(id)])
     },
     onError: () => {
       console.error("강의평 삭제에 실패하였습니다.")
@@ -279,19 +280,17 @@ export const DetailImpl = () => {
                   />
                 ))}
                 <React.Fragment>
-                  {searchResult?.pages?.map((content, i) => (
-                    <React.Fragment key={i}>
-                      {content.content.map((it) => (
-                        <LectureReviewCard
-                          review={it}
-                          key={it.id}
-                          onMoreClick={() => {
-                            setMoreSheetItem(it)
-                          }}
-                        />
-                      ))}
-                    </React.Fragment>
-                  ))}
+                  {searchResult?.pages
+                    ?.flatMap((page) => page.content)
+                    .map((it) => (
+                      <LectureReviewCard
+                        review={it}
+                        key={it.id}
+                        onMoreClick={() => {
+                          setMoreSheetItem(it)
+                        }}
+                      />
+                    ))}
                   {hasNextPage && !isFetchingNextPage && (
                     <div ref={loaderRef} />
                   )}
