@@ -78,7 +78,7 @@ const CardTop = styled.div`
 const WriteButton = styled.button`
   width: 20px;
   height: 20px;
-  z-index: 9999;
+  z-index: 2;
   background: transparent;
   border: none;
   padding: 0;

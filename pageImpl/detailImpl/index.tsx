@@ -210,9 +210,8 @@ export const DetailImpl = () => {
             <ReviewSummaryLeft>
               <Title01>{summaryData?.title}</Title01>
               <InstructorName>
-                {summaryData?.instructor} ({summaryData?.department},{" "}
-                {summaryData?.academic_year}) - {summaryData?.classification}(
-                {summaryData?.credit}학점)
+                {summaryData?.instructor} / {summaryData?.credit}학점 (
+                {summaryData?.classification})
               </InstructorName>
             </ReviewSummaryLeft>
             <ReviewSummaryRight>
@@ -363,13 +362,14 @@ const ReviewSummary = styled.div`
   flex-direction: row;
   justify-content: space-between;
 
-  padding: 12px 0 12px 0;
+  padding: 10px 0 10px 0;
   border-bottom: solid 1px rgb(232, 232, 232);
 `
 
 const ReviewSummaryLeft = styled.div`
   display: flex;
   flex-direction: column;
+  margin-right: 10px;
 `
 
 const InstructorName = styled(Subheading02)`
@@ -392,6 +392,7 @@ const ReviewScore = styled.div`
 const ReviewCount = styled(Detail)`
   margin-top: 3px;
   color: rgb(102, 102, 102);
+  white-space: nowrap;
 `
 
 const ReviewDiagram = styled.div`
