@@ -28,8 +28,9 @@ import {
 } from "@mui/material"
 import { deleteEvaluation, postReportEvaluation } from "@lib/api/apis"
 import { useMutation, useQueryClient } from "react-query"
-import { EmptyReviewPlaceholder } from "./__components__/EmptyReviewPlaceholder"
+import { EmptyReviewPlaceholder } from "@lib/components/Miscellaneous/EmptyReviewPlaceholder"
 import { RatingTooltip } from "@lib/components/Tooltip"
+import { SearchResultLoading } from "@lib/components/Miscellaneous/Loading"
 
 export const DetailImpl = () => {
   const router = useRouter()
@@ -49,8 +50,9 @@ export const DetailImpl = () => {
 
   const deleteMutation = useMutation(deleteEvaluation, {
     onSuccess: () => {
-      queryClient.invalidateQueries("evaluationSummary")
-      queryClient.invalidateQueries("lectureEvaluation")
+      queryClient.invalidateQueries(["evaluationSummary", Number(id)])
+      queryClient.invalidateQueries(["myLectureEvaluation", Number(id)])
+      queryClient.invalidateQueries(["lectureEvaluation", Number(id)])
     },
     onError: () => {
       console.error("강의평 삭제에 실패하였습니다.")
@@ -208,9 +210,8 @@ export const DetailImpl = () => {
             <ReviewSummaryLeft>
               <Title01>{summaryData?.title}</Title01>
               <InstructorName>
-                {summaryData?.instructor} ({summaryData?.department},{" "}
-                {summaryData?.academic_year}) - {summaryData?.classification}(
-                {summaryData?.credit}학점)
+                {summaryData?.instructor} / {summaryData?.credit}학점 (
+                {summaryData?.classification})
               </InstructorName>
             </ReviewSummaryLeft>
             <ReviewSummaryRight>
@@ -274,26 +275,25 @@ export const DetailImpl = () => {
                     onMoreClick={() => {
                       setMoreSheetItem(content)
                     }}
-                    isMyReivew
+                    isMyReview
                   />
                 ))}
                 <React.Fragment>
-                  {searchResult?.pages?.map((content, i) => (
-                    <React.Fragment key={i}>
-                      {content.content.map((it) => (
-                        <LectureReviewCard
-                          review={it}
-                          key={it.id}
-                          onMoreClick={() => {
-                            setMoreSheetItem(it)
-                          }}
-                        />
-                      ))}
-                    </React.Fragment>
-                  ))}
+                  {searchResult?.pages
+                    ?.flatMap((page) => page.content)
+                    .map((it) => (
+                      <LectureReviewCard
+                        review={it}
+                        key={it.id}
+                        onMoreClick={() => {
+                          setMoreSheetItem(it)
+                        }}
+                      />
+                    ))}
                   {hasNextPage && !isFetchingNextPage && (
                     <div ref={loaderRef} />
                   )}
+                  {isFetchingNextPage && <SearchResultLoading />}
                 </React.Fragment>
               </ReviewList>
             </EvaluationDetail>
@@ -362,13 +362,14 @@ const ReviewSummary = styled.div`
   flex-direction: row;
   justify-content: space-between;
 
-  padding: 12px 0 12px 0;
+  padding: 10px 0 10px 0;
   border-bottom: solid 1px rgb(232, 232, 232);
 `
 
 const ReviewSummaryLeft = styled.div`
   display: flex;
   flex-direction: column;
+  margin-right: 10px;
 `
 
 const InstructorName = styled(Subheading02)`
@@ -391,6 +392,7 @@ const ReviewScore = styled.div`
 const ReviewCount = styled(Detail)`
   margin-top: 3px;
   color: rgb(102, 102, 102);
+  white-space: nowrap;
 `
 
 const ReviewDiagram = styled.div`

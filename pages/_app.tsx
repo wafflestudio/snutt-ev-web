@@ -11,15 +11,16 @@ import { appleSDGNeo } from "@lib/styles/fonts"
 import { ErrorBoundary } from "react-error-boundary"
 import { ErrorView } from "@lib/components/Error"
 
-function MyApp({ Component, pageProps }: AppProps) {
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        retry: 0,
-        suspense: true,
-      },
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 0,
+      suspense: true,
     },
-  })
+  },
+})
+
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
