@@ -14,7 +14,7 @@ export const CollapsableText: React.FC<Props> = ({ text, truncBy = 120 }) => {
     text.length > truncBy && !expanded ? text.slice(0, truncBy) + "..." : text
 
   return (
-    <Detail style={{ overflowWrap: "break-word" }}>
+    <Detail style={{ overflowWrap: "break-word", whiteSpace: "pre-wrap" }}>
       {renderedText}
       {text.length > truncBy && (
         <MoreLessButton onClick={() => setExpanded((status) => !status)}>
