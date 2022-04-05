@@ -33,7 +33,7 @@ export const RecentImpl = () => {
                 <></>
               ) : (
                 <SemesterDivider>
-                  {it.taken_year}년 {SemesterIntToString(it.taken_semester)}
+                  {it.taken_year}년 {SemesterIntToString(it.taken_semester)}학기
                 </SemesterDivider>
               )}
               <RecentLectureItem content={it} key={it.id} />
