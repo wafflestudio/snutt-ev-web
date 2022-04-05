@@ -18,17 +18,21 @@ export const EvaluationCard = ({ evaluation }: Props) => {
     <Wrapper>
       <Contents>
         <Header>
-          <LectureName
-            onClick={() => router.push(`/detail?id=${evaluation.lecture.id}`)}
-          >
-            {evaluation.lecture.title} : {evaluation.lecture.instructor}
-          </LectureName>
-          <RatingInfo>
-            <Rating rating={evaluation.rating} size={12} />
-            <Semester>
-              {evaluation.year}년 {SemesterIntToString(evaluation.semester)}학기
-            </Semester>
-          </RatingInfo>
+          <HeaderLeft>
+            <LectureName
+              onClick={() => router.push(`/detail?id=${evaluation.lecture.id}`)}
+            >
+              {evaluation.lecture.title}
+            </LectureName>
+            <RatingSemester>
+              <Rating rating={evaluation.rating} size={12} />
+              <Semester>
+                {evaluation.year}년 {SemesterIntToString(evaluation.semester)}
+                학기
+              </Semester>
+            </RatingSemester>
+          </HeaderLeft>
+          <HeaderRight>{evaluation.lecture.instructor}</HeaderRight>
         </Header>
         <Review>
           <CollapsableText text={evaluation.content} />
@@ -54,13 +58,22 @@ const Contents = styled.div`
 const Header = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
-  align-items: left;
   margin-bottom: 12px;
 `
 
-const LectureName = Subheading01
+const HeaderLeft = styled.div``
+
+const HeaderRight = styled(Detail)`
+  color: rgb(119, 119, 119);
+  max-width: 30%;
+  text-align: right;
+  word-break: keep-all;
+  margin-left: 10px;
+`
+
+const LectureName = styled(Subheading01)``
 
 const Semester = styled(Detail)`
   color: ${COLORS.darkGray};
@@ -70,7 +83,7 @@ const Semester = styled(Detail)`
   line-height: 100%;
 `
 
-const RatingInfo = styled.div`
+const RatingSemester = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 3px;
