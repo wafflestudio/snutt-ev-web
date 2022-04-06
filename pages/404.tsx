@@ -12,8 +12,10 @@ export default function Custom404() {
         <Title01 style={{ marginLeft: 12 }}>강의평</Title01>
       </AppBar>
       <Container>
-        <Title02 style={{ marginBottom: 40 }}>
-          강의평 기능을 준비중입니다.
+        <Title02 style={{ marginBottom: 40, textAlign: "center" }}>
+          <b>404</b>
+          <br />
+          페이지를 찾을 수 없습니다
         </Title02>
         <SvgWaffleCat />
         <OurName>@wafflestudio</OurName>

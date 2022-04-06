@@ -74,7 +74,11 @@ export const MainImpl = () => {
           onChange={handleClickRecommendationTag}
         >
           {recommendationTags.map((it) => (
-            <ToggleButton value={it} key={it.id}>
+            <ToggleButton
+              value={it}
+              key={it.id}
+              style={{ whiteSpace: "nowrap", marginTop: "6px" }}
+            >
               {it.name}
             </ToggleButton>
           ))}
@@ -130,7 +134,7 @@ const CategoryDetail = styled(Subheading02)`
   color: rgb(119, 119, 119);
 `
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)`
-  margin-top: 6px;
+  flex-wrap: wrap;
 
   & .MuiToggleButtonGroup-grouped {
     margin-right: 10px;

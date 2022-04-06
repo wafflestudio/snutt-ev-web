@@ -1,7 +1,7 @@
-import errorCat from "public/images/img-waffle-cat.png"
+import SurprisedCatImage from "public/icons/surprised_cat.svg"
+import ReviewIcon from "public/icons/review_icon.svg"
 import styled from "@emotion/styled"
 import { Title02 } from "@lib/components/Text/Title"
-import Image from "next/image"
 
 interface Props {
   resetErrorBoundary?: (...args: Array<unknown>) => void
@@ -10,11 +10,19 @@ interface Props {
 export const ErrorView = ({ resetErrorBoundary }: Props) => {
   return (
     <Container>
-      <Title02>에러가 발생했습니다.</Title02>
-      {/* <Image src={errorCat} alt="error" width="168" height="176" /> */}
-      {resetErrorBoundary &&
-        // <button onClick={() => resetErrorBoundary()}>다시 불러오기</button>
-        null}
+      <SurprisedCatImage />
+      <br />
+      <Title02>에러가 발생했어요</Title02>
+      <Row>
+        <ReviewIcon />
+        <Title02 style={{ marginTop: "8px", marginLeft: "6px" }}>
+          하단의 강의평 탭을 다시 눌러주세요
+        </Title02>
+      </Row>
+
+      {/*{resetErrorBoundary &&*/}
+      {/*  <button onClick={() => resetErrorBoundary()}>다시 불러오기</button>*/}
+      {/*  }*/}
     </Container>
   )
 }
@@ -26,4 +34,8 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+`
+
+const Row = styled.div`
+  display: inline-flex;
 `
