@@ -33,19 +33,17 @@ export const MailVerifyImpl = () => {
 
   const [timeoutDeadline, setTimeoutDeadline] = useState(0)
 
-  const [warningMessage, setWarningMessage] = useState("")
+  const isCompleteButtonDisabled = verificationNumber === "" || isTimeout
 
-  const isCompleteButtonActive = verificationNumber === "" || isTimeout
-
-  useEffect(() => {
+  const warningMessage = () => {
     if (isTimeout) {
-      setWarningMessage(TIMEOUT_MESSAGE)
+      return TIMEOUT_MESSAGE
     } else if (isVerificationNumberWrong) {
-      setWarningMessage(WRONG_VERIFICATION_NUMBER_MESSAGE)
+      return WRONG_VERIFICATION_NUMBER_MESSAGE
     } else {
-      setWarningMessage("")
+      return ""
     }
-  }, [isTimeout, isVerificationNumberWrong])
+  }
 
   const countDownRenderer = ({
     minutes,
@@ -133,13 +131,13 @@ export const MailVerifyImpl = () => {
             )}
           </VerificationNumberInputBar>
           <WarningText>
-            <Detail style={{ color: COLORS.red }}>{warningMessage}</Detail>
+            <Detail style={{ color: COLORS.red }}>{warningMessage()}</Detail>
           </WarningText>
         </VerificationNumberInputWrapper>
 
         <CompleteButton
           onClick={verifyHandler}
-          disabled={!isCompleteButtonActive}
+          disabled={isCompleteButtonDisabled}
         >
           <Title01 style={{ color: "white" }}>완료</Title01>
         </CompleteButton>
