@@ -11,6 +11,7 @@ import SvgArrowBack from "@lib/components/Icons/SvgArrowBack"
 import { useRouter } from "next/router"
 import CountDown, { CountdownRenderProps, zeroPad } from "react-countdown"
 import { COLORS } from "@lib/styles/colors"
+import SvgTimetableOn from "@lib/components/Icons/SvgTimetableOn"
 
 export const MailVerifyImpl = () => {
   const TIMEOUT_MESSAGE = "시간이 초과되었습니다. 다시 시도해주세요."
@@ -34,7 +35,7 @@ export const MailVerifyImpl = () => {
 
   const [warningMessage, setWarningMessage] = useState("")
 
-  const [isCompleteButtonActive, setIsCompleteButtonActive] = useState(false)
+  const isCompleteButtonActive = verificationNumber === "" || isTimeout
 
   useEffect(() => {
     if (isTimeout) {
@@ -45,12 +46,6 @@ export const MailVerifyImpl = () => {
       setWarningMessage("")
     }
   }, [isTimeout, isVerificationNumberWrong])
-
-  useEffect(() => {
-    verificationNumber === "" || isTimeout
-      ? setIsCompleteButtonActive(false)
-      : setIsCompleteButtonActive(true)
-  }, [verificationNumber, isTimeout])
 
   const countDownRenderer = ({
     minutes,
@@ -84,17 +79,7 @@ export const MailVerifyImpl = () => {
 
   return (
     <Wrapper>
-      <AppBar
-        LeftImage={() => (
-          <BackButton
-            onClick={() => {
-              router.back()
-            }}
-          >
-            <SvgArrowBack width={30} height={30} />
-          </BackButton>
-        )}
-      >
+      <AppBar LeftImage={() => <SvgTimetableOn height={30} width={30} />}>
         <Title01 style={{ marginLeft: 12 }}>이메일 인증</Title01>
       </AppBar>
       <Content>
@@ -152,15 +137,12 @@ export const MailVerifyImpl = () => {
           </WarningText>
         </VerificationNumberInputWrapper>
 
-        {isCompleteButtonActive ? (
-          <ActiveCompleteButton onClick={verifyHandler}>
-            <Title01 style={{ color: "white" }}>완료</Title01>
-          </ActiveCompleteButton>
-        ) : (
-          <InactiveCompleteButton>
-            <Title01 style={{ color: "white" }}>완료</Title01>
-          </InactiveCompleteButton>
-        )}
+        <CompleteButton
+          onClick={verifyHandler}
+          disabled={!isCompleteButtonActive}
+        >
+          <Title01 style={{ color: "white" }}>완료</Title01>
+        </CompleteButton>
       </Content>
     </Wrapper>
   )
@@ -251,20 +233,16 @@ const CountDownWrapper = styled.div`
   justify-content: center;
 `
 
-const InactiveCompleteButton = styled.button`
-  height: 60px;
-  width: 100%;
-  margin-top: 40px;
-  background-color: #c4c4c4;
-  border: none;
-`
-
-const ActiveCompleteButton = styled.button`
+const CompleteButton = styled.button`
   height: 60px;
   width: 100%;
   margin-top: 40px;
   background-color: ${COLORS.blue};
   border: none;
+
+  &:disabled {
+    background-color: #c4c4c4;
+  }
 `
 
 const TransparentInput = styled.input`
