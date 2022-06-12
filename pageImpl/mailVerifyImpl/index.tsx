@@ -9,7 +9,7 @@ import {
 } from "@lib/components/Text"
 import SvgArrowBack from "@lib/components/Icons/SvgArrowBack"
 import { useRouter } from "next/router"
-import CountDown, { zeroPad } from "react-countdown"
+import CountDown, { CountdownRenderProps, zeroPad } from "react-countdown"
 import { COLORS } from "@lib/styles/colors"
 
 export const MailVerifyImpl = () => {
@@ -52,7 +52,11 @@ export const MailVerifyImpl = () => {
       : setIsCompleteButtonActive(true)
   }, [verificationNumber, isTimeout])
 
-  const countDownRenderer = ({ minutes, seconds, completed }) => {
+  const countDownRenderer = ({
+    minutes,
+    seconds,
+    completed,
+  }: CountdownRenderProps) => {
     if (completed) {
       setIsTimeout(true)
       return <Subheading01 style={{ color: COLORS.red }}>00:00</Subheading01>
