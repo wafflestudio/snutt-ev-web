@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import React, { useState } from "react"
+import React, { useState, ChangeEvent } from "react"
 import { AppBar } from "@lib/components/Appbar"
 import {
   Title01,
@@ -135,8 +135,8 @@ export const MailVerifyImpl = ({ setVerification }: Props) => {
             <VerificationNumberInput
               type="number"
               placeholder={"인증번호 6자리를 입력하세요"}
-              onChange={(e) => {
-                setVerificationNumber(e.target.value)
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                setVerificationNumber(parseInt(e.target.value))
               }}
             />
             {isVerificationNumberRequested && (
