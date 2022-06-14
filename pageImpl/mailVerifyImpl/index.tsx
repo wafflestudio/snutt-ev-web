@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { AppBar } from "@lib/components/Appbar"
 import {
   Title01,
@@ -7,21 +7,25 @@ import {
   Subheading02,
   Detail,
 } from "@lib/components/Text"
-import SvgArrowBack from "@lib/components/Icons/SvgArrowBack"
-import { useRouter } from "next/router"
 import CountDown, { CountdownRenderProps, zeroPad } from "react-countdown"
 import { COLORS } from "@lib/styles/colors"
 import SvgTimetableOn from "@lib/components/Icons/SvgTimetableOn"
+import { postEmailVerificationCode } from "@lib/api/apis"
+import { postEmailVerification } from "@lib/api/apis"
 
-export const MailVerifyImpl = () => {
-  const TIMEOUT_MESSAGE = "시간이 초과되었습니다. 다시 시도해주세요."
-  const WRONG_VERIFICATION_NUMBER_MESSAGE =
-    "인증 번호가 틀렸습니다. 다시 시도해주세요."
+interface Props {
+  setVerification: (
+    newValue: string,
+    options?: Cookies.CookieAttributes | undefined,
+  ) => void
+}
 
-  const router = useRouter()
+export const MailVerifyImpl = ({ setVerification }: Props) => {
+  const TIMEOUT_MESSAGE = "인증요청에 실패했습니다. 다시 시도해주세요."
+  const FAILED_VERIFICATION_MESSAGE = "인증번호가 틀렸습니다. 다시 시도해주세요"
 
   const [email, setEmail] = useState("")
-  const [verificationNumber, setVerificationNumber] = useState("")
+  const [verificationNumber, setVerificationNumber] = useState(0)
 
   const [isVerificationNumberRequested, setIsVerificationNumberRequested] =
     useState(false)
@@ -33,13 +37,13 @@ export const MailVerifyImpl = () => {
 
   const [timeoutDeadline, setTimeoutDeadline] = useState(0)
 
-  const isCompleteButtonDisabled = verificationNumber === "" || isTimeout
+  const isCompleteButtonDisabled = !verificationNumber || isTimeout
 
   const warningMessage = () => {
     if (isTimeout) {
       return TIMEOUT_MESSAGE
     } else if (isVerificationNumberWrong) {
-      return WRONG_VERIFICATION_NUMBER_MESSAGE
+      return FAILED_VERIFICATION_MESSAGE
     } else {
       return ""
     }
@@ -63,16 +67,29 @@ export const MailVerifyImpl = () => {
     }
   }
 
-  const requestVerificationNumberHandler = () => {
-    setIsVerificationNumberRequested(true)
-    setTimeoutDeadline(Date.now() + 179000)
-    // POST /email/verification
+  const requestVerificationNumberHandler = async () => {
+    try {
+      await postEmailVerification({ email: email + "@snu.ac.kr" })
+      setIsVerificationNumberRequested(true)
+      setTimeoutDeadline(Date.now() + 179000)
+      setIsTimeout(false)
+      setIsVerificationNumberWrong(false)
+    } catch (e) {
+      console.error(e)
+      setIsTimeout(true)
+    }
   }
 
-  const verifyHandler = () => {
-    setIsVerificationNumberWrong(true) // only for testing
-    // POST /email/verification/code
-    // router.back() // if success
+  const verifyHandler = async () => {
+    try {
+      const res = await postEmailVerificationCode({ code: verificationNumber })
+      if (res.is_email_verified) {
+        setVerification("true")
+      }
+    } catch (e) {
+      console.error(e)
+      setIsVerificationNumberWrong(true) // only for testing
+    }
   }
 
   return (
@@ -116,6 +133,7 @@ export const MailVerifyImpl = () => {
           <Subheading01>인증번호</Subheading01>
           <VerificationNumberInputBar>
             <VerificationNumberInput
+              type="number"
               placeholder={"인증번호 6자리를 입력하세요"}
               onChange={(e) => {
                 setVerificationNumber(e.target.value)
@@ -147,14 +165,6 @@ export const MailVerifyImpl = () => {
 }
 
 const Wrapper = styled.div``
-
-const BackButton = styled.button`
-  width: 30px;
-  height: 30px;
-  background: transparent;
-  border: none;
-  padding: 0;
-`
 
 const Content = styled.div`
   padding: 22px 20px 0 20px;
