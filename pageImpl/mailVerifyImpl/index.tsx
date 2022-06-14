@@ -88,7 +88,7 @@ export const MailVerifyImpl = ({ setVerification }: Props) => {
       }
     } catch (e) {
       console.error(e)
-      setIsVerificationNumberWrong(true) // only for testing
+      setIsVerificationNumberWrong(true)
     }
   }
 
