@@ -1,5 +1,5 @@
 export interface ApiError {
-  errcode: string
+  errcode: number
   title: string | undefined
   message: string | undefined
 }
