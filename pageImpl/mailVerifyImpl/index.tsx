@@ -12,6 +12,8 @@ import { COLORS } from "@lib/styles/colors"
 import SvgTimetableOn from "@lib/components/Icons/SvgTimetableOn"
 import { postEmailVerificationCode } from "@lib/api/apis"
 import { postEmailVerification } from "@lib/api/apis"
+import { AxiosError } from "axios"
+import { ApiError } from "@lib/dto/core/error"
 
 interface Props {
   setVerification: (
@@ -21,9 +23,6 @@ interface Props {
 }
 
 export const MailVerifyImpl = ({ setVerification }: Props) => {
-  const TIMEOUT_MESSAGE = "인증요청에 실패했습니다. 다시 시도해주세요."
-  const FAILED_VERIFICATION_MESSAGE = "인증번호가 틀렸습니다. 다시 시도해주세요"
-
   const [email, setEmail] = useState("")
 
   const isRequestVerificationButtonDiasbled = email === ""
@@ -33,23 +32,32 @@ export const MailVerifyImpl = ({ setVerification }: Props) => {
   const [isVerificationNumberRequested, setIsVerificationNumberRequested] =
     useState(false)
 
-  const [isTimeout, setIsTimeout] = useState(false)
-
-  const [isVerificationNumberWrong, setIsVerificationNumberWrong] =
-    useState(false)
-
   const [timeoutDeadline, setTimeoutDeadline] = useState(0)
 
-  const isCompleteButtonDisabled = !verificationNumber || isTimeout
+  enum VerificationState {
+    TIMEOUT,
+    INVALID_NUMBER,
+    ALREADY_VERIFIED,
+    VERFIED_FROM_OTHER_MAIL,
+    NONE,
+    READY,
+  }
 
-  const warningMessage = () => {
-    if (isTimeout) {
-      return TIMEOUT_MESSAGE
-    } else if (isVerificationNumberWrong) {
-      return FAILED_VERIFICATION_MESSAGE
-    } else {
-      return ""
-    }
+  const [verificationState, setVerificationState] = useState<VerificationState>(
+    VerificationState.NONE,
+  )
+
+  const isCompleteButtonDisabled = verificationState !== VerificationState.READY
+
+  const WARINING: {
+    [key in Exclude<VerificationState, VerificationState.READY>]: string
+  } = {
+    [VerificationState.TIMEOUT]: "인증요청에 실패했습니다. 다시 시도해주세요",
+    [VerificationState.INVALID_NUMBER]:
+      "인증번호가 틀렸습니다. 다시 시도해주세요",
+    [VerificationState.ALREADY_VERIFIED]: "이미 인증된 계정입니다",
+    [VerificationState.VERFIED_FROM_OTHER_MAIL]: "이미 사용된 메일입니다",
+    [VerificationState.NONE]: "",
   }
 
   const countDownRenderer = ({
@@ -58,10 +66,11 @@ export const MailVerifyImpl = ({ setVerification }: Props) => {
     completed,
   }: CountdownRenderProps) => {
     if (completed) {
-      setIsTimeout(true)
+      setVerificationState(VerificationState.TIMEOUT)
       return <Subheading01 style={{ color: COLORS.red }}>00:00</Subheading01>
     } else {
-      isTimeout && setIsTimeout(false)
+      verificationState === VerificationState.TIMEOUT &&
+        setVerificationState(VerificationState.READY)
       return (
         <Subheading01 style={{ color: COLORS.red }}>
           {zeroPad(minutes)}:{zeroPad(seconds)}
@@ -73,25 +82,44 @@ export const MailVerifyImpl = ({ setVerification }: Props) => {
   const requestVerificationNumberHandler = async () => {
     try {
       await postEmailVerification({ email: email + "@snu.ac.kr" })
-      setIsVerificationNumberRequested(true)
-      setTimeoutDeadline(Date.now() + 179000)
-      setIsTimeout(false)
-      setIsVerificationNumberWrong(false)
+        .then(() => {
+          setVerificationState(VerificationState.READY)
+          setIsVerificationNumberRequested(true)
+          setTimeoutDeadline(Date.now() + 179000)
+        })
+        .catch((e: AxiosError<ApiError>) => {
+          const errcode = e.response?.data.errcode
+
+          if (errcode === 36864) {
+            setVerificationState(VerificationState.ALREADY_VERIFIED)
+            return
+          }
+
+          if (errcode === 36865) {
+            setVerificationState(VerificationState.VERFIED_FROM_OTHER_MAIL)
+            return
+          }
+
+          return
+        })
     } catch (e) {
       console.error(e)
-      setIsTimeout(true)
+      setVerificationState(VerificationState.TIMEOUT)
     }
   }
 
   const verifyHandler = async () => {
     try {
-      const res = await postEmailVerificationCode({ code: verificationNumber })
+      const res = await postEmailVerificationCode({
+        code: verificationNumber,
+      })
+
       if (res.is_email_verified) {
         setVerification("true")
       }
     } catch (e) {
       console.error(e)
-      setIsVerificationNumberWrong(true)
+      setVerificationState(VerificationState.INVALID_NUMBER)
     }
   }
 
@@ -114,6 +142,9 @@ export const MailVerifyImpl = ({ setVerification }: Props) => {
             <EmailInput
               placeholder={"이메일을 입력하세요"}
               onChange={(e) => {
+                if (verificationState === VerificationState.INVALID_NUMBER) {
+                  setVerificationState(VerificationState.READY)
+                }
                 setEmail(e.target.value)
               }}
             />
@@ -150,9 +181,13 @@ export const MailVerifyImpl = ({ setVerification }: Props) => {
               </CountDownWrapper>
             )}
           </VerificationNumberInputBar>
-          <WarningText>
-            <Detail style={{ color: COLORS.red }}>{warningMessage()}</Detail>
-          </WarningText>
+          {verificationState !== VerificationState.READY && (
+            <WarningText>
+              <Detail style={{ color: COLORS.red }}>
+                {WARINING[verificationState]}
+              </Detail>
+            </WarningText>
+          )}
         </VerificationNumberInputWrapper>
 
         <CompleteButton
