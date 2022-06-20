@@ -40,6 +40,10 @@ function MyApp({ Component, pageProps }: AppProps) {
     checkEmailVerification()
   }, [])
 
+  if (isEmailVerified === null) {
+    return
+  }
+
   if (isEmailVerified === "false") {
     return (
       <>
