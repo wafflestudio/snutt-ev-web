@@ -35,6 +35,7 @@ export const MailVerifyImpl = ({ setVerification }: Props) => {
   const [timeoutDeadline, setTimeoutDeadline] = useState(0)
 
   enum VerificationState {
+    TOO_MANY_REQUEST,
     TIMEOUT,
     INVALID_NUMBER,
     ALREADY_VERIFIED,
@@ -57,6 +58,8 @@ export const MailVerifyImpl = ({ setVerification }: Props) => {
       "인증번호가 틀렸습니다. 다시 시도해주세요",
     [VerificationState.ALREADY_VERIFIED]: "이미 인증된 계정입니다",
     [VerificationState.VERFIED_FROM_OTHER_MAIL]: "이미 사용된 메일입니다",
+    [VerificationState.TOO_MANY_REQUEST]:
+      "인증요청에 실패했습니다. 3분 후에 다시 시도해주세요",
     [VerificationState.NONE]: "",
   }
 
@@ -97,6 +100,11 @@ export const MailVerifyImpl = ({ setVerification }: Props) => {
 
           if (errcode === 36865) {
             setVerificationState(VerificationState.VERFIED_FROM_OTHER_MAIL)
+            return
+          }
+
+          if (errcode === 40960) {
+            setVerificationState(VerificationState.TOO_MANY_REQUEST)
             return
           }
 
@@ -270,7 +278,7 @@ const RequestVerificationButton = styled.button`
   font-size: 14px;
   line-height: 17px;
   color: #1bd0c8;
-  
+
   &:disabled {
     color: #b3b3b3;
   }
