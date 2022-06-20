@@ -25,6 +25,9 @@ export const MailVerifyImpl = ({ setVerification }: Props) => {
   const FAILED_VERIFICATION_MESSAGE = "인증번호가 틀렸습니다. 다시 시도해주세요"
 
   const [email, setEmail] = useState("")
+
+  const isRequestVerificationButtonDiasbled = email === ""
+
   const [verificationNumber, setVerificationNumber] = useState(0)
 
   const [isVerificationNumberRequested, setIsVerificationNumberRequested] =
@@ -121,10 +124,9 @@ export const MailVerifyImpl = ({ setVerification }: Props) => {
             </MailAddress>
             <RequestVerificationButton
               onClick={requestVerificationNumberHandler}
+              disabled={isRequestVerificationButtonDiasbled}
             >
-              <Subheading01 style={{ color: "#1bd0c8" }}>
-                {isVerificationNumberRequested ? "다시 요청" : "인증요청"}
-              </Subheading01>
+              {isVerificationNumberRequested ? "다시 요청" : "인증요청"}
             </RequestVerificationButton>
           </EmailInputBar>
         </EmailInputWrapper>
@@ -228,8 +230,14 @@ const RequestVerificationButton = styled.button`
   background-color: white;
   border: none;
 
-  &:active {
-    background-color: #eaeaea;
+  font-family: AppleSDGothicNeo;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 17px;
+  color: #1bd0c8;
+  
+  &:disabled {
+    color: #b3b3b3;
   }
 `
 
