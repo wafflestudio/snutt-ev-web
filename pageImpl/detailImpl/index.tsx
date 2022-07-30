@@ -9,7 +9,8 @@ import SvgWrite from "@lib/components/Icons/SvgWrite"
 import SvgStarSmallFilled from "@lib/components/Icons/SvgStarSmallFilled"
 import SvgStarSmallEmpty from "@lib/components/Icons/SvgStarSmallEmpty"
 import SvgArrowBack from "@lib/components/Icons/SvgArrowBack"
-import { RatingGraph } from "@lib/components/RatingGraph"
+import FossilIcon from "@public/icons/fossil.svg"
+import { RatingGraph, RatingGraphAxis } from "@lib/components/RatingGraph"
 import { useLectureEvaluationsContainer } from "@pageImpl/detailImpl/__containers__/useLectureEvaluationsContainer"
 import useScrollLoader from "@lib/hooks/useScrollLoader"
 import React, { useState } from "react"
@@ -31,6 +32,7 @@ import { useMutation, useQueryClient } from "react-query"
 import { EmptyReviewPlaceholder } from "@lib/components/Miscellaneous/EmptyReviewPlaceholder"
 import { RatingTooltip } from "@lib/components/Tooltip"
 import { SearchResultLoading } from "@lib/components/Miscellaneous/Loading"
+import { COLORS } from "@lib/styles/colors"
 
 export const DetailImpl = () => {
   const router = useRouter()
@@ -104,6 +106,8 @@ export const DetailImpl = () => {
 
   const count = searchResult?.pages[searchResult?.pages.length - 1].total_count
   const isEmpty = count === 0 && myReviewResult?.evaluations.length === 0
+  const showSnuevWarning =
+    !isEmpty && !summaryData?.evaluation?.avg_life_balance
 
   const goBack = () => {
     if (((router as Router).components["/detail"] as any).initial) {
@@ -229,6 +233,15 @@ export const DetailImpl = () => {
             </ReviewSummaryRight>
           </ReviewSummary>
 
+          {showSnuevWarning && (
+            <SnuevWarning>
+              <FossilIcon />
+              <SnuevWarningText>
+                와플스튜디오에서 발굴한 옛 강의평은 세부 항목 점수가 없습니다.
+              </SnuevWarningText>
+            </SnuevWarning>
+          )}
+
           {isEmpty ? (
             <EmptyReviewPlaceholder />
           ) : (
@@ -244,22 +257,28 @@ export const DetailImpl = () => {
                 </DiagramTop>
                 <DiagramMiddle>
                   <YAxisLabel>강의력</YAxisLabel>
-                  <GraphWrapper>
-                    <RatingGraph
-                      gradeSatisfaction={
-                        summaryData?.evaluation?.avg_grade_satisfaction ?? 0
-                      }
-                      lifeBalance={
-                        summaryData?.evaluation?.avg_life_balance ?? 0
-                      }
-                      gains={summaryData?.evaluation?.avg_gains ?? 0}
-                      teachingSkill={
-                        summaryData?.evaluation?.avg_teaching_skill ?? 0
-                      }
-                      height={280}
-                      width={280}
-                    />
-                  </GraphWrapper>
+                  {showSnuevWarning ? (
+                    <GraphWrapper>
+                      <RatingGraphAxis height={280} width={280} />
+                    </GraphWrapper>
+                  ) : (
+                    <GraphWrapper>
+                      <RatingGraph
+                        gradeSatisfaction={
+                          summaryData?.evaluation?.avg_grade_satisfaction ?? 0
+                        }
+                        lifeBalance={
+                          summaryData?.evaluation?.avg_life_balance ?? 0
+                        }
+                        gains={summaryData?.evaluation?.avg_gains ?? 0}
+                        teachingSkill={
+                          summaryData?.evaluation?.avg_teaching_skill ?? 0
+                        }
+                        height={280}
+                        width={280}
+                      />
+                    </GraphWrapper>
+                  )}
                   <YAxisLabel>수라밸</YAxisLabel>
                 </DiagramMiddle>
                 <DiagramBottom>
@@ -449,4 +468,19 @@ const PositionedRatingToolTip = styled.div`
   top: 10px;
   right: 0;
   position: absolute;
+`
+
+const SnuevWarning = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  height: 18px;
+  margin: 8px 0 8px 0;
+`
+
+const SnuevWarningText = styled.div`
+  font-size: 8px;
+  color: ${COLORS.darkGray};
+  margin-left: 5px;
+  font-family: AppleSDGothicNeo;
 `
