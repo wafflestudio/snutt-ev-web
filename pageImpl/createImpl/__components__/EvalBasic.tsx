@@ -1,8 +1,10 @@
 import styled from "@emotion/styled"
-import { Title02 } from "@lib/components/Text"
+import { Detail, Title02 } from "@lib/components/Text"
 import { resetMarPad } from "@lib/styles"
 import SvgStarSmallEmpty from "@lib/components/Icons/SvgStarSmallEmpty"
 import SvgStarSmallFilled from "@lib/components/Icons/SvgStarSmallFilled"
+import { COLORS } from "@lib/styles/colors"
+import SvgWarning from "@lib/components/Icons/SvgWarning"
 
 interface Props {
   stepPrev: () => void
@@ -10,14 +12,15 @@ interface Props {
   rating: number
   content: string
   handleContent: (content: string) => void
+  contentsUnsatisfied: boolean
 }
 
 export const EvalBasic = ({
-  stepPrev,
   handleRating,
   rating,
   handleContent,
   content,
+  contentsUnsatisfied,
 }: Props) => {
   const ratingImage = {
     empty: <SvgStarSmallEmpty width={30} height={30} />,
@@ -50,23 +53,42 @@ export const EvalBasic = ({
   const placeHolder =
     "강의에 대한 솔직한 리뷰를 남겨주세요. \nex) 과제, 출석, 교수님, 시험 난이도, 팀플 유무 등"
 
+  const WARNING = {
+    unsatisfiedContents: "강의평을 30자 이상 남겨주세요",
+  }
+
   return (
-    <Container>
-      <Title02>별점</Title02>
-      <SubTitle>수업에 대한 별점을 남겨주세요.</SubTitle>
-      <RatingContainer>
-        {ratings.map((star, index) => (
-          <RatingButton key={index} onClick={() => handleRating(index)}>
-            {rating < index ? star.empty : star.filled}
-          </RatingButton>
-        ))}
-      </RatingContainer>
-      <ContentTextarea
-        value={content}
-        onChange={(e) => handleContent(e.target.value)}
-        placeholder={placeHolder}
-      />
-    </Container>
+    <>
+      <Container>
+        <Title02>별점</Title02>
+        <SubTitle>수업에 대한 별점을 남겨주세요.</SubTitle>
+        <RatingContainer>
+          {ratings.map((star, index) => (
+            <RatingButton key={index} onClick={() => handleRating(index)}>
+              {rating < index ? star.empty : star.filled}
+            </RatingButton>
+          ))}
+        </RatingContainer>
+        <ContentTextarea
+          value={content}
+          onChange={(e) => handleContent(e.target.value)}
+          placeholder={placeHolder}
+        />
+      </Container>
+      {contentsUnsatisfied && (
+        <WarningContainer>
+          <SvgWarning
+            color={COLORS.red}
+            width={15}
+            height={15}
+            style={{ marginRight: "2px", marginTop: "2px" }}
+          />
+          <Detail style={{ color: COLORS.red }}>
+            {WARNING.unsatisfiedContents}
+          </Detail>
+        </WarningContainer>
+      )}
+    </>
   )
 }
 
@@ -116,4 +138,12 @@ const ContentTextarea = styled.textarea`
   overflow-y: scroll;
   color: #777777;
   outline: none;
+`
+
+const WarningContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  margin-top: 2px;
 `
