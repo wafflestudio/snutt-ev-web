@@ -7,7 +7,6 @@ import { COLORS } from "@lib/styles/colors"
 import SvgWarning from "@lib/components/Icons/SvgWarning"
 
 interface Props {
-  stepPrev: () => void
   handleRating: (rating: number) => void
   rating: number
   content: string
