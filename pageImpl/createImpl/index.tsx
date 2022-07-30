@@ -49,11 +49,7 @@ export const CreateImpl = () => {
     setContent(content)
 
     const contentMinLength = 30
-    if (content.length < contentMinLength) {
-      setContentsUnsatisfied(true)
-    } else {
-      setContentsUnsatisfied(false)
-    }
+      setContentsUnsatisfied(content.length < contentMinLength)
   }
 
   const handleSemesterSelector = () => {
