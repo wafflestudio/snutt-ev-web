@@ -11,6 +11,7 @@ import { postLectureEvaluation } from "@lib/api/apis"
 import { PostEvaluationQuery } from "@lib/dto/postEvaluation"
 import { SemesterLectureDTO } from "@lib/dto/core/semesterLecture"
 import { Dialog, DialogTitle, DialogActions, Button } from "@mui/material"
+import { COLORS } from "@lib/styles/colors"
 
 export const CreateImpl = () => {
   const router = useRouter()
@@ -38,12 +39,17 @@ export const CreateImpl = () => {
 
   const { defaultValue, score, updateScore } = usePolygonContainer()
 
+  const [contentsUnsatisfied, setContentsUnsatisfied] = useState(true)
+
   const handleRating = (rating: number) => {
     setRating(rating)
   }
 
   const handleContent = (content: string) => {
     setContent(content)
+
+    const contentMinLength = 30
+      setContentsUnsatisfied(content.length < contentMinLength)
   }
 
   const handleSemesterSelector = () => {
@@ -75,7 +81,7 @@ export const CreateImpl = () => {
     </Dialog>
   )
 
-  const validateInput = () => {
+  const validateRatings = () => {
     if (rating === -1) {
       return false
     }
@@ -84,7 +90,7 @@ export const CreateImpl = () => {
   }
 
   const postEvaluation = async () => {
-    if (!validateInput()) {
+    if (!validateRatings()) {
       setIsDialogOpen((status) => !status)
       setDialogErrorMessage("별점을 입력해주세요")
 
@@ -146,7 +152,7 @@ export const CreateImpl = () => {
       rating={rating}
       handleContent={handleContent}
       content={content}
-      stepPrev={stepPrev}
+      contentsUnsatisfied={contentsUnsatisfied}
     />,
   ]
 
@@ -185,7 +191,12 @@ export const CreateImpl = () => {
             }
             return null
           })}
-          <Complete onClick={stepNext}>{complete}</Complete>
+          <Complete
+            onClick={stepNext}
+            disabled={step === stepComponents.length - 1 && contentsUnsatisfied}
+          >
+            {complete}
+          </Complete>
         </Container>
       </Wrapper>
     </>
@@ -226,4 +237,8 @@ const Complete = styled.button`
   line-height: 20.5px;
   color: #ffffff;
   border: none;
+
+  &:disabled {
+    background-color: ${COLORS.gray20};
+  }
 `
