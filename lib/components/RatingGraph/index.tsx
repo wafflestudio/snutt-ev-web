@@ -69,3 +69,32 @@ export const RatingGraph = ({
     </svg>
   )
 }
+
+export const RatingGraphAxis = ({
+  height,
+  width,
+}: {
+  height: number
+  width: number
+}) => {
+  const xMid = width / 2
+  const yMid = height / 2
+
+  return (
+    <svg
+      width={width}
+      height={height}
+      viewBox={`0 0 ${height} ${width}`}
+      fill="none"
+    >
+      <path
+        d={`M 0 ${yMid} L ${width} ${yMid}`}
+        stroke="rgb(194, 194, 194, 0.5)"
+      />
+      <path
+        d={`M ${xMid} 0 L ${xMid} ${height}`}
+        stroke="rgb(194, 194, 194, 0.5)"
+      />
+    </svg>
+  )
+}
