@@ -24,7 +24,7 @@ const queryClient = new QueryClient({
 })
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [isEmailVerified, updateEmailVerifedCookie, _] =
+  const [isEmailVerified, updateEmailVerifedCookie] =
     useCookie("email-verified")
 
   const checkEmailVerification = async () => {
