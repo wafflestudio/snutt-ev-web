@@ -7,7 +7,7 @@ interface Props {
   resetErrorBoundary?: (...args: Array<unknown>) => void
 }
 
-export const ErrorView = ({ resetErrorBoundary }: Props) => {
+export const ErrorView = ({}: Props) => {
   return (
     <Container>
       <SurprisedCatImage />

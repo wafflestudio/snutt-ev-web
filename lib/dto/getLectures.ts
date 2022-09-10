@@ -1,5 +1,4 @@
 import { LectureDTO } from "./core/lecture"
-import { TagDTO } from "./core/tag"
 
 export interface GetLecturesQuery {
   query?: string
