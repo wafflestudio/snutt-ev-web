@@ -1,6 +1,17 @@
 {
-  "extends": ["next", "next/core-web-vitals", "plugin:prettier/recommended"],
+  "extends": [
+    "next",
+    "next/core-web-vitals",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "root": true,
   "rules": {
+    "no-var": "warn", // TODO: "error" 로 변경
+    "@typescript-eslint/ban-types": "warn", // TODO: "error" 로 변경
+    "@typescript-eslint/no-empty-interface": "off",
     "prettier/prettier": [
       "error",
       {
