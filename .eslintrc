@@ -12,6 +12,7 @@
     "no-var": "warn", // TODO: "error" 로 변경
     "@typescript-eslint/ban-types": "warn", // TODO: "error" 로 변경
     "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/no-unused-vars": "error",
     "prettier/prettier": [
       "error",
       {
