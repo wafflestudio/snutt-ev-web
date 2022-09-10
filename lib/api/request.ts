@@ -27,8 +27,8 @@ const SnuttApi = {
     url: string,
     queryParams: T | undefined = undefined,
   ): Promise<R> {
-    var path = url
-    var queryString = qs.stringify(queryParams, {
+    let path = url
+    const queryString = qs.stringify(queryParams, {
       encode: false,
       arrayFormat: "comma",
     })
