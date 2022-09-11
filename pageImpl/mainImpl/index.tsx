@@ -7,7 +7,7 @@ import {
 } from "./__containers__"
 import { Subheading02, Title01 } from "@lib/components/Text"
 import { RecentCarousel } from "./__components__/RecentCarousel"
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { ToggleButton, ToggleButtonGroup } from "@mui/material/"
 import { AppBar } from "@lib/components/Appbar"
 
@@ -22,16 +22,13 @@ import { SearchResultLoading } from "@lib/components/Miscellaneous/Loading"
 export const MainImpl = () => {
   const router = useRouter()
 
-  const [selectedTag, setSelectedTag] = useState<TagDTO | undefined>(undefined)
   const { recommendationTags } = useRecommendationTagsContainer()
+
+  const [selectedTag, setSelectedTag] = useState(recommendationTags[0])
   const { recentLectureData } = useMainLatestLectureContainer()
   const { searchResult, fetchNextPage, isFetchingNextPage, hasNextPage } =
     useMainEvaluationContainer(selectedTag)
   const { loaderRef } = useScrollLoader(fetchNextPage)
-
-  useEffect(() => {
-    setSelectedTag(recommendationTags[0])
-  }, [recommendationTags])
 
   const handleClickRecommendationTag = (
     e: React.MouseEvent<HTMLElement, MouseEvent>,

@@ -18,13 +18,13 @@ export function useMainEvaluationContainer(selectedTag?: TagDTO) {
     fetchNextPage,
     hasNextPage,
   } = useInfiniteQuery(
-    ["tagEvaluations", selectedTag],
+    ["tagEvaluations", selectedTag?.id ?? null],
     ({ pageParam }) =>
       getMainTagEvaluations(selectedTag?.id ?? 1, {
-        cursor: pageParam,
+        cursor: pageParam || undefined,
       }),
     {
-      getNextPageParam: (lastPage, pages) => {
+      getNextPageParam: (lastPage) => {
         return lastPage.cursor ?? undefined
       },
       enabled: selectedTag !== undefined,
