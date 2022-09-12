@@ -1,13 +1,14 @@
-import { useCallback, useEffect, useRef } from "react"
+import { useEffect, useRef } from "react"
 
 export default function useScrollLoader(loadMore: () => void) {
   const loader = useRef(null)
-  const handleObserver = useCallback((entries) => {
+
+  const handleObserver: IntersectionObserverCallback = (entries) => {
     const target = entries[0]
     if (target.isIntersecting) {
       loadMore()
     }
-  }, [])
+  }
 
   useEffect(() => {
     const option = {
