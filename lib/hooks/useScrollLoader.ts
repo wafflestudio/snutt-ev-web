@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from "react"
 
-export default function useScrollLoader(loadMore: () => {}) {
+export default function useScrollLoader(loadMore: () => void) {
   const loader = useRef(null)
   const handleObserver = useCallback((entries) => {
     const target = entries[0]
