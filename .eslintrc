@@ -10,16 +10,6 @@
   "root": true,
   "rules": {
     "@typescript-eslint/no-empty-interface": "off",
-    "@typescript-eslint/no-unused-vars": "error",
-    "prettier/prettier": [
-      "error",
-      {
-        "tabWidth": 2,
-        "singleQuote": false,
-        "arrowParens": "always",
-        "semi": false,
-        "trailingComma": "all"
-      }
-    ]
+    "@typescript-eslint/no-unused-vars": "error"
   }
 }
