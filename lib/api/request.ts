@@ -14,7 +14,22 @@ const token =
   process.env.NEXT_PUBLIC_LOCAL_ACCESS_TOKEN ||
   ""
 
-export const axiosInstance = axios.create({
+const defaultHeaders = {
+  "x-access-token": token,
+  "x-access-apikey": apikey,
+}
+
+export const coreClient = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_CORE_API_URL,
+  headers: defaultHeaders,
+})
+
+export const evClient = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_EV_API_URL,
+  headers: defaultHeaders,
+})
+
+const axiosInstance = axios.create({
   baseURL,
   headers: {
     "x-access-token": token,
@@ -22,6 +37,9 @@ export const axiosInstance = axios.create({
   },
 })
 
+/**
+ * @deprecated use each axios client instead
+ */
 const SnuttApi = {
   async get<R, T = any>(
     url: string,
