@@ -39,8 +39,10 @@ const axiosInstance = axios.create({
 
 /**
  * @deprecated use each axios client instead
+ * 어차피 deprecated 라 eslint disable
  */
 const SnuttApi = {
+  // eslint-disable-next-line
   async get<R, T = any>(
     url: string,
     queryParams: T | undefined = undefined,
@@ -67,7 +69,6 @@ const SnuttApi = {
       .then((response) => response.data)
   },
 
-  // 어차피 @deprecated 라 eslint disable
   // eslint-disable-next-line
   async delete<R, T>(url: string, body: any): Promise<R> {
     return await axiosInstance
