@@ -1,5 +1,4 @@
 import styled from "@emotion/styled"
-import { ReactNode } from "react"
 
 interface Props {
   LeftImage: React.FC

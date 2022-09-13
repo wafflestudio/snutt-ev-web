@@ -9,9 +9,9 @@ interface Props {
 }
 
 export const Rating = ({ rating, size }: Props) => {
-  var stars = []
+  const stars = []
 
-  for (var i = 1; i < 6; i++) {
+  for (let i = 1; i < 6; i++) {
     if (rating - i > -0.25) {
       stars.push(
         <SvgStarSmallFilled

@@ -24,21 +24,17 @@ const queryClient = new QueryClient({
 })
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [isEmailVerified, updateEmailVerifedCookie, _] =
+  const [isEmailVerified, updateEmailVerifedCookie] =
     useCookie("email-verified")
 
-  const checkEmailVerification = async () => {
-    const res = await getEmailVerification()
-    if (res.is_email_verified) {
-      updateEmailVerifedCookie("true")
-    } else {
-      updateEmailVerifedCookie("false")
-    }
-  }
-
   useEffect(() => {
+    const checkEmailVerification = async () => {
+      const res = await getEmailVerification()
+      updateEmailVerifedCookie(`${!!res.is_email_verified}`)
+    }
+
     checkEmailVerification()
-  }, [])
+  }, [updateEmailVerifedCookie])
 
   if (isEmailVerified === null) {
     return

@@ -25,10 +25,8 @@ jobs:
         aws-region: ${{ secrets.AWS_REGION }}
 
     - name: Generate .env.production for build
-      env:
-        NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL_DEV }}
       run: |
-        echo "NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL" >> .env.production
+        cp .env.dev .env.production
 
     - name: Build & Export Next App
       run: |
@@ -43,13 +41,3 @@ jobs:
       run: |
         aws s3 sync ./out $AWS_S3_BUCKET --delete
         aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
-
-    - name: Slack Notify
-      uses: rtCamp/action-slack-notify@v2.1.2
-      env:
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_TITLE: NEW RELEASE
-        SLACK_USERNAME: snutt-ev-web-dev
-        SLACK_ICON: https://user-images.githubusercontent.com/54926767/151759341-659c1354-6849-4249-9411-968f164e80b7.png
-        SLACK_MESSAGE: Check <https://s3.console.aws.amazon.com/s3/buckets/snutt-ev-web-dev?region=ap-northeast-2&tab=objects|S3> for updated environment
-        SLACK_FOOTER: https://snutt-ev-web-dev.wafflestudio.com
