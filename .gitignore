@@ -5,8 +5,8 @@
 /.pnp
 
 # yarn berry
-.pnp.*
 .yarn/*
+!.yarn/cache
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases
@@ -44,3 +44,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# vscode
+.vscode

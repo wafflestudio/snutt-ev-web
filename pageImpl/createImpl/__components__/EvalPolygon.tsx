@@ -1,10 +1,7 @@
 import styled from "@emotion/styled"
 import { DetailHighlight, Title01 } from "@lib/components/Text"
-import SvgTooltip from "@lib/components/Icons/SvgTooltip"
 import { RatingGraph } from "@lib/components/RatingGraph"
-import { SliderUnstyled, Tooltip, ClickAwayListener } from "@mui/material"
-import { useState } from "react"
-import { TootTipContent } from "./ToolTipContent"
+import { SliderUnstyled } from "@mui/material"
 import { RatingTooltip } from "@lib/components/Tooltip"
 
 interface Props {
@@ -51,7 +48,7 @@ export const EvalPolygon = ({
           defaultValue={defaultValue}
           valueLabelDisplay={"off"}
           value={right}
-          onChange={(e, newValue) =>
+          onChange={(e: unknown, newValue: number) =>
             handleUpdateScore(newValue as number, "right")
           }
         />
@@ -63,7 +60,7 @@ export const EvalPolygon = ({
           defaultValue={defaultValue}
           valueLabelDisplay={"off"}
           value={top}
-          onChange={(e, newValue) =>
+          onChange={(e: unknown, newValue: number) =>
             handleUpdateScore(newValue as number, "top")
           }
           orientation={"vertical"}
@@ -77,9 +74,9 @@ export const EvalPolygon = ({
           defaultValue={defaultValue}
           valueLabelDisplay={"off"}
           value={5 - left}
-          onChange={(e, newValue) => {
+          onChange={(e: unknown, newValue: number) =>
             handleUpdateScore(5 - (newValue as number), "left")
-          }}
+          }
         />
         <CustomSliderBottom
           marks
@@ -89,9 +86,9 @@ export const EvalPolygon = ({
           defaultValue={defaultValue}
           valueLabelDisplay={"off"}
           value={5 - bottom}
-          onChange={(e, newValue) => {
+          onChange={(e: unknown, newValue: number) =>
             handleUpdateScore(5 - (newValue as number), "bottom")
-          }}
+          }
           orientation={"vertical"}
         />
         <AxisLabel>
