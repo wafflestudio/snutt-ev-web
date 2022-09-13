@@ -71,14 +71,16 @@ export async function postLectureEvaluation(
   return response.data
 }
 
+// 강좌의 강의평 목록 api
 export async function fetchLectureEvaluations(
   id: number,
   params: GetEvaluationsQuery,
 ): Promise<GetEvaluationsResult> {
-  return SnuttApi.get<GetEvaluationsResult>(
-    evServiceBaseEndpoint + `/lectures/${id}/evaluations`,
+  const endpoint = `v1/lectures/${id}/evaluations`
+  const response = await evClient.get<GetEvaluationsResult>(endpoint, {
     params,
-  )
+  })
+  return response.data
 }
 
 export async function fetchMyLectureEvaluations(
