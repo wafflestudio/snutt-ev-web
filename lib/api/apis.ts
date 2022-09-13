@@ -38,28 +38,27 @@ import {
 
 const evServiceBaseEndpoint = "/ev-service/v1"
 
-/**
- * 지난 학기 들은 강의 목록 불러오는 api
- * @returns 지난 학기 들은 강의 목록
- */
+// 지난 학기 들은 강의 목록 불러오는 api
 export async function fetchLatestLectures(): Promise<GetLatestLecturesResult> {
   const endpoint = `v1/users/me/lectures/latest`
   const response = await evClient.get<GetLatestLecturesResult>(endpoint)
   return response.data
 }
 
+// 검색 시 필요한 태그 목록 불러오는 api
 export async function fetchTagInfos(): Promise<GetTagInfosProcessedResult> {
   const endpoint = `/v1/tags/search`
   const response = await evClient.get<GetTagInfosProcessedResult>(endpoint)
   return response.data
 }
 
+// 강의평 생성 시 해당 강의 정보 및 해당 강의의 과거 개설 학기들 불러오는 api
 export async function fetchSemesterLectures(
   id: number,
 ): Promise<GetSemesterLecturesResult> {
-  return SnuttApi.get<GetSemesterLecturesResult>(
-    evServiceBaseEndpoint + `/lectures/${id}/semester-lectures`,
-  )
+  const endpoint = `/v1/lectures/${id}/semester-lectures`
+  const response = await evClient.get<GetSemesterLecturesResult>(endpoint)
+  return response.data
 }
 
 export async function postLectureEvaluation(
