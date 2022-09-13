@@ -61,14 +61,14 @@ export async function fetchSemesterLectures(
   return response.data
 }
 
+// 강의평 생성 api
 export async function postLectureEvaluation(
   id: number,
-  query: PostEvaluationQuery,
+  body: PostEvaluationQuery,
 ): Promise<PostEvaluationResult> {
-  return SnuttApi.post(
-    evServiceBaseEndpoint + `/semester-lectures/${id}/evaluations`,
-    query,
-  )
+  const endpoint = `/v1/semester-lectures/${id}/evaluations`
+  const response = await evClient.post<PostEvaluationResult>(endpoint, body)
+  return response.data
 }
 
 export async function fetchLectureEvaluations(
