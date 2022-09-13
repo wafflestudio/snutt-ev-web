@@ -43,15 +43,15 @@ const evServiceBaseEndpoint = "/ev-service/v1"
  * @returns 지난 학기 들은 강의 목록
  */
 export async function fetchLatestLectures(): Promise<GetLatestLecturesResult> {
-  const endPoint = `v1/users/me/lectures/latest`
-  const response = await evClient.get<GetLatestLecturesResult>(endPoint)
+  const endpoint = `v1/users/me/lectures/latest`
+  const response = await evClient.get<GetLatestLecturesResult>(endpoint)
   return response.data
 }
 
 export async function fetchTagInfos(): Promise<GetTagInfosProcessedResult> {
-  return SnuttApi.get<GetTagInfosProcessedResult>(
-    evServiceBaseEndpoint + "/tags/search",
-  )
+  const endpoint = `/v1/tags/search`
+  const response = await evClient.get<GetTagInfosProcessedResult>(endpoint)
+  return response.data
 }
 
 export async function fetchSemesterLectures(
