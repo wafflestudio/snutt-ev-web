@@ -1,7 +1,7 @@
 import { GetSemesterLecturesResult } from "@lib/dto/getSemesterLectures"
 import { GetTagInfosProcessedResult } from "../dto/getTagInfos"
 import { GetLecturesQuery, GetLecturesResult } from "@lib/dto/getLectures"
-import SnuttApi from "./request"
+import SnuttApi, { evClient } from "./request"
 import { GetEvaluationSummaryResponse } from "@lib/dto/getEvaluationSummary"
 import {
   GetEvaluationsQuery,
@@ -38,10 +38,14 @@ import {
 
 const evServiceBaseEndpoint = "/ev-service/v1"
 
+/**
+ * 지난 학기 들은 강의 목록 불러오는 api
+ * @returns 지난 학기 들은 강의 목록
+ */
 export async function fetchLatestLectures(): Promise<GetLatestLecturesResult> {
-  return SnuttApi.get<GetLatestLecturesResult>(
-    evServiceBaseEndpoint + "/users/me/lectures/latest",
-  )
+  const endPoint = `v1/users/me/lectures/latest`
+  const response = await evClient.get<GetLatestLecturesResult>(endPoint)
+  return response.data
 }
 
 export async function fetchTagInfos(): Promise<GetTagInfosProcessedResult> {
