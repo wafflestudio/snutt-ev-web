@@ -1,7 +1,7 @@
 import { GetSemesterLecturesResult } from "@lib/dto/getSemesterLectures"
 import { GetTagInfosProcessedResult } from "../dto/getTagInfos"
 import { GetLecturesQuery, GetLecturesResult } from "@lib/dto/getLectures"
-import SnuttApi, { evClient } from "./request"
+import SnuttApi, { evClient, coreClient } from "./request"
 import { GetEvaluationSummaryResponse } from "@lib/dto/getEvaluationSummary"
 import {
   GetEvaluationsQuery,
@@ -140,8 +140,10 @@ export function postReportEvaluation(
   )
 }
 
-export function getEmailVerification(): Promise<GetEmailVerificationResult> {
-  return SnuttApi.get<GetEmailVerificationResult>("/user/email/verification")
+export async function getEmailVerification(): Promise<GetEmailVerificationResult> {
+  const endpoint = `v1/user/email/verification`
+  const response = await coreClient.get<GetEmailVerificationResult>(endpoint)
+  return response.data
 }
 
 export function postEmailVerification(
