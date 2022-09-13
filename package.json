@@ -29,6 +29,7 @@
     "@svgr/cli": "^6.1.2",
     "@svgr/webpack": "^6.2.0",
     "@types/js-cookie": "^3.0.1",
+    "@types/node": "^18.7.17",
     "@types/qs": "^6.9.7",
     "@types/react": "17.0.16",
     "@typescript-eslint/eslint-plugin": "^5.36.2",
@@ -40,7 +41,7 @@
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "prettier": "^2.3.2",
-    "typescript": "4.3.5"
+    "typescript": "^4.8.3"
   },
   "packageManager": "yarn@3.2.3"
 }

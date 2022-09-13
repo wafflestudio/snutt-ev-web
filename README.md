@@ -1,4 +1,14 @@
-# 환경 설정
+# Setup
+
+### yarn berry
+
+[docs](https://yarnpkg.com/getting-started/migration#editor-support)
+
+```sh
+yarn dlx @yarnpkg/sdks vscode
+```
+
+### 환경 변수
 
 ```
 // env.local
