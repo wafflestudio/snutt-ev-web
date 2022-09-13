@@ -67,7 +67,9 @@ const SnuttApi = {
       .then((response) => response.data)
   },
 
-  async delete<R, T>(url: string, body: T): Promise<R> {
+  // 어차피 @deprecated 라 eslint disable
+  // eslint-disable-next-line
+  async delete<R, T>(url: string, body: any): Promise<R> {
     return await axiosInstance
       .delete<R, AxiosResponse<R>, T>(url, body)
       .then((response) => response.data)
