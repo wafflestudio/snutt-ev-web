@@ -5,10 +5,6 @@ export interface TagDTO {
   description: string
 }
 
-export interface TagWithColor {
-  id: number
-  name: string
-  ordering: number
-  description: string
+export interface TagWithColor extends TagDTO {
   color: string
 }

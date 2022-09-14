@@ -1,10 +1,8 @@
-import { useCallback, useState } from "react"
+import { useState } from "react"
 import { useQuery } from "react-query"
 
 import { fetchTagInfos } from "@/lib/api/apis"
-import { ApiError } from "@/lib/dto/core/error"
-import { TagDTO, TagWithColor } from "@/lib/dto/core/tag"
-import { GetTagInfosProcessedResult } from "@/lib/dto/getTagInfos"
+import { TagWithColor } from "@/lib/dto/core/tag"
 
 export function useTagContainer() {
   const [currentlyAppliedQuery, setCurrentAppliedQuery] =
@@ -12,28 +10,14 @@ export function useTagContainer() {
   const [selectedTags, setSelectedTags] = useState<TagWithColor[]>([])
   const [textQuery, setTextQuery] = useState<string | undefined>()
 
-  const { data, error, isLoading } = useQuery<
-    GetTagInfosProcessedResult,
-    ApiError
-  >("tagInfos", fetchTagInfos, {
-    select: useCallback(
-      ({ tag_groups }) => ({
-        tag_groups: tag_groups.map(
-          ({
-            color,
-            tags,
-            ...group
-          }: {
-            color: string
-            tags: TagWithColor[]
-          }) => ({
-            ...group,
-            tags: tags.map((tag: TagDTO) => ({ ...tag, color })),
-          }),
-        ),
-      }),
-      [],
-    ),
+  const { data, error, isLoading } = useQuery("tagInfos", fetchTagInfos, {
+    select: ({ tag_groups }) => ({
+      tag_groups: tag_groups.map(({ color, tags, ...group }) => ({
+        ...group,
+        color,
+        tags: tags.map((tag) => ({ ...tag, color })),
+      })),
+    }),
   })
 
   const toggleTagSelection = (tag: TagWithColor) => {
