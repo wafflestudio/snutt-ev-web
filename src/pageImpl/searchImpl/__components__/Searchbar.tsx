@@ -42,7 +42,7 @@ export const Searchbar: React.FC<Props> = ({
           </SearchButton>
           <Input
             placeholder="검색어를 입력하세요"
-            value={textQuery}
+            value={textQuery ?? ""}
             onChange={(e) => {
               onChangeTextQuery(e.target.value)
             }}
