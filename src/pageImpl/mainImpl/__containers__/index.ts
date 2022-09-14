@@ -1,4 +1,4 @@
-import { useInfiniteQuery, useQuery } from "react-query"
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query"
 
 import {
   fetchLatestLectures,
@@ -8,7 +8,7 @@ import {
 import { TagDTO } from "@/lib/dto/core/tag"
 
 export function useRecommendationTagsContainer() {
-  const { data } = useQuery("mainTags", getMainTagInfos)
+  const { data } = useQuery(["mainTags"], getMainTagInfos)
   return { recommendationTags: data?.tags ?? [] }
 }
 
@@ -44,7 +44,7 @@ export function useMainEvaluationContainer(selectedTag?: TagDTO) {
 }
 
 export function useMainLatestLectureContainer() {
-  const querySearch = useQuery("latestLectures", fetchLatestLectures)
+  const querySearch = useQuery(["latestLectures"], fetchLatestLectures)
 
   const { data, error } = querySearch
 

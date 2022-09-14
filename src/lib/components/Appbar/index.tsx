@@ -1,10 +1,11 @@
 import styled from "@emotion/styled"
+import { PropsWithChildren } from "react"
 
 interface Props {
   LeftImage: React.FC
 }
 
-export const AppBar: React.FC<Props> = ({ LeftImage, children }) => {
+export const AppBar = ({ LeftImage, children }: PropsWithChildren<Props>) => {
   return (
     <Wrapper>
       <AppBarLeft>

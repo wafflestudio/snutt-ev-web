@@ -1,4 +1,4 @@
-import { useQuery } from "react-query"
+import { useQuery } from "@tanstack/react-query"
 
 import { fetchEvaluationSummary } from "@/lib/api/apis"
 import { ApiError } from "@/lib/dto/core/error"
