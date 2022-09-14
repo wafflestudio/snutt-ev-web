@@ -1,7 +1,7 @@
 import { GetSemesterLecturesResult } from "@lib/dto/getSemesterLectures"
 import { GetTagInfosProcessedResult } from "../dto/getTagInfos"
 import { GetLecturesQuery, GetLecturesResult } from "@lib/dto/getLectures"
-import SnuttApi, { evClient, coreClient } from "./request"
+import { evClient, coreClient } from "./request"
 import { GetEvaluationSummaryResponse } from "@lib/dto/getEvaluationSummary"
 import {
   GetEvaluationsQuery,
@@ -135,20 +135,22 @@ export async function getEmailVerification(): Promise<GetEmailVerificationResult
   return response.data
 }
 
-export function postEmailVerification(
-  params: PostEmailVerificationParams,
-): Promise<PostEmailVerificationResult> {
-  return SnuttApi.post<
-    PostEmailVerificationResult,
-    PostEmailVerificationParams
-  >("/user/email/verification", params)
+export async function postEmailVerification(body: PostEmailVerificationParams) {
+  const endpoint = `/v1/user/email/verification`
+  const response = await coreClient.post<PostEmailVerificationResult>(
+    endpoint,
+    body,
+  )
+  return response.data
 }
 
-export function postEmailVerificationCode(
-  params: PostEmailVerificationCodeParams,
-): Promise<PostEmailVerificationCodeResult> {
-  return SnuttApi.post<
-    PostEmailVerificationCodeResult,
-    PostEmailVerificationCodeParams
-  >("/user/email/verification/code", params)
+export async function postEmailVerificationCode(
+  body: PostEmailVerificationCodeParams,
+) {
+  const endpoint = `/v1/user/email/verification/code`
+  const response = await coreClient.post<PostEmailVerificationCodeResult>(
+    endpoint,
+    body,
+  )
+  return response.data
 }
