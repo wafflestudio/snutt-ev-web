@@ -4,6 +4,7 @@ import {
   QueryClientProvider,
   QueryErrorResetBoundary,
 } from "@tanstack/react-query"
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import type { AppProps } from "next/app"
 import Head from "next/head"
 import { Suspense, useEffect } from "react"
@@ -14,6 +15,8 @@ import { ErrorView } from "@/lib/components/Error"
 import useCookie from "@/lib/hooks/useCookie"
 import { appleSDGNeo } from "@/lib/styles/fonts"
 import { MailVerifyImpl } from "@/pageImpl/mailVerifyImpl"
+
+const isDevtool = process.env.NEXT_PUBLIC_REACT_QUERY_DEVTOOL === "true"
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -101,6 +104,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             </ErrorBoundary>
           )}
         </QueryErrorResetBoundary>
+        {isDevtool && <ReactQueryDevtools initialIsOpen={false} />}
       </QueryClientProvider>
     </>
   )
