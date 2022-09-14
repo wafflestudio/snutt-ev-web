@@ -1,18 +1,19 @@
-import { Suspense, useEffect } from "react"
+import { css, Global } from "@emotion/react"
 import type { AppProps } from "next/app"
 import Head from "next/head"
+import { Suspense, useEffect } from "react"
+import { ErrorBoundary } from "react-error-boundary"
 import {
   QueryClient,
   QueryClientProvider,
   QueryErrorResetBoundary,
 } from "react-query"
-import { css, Global } from "@emotion/react"
-import { appleSDGNeo } from "@/lib/styles/fonts"
-import { ErrorBoundary } from "react-error-boundary"
-import { ErrorView } from "@/lib/components/Error"
-import { MailVerifyImpl } from "@/pageImpl/mailVerifyImpl"
-import useCookie from "@/lib/hooks/useCookie"
+
 import { getEmailVerification } from "@/lib/api/apis"
+import { ErrorView } from "@/lib/components/Error"
+import useCookie from "@/lib/hooks/useCookie"
+import { appleSDGNeo } from "@/lib/styles/fonts"
+import { MailVerifyImpl } from "@/pageImpl/mailVerifyImpl"
 
 const queryClient = new QueryClient({
   defaultOptions: {

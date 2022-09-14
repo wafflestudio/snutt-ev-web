@@ -1,7 +1,8 @@
-import { TagWithColor, TagDTO } from "@/lib/dto/core/tag"
 import styled from "@emotion/styled"
+
 import SvgChecked from "@/lib/components/Icons/SvgChecked"
 import SvgUnchecked from "@/lib/components/Icons/SvgUnchecked"
+import { TagWithColor } from "@/lib/dto/core/tag"
 
 interface Props {
   tags: TagWithColor[]

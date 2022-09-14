@@ -1,6 +1,7 @@
-import { fetchSemesterLectures } from "@/lib/api/apis"
 import { useState } from "react"
 import { useQuery } from "react-query"
+
+import { fetchSemesterLectures } from "@/lib/api/apis"
 
 export function useSemestersContainer(id: number) {
   const querySearch = useQuery(

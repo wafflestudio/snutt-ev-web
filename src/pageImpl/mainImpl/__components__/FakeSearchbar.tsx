@@ -1,7 +1,7 @@
 import styled from "@emotion/styled"
+import { useRouter } from "next/router"
 import React from "react"
 
-import { useRouter } from "next/router"
 import SvgSearchOff from "@/lib/components/Icons/SvgSearchOff"
 
 export const FakeSearchbar = () => {

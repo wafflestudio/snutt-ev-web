@@ -1,6 +1,7 @@
+import { useInfiniteQuery } from "react-query"
+
 import { getLectures } from "@/lib/api/apis"
 import { TagDTO } from "@/lib/dto/core/tag"
-import { useInfiniteQuery } from "react-query"
 
 export default function useSearchOptionContainer(
   selectedTags: TagDTO[],

@@ -1,5 +1,6 @@
-import { Title01, Title02 } from "@/lib/components/Text"
 import styled from "@emotion/styled"
+
+import { Title01, Title02 } from "@/lib/components/Text"
 
 export const TootTipContent = () => {
   return (
