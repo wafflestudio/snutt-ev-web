@@ -1,4 +1,4 @@
-import { useQuery } from "react-query"
+import { useQuery } from "@tanstack/react-query"
 
 import { fetchMyLectureEvaluations } from "@/lib/api/apis"
 import { GetMyEvaluationsResult } from "@/lib/dto/getEvaluations"

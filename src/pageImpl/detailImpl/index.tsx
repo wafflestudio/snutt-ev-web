@@ -8,9 +8,9 @@ import {
   DialogTitle,
   TextField,
 } from "@mui/material"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { Router, useRouter } from "next/router"
 import React, { useState } from "react"
-import { useMutation, useQueryClient } from "react-query"
 
 import { deleteEvaluation, postReportEvaluation } from "@/lib/api/apis"
 import { AppBar } from "@/lib/components/Appbar"
@@ -80,8 +80,8 @@ export const DetailImpl = () => {
       postReportEvaluation(id, { content }),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries("evaluationSummary")
-        queryClient.invalidateQueries("lectureEvaluation")
+        queryClient.invalidateQueries(["evaluationSummary"])
+        queryClient.invalidateQueries(["lectureEvaluation"])
       },
       onError: () => {
         console.error("강의평 신고에 실패하였습니다.")

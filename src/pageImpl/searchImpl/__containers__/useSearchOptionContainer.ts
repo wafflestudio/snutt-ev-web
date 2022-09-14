@@ -1,4 +1,4 @@
-import { useInfiniteQuery } from "react-query"
+import { useInfiniteQuery } from "@tanstack/react-query"
 
 import { getLectures } from "@/lib/api/apis"
 import { TagDTO } from "@/lib/dto/core/tag"

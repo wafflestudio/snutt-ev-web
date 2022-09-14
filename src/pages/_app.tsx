@@ -1,13 +1,13 @@
 import { css, Global } from "@emotion/react"
-import type { AppProps } from "next/app"
-import Head from "next/head"
-import { Suspense, useEffect } from "react"
-import { ErrorBoundary } from "react-error-boundary"
 import {
   QueryClient,
   QueryClientProvider,
   QueryErrorResetBoundary,
-} from "react-query"
+} from "@tanstack/react-query"
+import type { AppProps } from "next/app"
+import Head from "next/head"
+import { Suspense, useEffect } from "react"
+import { ErrorBoundary } from "react-error-boundary"
 
 import { getEmailVerification } from "@/lib/api/apis"
 import { ErrorView } from "@/lib/components/Error"
