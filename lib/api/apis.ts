@@ -18,10 +18,7 @@ import {
   GetMainTagEvalutionsQuery,
 } from "@lib/dto/getMainTagEvaluations"
 import { GetLatestLecturesResult } from "@lib/dto/getLatestLectures"
-import {
-  DeleteEvaluationParams,
-  DeleteEvaluationResult,
-} from "@lib/dto/deleteEvaluation"
+import { DeleteEvaluationResult } from "@lib/dto/deleteEvaluation"
 import {
   PostReportEvaluationParams,
   PostReportEvaluationResult,
@@ -36,26 +33,22 @@ import {
   PostEmailVerificationResult,
 } from "@lib/dto/PostEmailVerification"
 
-const evServiceBaseEndpoint = "/ev-service/v1"
-
 // 지난 학기 들은 강의 목록 불러오는 api
-export async function fetchLatestLectures(): Promise<GetLatestLecturesResult> {
+export async function fetchLatestLectures() {
   const endpoint = `v1/users/me/lectures/latest`
   const response = await evClient.get<GetLatestLecturesResult>(endpoint)
   return response.data
 }
 
 // 검색 시 필요한 태그 목록 불러오는 api
-export async function fetchTagInfos(): Promise<GetTagInfosProcessedResult> {
+export async function fetchTagInfos() {
   const endpoint = `/v1/tags/search`
   const response = await evClient.get<GetTagInfosProcessedResult>(endpoint)
   return response.data
 }
 
 // 강의평 생성 시 해당 강의 정보 및 해당 강의의 과거 개설 학기들 불러오는 api
-export async function fetchSemesterLectures(
-  id: number,
-): Promise<GetSemesterLecturesResult> {
+export async function fetchSemesterLectures(id: number) {
   const endpoint = `/v1/lectures/${id}/semester-lectures`
   const response = await evClient.get<GetSemesterLecturesResult>(endpoint)
   return response.data
@@ -65,7 +58,7 @@ export async function fetchSemesterLectures(
 export async function postLectureEvaluation(
   id: number,
   body: PostEvaluationQuery,
-): Promise<PostEvaluationResult> {
+) {
   const endpoint = `/v1/semester-lectures/${id}/evaluations`
   const response = await evClient.post<PostEvaluationResult>(endpoint, body)
   return response.data
@@ -75,7 +68,7 @@ export async function postLectureEvaluation(
 export async function fetchLectureEvaluations(
   id: number,
   params: GetEvaluationsQuery,
-): Promise<GetEvaluationsResult> {
+) {
   const endpoint = `v1/lectures/${id}/evaluations`
   const response = await evClient.get<GetEvaluationsResult>(endpoint, {
     params,
@@ -83,66 +76,61 @@ export async function fetchLectureEvaluations(
   return response.data
 }
 
-export async function fetchMyLectureEvaluations(
+export async function fetchMyLectureEvaluations(id: number) {
+  const endpoint = `/v1/lectures/${id}/evaluations/users/me`
+  const response = await evClient.get<GetMyEvaluationsResult>(endpoint)
+  return response.data
+}
+
+export async function fetchEvaluationSummary(id: number) {
+  const endpoint = `/v1/lectures/${id}/evaluation-summary`
+  const response = await evClient.get<GetEvaluationSummaryResponse>(endpoint)
+  return response.data
+}
+
+export async function getLectures(params: GetLecturesQuery) {
+  const endpoint = `/v1/lectures`
+  const response = await evClient.get<GetLecturesResult>(endpoint, { params })
+  return response.data
+}
+
+export async function getMainTagInfos() {
+  const endpoint = `/v1/tags/main`
+  const response = await evClient.get<GetMainTagInfosResult>(endpoint)
+  return response.data
+}
+
+export async function getMainTagEvaluations(
   id: number,
-): Promise<GetMyEvaluationsResult> {
-  return SnuttApi.get<GetMyEvaluationsResult>(
-    evServiceBaseEndpoint + `/lectures/${id}/evaluations/users/me`,
-  )
-}
-
-export async function fetchEvaluationSummary(
-  id: number,
-): Promise<GetEvaluationSummaryResponse> {
-  return SnuttApi.get<GetEvaluationSummaryResponse>(
-    evServiceBaseEndpoint + `/lectures/${id}/evaluation-summary`,
-  )
-}
-
-export function getLectures(
-  query: GetLecturesQuery,
-): Promise<GetLecturesResult> {
-  return SnuttApi.get<GetLecturesResult>(
-    evServiceBaseEndpoint + "/lectures",
-    query,
-  )
-}
-
-export function getMainTagInfos(): Promise<GetMainTagInfosResult> {
-  return SnuttApi.get<GetMainTagInfosResult>(
-    evServiceBaseEndpoint + "/tags/main",
-  )
-}
-
-export function getMainTagEvaluations(
-  id: number,
-  query: GetMainTagEvalutionsQuery,
-): Promise<GetMainTagEvaluationsResult> {
-  return SnuttApi.get<GetMainTagEvaluationsResult, GetMainTagEvalutionsQuery>(
-    evServiceBaseEndpoint + `/tags/main/${id}/evaluations`,
-    query,
-  )
-}
-
-export function deleteEvaluation(id: number): Promise<DeleteEvaluationResult> {
-  return SnuttApi.delete<DeleteEvaluationResult, DeleteEvaluationParams>(
-    evServiceBaseEndpoint + `/evaluations/${id}`,
-    {},
-  )
-}
-
-export function postReportEvaluation(
-  id: number,
-  params: PostReportEvaluationParams,
-): Promise<DeleteEvaluationResult> {
-  return SnuttApi.post<PostReportEvaluationResult, PostReportEvaluationParams>(
-    evServiceBaseEndpoint + `/evaluations/${id}/report`,
+  params: GetMainTagEvalutionsQuery,
+) {
+  const endpoint = `/v1/tags/main/${id}/evaluations`
+  const response = await evClient.get<GetMainTagEvaluationsResult>(endpoint, {
     params,
+  })
+  return response.data
+}
+
+export async function deleteEvaluation(id: number) {
+  const endpoint = `/v1/evaluations/${id}`
+  const response = await evClient.delete<DeleteEvaluationResult>(endpoint)
+  return response.data
+}
+
+export async function postReportEvaluation(
+  id: number,
+  body: PostReportEvaluationParams,
+) {
+  const endpoint = `/v1/evaluations/${id}/report`
+  const response = await evClient.post<PostReportEvaluationResult>(
+    endpoint,
+    body,
   )
+  return response.data
 }
 
 export async function getEmailVerification(): Promise<GetEmailVerificationResult> {
-  const endpoint = `v1/user/email/verification`
+  const endpoint = `/v1/user/email/verification`
   const response = await coreClient.get<GetEmailVerificationResult>(endpoint)
   return response.data
 }
