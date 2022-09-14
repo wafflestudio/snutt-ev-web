@@ -89,8 +89,9 @@ export async function fetchEvaluationSummary(id: number) {
   return response.data
 }
 
-export async function getLectures(params: GetLecturesQuery) {
+export async function getLectures(query: GetLecturesQuery) {
   const endpoint = `/v1/lectures`
+  const params = { ...query, tags: query.tags.join(",") }
   const response = await evClient.get<GetLecturesResult>(endpoint, { params })
   return response.data
 }
