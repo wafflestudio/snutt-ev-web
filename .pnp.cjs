@@ -40,7 +40,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@svgr/webpack", "npm:6.2.0"],\
             ["@types/js-cookie", "npm:3.0.1"],\
             ["@types/node", "npm:18.7.17"],\
-            ["@types/qs", "npm:6.9.7"],\
             ["@types/react", "npm:17.0.16"],\
             ["@typescript-eslint/eslint-plugin", "virtual:ef4a7200b72d65075e75e42dae81ce5805b1555697599c57e602dc775d8c9356736d5da3d05cf90e4eabab2b146aa8a2fb4238b3a5807246ed7a634308b390d2#npm:5.36.2"],\
             ["@typescript-eslint/parser", "virtual:ef4a7200b72d65075e75e42dae81ce5805b1555697599c57e602dc775d8c9356736d5da3d05cf90e4eabab2b146aa8a2fb4238b3a5807246ed7a634308b390d2#npm:5.36.2"],\
@@ -55,7 +54,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["js-cookie", "npm:3.0.1"],\
             ["next", "virtual:ef4a7200b72d65075e75e42dae81ce5805b1555697599c57e602dc775d8c9356736d5da3d05cf90e4eabab2b146aa8a2fb4238b3a5807246ed7a634308b390d2#npm:11.0.1"],\
             ["prettier", "npm:2.3.2"],\
-            ["qs", "npm:6.10.3"],\
             ["react", "npm:18.0.0-rc.0"],\
             ["react-countdown", "virtual:ef4a7200b72d65075e75e42dae81ce5805b1555697599c57e602dc775d8c9356736d5da3d05cf90e4eabab2b146aa8a2fb4238b3a5807246ed7a634308b390d2#npm:2.3.2"],\
             ["react-dom", "virtual:ef4a7200b72d65075e75e42dae81ce5805b1555697599c57e602dc775d8c9356736d5da3d05cf90e4eabab2b146aa8a2fb4238b3a5807246ed7a634308b390d2#npm:18.0.0-rc.0"],\
@@ -3732,15 +3730,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-prop-types-npm-15.7.4-592896a9fe-ef6e1899e5.zip/node_modules/@types/prop-types/",\
           "packageDependencies": [\
             ["@types/prop-types", "npm:15.7.4"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@types/qs", [\
-        ["npm:6.9.7", {\
-          "packageLocation": "./.yarn/cache/@types-qs-npm-6.9.7-4a3e6ca0d0-7fd6f9c250.zip/node_modules/@types/qs/",\
-          "packageDependencies": [\
-            ["@types/qs", "npm:6.9.7"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -8860,16 +8849,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-      ["qs", [\
-        ["npm:6.10.3", {\
-          "packageLocation": "./.yarn/cache/qs-npm-6.10.3-172e1a3fb7-0fac5e6c71.zip/node_modules/qs/",\
-          "packageDependencies": [\
-            ["qs", "npm:6.10.3"],\
-            ["side-channel", "npm:1.0.4"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
       ["querystring", [\
         ["npm:0.2.0", {\
           "packageLocation": "./.yarn/cache/querystring-npm-0.2.0-421b870c92-8258d6734f.zip/node_modules/querystring/",\
@@ -9619,7 +9598,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@svgr/webpack", "npm:6.2.0"],\
             ["@types/js-cookie", "npm:3.0.1"],\
             ["@types/node", "npm:18.7.17"],\
-            ["@types/qs", "npm:6.9.7"],\
             ["@types/react", "npm:17.0.16"],\
             ["@typescript-eslint/eslint-plugin", "virtual:ef4a7200b72d65075e75e42dae81ce5805b1555697599c57e602dc775d8c9356736d5da3d05cf90e4eabab2b146aa8a2fb4238b3a5807246ed7a634308b390d2#npm:5.36.2"],\
             ["@typescript-eslint/parser", "virtual:ef4a7200b72d65075e75e42dae81ce5805b1555697599c57e602dc775d8c9356736d5da3d05cf90e4eabab2b146aa8a2fb4238b3a5807246ed7a634308b390d2#npm:5.36.2"],\
@@ -9634,7 +9612,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["js-cookie", "npm:3.0.1"],\
             ["next", "virtual:ef4a7200b72d65075e75e42dae81ce5805b1555697599c57e602dc775d8c9356736d5da3d05cf90e4eabab2b146aa8a2fb4238b3a5807246ed7a634308b390d2#npm:11.0.1"],\
             ["prettier", "npm:2.3.2"],\
-            ["qs", "npm:6.10.3"],\
             ["react", "npm:18.0.0-rc.0"],\
             ["react-countdown", "virtual:ef4a7200b72d65075e75e42dae81ce5805b1555697599c57e602dc775d8c9356736d5da3d05cf90e4eabab2b146aa8a2fb4238b3a5807246ed7a634308b390d2#npm:2.3.2"],\
             ["react-dom", "virtual:ef4a7200b72d65075e75e42dae81ce5805b1555697599c57e602dc775d8c9356736d5da3d05cf90e4eabab2b146aa8a2fb4238b3a5807246ed7a634308b390d2#npm:18.0.0-rc.0"],\
