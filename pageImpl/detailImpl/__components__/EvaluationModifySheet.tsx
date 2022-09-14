@@ -3,7 +3,7 @@ import React from "react"
 import Sheet from "react-modal-sheet"
 import TrashIcon from "public/icons/trash.svg"
 import ReportIcon from "public/icons/report.svg"
-import { Subheading02 } from "@lib/components/Text"
+import { Subheading02 } from "@/lib/components/Text"
 
 interface Props {
   isOpened: boolean

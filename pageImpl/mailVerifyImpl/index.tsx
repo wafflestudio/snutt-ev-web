@@ -1,19 +1,19 @@
 import styled from "@emotion/styled"
 import React, { useState, ChangeEvent } from "react"
-import { AppBar } from "@lib/components/Appbar"
+import { AppBar } from "@/lib/components/Appbar"
 import {
   Title01,
   Subheading01,
   Subheading02,
   Detail,
-} from "@lib/components/Text"
+} from "@/lib/components/Text"
 import CountDown, { CountdownRenderProps, zeroPad } from "react-countdown"
-import { COLORS } from "@lib/styles/colors"
-import SvgTimetableOn from "@lib/components/Icons/SvgTimetableOn"
-import { postEmailVerificationCode } from "@lib/api/apis"
-import { postEmailVerification } from "@lib/api/apis"
+import { COLORS } from "@/lib/styles/colors"
+import SvgTimetableOn from "@/lib/components/Icons/SvgTimetableOn"
+import { postEmailVerificationCode } from "@/lib/api/apis"
+import { postEmailVerification } from "@/lib/api/apis"
 import { AxiosError } from "axios"
-import { ApiError } from "@lib/dto/core/error"
+import { ApiError } from "@/lib/dto/core/error"
 
 interface Props {
   setVerification: (

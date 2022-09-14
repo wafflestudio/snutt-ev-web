@@ -1,6 +1,6 @@
 import { useQuery } from "react-query"
-import { fetchMyLectureEvaluations } from "@lib/api/apis"
-import { GetMyEvaluationsResult } from "@lib/dto/getEvaluations"
+import { fetchMyLectureEvaluations } from "@/lib/api/apis"
+import { GetMyEvaluationsResult } from "@/lib/dto/getEvaluations"
 
 export function useMyLectureEvaluationsContainer(id: number) {
   const { data: myReviewResult } = useQuery<GetMyEvaluationsResult>(

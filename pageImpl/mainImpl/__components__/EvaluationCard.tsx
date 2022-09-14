@@ -1,10 +1,10 @@
 import styled from "@emotion/styled"
-import { Detail, Subheading01 } from "@lib/components/Text"
-import { COLORS } from "@lib/styles/colors"
-import { Rating } from "@lib/components/Rating"
-import { CollapsableText } from "@lib/components/CollapsableText"
-import { MainEvaluationDTO } from "@lib/dto/core/mainEvaluation"
-import { SemesterIntToString } from "@lib/util"
+import { Detail, Subheading01 } from "@/lib/components/Text"
+import { COLORS } from "@/lib/styles/colors"
+import { Rating } from "@/lib/components/Rating"
+import { CollapsableText } from "@/lib/components/CollapsableText"
+import { MainEvaluationDTO } from "@/lib/dto/core/mainEvaluation"
+import { SemesterIntToString } from "@/lib/util"
 import { useRouter } from "next/router"
 
 interface Props {

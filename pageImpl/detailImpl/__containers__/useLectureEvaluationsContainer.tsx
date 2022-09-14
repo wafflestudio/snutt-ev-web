@@ -1,5 +1,5 @@
 import { useInfiniteQuery } from "react-query"
-import { fetchLectureEvaluations } from "@lib/api/apis"
+import { fetchLectureEvaluations } from "@/lib/api/apis"
 
 export function useLectureEvaluationsContainer(id: number) {
   const {

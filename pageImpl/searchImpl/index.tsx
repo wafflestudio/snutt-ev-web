@@ -5,11 +5,11 @@ import React, { useState } from "react"
 import { SearchOptionSheet } from "./__components__/SearchOptionSheet"
 import { useTagContainer } from "./__containers__/useTagContainer"
 import { ActiveTagList } from "./__components__/SelectedTagList"
-import useScrollLoader from "@lib/hooks/useScrollLoader"
+import useScrollLoader from "@/lib/hooks/useScrollLoader"
 import useSearchOptionContainer from "./__containers__/useSearchOptionContainer"
 import { SearchNoResult } from "./__components__/SearchNoResult"
 import { SearchInitialPage } from "./__components__/SearchInitialPage"
-import { SearchResultLoading } from "@lib/components/Miscellaneous/Loading"
+import { SearchResultLoading } from "@/lib/components/Miscellaneous/Loading"
 
 export const SearchImpl = () => {
   const {

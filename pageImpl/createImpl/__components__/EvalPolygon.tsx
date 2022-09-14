@@ -1,8 +1,8 @@
 import styled from "@emotion/styled"
-import { DetailHighlight, Title01 } from "@lib/components/Text"
-import { RatingGraph } from "@lib/components/RatingGraph"
+import { DetailHighlight, Title01 } from "@/lib/components/Text"
+import { RatingGraph } from "@/lib/components/RatingGraph"
 import { SliderUnstyled } from "@mui/material"
-import { RatingTooltip } from "@lib/components/Tooltip"
+import { RatingTooltip } from "@/lib/components/Tooltip"
 
 interface Props {
   defaultValue: number

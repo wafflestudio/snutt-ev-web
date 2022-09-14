@@ -1,8 +1,8 @@
 import styled from "@emotion/styled"
-import { Subheading02, Title01 } from "@lib/components/Text"
-import { SemesterLectureDTO } from "@lib/dto/core/semesterLecture"
-import SvgArrowDown from "@lib/components/Icons/SvgArrowDown"
-import { SemesterIntToString } from "@lib/util"
+import { Subheading02, Title01 } from "@/lib/components/Text"
+import { SemesterLectureDTO } from "@/lib/dto/core/semesterLecture"
+import SvgArrowDown from "@/lib/components/Icons/SvgArrowDown"
+import { SemesterIntToString } from "@/lib/util"
 
 interface Props {
   lectureName?: string

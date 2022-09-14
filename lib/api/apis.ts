@@ -1,37 +1,37 @@
-import { GetSemesterLecturesResult } from "@lib/dto/getSemesterLectures"
+import { GetSemesterLecturesResult } from "@/lib/dto/getSemesterLectures"
 import { GetTagInfosProcessedResult } from "../dto/getTagInfos"
-import { GetLecturesQuery, GetLecturesResult } from "@lib/dto/getLectures"
+import { GetLecturesQuery, GetLecturesResult } from "@/lib/dto/getLectures"
 import { evClient, coreClient } from "./request"
-import { GetEvaluationSummaryResponse } from "@lib/dto/getEvaluationSummary"
+import { GetEvaluationSummaryResponse } from "@/lib/dto/getEvaluationSummary"
 import {
   GetEvaluationsQuery,
   GetEvaluationsResult,
   GetMyEvaluationsResult,
-} from "@lib/dto/getEvaluations"
+} from "@/lib/dto/getEvaluations"
 import {
   PostEvaluationQuery,
   PostEvaluationResult,
-} from "@lib/dto/postEvaluation"
-import { GetMainTagInfosResult } from "@lib/dto/getMainTagInfos"
+} from "@/lib/dto/postEvaluation"
+import { GetMainTagInfosResult } from "@/lib/dto/getMainTagInfos"
 import {
   GetMainTagEvaluationsResult,
   GetMainTagEvalutionsQuery,
-} from "@lib/dto/getMainTagEvaluations"
-import { GetLatestLecturesResult } from "@lib/dto/getLatestLectures"
-import { DeleteEvaluationResult } from "@lib/dto/deleteEvaluation"
+} from "@/lib/dto/getMainTagEvaluations"
+import { GetLatestLecturesResult } from "@/lib/dto/getLatestLectures"
+import { DeleteEvaluationResult } from "@/lib/dto/deleteEvaluation"
 import {
   PostReportEvaluationParams,
   PostReportEvaluationResult,
-} from "@lib/dto/postReportEvaluation"
-import { GetEmailVerificationResult } from "@lib/dto/getEmailVerification"
+} from "@/lib/dto/postReportEvaluation"
+import { GetEmailVerificationResult } from "@/lib/dto/getEmailVerification"
 import {
   PostEmailVerificationCodeParams,
   PostEmailVerificationCodeResult,
-} from "@lib/dto/PostEmailVerification"
+} from "@/lib/dto/PostEmailVerification"
 import {
   PostEmailVerificationParams,
   PostEmailVerificationResult,
-} from "@lib/dto/PostEmailVerification"
+} from "@/lib/dto/PostEmailVerification"
 
 // 지난 학기 들은 강의 목록 불러오는 api
 export async function fetchLatestLectures() {

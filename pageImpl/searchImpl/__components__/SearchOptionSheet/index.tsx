@@ -2,10 +2,10 @@ import styled from "@emotion/styled"
 import { TagGroupList } from "./TagGroupList"
 import { useMemo, useState } from "react"
 import { TagList } from "./TagList"
-import { TagWithColor } from "@lib/dto/core/tag"
-import { TagGroupWithColor } from "@lib/dto/core/tagGroup"
+import { TagWithColor } from "@/lib/dto/core/tag"
+import { TagGroupWithColor } from "@/lib/dto/core/tagGroup"
 import Sheet from "react-modal-sheet"
-import SvgExit from "@lib/components/Icons/SvgExit"
+import SvgExit from "@/lib/components/Icons/SvgExit"
 
 interface Props {
   selectedTags: TagWithColor[]

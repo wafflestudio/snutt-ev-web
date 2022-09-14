@@ -1,9 +1,9 @@
 import { useQuery } from "react-query"
-import { GetTagInfosProcessedResult } from "@lib/dto/getTagInfos"
-import { ApiError } from "@lib/dto/core/error"
+import { GetTagInfosProcessedResult } from "@/lib/dto/getTagInfos"
+import { ApiError } from "@/lib/dto/core/error"
 import { useCallback, useState } from "react"
-import { TagWithColor, TagDTO } from "@lib/dto/core/tag"
-import { fetchTagInfos } from "@lib/api/apis"
+import { TagWithColor, TagDTO } from "@/lib/dto/core/tag"
+import { fetchTagInfos } from "@/lib/api/apis"
 
 export function useTagContainer() {
   const [currentlyAppliedQuery, setCurrentAppliedQuery] =

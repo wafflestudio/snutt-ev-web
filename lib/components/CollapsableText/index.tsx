@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 import React, { useState } from "react"
-import { Detail } from "@lib/components/Text"
+import { Detail } from "@/lib/components/Text"
 
 interface Props {
   text: string

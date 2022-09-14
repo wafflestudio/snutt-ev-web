@@ -1,8 +1,8 @@
 import styled from "@emotion/styled"
-import { Subheading02, Title01 } from "@lib/components/Text"
+import { Subheading02, Title01 } from "@/lib/components/Text"
 import { LectureCard } from "./LectureCard"
 import { useRouter } from "next/router"
-import { LatestLectureDTO } from "@lib/dto/core/latestLecture"
+import { LatestLectureDTO } from "@/lib/dto/core/latestLecture"
 
 interface Props {
   lectureList: LatestLectureDTO[]

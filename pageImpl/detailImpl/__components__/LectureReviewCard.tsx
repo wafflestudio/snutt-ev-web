@@ -1,12 +1,12 @@
 import styled from "@emotion/styled"
-import { Detail } from "@lib/components/Text"
-import { COLORS } from "@lib/styles/colors"
-import { Rating } from "@lib/components/Rating"
-import { CollapsableText } from "@lib/components/CollapsableText"
-import { EvaluationDTO } from "@lib/dto/core/evaluation"
-import MoreVerticalIcon from "@public/icons/more_vertical.svg"
-import FossilIcon from "@public/icons/fossil.svg"
-import { SemesterIntToString } from "@lib/util"
+import { Detail } from "@/lib/components/Text"
+import { COLORS } from "@/lib/styles/colors"
+import { Rating } from "@/lib/components/Rating"
+import { CollapsableText } from "@/lib/components/CollapsableText"
+import { EvaluationDTO } from "@/lib/dto/core/evaluation"
+import MoreVerticalIcon from "@/public/icons/more_vertical.svg"
+import FossilIcon from "@/public/icons/fossil.svg"
+import { SemesterIntToString } from "@/lib/util"
 
 interface Props {
   review: EvaluationDTO

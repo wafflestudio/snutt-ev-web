@@ -1,10 +1,10 @@
 import styled from "@emotion/styled"
-import { Detail, Title02 } from "@lib/components/Text"
-import { resetMarPad } from "@lib/styles"
-import SvgStarSmallEmpty from "@lib/components/Icons/SvgStarSmallEmpty"
-import SvgStarSmallFilled from "@lib/components/Icons/SvgStarSmallFilled"
-import { COLORS } from "@lib/styles/colors"
-import SvgWarning from "@lib/components/Icons/SvgWarning"
+import { Detail, Title02 } from "@/lib/components/Text"
+import { resetMarPad } from "@/lib/styles"
+import SvgStarSmallEmpty from "@/lib/components/Icons/SvgStarSmallEmpty"
+import SvgStarSmallFilled from "@/lib/components/Icons/SvgStarSmallFilled"
+import { COLORS } from "@/lib/styles/colors"
+import SvgWarning from "@/lib/components/Icons/SvgWarning"
 
 interface Props {
   handleRating: (rating: number) => void

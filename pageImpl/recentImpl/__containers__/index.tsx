@@ -1,4 +1,4 @@
-import { fetchLatestLectures } from "@lib/api/apis"
+import { fetchLatestLectures } from "@/lib/api/apis"
 import { useQuery } from "react-query"
 
 export function useRecentLectureContainer() {
