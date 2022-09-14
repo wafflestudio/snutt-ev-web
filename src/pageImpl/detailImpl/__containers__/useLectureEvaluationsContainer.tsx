@@ -1,4 +1,5 @@
 import { useInfiniteQuery } from "react-query"
+
 import { fetchLectureEvaluations } from "@/lib/api/apis"
 
 export function useLectureEvaluationsContainer(id: number) {
@@ -16,7 +17,7 @@ export function useLectureEvaluationsContainer(id: number) {
       return data
     },
     {
-      getNextPageParam: (lastPage, pages) => lastPage.cursor ?? undefined,
+      getNextPageParam: (lastPage) => lastPage.cursor ?? undefined,
       enabled: !isNaN(id),
       suspense: false,
       retryDelay: 2000,

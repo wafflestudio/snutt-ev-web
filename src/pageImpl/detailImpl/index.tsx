@@ -1,22 +1,4 @@
 import styled from "@emotion/styled"
-import { AppBar } from "@/lib/components/Appbar"
-import { Router, useRouter } from "next/router"
-import { Detail, Subheading02, Title01 } from "@/lib/components/Text"
-import { useEvaluationSummaryContainer } from "./__containers__/useEvaluationSummaryContainer"
-import { LectureReviewCard } from "./__components__/LectureReviewCard"
-
-import SvgWrite from "@/lib/components/Icons/SvgWrite"
-import SvgStarSmallFilled from "@/lib/components/Icons/SvgStarSmallFilled"
-import SvgStarSmallEmpty from "@/lib/components/Icons/SvgStarSmallEmpty"
-import SvgArrowBack from "@/lib/components/Icons/SvgArrowBack"
-import FossilIcon from "@/public/icons/fossil.svg"
-import { RatingGraph, RatingGraphAxis } from "@/lib/components/RatingGraph"
-import { useLectureEvaluationsContainer } from "@/pageImpl/detailImpl/__containers__/useLectureEvaluationsContainer"
-import useScrollLoader from "@/lib/hooks/useScrollLoader"
-import React, { useState } from "react"
-import EvaluationModifySheet from "./__components__/EvaluationModifySheet"
-import { EvaluationDTO } from "@/lib/dto/core/evaluation"
-import { useMyLectureEvaluationsContainer } from "./__containers__/useMyLectureEvaluationsContainer"
 import {
   Button,
   Dialog,
@@ -26,12 +8,31 @@ import {
   DialogTitle,
   TextField,
 } from "@mui/material"
-import { deleteEvaluation, postReportEvaluation } from "@/lib/api/apis"
+import { Router, useRouter } from "next/router"
+import React, { useState } from "react"
 import { useMutation, useQueryClient } from "react-query"
+
+import { deleteEvaluation, postReportEvaluation } from "@/lib/api/apis"
+import { AppBar } from "@/lib/components/Appbar"
+import SvgArrowBack from "@/lib/components/Icons/SvgArrowBack"
+import SvgStarSmallEmpty from "@/lib/components/Icons/SvgStarSmallEmpty"
+import SvgStarSmallFilled from "@/lib/components/Icons/SvgStarSmallFilled"
+import SvgWrite from "@/lib/components/Icons/SvgWrite"
 import { EmptyReviewPlaceholder } from "@/lib/components/Miscellaneous/EmptyReviewPlaceholder"
-import { RatingTooltip } from "@/lib/components/Tooltip"
 import { SearchResultLoading } from "@/lib/components/Miscellaneous/Loading"
+import { RatingGraph, RatingGraphAxis } from "@/lib/components/RatingGraph"
+import { Detail, Subheading02, Title01 } from "@/lib/components/Text"
+import { RatingTooltip } from "@/lib/components/Tooltip"
+import { EvaluationDTO } from "@/lib/dto/core/evaluation"
+import useScrollLoader from "@/lib/hooks/useScrollLoader"
 import { COLORS } from "@/lib/styles/colors"
+import { useLectureEvaluationsContainer } from "@/pageImpl/detailImpl/__containers__/useLectureEvaluationsContainer"
+import FossilIcon from "@/public/icons/fossil.svg"
+
+import EvaluationModifySheet from "./__components__/EvaluationModifySheet"
+import { LectureReviewCard } from "./__components__/LectureReviewCard"
+import { useEvaluationSummaryContainer } from "./__containers__/useEvaluationSummaryContainer"
+import { useMyLectureEvaluationsContainer } from "./__containers__/useMyLectureEvaluationsContainer"
 
 export const DetailImpl = () => {
   const router = useRouter()

@@ -7,7 +7,7 @@
     "build": "next build",
     "export": "next build && next export",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint --dir src"
   },
   "dependencies": {
     "@emotion/react": "^11.4.1",
@@ -38,6 +38,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-simple-import-sort": "^8.0.0",
     "prettier": "^2.3.2",
     "typescript": "^4.8.3"
   },

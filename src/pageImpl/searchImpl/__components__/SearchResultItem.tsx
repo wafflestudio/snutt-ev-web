@@ -1,11 +1,11 @@
 import styled from "@emotion/styled"
-import { LectureDTO } from "@/lib/dto/core/lecture"
+import { useRouter } from "next/router"
 
-import { Subheading01 } from "@/lib/components/Text"
+import SvgPersonBlack from "@/lib/components/Icons/SvgPersonBlack"
 import SvgStarCyan from "@/lib/components/Icons/SvgStarCyan"
 import SvgTagBlack from "@/lib/components/Icons/SvgTagBlack"
-import SvgPersonBlack from "@/lib/components/Icons/SvgPersonBlack"
-import { useRouter } from "next/router"
+import { Subheading01 } from "@/lib/components/Text"
+import { LectureDTO } from "@/lib/dto/core/lecture"
 
 interface Props {
   content: LectureDTO
@@ -121,13 +121,4 @@ const LecturerText = styled.div`
 
   font-size: 12px;
   line-height: 16.5px;
-`
-
-const Line = styled.hr`
-  height: 1px;
-  border: 0px;
-  background-color: #c4c4c4;
-  opacity: 0.3;
-  margin-top: 12px;
-  margin-bottom: 0px;
 `

@@ -1,7 +1,8 @@
 import styled from "@emotion/styled"
-import SvgSearchBig from "@/public/icons/img_search_big.svg"
-import { Title01, Title02 } from "@/lib/components/Text"
 import React from "react"
+
+import { Title01, Title02 } from "@/lib/components/Text"
+import SvgSearchBig from "@/public/icons/img_search_big.svg"
 
 export const SearchInitialPage = () => {
   return (

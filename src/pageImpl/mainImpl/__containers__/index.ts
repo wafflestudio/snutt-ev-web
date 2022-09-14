@@ -1,10 +1,11 @@
+import { useInfiniteQuery, useQuery } from "react-query"
+
 import {
   fetchLatestLectures,
   getMainTagEvaluations,
   getMainTagInfos,
 } from "@/lib/api/apis"
 import { TagDTO } from "@/lib/dto/core/tag"
-import { useInfiniteQuery, useQuery } from "react-query"
 
 export function useRecommendationTagsContainer() {
   const { data } = useQuery("mainTags", getMainTagInfos)

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled"
+
 import { Subheading02 } from "@/lib/components/Text"
 import SurprisedCatImage from "@/public/icons/surprised_cat.svg"
 

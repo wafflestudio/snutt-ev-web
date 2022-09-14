@@ -1,11 +1,13 @@
 import styled from "@emotion/styled"
-import { TagGroupList } from "./TagGroupList"
-import { useMemo, useState } from "react"
-import { TagList } from "./TagList"
+import { useState } from "react"
+import Sheet from "react-modal-sheet"
+
+import SvgExit from "@/lib/components/Icons/SvgExit"
 import { TagWithColor } from "@/lib/dto/core/tag"
 import { TagGroupWithColor } from "@/lib/dto/core/tagGroup"
-import Sheet from "react-modal-sheet"
-import SvgExit from "@/lib/components/Icons/SvgExit"
+
+import { TagGroupList } from "./TagGroupList"
+import { TagList } from "./TagList"
 
 interface Props {
   selectedTags: TagWithColor[]
@@ -28,9 +30,7 @@ export const SearchOptionSheet: React.FC<Props> = ({
     tagGroups[0],
   )
 
-  const visibleTags = useMemo(() => {
-    return selectedTagGroup.tags
-  }, [selectedTagGroup, tagGroups])
+  const visibleTags = selectedTagGroup.tags
 
   return (
     <Sheet isOpen={isOpened} onClose={onClose} snapPoints={[420]}>
