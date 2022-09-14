@@ -24,7 +24,6 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  Modal,
   TextField,
 } from "@mui/material"
 import { deleteEvaluation, postReportEvaluation } from "@lib/api/apis"
@@ -287,7 +286,7 @@ export const DetailImpl = () => {
               </ReviewDiagram>
 
               <ReviewList>
-                {myReviewResult?.evaluations.map((content, index) => (
+                {myReviewResult?.evaluations.map((content) => (
                   <LectureReviewCard
                     review={content}
                     key={content.id}
