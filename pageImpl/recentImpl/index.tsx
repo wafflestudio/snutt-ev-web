@@ -1,11 +1,11 @@
 import styled from "@emotion/styled/"
-import { AppBar } from "@lib/components/Appbar"
-import SvgArrowBack from "@lib/components/Icons/SvgArrowBack"
-import { Title01, Title02 } from "@lib/components/Text"
+import { AppBar } from "@/lib/components/Appbar"
+import SvgArrowBack from "@/lib/components/Icons/SvgArrowBack"
+import { Title01, Title02 } from "@/lib/components/Text"
 import { useRouter } from "next/router"
 import { RecentLectureItem } from "./__components__/RecentResultItem"
-import { useMainLatestLectureContainer } from "@pageImpl/mainImpl/__containers__"
-import { SemesterIntToString } from "@lib/util"
+import { useMainLatestLectureContainer } from "@/pageImpl/mainImpl/__containers__"
+import { SemesterIntToString } from "@/lib/util"
 import { Fragment } from "react"
 
 export const RecentImpl = () => {

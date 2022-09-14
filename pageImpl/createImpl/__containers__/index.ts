@@ -1,4 +1,4 @@
-import { fetchSemesterLectures } from "@lib/api/apis"
+import { fetchSemesterLectures } from "@/lib/api/apis"
 import { useState } from "react"
 import { useQuery } from "react-query"
 

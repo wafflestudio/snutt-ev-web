@@ -2,8 +2,8 @@ import {
   fetchLatestLectures,
   getMainTagEvaluations,
   getMainTagInfos,
-} from "@lib/api/apis"
-import { TagDTO } from "@lib/dto/core/tag"
+} from "@/lib/api/apis"
+import { TagDTO } from "@/lib/dto/core/tag"
 import { useInfiniteQuery, useQuery } from "react-query"
 
 export function useRecommendationTagsContainer() {

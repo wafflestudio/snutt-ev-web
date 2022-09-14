@@ -1,10 +1,10 @@
 import styled from "@emotion/styled"
-import { LectureDTO } from "@lib/dto/core/lecture"
+import { LectureDTO } from "@/lib/dto/core/lecture"
 
-import { Subheading01 } from "@lib/components/Text"
-import SvgStarCyan from "@lib/components/Icons/SvgStarCyan"
-import SvgTagBlack from "@lib/components/Icons/SvgTagBlack"
-import SvgPersonBlack from "@lib/components/Icons/SvgPersonBlack"
+import { Subheading01 } from "@/lib/components/Text"
+import SvgStarCyan from "@/lib/components/Icons/SvgStarCyan"
+import SvgTagBlack from "@/lib/components/Icons/SvgTagBlack"
+import SvgPersonBlack from "@/lib/components/Icons/SvgPersonBlack"
 import { useRouter } from "next/router"
 
 interface Props {

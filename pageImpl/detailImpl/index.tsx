@@ -1,21 +1,21 @@
 import styled from "@emotion/styled"
-import { AppBar } from "@lib/components/Appbar"
+import { AppBar } from "@/lib/components/Appbar"
 import { Router, useRouter } from "next/router"
-import { Detail, Subheading02, Title01 } from "@lib/components/Text"
+import { Detail, Subheading02, Title01 } from "@/lib/components/Text"
 import { useEvaluationSummaryContainer } from "./__containers__/useEvaluationSummaryContainer"
 import { LectureReviewCard } from "./__components__/LectureReviewCard"
 
-import SvgWrite from "@lib/components/Icons/SvgWrite"
-import SvgStarSmallFilled from "@lib/components/Icons/SvgStarSmallFilled"
-import SvgStarSmallEmpty from "@lib/components/Icons/SvgStarSmallEmpty"
-import SvgArrowBack from "@lib/components/Icons/SvgArrowBack"
-import FossilIcon from "@public/icons/fossil.svg"
-import { RatingGraph, RatingGraphAxis } from "@lib/components/RatingGraph"
-import { useLectureEvaluationsContainer } from "@pageImpl/detailImpl/__containers__/useLectureEvaluationsContainer"
-import useScrollLoader from "@lib/hooks/useScrollLoader"
+import SvgWrite from "@/lib/components/Icons/SvgWrite"
+import SvgStarSmallFilled from "@/lib/components/Icons/SvgStarSmallFilled"
+import SvgStarSmallEmpty from "@/lib/components/Icons/SvgStarSmallEmpty"
+import SvgArrowBack from "@/lib/components/Icons/SvgArrowBack"
+import FossilIcon from "@/public/icons/fossil.svg"
+import { RatingGraph, RatingGraphAxis } from "@/lib/components/RatingGraph"
+import { useLectureEvaluationsContainer } from "@/pageImpl/detailImpl/__containers__/useLectureEvaluationsContainer"
+import useScrollLoader from "@/lib/hooks/useScrollLoader"
 import React, { useState } from "react"
 import EvaluationModifySheet from "./__components__/EvaluationModifySheet"
-import { EvaluationDTO } from "@lib/dto/core/evaluation"
+import { EvaluationDTO } from "@/lib/dto/core/evaluation"
 import { useMyLectureEvaluationsContainer } from "./__containers__/useMyLectureEvaluationsContainer"
 import {
   Button,
@@ -26,12 +26,12 @@ import {
   DialogTitle,
   TextField,
 } from "@mui/material"
-import { deleteEvaluation, postReportEvaluation } from "@lib/api/apis"
+import { deleteEvaluation, postReportEvaluation } from "@/lib/api/apis"
 import { useMutation, useQueryClient } from "react-query"
-import { EmptyReviewPlaceholder } from "@lib/components/Miscellaneous/EmptyReviewPlaceholder"
-import { RatingTooltip } from "@lib/components/Tooltip"
-import { SearchResultLoading } from "@lib/components/Miscellaneous/Loading"
-import { COLORS } from "@lib/styles/colors"
+import { EmptyReviewPlaceholder } from "@/lib/components/Miscellaneous/EmptyReviewPlaceholder"
+import { RatingTooltip } from "@/lib/components/Tooltip"
+import { SearchResultLoading } from "@/lib/components/Miscellaneous/Loading"
+import { COLORS } from "@/lib/styles/colors"
 
 export const DetailImpl = () => {
   const router = useRouter()

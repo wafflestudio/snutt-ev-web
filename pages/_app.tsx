@@ -7,12 +7,12 @@ import {
   QueryErrorResetBoundary,
 } from "react-query"
 import { css, Global } from "@emotion/react"
-import { appleSDGNeo } from "@lib/styles/fonts"
+import { appleSDGNeo } from "@/lib/styles/fonts"
 import { ErrorBoundary } from "react-error-boundary"
-import { ErrorView } from "@lib/components/Error"
-import { MailVerifyImpl } from "@pageImpl/mailVerifyImpl"
-import useCookie from "@lib/hooks/useCookie"
-import { getEmailVerification } from "@lib/api/apis"
+import { ErrorView } from "@/lib/components/Error"
+import { MailVerifyImpl } from "@/pageImpl/mailVerifyImpl"
+import useCookie from "@/lib/hooks/useCookie"
+import { getEmailVerification } from "@/lib/api/apis"
 
 const queryClient = new QueryClient({
   defaultOptions: {

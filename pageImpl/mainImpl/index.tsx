@@ -5,19 +5,19 @@ import {
   useMainEvaluationContainer,
   useMainLatestLectureContainer,
 } from "./__containers__"
-import { Subheading02, Title01 } from "@lib/components/Text"
+import { Subheading02, Title01 } from "@/lib/components/Text"
 import { RecentCarousel } from "./__components__/RecentCarousel"
 import React, { useEffect, useState } from "react"
 import { ToggleButton, ToggleButtonGroup } from "@mui/material/"
-import { AppBar } from "@lib/components/Appbar"
+import { AppBar } from "@/lib/components/Appbar"
 
-import SvgTimetableOn from "@lib/components/Icons/SvgTimetableOn"
-import SvgSearchOff from "@lib/components/Icons/SvgSearchOff"
+import SvgTimetableOn from "@/lib/components/Icons/SvgTimetableOn"
+import SvgSearchOff from "@/lib/components/Icons/SvgSearchOff"
 import { useRouter } from "next/router"
-import { TagDTO } from "@lib/dto/core/tag"
-import useScrollLoader from "@lib/hooks/useScrollLoader"
-import { EmptyReviewPlaceholder } from "@lib/components/Miscellaneous/EmptyReviewPlaceholder"
-import { SearchResultLoading } from "@lib/components/Miscellaneous/Loading"
+import { TagDTO } from "@/lib/dto/core/tag"
+import useScrollLoader from "@/lib/hooks/useScrollLoader"
+import { EmptyReviewPlaceholder } from "@/lib/components/Miscellaneous/EmptyReviewPlaceholder"
+import { SearchResultLoading } from "@/lib/components/Miscellaneous/Loading"
 
 export const MainImpl = () => {
   const router = useRouter()

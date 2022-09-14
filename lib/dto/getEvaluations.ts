@@ -1,4 +1,4 @@
-import { EvaluationDTO } from "@lib/dto/core/evaluation"
+import { EvaluationDTO } from "@/lib/dto/core/evaluation"
 
 export interface GetEvaluationsQuery {
   cursor: string
