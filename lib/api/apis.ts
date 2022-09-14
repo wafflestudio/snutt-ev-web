@@ -1,29 +1,19 @@
-import { GetSemesterLecturesResult } from "@/lib/dto/getSemesterLectures"
-import { GetTagInfosProcessedResult } from "../dto/getTagInfos"
-import { GetLecturesQuery, GetLecturesResult } from "@/lib/dto/getLectures"
-import { evClient, coreClient } from "./request"
-import { GetEvaluationSummaryResponse } from "@/lib/dto/getEvaluationSummary"
+import { DeleteEvaluationResult } from "@/lib/dto/deleteEvaluation"
+import { GetEmailVerificationResult } from "@/lib/dto/getEmailVerification"
 import {
   GetEvaluationsQuery,
   GetEvaluationsResult,
   GetMyEvaluationsResult,
 } from "@/lib/dto/getEvaluations"
-import {
-  PostEvaluationQuery,
-  PostEvaluationResult,
-} from "@/lib/dto/postEvaluation"
-import { GetMainTagInfosResult } from "@/lib/dto/getMainTagInfos"
+import { GetEvaluationSummaryResponse } from "@/lib/dto/getEvaluationSummary"
+import { GetLatestLecturesResult } from "@/lib/dto/getLatestLectures"
+import { GetLecturesQuery, GetLecturesResult } from "@/lib/dto/getLectures"
 import {
   GetMainTagEvaluationsResult,
   GetMainTagEvalutionsQuery,
 } from "@/lib/dto/getMainTagEvaluations"
-import { GetLatestLecturesResult } from "@/lib/dto/getLatestLectures"
-import { DeleteEvaluationResult } from "@/lib/dto/deleteEvaluation"
-import {
-  PostReportEvaluationParams,
-  PostReportEvaluationResult,
-} from "@/lib/dto/postReportEvaluation"
-import { GetEmailVerificationResult } from "@/lib/dto/getEmailVerification"
+import { GetMainTagInfosResult } from "@/lib/dto/getMainTagInfos"
+import { GetSemesterLecturesResult } from "@/lib/dto/getSemesterLectures"
 import {
   PostEmailVerificationCodeParams,
   PostEmailVerificationCodeResult,
@@ -32,6 +22,17 @@ import {
   PostEmailVerificationParams,
   PostEmailVerificationResult,
 } from "@/lib/dto/PostEmailVerification"
+import {
+  PostEvaluationQuery,
+  PostEvaluationResult,
+} from "@/lib/dto/postEvaluation"
+import {
+  PostReportEvaluationParams,
+  PostReportEvaluationResult,
+} from "@/lib/dto/postReportEvaluation"
+
+import { GetTagInfosProcessedResult } from "../dto/getTagInfos"
+import { coreClient, evClient } from "./request"
 
 // 지난 학기 들은 강의 목록 불러오는 api
 export async function fetchLatestLectures() {

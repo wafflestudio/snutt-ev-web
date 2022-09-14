@@ -1,9 +1,10 @@
 import styled from "@emotion/styled"
-import { Title01, Title02 } from "@/lib/components/Text"
 import React from "react"
-import { SvgWaffleCat } from "@/lib/components/Icons/SvgWaffleCat"
+
 import { AppBar } from "@/lib/components/Appbar"
 import SvgTimetableOn from "@/lib/components/Icons/SvgTimetableOn"
+import { SvgWaffleCat } from "@/lib/components/Icons/SvgWaffleCat"
+import { Title01, Title02 } from "@/lib/components/Text"
 
 export default function Custom404() {
   return (

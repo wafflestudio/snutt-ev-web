@@ -1,7 +1,8 @@
-import { useState, useRef, useEffect } from "react"
-import { TootTipContent } from "@/pageImpl/createImpl/__components__/ToolTipContent"
-import SvgTooltip from "@/lib/components/Icons/SvgTooltip"
 import styled from "@emotion/styled"
+import { useEffect, useRef, useState } from "react"
+
+import SvgTooltip from "@/lib/components/Icons/SvgTooltip"
+import { TootTipContent } from "@/pageImpl/createImpl/__components__/ToolTipContent"
 
 export const RatingTooltip = () => {
   const [tooltipOpen, setTooltipOpen] = useState(false)

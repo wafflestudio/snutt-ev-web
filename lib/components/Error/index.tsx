@@ -1,6 +1,7 @@
-import SurprisedCatImage from "public/icons/surprised_cat.svg"
-import ReviewIcon from "public/icons/review_icon.svg"
 import styled from "@emotion/styled"
+import ReviewIcon from "public/icons/review_icon.svg"
+import SurprisedCatImage from "public/icons/surprised_cat.svg"
+
 import { Title02 } from "@/lib/components/Text/Title"
 
 interface Props {
