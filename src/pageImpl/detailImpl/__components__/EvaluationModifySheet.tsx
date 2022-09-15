@@ -1,9 +1,9 @@
 import styled from "@emotion/styled"
-import ReportIcon from "public/icons/report.svg"
-import TrashIcon from "public/icons/trash.svg"
 import React from "react"
 import Sheet from "react-modal-sheet"
 
+import ReportIcon from "@/assets/icons/report.svg"
+import TrashIcon from "@/assets/icons/trash.svg"
 import { Subheading02 } from "@/lib/components/Text"
 
 interface Props {

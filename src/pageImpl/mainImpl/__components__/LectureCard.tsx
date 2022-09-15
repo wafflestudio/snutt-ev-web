@@ -1,13 +1,13 @@
 import styled from "@emotion/styled"
 import { useRouter } from "next/router"
 
+import SvgClockBlack from "@/assets/icons/clock_black.svg"
 import SvgPersonBlack from "@/lib/components/Icons/SvgPersonBlack"
 import SvgTagBlack from "@/lib/components/Icons/SvgTagBlack"
 import SvgWrite from "@/lib/components/Icons/SvgWrite"
 import { Detail, Subheading01 } from "@/lib/components/Text"
 import { LatestLectureDTO } from "@/lib/dto/core/latestLecture"
 import { SemesterIntToString } from "@/lib/util"
-import SvgClockBlack from "@/public/icons/clock_black.svg"
 
 interface Props {
   lecture: LatestLectureDTO
