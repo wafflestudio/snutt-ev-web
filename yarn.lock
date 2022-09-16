@@ -1688,6 +1688,71 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@motionone/animation@npm:^10.13.1":
+  version: 10.14.0
+  resolution: "@motionone/animation@npm:10.14.0"
+  dependencies:
+    "@motionone/easing": ^10.14.0
+    "@motionone/types": ^10.14.0
+    "@motionone/utils": ^10.14.0
+    tslib: ^2.3.1
+  checksum: 664f7f036418e3604bdcb267636ed21057a2036a21cdff90f9fa49b62e788cdfc3149f6f9a27e9530ebfbee3a39d6e7dcd73adaa95d16af25bfcf1e01bd95cbb
+  languageName: node
+  linkType: hard
+
+"@motionone/dom@npm:10.13.1":
+  version: 10.13.1
+  resolution: "@motionone/dom@npm:10.13.1"
+  dependencies:
+    "@motionone/animation": ^10.13.1
+    "@motionone/generators": ^10.13.1
+    "@motionone/types": ^10.13.0
+    "@motionone/utils": ^10.13.1
+    hey-listen: ^1.0.8
+    tslib: ^2.3.1
+  checksum: cbf7e9f4f23eb6dc0ae7fb7d19b4ad9c3fab51b161c9ad309dbe7e50de676002ffad35d5123d610d3a9d2bdc717cfbc79909facc32fbf2ca871287861bca6e6d
+  languageName: node
+  linkType: hard
+
+"@motionone/easing@npm:^10.14.0":
+  version: 10.14.0
+  resolution: "@motionone/easing@npm:10.14.0"
+  dependencies:
+    "@motionone/utils": ^10.14.0
+    tslib: ^2.3.1
+  checksum: c845b7a445d6dbfb6d9d830fe8c88050345988fb6e423e63c1962506995e99efe899d6e7b14a8960b7df27aa279dfdfb02202a20de01bc65dcbd416ec2315d37
+  languageName: node
+  linkType: hard
+
+"@motionone/generators@npm:^10.13.1":
+  version: 10.14.0
+  resolution: "@motionone/generators@npm:10.14.0"
+  dependencies:
+    "@motionone/types": ^10.14.0
+    "@motionone/utils": ^10.14.0
+    tslib: ^2.3.1
+  checksum: 14cb500441f7b19dd84672c00ebeda0380fa151922118ac7e1bd13bf7b7b6bd87f876454863f3acf0849bb9c7b83a496eb0fba8f7b4d720f99bf5fa2121f056f
+  languageName: node
+  linkType: hard
+
+"@motionone/types@npm:^10.13.0, @motionone/types@npm:^10.14.0":
+  version: 10.14.0
+  resolution: "@motionone/types@npm:10.14.0"
+  checksum: 2fbd65f925c786b190d99867010960ffb458beda5f9b5499eeb0822094871ecbeded1aae917c194b605d80f0c56a55a13ff1e0fa4f6bad3ad8ff32fe5a3201dc
+  languageName: node
+  linkType: hard
+
+"@motionone/utils@npm:^10.13.1, @motionone/utils@npm:^10.14.0":
+  version: 10.14.0
+  resolution: "@motionone/utils@npm:10.14.0"
+  dependencies:
+    "@motionone/types": ^10.14.0
+    hey-listen: ^1.0.8
+    tslib: ^2.3.1
+  checksum: eb4c0a50e458ba7e7944dba7d0b063665744fed60aef9b4670bbc26fe02bed43f26595e9515f8ca6e4899ff5f31e7d81708feb42c16bf6e91c871d310085bc48
+  languageName: node
+  linkType: hard
+
 "@mswjs/cookies@npm:^0.2.2":
   version: 0.2.2
   resolution: "@mswjs/cookies@npm:0.2.2"
@@ -4331,32 +4396,33 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:4.1.7":
-  version: 4.1.7
-  resolution: "framer-motion@npm:4.1.7"
+"framer-motion@npm:^7.3.5":
+  version: 7.3.5
+  resolution: "framer-motion@npm:7.3.5"
   dependencies:
     "@emotion/is-prop-valid": ^0.8.2
-    framesync: 5.3.0
+    "@motionone/dom": 10.13.1
+    framesync: 6.1.2
     hey-listen: ^1.0.8
-    popmotion: 9.3.5
-    style-value-types: 4.1.4
-    tslib: ^2.1.0
+    popmotion: 11.0.5
+    style-value-types: 5.1.2
+    tslib: 2.4.0
   peerDependencies:
-    react: ">=16.8 || ^17.0.0"
-    react-dom: ">=16.8 || ^17.0.0"
+    react: ^18.0.0
+    react-dom: ^18.0.0
   dependenciesMeta:
     "@emotion/is-prop-valid":
       optional: true
-  checksum: 492578368de9e2b173c72fb8e459374f2dd1b4399e6b1d14c81fb1945facb6bf7ef7ef70435b21dcc54827abb4f0f4b30e4ea31cd6dfa60e4e5e20a4e51795e8
+  checksum: cf424759774baec082d4ab6912d5dedb97fa3e2fcf53bd8948b7dc9f22d296d1411c4de7b0608a5dcb95e4664856a8dcfbcd5ada6b5a005a1e3acd9781d7348f
   languageName: node
   linkType: hard
 
-"framesync@npm:5.3.0":
-  version: 5.3.0
-  resolution: "framesync@npm:5.3.0"
+"framesync@npm:6.1.2":
+  version: 6.1.2
+  resolution: "framesync@npm:6.1.2"
   dependencies:
-    tslib: ^2.1.0
-  checksum: 9ebbb2863e6a1cfd2e9dd1b73af427d23caa03c92dd49ea767ebdd208c3a573bba4a1026f67068d856a21704f79adcdf2f750cc852ff73bc1f0e80edaaecded8
+    tslib: 2.4.0
+  checksum: 250dec78c351b087a47558b8bcf85a91a878507a73f05c095f7728617d40432b8ca0cb21deee98026d582c67610e961f83e535990035f6c9902e721580daff76
   languageName: node
   linkType: hard
 
@@ -6062,15 +6128,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"popmotion@npm:9.3.5":
-  version: 9.3.5
-  resolution: "popmotion@npm:9.3.5"
+"popmotion@npm:11.0.5":
+  version: 11.0.5
+  resolution: "popmotion@npm:11.0.5"
   dependencies:
-    framesync: 5.3.0
+    framesync: 6.1.2
     hey-listen: ^1.0.8
-    style-value-types: 4.1.4
-    tslib: ^2.1.0
-  checksum: 8f05f5ae6cb71a237732f0345a5e8295690061bf43cf45553954a9cdeea84a60a3ead4ca9136c43a6e8ed5490cde90e763076a347d0f6814e5a13d63aefbf1ce
+    style-value-types: 5.1.2
+    tslib: 2.4.0
+  checksum: f6990d7a59eff402356efd3c9874c3b32bdfd0890ef1da97c71b20ea5ca8f85c17e2daaf11d1328d2756999b0f8222b3b4ec73b4558246843f100053b5a389d7
   languageName: node
   linkType: hard
 
@@ -6239,15 +6305,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-modal-sheet@npm:^1.4.1":
-  version: 1.5.0
-  resolution: "react-modal-sheet@npm:1.5.0"
+"react-modal-sheet@npm:^1.5.2":
+  version: 1.5.2
+  resolution: "react-modal-sheet@npm:1.5.2"
   dependencies:
     react-merge-refs: 1.1.0
   peerDependencies:
-    framer-motion: 2.x || 3.x || 4.x || 5.x || 6.x
+    framer-motion: ">=2"
     react: ">=16"
-  checksum: 709d6b654485ad19cecc10b9adae771bc604260114744c25fc15c9d40e8edbc419f1fafee865b0ae687f4e552ba9f12c6ecc462d111b1d8445524bc96ee2c428
+  checksum: 5c3c0a0dcffae024d190935952a5648d69974308ac148a630f7649b8ed9d61f730d7fe8aade1b2cf266aa50f69b78a7009ccb480816b122480020ceabf7e3bf4
   languageName: node
   linkType: hard
 
@@ -6706,7 +6772,7 @@ __metadata:
     eslint-plugin-react: ^7.24.0
     eslint-plugin-react-hooks: ^4.2.0
     eslint-plugin-simple-import-sort: ^8.0.0
-    framer-motion: 4.1.7
+    framer-motion: ^7.3.5
     js-cookie: ^3.0.1
     msw: ^0.47.2
     next: ^12.3.0
@@ -6715,7 +6781,7 @@ __metadata:
     react-countdown: ^2.3.2
     react-dom: ^18.2.0
     react-error-boundary: ^3.1.4
-    react-modal-sheet: ^1.4.1
+    react-modal-sheet: ^1.5.2
     typescript: ^4.8.3
   languageName: unknown
   linkType: soft
@@ -6911,13 +6977,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"style-value-types@npm:4.1.4":
-  version: 4.1.4
-  resolution: "style-value-types@npm:4.1.4"
+"style-value-types@npm:5.1.2":
+  version: 5.1.2
+  resolution: "style-value-types@npm:5.1.2"
   dependencies:
     hey-listen: ^1.0.8
-    tslib: ^2.1.0
-  checksum: 96189770076a2717bf579f7d73a49953f0c3d633b90fed9b44b8285cbbe7facd19d6d7a0d2802fb493b45995791f62b87983c3d3c24128818a69e593b6d77aed
+    tslib: 2.4.0
+  checksum: 262d89aa3131d9076f8699cb38119740beadff901732c5f71bd3a34fcc398246a398d74057ca4ed3c06aeb44d8c5022839f6203a9a1bc7fdde2965674e3eaa31
   languageName: node
   linkType: hard
 
@@ -7063,6 +7129,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tslib@npm:2.4.0, tslib@npm:^2.3.1, tslib@npm:^2.4.0":
+  version: 2.4.0
+  resolution: "tslib@npm:2.4.0"
+  checksum: 8c4aa6a3c5a754bf76aefc38026134180c053b7bd2f81338cb5e5ebf96fefa0f417bff221592bf801077f5bf990562f6264fecbc42cd3309b33872cb6fc3b113
+  languageName: node
+  linkType: hard
+
 "tslib@npm:^1.8.1":
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
@@ -7074,13 +7147,6 @@ __metadata:
   version: 2.3.1
   resolution: "tslib@npm:2.3.1"
   checksum: de17a98d4614481f7fcb5cd53ffc1aaf8654313be0291e1bfaee4b4bb31a20494b7d218ff2e15017883e8ea9626599b3b0e0229c18383ba9dce89da2adf15cb9
-  languageName: node
-  linkType: hard
-
-"tslib@npm:^2.4.0":
-  version: 2.4.0
-  resolution: "tslib@npm:2.4.0"
-  checksum: 8c4aa6a3c5a754bf76aefc38026134180c053b7bd2f81338cb5e5ebf96fefa0f417bff221592bf801077f5bf990562f6264fecbc42cd3309b33872cb6fc3b113
   languageName: node
   linkType: hard
 
