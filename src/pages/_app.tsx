@@ -101,7 +101,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <ErrorView resetErrorBoundary={resetErrorBoundary} />
               )}
             >
-              <Suspense fallback={<></>}>
+              <Suspense fallback={null}>
                 <Component {...pageProps} />
               </Suspense>
             </ErrorBoundary>

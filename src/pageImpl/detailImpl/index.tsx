@@ -135,11 +135,7 @@ export const DetailImpl = () => {
   );
 
   if (searchResult === undefined || myReviewResult === undefined) {
-    return (
-      <>
-        <Wrapper>{appBar}</Wrapper>
-      </>
-    );
+    return <Wrapper>{appBar}</Wrapper>;
   }
 
   return (

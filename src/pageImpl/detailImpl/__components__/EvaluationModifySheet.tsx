@@ -15,54 +15,45 @@ interface Props {
   isReportable: boolean;
 }
 
-const EvaluationModifySheet: React.FC<Props> = ({
+const EvaluationModifySheet = ({
   isOpened,
   onClose,
   onDeleteClicked,
   onReportClicked,
   isModifiable,
   isReportable,
-}) => {
-  return (
-    <>
-      {isOpened && (
-        <Sheet
-          isOpen={isOpened}
-          onClose={onClose}
-          snapPoints={[75]}
-          disableDrag
-        >
-          <Sheet.Container>
-            <Sheet.Content>
-              <Wrapper>
-                {isModifiable && (
-                  <DeleteContainer onClick={onDeleteClicked}>
-                    <TrashIcon />
-                    <Subheading02 style={{ marginLeft: '25px' }}>
-                      강의평 삭제
-                    </Subheading02>
-                  </DeleteContainer>
-                )}
-                {isReportable && (
-                  <ReportContainer onClick={onReportClicked}>
-                    <ReportIcon />
-                    <Subheading02 style={{ marginLeft: '25px' }}>
-                      강의평 신고하기
-                    </Subheading02>
-                  </ReportContainer>
-                )}
-              </Wrapper>
-            </Sheet.Content>
-          </Sheet.Container>
-          <Sheet.Backdrop
-            onTap={() => {
-              onClose();
-            }}
-          />
-        </Sheet>
-      )}
-    </>
-  );
+}: Props) => {
+  return isOpened ? (
+    <Sheet isOpen={isOpened} onClose={onClose} snapPoints={[75]} disableDrag>
+      <Sheet.Container>
+        <Sheet.Content>
+          <Wrapper>
+            {isModifiable && (
+              <DeleteContainer onClick={onDeleteClicked}>
+                <TrashIcon />
+                <Subheading02 style={{ marginLeft: '25px' }}>
+                  강의평 삭제
+                </Subheading02>
+              </DeleteContainer>
+            )}
+            {isReportable && (
+              <ReportContainer onClick={onReportClicked}>
+                <ReportIcon />
+                <Subheading02 style={{ marginLeft: '25px' }}>
+                  강의평 신고하기
+                </Subheading02>
+              </ReportContainer>
+            )}
+          </Wrapper>
+        </Sheet.Content>
+      </Sheet.Container>
+      <Sheet.Backdrop
+        onTap={() => {
+          onClose();
+        }}
+      />
+    </Sheet>
+  ) : null;
 };
 
 const Wrapper = styled.div`
