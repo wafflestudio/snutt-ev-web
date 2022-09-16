@@ -23,39 +23,37 @@ export const Searchbar: React.FC<Props> = ({
   const router = useRouter();
 
   return (
-    <>
-      <AppBar
-        LeftImage={() => (
-          <BackButton onClick={() => router.back()}>
-            <SvgArrowBack width={30} height={30} />
-          </BackButton>
-        )}
-      >
-        <InputBar>
-          <SearchButton>
-            <SvgSearchOff
-              height={30}
-              width={30}
-              stroke-witdh={1}
-              onClick={onRefreshQuery}
-            />
-          </SearchButton>
-          <Input
-            placeholder="검색어를 입력하세요"
-            value={textQuery ?? ''}
-            onChange={(e) => {
-              onChangeTextQuery(e.target.value);
-            }}
-            onKeyPress={(e) => {
-              e.key === 'Enter' && onRefreshQuery();
-            }}
+    <AppBar
+      LeftImage={() => (
+        <BackButton onClick={() => router.back()}>
+          <SvgArrowBack width={30} height={30} />
+        </BackButton>
+      )}
+    >
+      <InputBar>
+        <SearchButton>
+          <SvgSearchOff
+            height={30}
+            width={30}
+            stroke-witdh={1}
+            onClick={onRefreshQuery}
           />
-          <TagButton onClick={toggleOpenSearchSheet}>
-            <SvgFilter height={30} width={30} />
-          </TagButton>
-        </InputBar>
-      </AppBar>
-    </>
+        </SearchButton>
+        <Input
+          placeholder="검색어를 입력하세요"
+          value={textQuery ?? ''}
+          onChange={(e) => {
+            onChangeTextQuery(e.target.value);
+          }}
+          onKeyPress={(e) => {
+            e.key === 'Enter' && onRefreshQuery();
+          }}
+        />
+        <TagButton onClick={toggleOpenSearchSheet}>
+          <SvgFilter height={30} width={30} />
+        </TagButton>
+      </InputBar>
+    </AppBar>
   );
 };
 

@@ -31,9 +31,7 @@ export const RecentImpl = () => {
           recentLectureData.map((it, i, array) => (
             <Fragment key={it.id}>
               {array[i - 1]?.taken_year + array[i - 1]?.taken_semester ===
-              it.taken_year + it.taken_semester ? (
-                <></>
-              ) : (
+              it.taken_year + it.taken_semester ? null : (
                 <SemesterDivider>
                   {it.taken_year}년 {SemesterIntToString(it.taken_semester)}학기
                 </SemesterDivider>

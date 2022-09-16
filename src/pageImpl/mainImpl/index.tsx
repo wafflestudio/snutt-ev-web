@@ -58,9 +58,7 @@ export const MainImpl = () => {
       </AppBar>
 
       {recentLectureData ? (
-        recentLectureData.length === 0 ? (
-          <></>
-        ) : (
+        recentLectureData.length === 0 ? null : (
           <RecentCarousel lectureList={recentLectureData} />
         )
       ) : (

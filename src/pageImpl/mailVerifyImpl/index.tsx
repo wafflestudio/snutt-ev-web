@@ -156,9 +156,7 @@ export const MailVerifyImpl = ({ setVerification }: Props) => {
               }}
             />
             <MailAddress>
-              <>
-                <Subheading02>@snu.ac.kr</Subheading02>
-              </>
+              <Subheading02>@snu.ac.kr</Subheading02>
             </MailAddress>
             <RequestVerificationButton
               onClick={requestVerificationNumberHandler}

@@ -42,9 +42,7 @@ export const LectureReviewCard = ({
             </div>
           </SideInfo>
         </Header>
-        {review.content === '' ? (
-          <></>
-        ) : (
+        {review.content === '' ? null : (
           <Review>
             <CollapsableText text={review.content} />
           </Review>
