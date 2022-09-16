@@ -1,3 +1,3 @@
-import { TagGroupDTO } from "./core/tagGroup";
+import { TagGroupDTO } from './core/tagGroup';
 
 export type GetMainTagInfosResult = TagGroupDTO;

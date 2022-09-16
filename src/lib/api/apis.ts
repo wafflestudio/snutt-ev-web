@@ -1,38 +1,38 @@
-import { DeleteEvaluationResult } from "@/lib/dto/deleteEvaluation";
-import { GetEmailVerificationResult } from "@/lib/dto/getEmailVerification";
+import { DeleteEvaluationResult } from '@/lib/dto/deleteEvaluation';
+import { GetEmailVerificationResult } from '@/lib/dto/getEmailVerification';
 import {
   GetEvaluationsQuery,
   GetEvaluationsResult,
   GetMyEvaluationsResult,
-} from "@/lib/dto/getEvaluations";
-import { GetEvaluationSummaryResponse } from "@/lib/dto/getEvaluationSummary";
-import { GetLatestLecturesResult } from "@/lib/dto/getLatestLectures";
-import { GetLecturesQuery, GetLecturesResult } from "@/lib/dto/getLectures";
+} from '@/lib/dto/getEvaluations';
+import { GetEvaluationSummaryResponse } from '@/lib/dto/getEvaluationSummary';
+import { GetLatestLecturesResult } from '@/lib/dto/getLatestLectures';
+import { GetLecturesQuery, GetLecturesResult } from '@/lib/dto/getLectures';
 import {
   GetMainTagEvaluationsResult,
   GetMainTagEvalutionsQuery,
-} from "@/lib/dto/getMainTagEvaluations";
-import { GetMainTagInfosResult } from "@/lib/dto/getMainTagInfos";
-import { GetSemesterLecturesResult } from "@/lib/dto/getSemesterLectures";
+} from '@/lib/dto/getMainTagEvaluations';
+import { GetMainTagInfosResult } from '@/lib/dto/getMainTagInfos';
+import { GetSemesterLecturesResult } from '@/lib/dto/getSemesterLectures';
 import {
   PostEmailVerificationCodeParams,
   PostEmailVerificationCodeResult,
-} from "@/lib/dto/PostEmailVerification";
+} from '@/lib/dto/PostEmailVerification';
 import {
   PostEmailVerificationParams,
   PostEmailVerificationResult,
-} from "@/lib/dto/PostEmailVerification";
+} from '@/lib/dto/PostEmailVerification';
 import {
   PostEvaluationQuery,
   PostEvaluationResult,
-} from "@/lib/dto/postEvaluation";
+} from '@/lib/dto/postEvaluation';
 import {
   PostReportEvaluationParams,
   PostReportEvaluationResult,
-} from "@/lib/dto/postReportEvaluation";
+} from '@/lib/dto/postReportEvaluation';
 
-import { GetTagInfosProcessedResult } from "../dto/getTagInfos";
-import { coreClient, evClient } from "./request";
+import { GetTagInfosProcessedResult } from '../dto/getTagInfos';
+import { coreClient, evClient } from './request';
 
 // 지난 학기 들은 강의 목록 불러오는 api
 export async function fetchLatestLectures() {
@@ -91,7 +91,7 @@ export async function fetchEvaluationSummary(id: number) {
 
 export async function getLectures(query: GetLecturesQuery) {
   const endpoint = `/v1/lectures`;
-  const params = { ...query, tags: query.tags.join(",") };
+  const params = { ...query, tags: query.tags.join(',') };
   const response = await evClient.get<GetLecturesResult>(endpoint, { params });
   return response.data;
 }

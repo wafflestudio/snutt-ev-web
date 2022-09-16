@@ -3,5 +3,5 @@
   "tabWidth": 2,
   "semi": true,
   "arrowParens": "always",
-  "singleQuote": false
+  "singleQuote": true
 }

@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { handlers } from "@/mocks/handlers";
+import { handlers } from '@/mocks/handlers';
 
 /**
  * msw 를 활성화하는 hook
@@ -19,9 +19,9 @@ export const useMSW = (enable: boolean) => {
     let cancelled = false;
 
     const enableMSW = async () => {
-      const { setupWorker } = await import("msw");
+      const { setupWorker } = await import('msw');
       if (cancelled) return;
-      setupWorker(...handlers).start({ onUnhandledRequest: "bypass" });
+      setupWorker(...handlers).start({ onUnhandledRequest: 'bypass' });
       setEnabled(true);
     };
 

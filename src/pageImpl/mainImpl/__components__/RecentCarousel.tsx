@@ -1,10 +1,10 @@
-import styled from "@emotion/styled";
-import { useRouter } from "next/router";
+import styled from '@emotion/styled';
+import { useRouter } from 'next/router';
 
-import { Subheading02, Title01 } from "@/lib/components/Text";
-import { LatestLectureDTO } from "@/lib/dto/core/latestLecture";
+import { Subheading02, Title01 } from '@/lib/components/Text';
+import { LatestLectureDTO } from '@/lib/dto/core/latestLecture';
 
-import { LectureCard } from "./LectureCard";
+import { LectureCard } from './LectureCard';
 
 interface Props {
   lectureList: LatestLectureDTO[];
@@ -20,7 +20,7 @@ export const RecentCarousel = ({ lectureList }: Props) => {
         <Title01>지난 학기 강의평을 남겨주세요</Title01>
         <Subheading02
           onClick={() => {
-            router.push("/recent");
+            router.push('/recent');
           }}
         >
           더보기 &gt;

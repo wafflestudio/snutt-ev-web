@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 import {
   Button,
   Dialog,
@@ -7,32 +7,32 @@ import {
   DialogContentText,
   DialogTitle,
   TextField,
-} from "@mui/material";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Router, useRouter } from "next/router";
-import React, { useState } from "react";
+} from '@mui/material';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { Router, useRouter } from 'next/router';
+import React, { useState } from 'react';
 
-import FossilIcon from "@/assets/icons/fossil.svg";
-import { deleteEvaluation, postReportEvaluation } from "@/lib/api/apis";
-import { AppBar } from "@/lib/components/Appbar";
-import SvgArrowBack from "@/lib/components/Icons/SvgArrowBack";
-import SvgStarSmallEmpty from "@/lib/components/Icons/SvgStarSmallEmpty";
-import SvgStarSmallFilled from "@/lib/components/Icons/SvgStarSmallFilled";
-import SvgWrite from "@/lib/components/Icons/SvgWrite";
-import { EmptyReviewPlaceholder } from "@/lib/components/Miscellaneous/EmptyReviewPlaceholder";
-import { SearchResultLoading } from "@/lib/components/Miscellaneous/Loading";
-import { RatingGraph, RatingGraphAxis } from "@/lib/components/RatingGraph";
-import { Detail, Subheading02, Title01 } from "@/lib/components/Text";
-import { RatingTooltip } from "@/lib/components/Tooltip";
-import { EvaluationDTO } from "@/lib/dto/core/evaluation";
-import useScrollLoader from "@/lib/hooks/useScrollLoader";
-import { COLORS } from "@/lib/styles/colors";
-import { useLectureEvaluationsContainer } from "@/pageImpl/detailImpl/__containers__/useLectureEvaluationsContainer";
+import FossilIcon from '@/assets/icons/fossil.svg';
+import { deleteEvaluation, postReportEvaluation } from '@/lib/api/apis';
+import { AppBar } from '@/lib/components/Appbar';
+import SvgArrowBack from '@/lib/components/Icons/SvgArrowBack';
+import SvgStarSmallEmpty from '@/lib/components/Icons/SvgStarSmallEmpty';
+import SvgStarSmallFilled from '@/lib/components/Icons/SvgStarSmallFilled';
+import SvgWrite from '@/lib/components/Icons/SvgWrite';
+import { EmptyReviewPlaceholder } from '@/lib/components/Miscellaneous/EmptyReviewPlaceholder';
+import { SearchResultLoading } from '@/lib/components/Miscellaneous/Loading';
+import { RatingGraph, RatingGraphAxis } from '@/lib/components/RatingGraph';
+import { Detail, Subheading02, Title01 } from '@/lib/components/Text';
+import { RatingTooltip } from '@/lib/components/Tooltip';
+import { EvaluationDTO } from '@/lib/dto/core/evaluation';
+import useScrollLoader from '@/lib/hooks/useScrollLoader';
+import { COLORS } from '@/lib/styles/colors';
+import { useLectureEvaluationsContainer } from '@/pageImpl/detailImpl/__containers__/useLectureEvaluationsContainer';
 
-import EvaluationModifySheet from "./__components__/EvaluationModifySheet";
-import { LectureReviewCard } from "./__components__/LectureReviewCard";
-import { useEvaluationSummaryContainer } from "./__containers__/useEvaluationSummaryContainer";
-import { useMyLectureEvaluationsContainer } from "./__containers__/useMyLectureEvaluationsContainer";
+import EvaluationModifySheet from './__components__/EvaluationModifySheet';
+import { LectureReviewCard } from './__components__/LectureReviewCard';
+import { useEvaluationSummaryContainer } from './__containers__/useEvaluationSummaryContainer';
+import { useMyLectureEvaluationsContainer } from './__containers__/useMyLectureEvaluationsContainer';
 
 export const DetailImpl = () => {
   const router = useRouter();
@@ -52,12 +52,12 @@ export const DetailImpl = () => {
 
   const deleteMutation = useMutation(deleteEvaluation, {
     onSuccess: () => {
-      queryClient.invalidateQueries(["evaluationSummary", Number(id)]);
-      queryClient.invalidateQueries(["myLectureEvaluation", Number(id)]);
-      queryClient.invalidateQueries(["lectureEvaluation", Number(id)]);
+      queryClient.invalidateQueries(['evaluationSummary', Number(id)]);
+      queryClient.invalidateQueries(['myLectureEvaluation', Number(id)]);
+      queryClient.invalidateQueries(['lectureEvaluation', Number(id)]);
     },
     onError: () => {
-      console.error("강의평 삭제에 실패하였습니다.");
+      console.error('강의평 삭제에 실패하였습니다.');
     },
   });
   const [deleteTargetId, setDeleteTargetId] = useState<number | undefined>(
@@ -80,15 +80,15 @@ export const DetailImpl = () => {
       postReportEvaluation(id, { content }),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries(["evaluationSummary"]);
-        queryClient.invalidateQueries(["lectureEvaluation"]);
+        queryClient.invalidateQueries(['evaluationSummary']);
+        queryClient.invalidateQueries(['lectureEvaluation']);
       },
       onError: () => {
-        console.error("강의평 신고에 실패하였습니다.");
+        console.error('강의평 신고에 실패하였습니다.');
       },
     },
   );
-  const [reportReason, setReportReason] = useState<string>("");
+  const [reportReason, setReportReason] = useState<string>('');
   const [reportTargetId, setReportTargetId] = useState<number | undefined>(
     undefined,
   );
@@ -100,7 +100,7 @@ export const DetailImpl = () => {
     const target = reportTargetId;
     setReportTargetId(undefined);
     if (target !== undefined) {
-      reportMutation.mutate({ id: target, content: reportReason ?? "" });
+      reportMutation.mutate({ id: target, content: reportReason ?? '' });
     }
   };
 
@@ -110,8 +110,8 @@ export const DetailImpl = () => {
     !isEmpty && !summaryData?.evaluation?.avg_life_balance;
 
   const goBack = () => {
-    if (((router as Router).components["/detail"] as any).initial) {
-      router.replace("/main");
+    if (((router as Router).components['/detail'] as any).initial) {
+      router.replace('/main');
     } else {
       router.back();
     }

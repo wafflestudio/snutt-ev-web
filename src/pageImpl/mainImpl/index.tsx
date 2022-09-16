@@ -1,24 +1,24 @@
-import styled from "@emotion/styled";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material/";
-import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import styled from '@emotion/styled';
+import { ToggleButton, ToggleButtonGroup } from '@mui/material/';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 
-import { AppBar } from "@/lib/components/Appbar";
-import SvgSearchOff from "@/lib/components/Icons/SvgSearchOff";
-import SvgTimetableOn from "@/lib/components/Icons/SvgTimetableOn";
-import { EmptyReviewPlaceholder } from "@/lib/components/Miscellaneous/EmptyReviewPlaceholder";
-import { SearchResultLoading } from "@/lib/components/Miscellaneous/Loading";
-import { Subheading02, Title01 } from "@/lib/components/Text";
-import { TagDTO } from "@/lib/dto/core/tag";
-import useScrollLoader from "@/lib/hooks/useScrollLoader";
+import { AppBar } from '@/lib/components/Appbar';
+import SvgSearchOff from '@/lib/components/Icons/SvgSearchOff';
+import SvgTimetableOn from '@/lib/components/Icons/SvgTimetableOn';
+import { EmptyReviewPlaceholder } from '@/lib/components/Miscellaneous/EmptyReviewPlaceholder';
+import { SearchResultLoading } from '@/lib/components/Miscellaneous/Loading';
+import { Subheading02, Title01 } from '@/lib/components/Text';
+import { TagDTO } from '@/lib/dto/core/tag';
+import useScrollLoader from '@/lib/hooks/useScrollLoader';
 
-import { EvaluationCard } from "./__components__/EvaluationCard";
-import { RecentCarousel } from "./__components__/RecentCarousel";
+import { EvaluationCard } from './__components__/EvaluationCard';
+import { RecentCarousel } from './__components__/RecentCarousel';
 import {
   useMainEvaluationContainer,
   useMainLatestLectureContainer,
   useRecommendationTagsContainer,
-} from "./__containers__";
+} from './__containers__';
 
 export const MainImpl = () => {
   const router = useRouter();
@@ -52,7 +52,7 @@ export const MainImpl = () => {
           <SvgSearchOff
             height={30}
             width={30}
-            onClick={() => router.push("/search")}
+            onClick={() => router.push('/search')}
           />
         </AppBarContent>
       </AppBar>
@@ -78,7 +78,7 @@ export const MainImpl = () => {
             <ToggleButton
               value={it}
               key={it.id}
-              style={{ whiteSpace: "nowrap", marginTop: "6px" }}
+              style={{ whiteSpace: 'nowrap', marginTop: '6px' }}
             >
               {it.name}
             </ToggleButton>

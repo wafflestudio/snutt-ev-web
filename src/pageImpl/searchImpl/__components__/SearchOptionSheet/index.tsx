@@ -1,13 +1,13 @@
-import styled from "@emotion/styled";
-import { useState } from "react";
-import Sheet from "react-modal-sheet";
+import styled from '@emotion/styled';
+import { useState } from 'react';
+import Sheet from 'react-modal-sheet';
 
-import SvgExit from "@/lib/components/Icons/SvgExit";
-import { TagWithColor } from "@/lib/dto/core/tag";
-import { TagGroupWithColor } from "@/lib/dto/core/tagGroup";
+import SvgExit from '@/lib/components/Icons/SvgExit';
+import { TagWithColor } from '@/lib/dto/core/tag';
+import { TagGroupWithColor } from '@/lib/dto/core/tagGroup';
 
-import { TagGroupList } from "./TagGroupList";
-import { TagList } from "./TagList";
+import { TagGroupList } from './TagGroupList';
+import { TagList } from './TagList';
 
 interface Props {
   selectedTags: TagWithColor[];
@@ -87,7 +87,7 @@ const TagSelectWrapper = styled.div`
 const SubmitButton = styled.div`
   background: #1bd0c8;
   text-align: center;
-  font-family: "AppleSDGothicNeo";
+  font-family: 'AppleSDGothicNeo';
   color: white;
   font-size: 17px;
   font-weight: 700;

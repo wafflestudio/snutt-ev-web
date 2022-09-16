@@ -1,17 +1,17 @@
-import styled from "@emotion/styled";
-import React, { useState } from "react";
+import styled from '@emotion/styled';
+import React, { useState } from 'react';
 
-import { SearchResultLoading } from "@/lib/components/Miscellaneous/Loading";
-import useScrollLoader from "@/lib/hooks/useScrollLoader";
+import { SearchResultLoading } from '@/lib/components/Miscellaneous/Loading';
+import useScrollLoader from '@/lib/hooks/useScrollLoader';
 
-import { Searchbar } from "./__components__/Searchbar";
-import { SearchInitialPage } from "./__components__/SearchInitialPage";
-import { SearchNoResult } from "./__components__/SearchNoResult";
-import { SearchOptionSheet } from "./__components__/SearchOptionSheet";
-import { SearchResultItem } from "./__components__/SearchResultItem";
-import { ActiveTagList } from "./__components__/SelectedTagList";
-import useSearchOptionContainer from "./__containers__/useSearchOptionContainer";
-import { useTagContainer } from "./__containers__/useTagContainer";
+import { Searchbar } from './__components__/Searchbar';
+import { SearchInitialPage } from './__components__/SearchInitialPage';
+import { SearchNoResult } from './__components__/SearchNoResult';
+import { SearchOptionSheet } from './__components__/SearchOptionSheet';
+import { SearchResultItem } from './__components__/SearchResultItem';
+import { ActiveTagList } from './__components__/SelectedTagList';
+import useSearchOptionContainer from './__containers__/useSearchOptionContainer';
+import { useTagContainer } from './__containers__/useTagContainer';
 
 export const SearchImpl = () => {
   const {
@@ -35,7 +35,7 @@ export const SearchImpl = () => {
 
   const isEmptyQuery =
     currentlyAppliedQuery === undefined ||
-    (currentlyAppliedQuery?.textQuery === "" &&
+    (currentlyAppliedQuery?.textQuery === '' &&
       currentlyAppliedQuery?.tags.length === 0);
 
   return (

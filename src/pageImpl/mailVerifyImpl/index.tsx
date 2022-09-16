@@ -1,20 +1,20 @@
-import styled from "@emotion/styled";
-import { AxiosError } from "axios";
-import React, { ChangeEvent, useState } from "react";
-import CountDown, { CountdownRenderProps, zeroPad } from "react-countdown";
+import styled from '@emotion/styled';
+import { AxiosError } from 'axios';
+import React, { ChangeEvent, useState } from 'react';
+import CountDown, { CountdownRenderProps, zeroPad } from 'react-countdown';
 
-import { postEmailVerificationCode } from "@/lib/api/apis";
-import { postEmailVerification } from "@/lib/api/apis";
-import { AppBar } from "@/lib/components/Appbar";
-import SvgTimetableOn from "@/lib/components/Icons/SvgTimetableOn";
+import { postEmailVerificationCode } from '@/lib/api/apis';
+import { postEmailVerification } from '@/lib/api/apis';
+import { AppBar } from '@/lib/components/Appbar';
+import SvgTimetableOn from '@/lib/components/Icons/SvgTimetableOn';
 import {
   Detail,
   Subheading01,
   Subheading02,
   Title01,
-} from "@/lib/components/Text";
-import { ApiError } from "@/lib/dto/core/error";
-import { COLORS } from "@/lib/styles/colors";
+} from '@/lib/components/Text';
+import { ApiError } from '@/lib/dto/core/error';
+import { COLORS } from '@/lib/styles/colors';
 
 interface Props {
   setVerification: (
@@ -24,9 +24,9 @@ interface Props {
 }
 
 export const MailVerifyImpl = ({ setVerification }: Props) => {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('');
 
-  const isRequestVerificationButtonDiasbled = email === "";
+  const isRequestVerificationButtonDiasbled = email === '';
 
   const [verificationNumber, setVerificationNumber] = useState(0);
 
@@ -55,14 +55,14 @@ export const MailVerifyImpl = ({ setVerification }: Props) => {
   const WARINING: {
     [key in Exclude<VerificationState, VerificationState.READY>]: string;
   } = {
-    [VerificationState.TIMEOUT]: "인증요청에 실패했습니다. 다시 시도해주세요",
+    [VerificationState.TIMEOUT]: '인증요청에 실패했습니다. 다시 시도해주세요',
     [VerificationState.INVALID_NUMBER]:
-      "인증번호가 틀렸습니다. 다시 시도해주세요",
-    [VerificationState.ALREADY_VERIFIED]: "이미 인증된 계정입니다",
-    [VerificationState.VERFIED_FROM_OTHER_MAIL]: "이미 사용된 메일입니다",
+      '인증번호가 틀렸습니다. 다시 시도해주세요',
+    [VerificationState.ALREADY_VERIFIED]: '이미 인증된 계정입니다',
+    [VerificationState.VERFIED_FROM_OTHER_MAIL]: '이미 사용된 메일입니다',
     [VerificationState.TOO_MANY_REQUEST]:
-      "인증요청에 실패했습니다. 3분 후에 다시 시도해주세요",
-    [VerificationState.NONE]: "",
+      '인증요청에 실패했습니다. 3분 후에 다시 시도해주세요',
+    [VerificationState.NONE]: '',
   };
 
   const countDownRenderer = ({
@@ -86,7 +86,7 @@ export const MailVerifyImpl = ({ setVerification }: Props) => {
 
   const requestVerificationNumberHandler = async () => {
     try {
-      await postEmailVerification({ email: email + "@snu.ac.kr" })
+      await postEmailVerification({ email: email + '@snu.ac.kr' })
         .then(() => {
           setVerificationState(VerificationState.READY);
           setIsVerificationNumberRequested(true);
@@ -125,7 +125,7 @@ export const MailVerifyImpl = ({ setVerification }: Props) => {
       });
 
       if (res.is_email_verified) {
-        setVerification("true");
+        setVerification('true');
       }
     } catch (e) {
       console.error(e);
@@ -150,7 +150,7 @@ export const MailVerifyImpl = ({ setVerification }: Props) => {
           <Subheading01>이메일</Subheading01>
           <EmailInputBar>
             <EmailInput
-              placeholder={"이메일을 입력하세요"}
+              placeholder={'이메일을 입력하세요'}
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
@@ -164,7 +164,7 @@ export const MailVerifyImpl = ({ setVerification }: Props) => {
               onClick={requestVerificationNumberHandler}
               disabled={isRequestVerificationButtonDiasbled}
             >
-              {isVerificationNumberRequested ? "다시 요청" : "인증요청"}
+              {isVerificationNumberRequested ? '다시 요청' : '인증요청'}
             </RequestVerificationButton>
           </EmailInputBar>
         </EmailInputWrapper>
@@ -174,7 +174,7 @@ export const MailVerifyImpl = ({ setVerification }: Props) => {
           <VerificationNumberInputBar>
             <VerificationNumberInput
               type="number"
-              placeholder={"인증번호 6자리를 입력하세요"}
+              placeholder={'인증번호 6자리를 입력하세요'}
               onChange={(e: ChangeEvent<HTMLInputElement>) => {
                 if (verificationState === VerificationState.INVALID_NUMBER) {
                   setVerificationState(VerificationState.READY);
@@ -204,7 +204,7 @@ export const MailVerifyImpl = ({ setVerification }: Props) => {
           onClick={verifyHandler}
           disabled={isCompleteButtonDisabled}
         >
-          <Title01 style={{ color: "white" }}>완료</Title01>
+          <Title01 style={{ color: 'white' }}>완료</Title01>
         </CompleteButton>
       </Content>
     </Wrapper>

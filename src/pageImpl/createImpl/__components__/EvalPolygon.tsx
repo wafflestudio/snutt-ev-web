@@ -1,9 +1,9 @@
-import styled from "@emotion/styled";
-import { SliderUnstyled } from "@mui/material";
+import styled from '@emotion/styled';
+import { SliderUnstyled } from '@mui/material';
 
-import { RatingGraph } from "@/lib/components/RatingGraph";
-import { DetailHighlight, Title01 } from "@/lib/components/Text";
-import { RatingTooltip } from "@/lib/components/Tooltip";
+import { RatingGraph } from '@/lib/components/RatingGraph';
+import { DetailHighlight, Title01 } from '@/lib/components/Text';
+import { RatingTooltip } from '@/lib/components/Tooltip';
 
 interface Props {
   defaultValue: number;
@@ -15,7 +15,7 @@ interface Props {
   };
   handleUpdateScore: (
     value: number,
-    direction: "top" | "left" | "bottom" | "right",
+    direction: 'top' | 'left' | 'bottom' | 'right',
   ) => void;
 }
 
@@ -47,10 +47,10 @@ export const EvalPolygon = ({
           max={5}
           step={1}
           defaultValue={defaultValue}
-          valueLabelDisplay={"off"}
+          valueLabelDisplay={'off'}
           value={right}
           onChange={(e: unknown, newValue: number) =>
-            handleUpdateScore(newValue as number, "right")
+            handleUpdateScore(newValue as number, 'right')
           }
         />
         <CustomSliderTop
@@ -59,12 +59,12 @@ export const EvalPolygon = ({
           max={5}
           step={1}
           defaultValue={defaultValue}
-          valueLabelDisplay={"off"}
+          valueLabelDisplay={'off'}
           value={top}
           onChange={(e: unknown, newValue: number) =>
-            handleUpdateScore(newValue as number, "top")
+            handleUpdateScore(newValue as number, 'top')
           }
-          orientation={"vertical"}
+          orientation={'vertical'}
         />
         <CustomSliderLeft
           dir="rtl"
@@ -73,10 +73,10 @@ export const EvalPolygon = ({
           max={5}
           step={1}
           defaultValue={defaultValue}
-          valueLabelDisplay={"off"}
+          valueLabelDisplay={'off'}
           value={5 - left}
           onChange={(e: unknown, newValue: number) =>
-            handleUpdateScore(5 - (newValue as number), "left")
+            handleUpdateScore(5 - (newValue as number), 'left')
           }
         />
         <CustomSliderBottom
@@ -85,12 +85,12 @@ export const EvalPolygon = ({
           max={5}
           step={1}
           defaultValue={defaultValue}
-          valueLabelDisplay={"off"}
+          valueLabelDisplay={'off'}
           value={5 - bottom}
           onChange={(e: unknown, newValue: number) =>
-            handleUpdateScore(5 - (newValue as number), "bottom")
+            handleUpdateScore(5 - (newValue as number), 'bottom')
           }
-          orientation={"vertical"}
+          orientation={'vertical'}
         />
         <AxisLabel>
           <YAxisPositive>성적 만족도</YAxisPositive>

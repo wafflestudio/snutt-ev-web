@@ -1,10 +1,10 @@
-import styled from "@emotion/styled";
-import { CircularProgress } from "@mui/material";
+import styled from '@emotion/styled';
+import { CircularProgress } from '@mui/material';
 
 export const SearchResultLoading = () => {
   return (
     <Wrapper>
-      <CircularProgress sx={{ color: "#cccccc" }} />
+      <CircularProgress sx={{ color: '#cccccc' }} />
     </Wrapper>
   );
 };

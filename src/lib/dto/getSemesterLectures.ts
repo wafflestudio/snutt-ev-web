@@ -1,4 +1,4 @@
-import { SemesterLectureDTO } from "@/lib/dto/core/semesterLecture";
+import { SemesterLectureDTO } from '@/lib/dto/core/semesterLecture';
 
 export interface GetSemesterLecturesResult {
   id: number;

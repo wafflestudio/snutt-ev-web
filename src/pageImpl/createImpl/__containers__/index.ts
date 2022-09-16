@@ -1,11 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
 
-import { fetchSemesterLectures } from "@/lib/api/apis";
+import { fetchSemesterLectures } from '@/lib/api/apis';
 
 export function useSemestersContainer(id: number) {
   const querySearch = useQuery(
-    ["lectureSemester", id],
+    ['lectureSemester', id],
     () => fetchSemesterLectures(id),
     {
       enabled: !isNaN(id),
@@ -36,7 +36,7 @@ export function usePolygonContainer() {
 
   const updateScore = (
     value: number,
-    direction: "top" | "left" | "bottom" | "right",
+    direction: 'top' | 'left' | 'bottom' | 'right',
   ) => {
     const realValue = value;
     const nextValue = realValue < 1 ? 1 : realValue;

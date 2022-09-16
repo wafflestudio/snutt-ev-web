@@ -1,10 +1,10 @@
-import styled from "@emotion/styled";
-import React from "react";
-import Sheet from "react-modal-sheet";
+import styled from '@emotion/styled';
+import React from 'react';
+import Sheet from 'react-modal-sheet';
 
-import ReportIcon from "@/assets/icons/report.svg";
-import TrashIcon from "@/assets/icons/trash.svg";
-import { Subheading02 } from "@/lib/components/Text";
+import ReportIcon from '@/assets/icons/report.svg';
+import TrashIcon from '@/assets/icons/trash.svg';
+import { Subheading02 } from '@/lib/components/Text';
 
 interface Props {
   isOpened: boolean;
@@ -38,7 +38,7 @@ const EvaluationModifySheet: React.FC<Props> = ({
                 {isModifiable && (
                   <DeleteContainer onClick={onDeleteClicked}>
                     <TrashIcon />
-                    <Subheading02 style={{ marginLeft: "25px" }}>
+                    <Subheading02 style={{ marginLeft: '25px' }}>
                       강의평 삭제
                     </Subheading02>
                   </DeleteContainer>
@@ -46,7 +46,7 @@ const EvaluationModifySheet: React.FC<Props> = ({
                 {isReportable && (
                   <ReportContainer onClick={onReportClicked}>
                     <ReportIcon />
-                    <Subheading02 style={{ marginLeft: "25px" }}>
+                    <Subheading02 style={{ marginLeft: '25px' }}>
                       강의평 신고하기
                     </Subheading02>
                   </ReportContainer>

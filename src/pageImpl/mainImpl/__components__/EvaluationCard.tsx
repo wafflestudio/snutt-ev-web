@@ -1,12 +1,12 @@
-import styled from "@emotion/styled";
-import { useRouter } from "next/router";
+import styled from '@emotion/styled';
+import { useRouter } from 'next/router';
 
-import { CollapsableText } from "@/lib/components/CollapsableText";
-import { Rating } from "@/lib/components/Rating";
-import { Detail, Subheading01 } from "@/lib/components/Text";
-import { MainEvaluationDTO } from "@/lib/dto/core/mainEvaluation";
-import { COLORS } from "@/lib/styles/colors";
-import { SemesterIntToString } from "@/lib/util";
+import { CollapsableText } from '@/lib/components/CollapsableText';
+import { Rating } from '@/lib/components/Rating';
+import { Detail, Subheading01 } from '@/lib/components/Text';
+import { MainEvaluationDTO } from '@/lib/dto/core/mainEvaluation';
+import { COLORS } from '@/lib/styles/colors';
+import { SemesterIntToString } from '@/lib/util';
 
 interface Props {
   evaluation: MainEvaluationDTO;

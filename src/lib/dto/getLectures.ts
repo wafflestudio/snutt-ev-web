@@ -1,4 +1,4 @@
-import { LectureDTO } from "./core/lecture";
+import { LectureDTO } from './core/lecture';
 
 export interface GetLecturesQuery {
   query?: string;

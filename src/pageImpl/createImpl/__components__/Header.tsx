@@ -1,9 +1,9 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
-import SvgArrowDown from "@/lib/components/Icons/SvgArrowDown";
-import { Subheading02, Title01 } from "@/lib/components/Text";
-import { SemesterLectureDTO } from "@/lib/dto/core/semesterLecture";
-import { SemesterIntToString } from "@/lib/util";
+import SvgArrowDown from '@/lib/components/Icons/SvgArrowDown';
+import { Subheading02, Title01 } from '@/lib/components/Text';
+import { SemesterLectureDTO } from '@/lib/dto/core/semesterLecture';
+import { SemesterIntToString } from '@/lib/util';
 
 interface Props {
   lectureName?: string;
@@ -32,13 +32,13 @@ export const Header = ({
     <Container>
       <Column
         style={{
-          maxWidth: "200px",
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-          wordWrap: "break-word",
-          whiteSpace: "nowrap",
+          maxWidth: '200px',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          wordWrap: 'break-word',
+          whiteSpace: 'nowrap',
           WebkitLineClamp: 1,
-          marginTop: "10px",
+          marginTop: '10px',
         }}
       >
         <LectureName>{lectureName}</LectureName>
@@ -53,7 +53,7 @@ export const Header = ({
               ? `${selectedSemester.year}-${SemesterIntToString(
                   selectedSemester.semester,
                 )}학기`
-              : ""}
+              : ''}
 
             <SvgArrowDown width="10" />
           </SemesterSelector>

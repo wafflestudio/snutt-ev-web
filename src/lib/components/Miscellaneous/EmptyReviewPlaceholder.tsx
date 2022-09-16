@@ -1,7 +1,7 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
-import SurprisedCatImage from "@/assets/icons/surprised_cat.svg";
-import { Subheading02 } from "@/lib/components/Text";
+import SurprisedCatImage from '@/assets/icons/surprised_cat.svg';
+import { Subheading02 } from '@/lib/components/Text';
 
 export const EmptyReviewPlaceholder = () => {
   return (
