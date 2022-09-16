@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 
-import { handlers } from '@/mocks/handlers';
-
 /**
  * msw 를 활성화하는 hook
  * 최상단 _app.tsx 에서 한 번만 불러야 한다.
@@ -20,6 +18,7 @@ export const useMSW = (enable: boolean) => {
 
     const enableMSW = async () => {
       const { setupWorker } = await import('msw');
+      const { handlers } = await import('@/mocks/handlers');
       if (cancelled) return;
       setupWorker(...handlers).start({ onUnhandledRequest: 'bypass' });
       setEnabled(true);
