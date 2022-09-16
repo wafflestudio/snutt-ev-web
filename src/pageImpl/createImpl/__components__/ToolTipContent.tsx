@@ -1,6 +1,6 @@
-import styled from "@emotion/styled"
+import styled from "@emotion/styled";
 
-import { Title01, Title02 } from "@/lib/components/Text"
+import { Title01, Title02 } from "@/lib/components/Text";
 
 export const TootTipContent = () => {
   return (
@@ -24,8 +24,8 @@ export const TootTipContent = () => {
       <WrapperTriangle />
       <WrapperTriangleBorder />
     </>
-  )
-}
+  );
+};
 
 const Wrapper = styled.div`
   & {
@@ -39,7 +39,7 @@ const Wrapper = styled.div`
     border-radius: 6px;
     z-index: 10;
   }
-`
+`;
 
 const WrapperTriangle = styled.div`
   right: 3px;
@@ -49,7 +49,7 @@ const WrapperTriangle = styled.div`
   border-bottom: 24px solid #f2f2f2;
   position: absolute;
   z-index: 100;
-`
+`;
 
 const WrapperTriangleBorder = styled.div`
   right: 1px;
@@ -60,4 +60,4 @@ const WrapperTriangleBorder = styled.div`
   border-bottom: 26px solid #c4c4c4;
   position: absolute;
   z-index: -10;
-`
+`;

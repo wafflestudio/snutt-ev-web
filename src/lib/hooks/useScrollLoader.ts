@@ -1,27 +1,27 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef } from "react";
 
 export default function useScrollLoader(loadMore: () => void) {
-  const loader = useRef(null)
+  const loader = useRef(null);
 
   const handleObserver: IntersectionObserverCallback = (entries) => {
-    const target = entries[0]
+    const target = entries[0];
     if (target.isIntersecting) {
-      loadMore()
+      loadMore();
     }
-  }
+  };
 
   useEffect(() => {
     const option = {
       root: null,
       rootMargin: "20px",
       threshold: 0,
-    }
-    const observer = new IntersectionObserver(handleObserver, option)
-    const cur = loader.current
-    if (cur) observer.observe(cur)
-  })
+    };
+    const observer = new IntersectionObserver(handleObserver, option);
+    const cur = loader.current;
+    if (cur) observer.observe(cur);
+  });
 
   return {
     loaderRef: loader,
-  }
+  };
 }

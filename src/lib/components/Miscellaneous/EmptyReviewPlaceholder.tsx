@@ -1,7 +1,7 @@
-import styled from "@emotion/styled"
+import styled from "@emotion/styled";
 
-import SurprisedCatImage from "@/assets/icons/surprised_cat.svg"
-import { Subheading02 } from "@/lib/components/Text"
+import SurprisedCatImage from "@/assets/icons/surprised_cat.svg";
+import { Subheading02 } from "@/lib/components/Text";
 
 export const EmptyReviewPlaceholder = () => {
   return (
@@ -14,8 +14,8 @@ export const EmptyReviewPlaceholder = () => {
         가장 먼저 강의평을 남겨주세요!
       </Subheading02>
     </Wrapper>
-  )
-}
+  );
+};
 
 const Wrapper = styled.div`
   width: 100%;
@@ -29,4 +29,4 @@ const Wrapper = styled.div`
   justify-content: center;
 
   text-align: center;
-`
+`;

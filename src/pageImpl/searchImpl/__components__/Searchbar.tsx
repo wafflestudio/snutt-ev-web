@@ -1,17 +1,17 @@
-import styled from "@emotion/styled"
-import { useRouter } from "next/router"
-import React from "react"
+import styled from "@emotion/styled";
+import { useRouter } from "next/router";
+import React from "react";
 
-import { AppBar } from "@/lib/components/Appbar"
-import SvgArrowBack from "@/lib/components/Icons/SvgArrowBack"
-import SvgFilter from "@/lib/components/Icons/SvgFilter"
-import SvgSearchOff from "@/lib/components/Icons/SvgSearchOff"
+import { AppBar } from "@/lib/components/Appbar";
+import SvgArrowBack from "@/lib/components/Icons/SvgArrowBack";
+import SvgFilter from "@/lib/components/Icons/SvgFilter";
+import SvgSearchOff from "@/lib/components/Icons/SvgSearchOff";
 
 interface Props {
-  toggleOpenSearchSheet: () => void
-  textQuery?: string
-  onChangeTextQuery: (text: string) => void
-  onRefreshQuery: () => void
+  toggleOpenSearchSheet: () => void;
+  textQuery?: string;
+  onChangeTextQuery: (text: string) => void;
+  onRefreshQuery: () => void;
 }
 
 export const Searchbar: React.FC<Props> = ({
@@ -20,7 +20,7 @@ export const Searchbar: React.FC<Props> = ({
   onChangeTextQuery,
   onRefreshQuery,
 }) => {
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <>
@@ -44,10 +44,10 @@ export const Searchbar: React.FC<Props> = ({
             placeholder="검색어를 입력하세요"
             value={textQuery ?? ""}
             onChange={(e) => {
-              onChangeTextQuery(e.target.value)
+              onChangeTextQuery(e.target.value);
             }}
             onKeyPress={(e) => {
-              e.key === "Enter" && onRefreshQuery()
+              e.key === "Enter" && onRefreshQuery();
             }}
           />
           <TagButton onClick={toggleOpenSearchSheet}>
@@ -56,8 +56,8 @@ export const Searchbar: React.FC<Props> = ({
         </InputBar>
       </AppBar>
     </>
-  )
-}
+  );
+};
 
 const InputBar = styled.div`
   height: 36px;
@@ -70,7 +70,7 @@ const InputBar = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`
+`;
 
 const Input = styled.input`
   font-family: AppleSDGothicNeo;
@@ -86,14 +86,14 @@ const Input = styled.input`
   margin-right: 8px;
 
   padding: 0 0 0 0;
-`
+`;
 const BackButton = styled.button`
   width: 30px;
   height: 30px;
   background: transparent;
   border: none;
   padding: 0;
-`
+`;
 
 const SearchButton = styled.button`
   background: #f2f2f2;
@@ -104,7 +104,7 @@ const SearchButton = styled.button`
 
   display: flex;
   align-items: center;
-`
+`;
 
 const TagButton = styled.button`
   background: #f2f2f2;
@@ -115,4 +115,4 @@ const TagButton = styled.button`
 
   display: flex;
   align-items: center;
-`
+`;

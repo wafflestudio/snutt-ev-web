@@ -1,17 +1,17 @@
-import styled from "@emotion/styled"
-import { useRouter } from "next/router"
-import React from "react"
+import styled from "@emotion/styled";
+import { useRouter } from "next/router";
+import React from "react";
 
-import SvgSearchOff from "@/lib/components/Icons/SvgSearchOff"
+import SvgSearchOff from "@/lib/components/Icons/SvgSearchOff";
 
 export const FakeSearchbar = () => {
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <Wrapper>
       <InputBar
         onClick={() => {
-          router.push("/search")
+          router.push("/search");
         }}
       >
         <SearchButton>
@@ -21,20 +21,20 @@ export const FakeSearchbar = () => {
           placeholder="강의명, 교수명으로 검색해주세요"
           disabled={true}
           onClick={() => {
-            router.push("/search")
+            router.push("/search");
           }}
         />
       </InputBar>
     </Wrapper>
-  )
-}
+  );
+};
 
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   /* padding: 0 20px; */
-`
+`;
 
 const InputBar = styled.div`
   height: 36px;
@@ -48,7 +48,7 @@ const InputBar = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`
+`;
 
 const Input = styled.input`
   font-family: AppleSDGothicNeo;
@@ -64,7 +64,7 @@ const Input = styled.input`
   margin-right: 8px;
 
   padding: 0 0 0 0;
-`
+`;
 
 const SearchButton = styled.button`
   background: #f2f2f2;
@@ -75,4 +75,4 @@ const SearchButton = styled.button`
 
   display: flex;
   align-items: center;
-`
+`;

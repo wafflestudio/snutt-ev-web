@@ -1,5 +1,5 @@
-import * as React from "react"
-import { SVGProps } from "react"
+import * as React from "react";
+import { SVGProps } from "react";
 
 const SvgWrite = (props: SVGProps<SVGSVGElement>) => (
   <svg
@@ -13,6 +13,6 @@ const SvgWrite = (props: SVGProps<SVGSVGElement>) => (
       fill="#000"
     />
   </svg>
-)
+);
 
-export default SvgWrite
+export default SvgWrite;

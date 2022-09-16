@@ -1,48 +1,48 @@
-import styled from "@emotion/styled"
-import { ToggleButton, ToggleButtonGroup } from "@mui/material/"
-import { useRouter } from "next/router"
-import React, { useEffect, useState } from "react"
+import styled from "@emotion/styled";
+import { ToggleButton, ToggleButtonGroup } from "@mui/material/";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 
-import { AppBar } from "@/lib/components/Appbar"
-import SvgSearchOff from "@/lib/components/Icons/SvgSearchOff"
-import SvgTimetableOn from "@/lib/components/Icons/SvgTimetableOn"
-import { EmptyReviewPlaceholder } from "@/lib/components/Miscellaneous/EmptyReviewPlaceholder"
-import { SearchResultLoading } from "@/lib/components/Miscellaneous/Loading"
-import { Subheading02, Title01 } from "@/lib/components/Text"
-import { TagDTO } from "@/lib/dto/core/tag"
-import useScrollLoader from "@/lib/hooks/useScrollLoader"
+import { AppBar } from "@/lib/components/Appbar";
+import SvgSearchOff from "@/lib/components/Icons/SvgSearchOff";
+import SvgTimetableOn from "@/lib/components/Icons/SvgTimetableOn";
+import { EmptyReviewPlaceholder } from "@/lib/components/Miscellaneous/EmptyReviewPlaceholder";
+import { SearchResultLoading } from "@/lib/components/Miscellaneous/Loading";
+import { Subheading02, Title01 } from "@/lib/components/Text";
+import { TagDTO } from "@/lib/dto/core/tag";
+import useScrollLoader from "@/lib/hooks/useScrollLoader";
 
-import { EvaluationCard } from "./__components__/EvaluationCard"
-import { RecentCarousel } from "./__components__/RecentCarousel"
+import { EvaluationCard } from "./__components__/EvaluationCard";
+import { RecentCarousel } from "./__components__/RecentCarousel";
 import {
   useMainEvaluationContainer,
   useMainLatestLectureContainer,
   useRecommendationTagsContainer,
-} from "./__containers__"
+} from "./__containers__";
 
 export const MainImpl = () => {
-  const router = useRouter()
+  const router = useRouter();
 
-  const [selectedTag, setSelectedTag] = useState<TagDTO | undefined>(undefined)
-  const { recommendationTags } = useRecommendationTagsContainer()
-  const { recentLectureData } = useMainLatestLectureContainer()
+  const [selectedTag, setSelectedTag] = useState<TagDTO | undefined>(undefined);
+  const { recommendationTags } = useRecommendationTagsContainer();
+  const { recentLectureData } = useMainLatestLectureContainer();
   const { searchResult, fetchNextPage, isFetchingNextPage, hasNextPage } =
-    useMainEvaluationContainer(selectedTag)
-  const { loaderRef } = useScrollLoader(fetchNextPage)
+    useMainEvaluationContainer(selectedTag);
+  const { loaderRef } = useScrollLoader(fetchNextPage);
 
   useEffect(() => {
-    setSelectedTag(recommendationTags[0])
-  }, [recommendationTags])
+    setSelectedTag(recommendationTags[0]);
+  }, [recommendationTags]);
 
   const handleClickRecommendationTag = (
     e: React.MouseEvent<HTMLElement, MouseEvent>,
     tag?: TagDTO,
   ) => {
-    e.preventDefault()
+    e.preventDefault();
     if (tag) {
-      setSelectedTag(tag)
+      setSelectedTag(tag);
     }
-  }
+  };
 
   return (
     <Wrapper>
@@ -107,10 +107,10 @@ export const MainImpl = () => {
         <SearchResultLoading />
       )}
     </Wrapper>
-  )
-}
+  );
+};
 
-const Wrapper = styled.div``
+const Wrapper = styled.div``;
 
 const AppBarContent = styled.div`
   display: flex;
@@ -119,7 +119,7 @@ const AppBarContent = styled.div`
   align-items: center;
   width: 100%;
   padding-right: 12px;
-`
+`;
 
 const CategoryPicker = styled.div`
   padding: 20px 20px 0 20px;
@@ -127,13 +127,13 @@ const CategoryPicker = styled.div`
   top: 45px;
   background-color: white;
   z-index: 50;
-`
+`;
 
 const CategoryDetail = styled(Subheading02)`
   margin-top: 10px;
   padding-bottom: 10px;
   color: rgb(119, 119, 119);
-`
+`;
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)`
   flex-wrap: wrap;
 
@@ -165,4 +165,4 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)`
       color: #ffffff;
     }
   }
-`
+`;

@@ -1,5 +1,5 @@
-import * as React from "react"
-import { SVGProps } from "react"
+import * as React from "react";
+import { SVGProps } from "react";
 
 const SvgStarSmallHalf = (props: SVGProps<SVGSVGElement>) => (
   <svg
@@ -32,6 +32,6 @@ const SvgStarSmallHalf = (props: SVGProps<SVGSVGElement>) => (
       <path fill="#C4C4C4" d="M12.5-2h24.167v27.067H12.5z" />
     </g>
   </svg>
-)
+);
 
-export default SvgStarSmallHalf
+export default SvgStarSmallHalf;

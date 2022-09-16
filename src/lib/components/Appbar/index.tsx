@@ -1,8 +1,8 @@
-import styled from "@emotion/styled"
-import { PropsWithChildren } from "react"
+import styled from "@emotion/styled";
+import { PropsWithChildren } from "react";
 
 interface Props {
-  LeftImage: React.FC
+  LeftImage: React.FC;
 }
 
 export const AppBar = ({ LeftImage, children }: PropsWithChildren<Props>) => {
@@ -13,8 +13,8 @@ export const AppBar = ({ LeftImage, children }: PropsWithChildren<Props>) => {
       </AppBarLeft>
       {children}
     </Wrapper>
-  )
-}
+  );
+};
 
 const Wrapper = styled.div`
   display: flex;
@@ -29,11 +29,11 @@ const Wrapper = styled.div`
   background-color: white;
   border-bottom: solid 1px rgba(179, 179, 179, 0.3);
   z-index: 99;
-`
+`;
 
 const AppBarLeft = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-left: 13px;
-`
+`;

@@ -28,4 +28,4 @@ export const latestLectures = {
     },
   ],
   total_count: 2,
-}
+};

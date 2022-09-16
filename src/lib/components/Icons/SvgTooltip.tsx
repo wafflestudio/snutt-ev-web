@@ -1,5 +1,5 @@
-import * as React from "react"
-import { SVGProps } from "react"
+import * as React from "react";
+import { SVGProps } from "react";
 
 const SvgTooltip = (props: SVGProps<SVGSVGElement>) => (
   <svg
@@ -19,6 +19,6 @@ const SvgTooltip = (props: SVGProps<SVGSVGElement>) => (
       fill="#777"
     />
   </svg>
-)
+);
 
-export default SvgTooltip
+export default SvgTooltip;

@@ -1,5 +1,5 @@
-import * as React from "react"
-import { SVGProps } from "react"
+import * as React from "react";
+import { SVGProps } from "react";
 
 const SvgTagBlack = (props: SVGProps<SVGSVGElement>) => (
   <svg
@@ -15,6 +15,6 @@ const SvgTagBlack = (props: SVGProps<SVGSVGElement>) => (
       strokeWidth={2}
     />
   </svg>
-)
+);
 
-export default SvgTagBlack
+export default SvgTagBlack;

@@ -1,5 +1,5 @@
-import * as React from "react"
-import { SVGProps } from "react"
+import * as React from "react";
+import { SVGProps } from "react";
 
 const SvgPersonBlack = (props: SVGProps<SVGSVGElement>) => (
   <svg
@@ -14,6 +14,6 @@ const SvgPersonBlack = (props: SVGProps<SVGSVGElement>) => (
     />
     <circle cx={15} cy={9} r={5} fill="#000" />
   </svg>
-)
+);
 
-export default SvgPersonBlack
+export default SvgPersonBlack;

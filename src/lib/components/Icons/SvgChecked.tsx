@@ -1,5 +1,5 @@
-import * as React from "react"
-import { SVGProps } from "react"
+import * as React from "react";
+import { SVGProps } from "react";
 
 const SvgChecked = (props: SVGProps<SVGSVGElement>) => (
   <svg
@@ -37,6 +37,6 @@ const SvgChecked = (props: SVGProps<SVGSVGElement>) => (
       mask="url(#checked_svg__a)"
     />
   </svg>
-)
+);
 
-export default SvgChecked
+export default SvgChecked;

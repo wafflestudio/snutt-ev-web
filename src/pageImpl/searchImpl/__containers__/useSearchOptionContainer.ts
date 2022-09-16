@@ -1,7 +1,7 @@
-import { useInfiniteQuery } from "@tanstack/react-query"
+import { useInfiniteQuery } from "@tanstack/react-query";
 
-import { getLectures } from "@/lib/api/apis"
-import { TagDTO } from "@/lib/dto/core/tag"
+import { getLectures } from "@/lib/api/apis";
+import { TagDTO } from "@/lib/dto/core/tag";
 
 export default function useSearchOptionContainer(
   selectedTags: TagDTO[],
@@ -23,19 +23,19 @@ export default function useSearchOptionContainer(
     {
       getNextPageParam: (lastPage) => {
         if (lastPage.last) {
-          return undefined
+          return undefined;
         }
-        return (lastPage.page ?? 0) + 1
+        return (lastPage.page ?? 0) + 1;
       },
       retryDelay: 2000,
       retry: 5,
       suspense: false,
     },
-  )
+  );
   return {
     searchResult,
     isFetchingNextPage,
     hasNextPage,
     fetchNextPage,
-  }
+  };
 }

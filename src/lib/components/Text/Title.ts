@@ -1,7 +1,7 @@
-import styled from "@emotion/styled"
+import styled from "@emotion/styled";
 
-import { resetMarPad } from "@/lib/styles"
-import { COLORS } from "@/lib/styles/colors"
+import { resetMarPad } from "@/lib/styles";
+import { COLORS } from "@/lib/styles/colors";
 
 export const Title01 = styled.h1`
   ${resetMarPad}
@@ -10,7 +10,7 @@ export const Title01 = styled.h1`
   font-size: 17px;
   line-height: 20.5px;
   color: ${COLORS.black};
-`
+`;
 
 export const Title02 = styled.h1`
   ${resetMarPad}
@@ -19,4 +19,4 @@ export const Title02 = styled.h1`
   font-size: 17px;
   line-height: 20.5px;
   color: ${COLORS.black};
-`
+`;

@@ -1,5 +1,5 @@
-import * as React from "react"
-import { SVGProps } from "react"
+import * as React from "react";
+import { SVGProps } from "react";
 
 const SvgStarCyan = (props: SVGProps<SVGSVGElement>) => (
   <svg
@@ -13,6 +13,6 @@ const SvgStarCyan = (props: SVGProps<SVGSVGElement>) => (
       fill="#1BD0C8"
     />
   </svg>
-)
+);
 
-export default SvgStarCyan
+export default SvgStarCyan;

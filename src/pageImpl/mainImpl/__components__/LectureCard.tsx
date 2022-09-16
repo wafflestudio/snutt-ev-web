@@ -1,20 +1,20 @@
-import styled from "@emotion/styled"
-import { useRouter } from "next/router"
+import styled from "@emotion/styled";
+import { useRouter } from "next/router";
 
-import SvgClockBlack from "@/assets/icons/clock_black.svg"
-import SvgPersonBlack from "@/lib/components/Icons/SvgPersonBlack"
-import SvgTagBlack from "@/lib/components/Icons/SvgTagBlack"
-import SvgWrite from "@/lib/components/Icons/SvgWrite"
-import { Detail, Subheading01 } from "@/lib/components/Text"
-import { LatestLectureDTO } from "@/lib/dto/core/latestLecture"
-import { SemesterIntToString } from "@/lib/util"
+import SvgClockBlack from "@/assets/icons/clock_black.svg";
+import SvgPersonBlack from "@/lib/components/Icons/SvgPersonBlack";
+import SvgTagBlack from "@/lib/components/Icons/SvgTagBlack";
+import SvgWrite from "@/lib/components/Icons/SvgWrite";
+import { Detail, Subheading01 } from "@/lib/components/Text";
+import { LatestLectureDTO } from "@/lib/dto/core/latestLecture";
+import { SemesterIntToString } from "@/lib/util";
 
 interface Props {
-  lecture: LatestLectureDTO
+  lecture: LatestLectureDTO;
 }
 
 export const LectureCard = ({ lecture }: Props) => {
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <Card onClick={() => router.push(`/detail?id=${lecture.id}`)}>
@@ -22,8 +22,8 @@ export const LectureCard = ({ lecture }: Props) => {
         <LectureName>{lecture.title}</LectureName>
         <WriteButton
           onClick={(e) => {
-            router.push(`/create?id=${lecture.id}`)
-            e.stopPropagation()
+            router.push(`/create?id=${lecture.id}`);
+            e.stopPropagation();
           }}
         >
           <SvgWrite height={20} width={20} />
@@ -47,8 +47,8 @@ export const LectureCard = ({ lecture }: Props) => {
         </Texts>
       </CardBottom>
     </Card>
-  )
-}
+  );
+};
 
 const Card = styled.div`
   display: flex;
@@ -63,7 +63,7 @@ const Card = styled.div`
   border-radius: 6px;
 
   margin: 0px 8px 0px 10px;
-`
+`;
 const CardTop = styled.div`
   width: 100%;
   display: flex;
@@ -72,7 +72,7 @@ const CardTop = styled.div`
   align-items: center;
 
   font-weight: bold;
-`
+`;
 
 const WriteButton = styled.button`
   width: 20px;
@@ -81,7 +81,7 @@ const WriteButton = styled.button`
   background: transparent;
   border: none;
   padding: 0;
-`
+`;
 
 const CardBottom = styled.div`
   display: flex;
@@ -90,7 +90,7 @@ const CardBottom = styled.div`
 
   margin-top: 12px;
   height: 61px;
-`
+`;
 
 const Icons = styled.div`
   height: 100%;
@@ -101,7 +101,7 @@ const Icons = styled.div`
 
   padding-top: 1px;
   padding-bottom: 1px;
-`
+`;
 
 const Texts = styled.div`
   height: 100%;
@@ -110,10 +110,10 @@ const Texts = styled.div`
   align-items: flex-start;
   margin-left: 10px;
   justify-content: space-between;
-`
+`;
 
 const LectureName = styled(Subheading01)`
   overflow: hidden;
   text-overflow: ellipsis;
   word-wrap: break-word;
-`
+`;

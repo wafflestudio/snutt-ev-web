@@ -1,8 +1,8 @@
-import styled from "@emotion/styled"
-import React from "react"
+import styled from "@emotion/styled";
+import React from "react";
 
-import SvgSearchBig from "@/assets/icons/img_search_big.svg"
-import { Title01, Title02 } from "@/lib/components/Text"
+import SvgSearchBig from "@/assets/icons/img_search_big.svg";
+import { Title01, Title02 } from "@/lib/components/Text";
 
 export const SearchInitialPage = () => {
   return (
@@ -17,8 +17,8 @@ export const SearchInitialPage = () => {
       <Subtitle>줄임말로 검색해보세요.</Subtitle>
       <ContentText>ex) 죽음의 과학적 이해 유성호 → 죽과이 유성호</ContentText>
     </Wrapper>
-  )
-}
+  );
+};
 
 const Wrapper = styled.div`
   height: 100%;
@@ -31,21 +31,21 @@ const Wrapper = styled.div`
   position: absolute;
   left: 0;
   top: 0;
-`
+`;
 
 const Title = styled(Title01)`
   font-size: 25px;
   color: rgba(119, 119, 119, 0.7);
-`
+`;
 
 const Subtitle = styled(Title01)`
   font-size: 17px;
   color: rgba(119, 119, 119, 0.7);
   line-height: 25px;
-`
+`;
 
 const ContentText = styled(Title02)`
   font-size: 17px;
   color: rgba(119, 119, 119, 0.7);
   line-height: 25px;
-`
+`;

@@ -1,21 +1,21 @@
-import styled from "@emotion/styled"
-import { useState } from "react"
-import Sheet from "react-modal-sheet"
+import styled from "@emotion/styled";
+import { useState } from "react";
+import Sheet from "react-modal-sheet";
 
-import SvgExit from "@/lib/components/Icons/SvgExit"
-import { TagWithColor } from "@/lib/dto/core/tag"
-import { TagGroupWithColor } from "@/lib/dto/core/tagGroup"
+import SvgExit from "@/lib/components/Icons/SvgExit";
+import { TagWithColor } from "@/lib/dto/core/tag";
+import { TagGroupWithColor } from "@/lib/dto/core/tagGroup";
 
-import { TagGroupList } from "./TagGroupList"
-import { TagList } from "./TagList"
+import { TagGroupList } from "./TagGroupList";
+import { TagList } from "./TagList";
 
 interface Props {
-  selectedTags: TagWithColor[]
-  tagGroups: TagGroupWithColor[]
-  onToggleTag: (tag: TagWithColor) => void
-  isOpened: boolean
-  onClose: () => void
-  onClickSubmit: () => void
+  selectedTags: TagWithColor[];
+  tagGroups: TagGroupWithColor[];
+  onToggleTag: (tag: TagWithColor) => void;
+  isOpened: boolean;
+  onClose: () => void;
+  onClickSubmit: () => void;
 }
 
 export const SearchOptionSheet: React.FC<Props> = ({
@@ -28,9 +28,9 @@ export const SearchOptionSheet: React.FC<Props> = ({
 }) => {
   const [selectedTagGroup, setSelectedTagGroup] = useState<TagGroupWithColor>(
     tagGroups[0],
-  )
+  );
 
-  const visibleTags = selectedTagGroup.tags
+  const visibleTags = selectedTagGroup.tags;
 
   return (
     <Sheet isOpen={isOpened} onClose={onClose} snapPoints={[420]}>
@@ -58,14 +58,14 @@ export const SearchOptionSheet: React.FC<Props> = ({
       </Sheet.Container>
       <Sheet.Backdrop onTap={onClose} />
     </Sheet>
-  )
-}
+  );
+};
 
 const Wrapper = styled.div`
   display: flex;
   height: 100%;
   flex-direction: column;
-`
+`;
 
 const HeaderArea = styled.div`
   display: flex;
@@ -73,7 +73,7 @@ const HeaderArea = styled.div`
   align-items: flex-end;
   padding-top: 20px;
   padding-right: 20px;
-`
+`;
 
 const TagSelectWrapper = styled.div`
   flex-grow: 1;
@@ -82,7 +82,7 @@ const TagSelectWrapper = styled.div`
   height: calc(
     100% - 50px - 64px
   ); // subtract height of header and height of button
-`
+`;
 
 const SubmitButton = styled.div`
   background: #1bd0c8;
@@ -93,4 +93,4 @@ const SubmitButton = styled.div`
   font-weight: 700;
   padding-top: 20px;
   padding-bottom: 20px;
-`
+`;

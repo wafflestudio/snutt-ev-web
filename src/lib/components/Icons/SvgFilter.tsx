@@ -1,5 +1,5 @@
-import * as React from "react"
-import { SVGProps } from "react"
+import * as React from "react";
+import { SVGProps } from "react";
 
 const SvgFilter = (props: SVGProps<SVGSVGElement>) => (
   <svg
@@ -16,6 +16,6 @@ const SvgFilter = (props: SVGProps<SVGSVGElement>) => (
     <circle cx={37} cy={14} r={5} stroke="#000" strokeWidth={2} />
     <circle cx={35} cy={45} r={5} stroke="#000" strokeWidth={2} />
   </svg>
-)
+);
 
-export default SvgFilter
+export default SvgFilter;

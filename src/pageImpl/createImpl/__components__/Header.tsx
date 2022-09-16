@@ -1,20 +1,20 @@
-import styled from "@emotion/styled"
+import styled from "@emotion/styled";
 
-import SvgArrowDown from "@/lib/components/Icons/SvgArrowDown"
-import { Subheading02, Title01 } from "@/lib/components/Text"
-import { SemesterLectureDTO } from "@/lib/dto/core/semesterLecture"
-import { SemesterIntToString } from "@/lib/util"
+import SvgArrowDown from "@/lib/components/Icons/SvgArrowDown";
+import { Subheading02, Title01 } from "@/lib/components/Text";
+import { SemesterLectureDTO } from "@/lib/dto/core/semesterLecture";
+import { SemesterIntToString } from "@/lib/util";
 
 interface Props {
-  lectureName?: string
-  lectureInstructor?: string
-  lectureCredit?: number
-  lectureClassification?: string
-  handleSelectedSemester: (semesterLecture: SemesterLectureDTO) => void
-  handleSemesterSelector: () => void
-  isSemesterSelectorOpen: boolean
-  selectedSemester?: SemesterLectureDTO
-  lectureSemesters?: SemesterLectureDTO[]
+  lectureName?: string;
+  lectureInstructor?: string;
+  lectureCredit?: number;
+  lectureClassification?: string;
+  handleSelectedSemester: (semesterLecture: SemesterLectureDTO) => void;
+  handleSemesterSelector: () => void;
+  isSemesterSelectorOpen: boolean;
+  selectedSemester?: SemesterLectureDTO;
+  lectureSemesters?: SemesterLectureDTO[];
 }
 
 export const Header = ({
@@ -74,8 +74,8 @@ export const Header = ({
         </SemesterSelectorContainer>
       </SelectorWrapper>
     </Container>
-  )
-}
+  );
+};
 
 const Container = styled.div`
   display: flex;
@@ -85,12 +85,12 @@ const Container = styled.div`
   min-height: 58.5px;
   border-bottom: 1px solid #f2f2f2;
   //padding: 10px 0px 0px 0px;
-`
+`;
 
 const Column = styled.div`
   display: flex;
   flex-direction: column;
-`
+`;
 
 const SemesterSelectorContainer = styled.div`
   display: flex;
@@ -104,23 +104,23 @@ const SemesterSelectorContainer = styled.div`
   background-color: #ffffff;
   margin-left: 10px;
   align-self: center;
-`
+`;
 
 const LectureName = styled(Title01)`
   white-space: normal;
-`
+`;
 
 const LectureInstructor = styled(Subheading02)`
   margin-top: 3px;
   margin-bottom: 10px;
   color: rgb(119, 119, 119);
-`
+`;
 
 const SelectorWrapper = styled.div`
   position: absolute;
   right: 20px;
   z-index: 10;
-`
+`;
 
 const SemesterSelector = styled.button`
   display: flex;
@@ -137,7 +137,7 @@ const SemesterSelector = styled.button`
   font-size: 13px;
   line-height: 15px;
   padding: 8px 14px;
-`
+`;
 
 const SemesterButtonsContainer = styled.div`
   display: flex;
@@ -147,7 +147,7 @@ const SemesterButtonsContainer = styled.div`
   max-height: 200px;
   overflow-y: scroll;
   background-color: #ffffff;
-`
+`;
 
 const SemesterButton = styled.button`
   font-family: AppleSDGothicNeo;
@@ -162,4 +162,4 @@ const SemesterButton = styled.button`
   padding: 8px 14px;
   border: none;
   background-color: transparent;
-`
+`;

@@ -1,1 +1,1 @@
-export const coreHandlers = []
+export const coreHandlers = [];

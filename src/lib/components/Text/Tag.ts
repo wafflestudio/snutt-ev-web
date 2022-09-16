@@ -1,7 +1,7 @@
-import styled from "@emotion/styled"
+import styled from "@emotion/styled";
 
-import { resetMarPad } from "@/lib/styles"
-import { COLORS } from "@/lib/styles/colors"
+import { resetMarPad } from "@/lib/styles";
+import { COLORS } from "@/lib/styles/colors";
 
 export const Tag = styled.span`
   ${resetMarPad}
@@ -10,4 +10,4 @@ export const Tag = styled.span`
   font-size: 14px;
   line-height: 17px;
   color: ${COLORS.black};
-`
+`;

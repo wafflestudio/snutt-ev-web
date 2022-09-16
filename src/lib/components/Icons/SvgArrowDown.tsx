@@ -1,5 +1,5 @@
-import * as React from "react"
-import { SVGProps } from "react"
+import * as React from "react";
+import { SVGProps } from "react";
 
 const SvgArrowDown = (props: SVGProps<SVGSVGElement>) => (
   <svg
@@ -15,6 +15,6 @@ const SvgArrowDown = (props: SVGProps<SVGSVGElement>) => (
       fill="#000"
     />
   </svg>
-)
+);
 
-export default SvgArrowDown
+export default SvgArrowDown;
