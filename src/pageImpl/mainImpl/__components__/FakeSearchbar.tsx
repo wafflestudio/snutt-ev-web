@@ -1,8 +1,8 @@
-import styled from "@emotion/styled";
-import { useRouter } from "next/router";
-import React from "react";
+import styled from '@emotion/styled';
+import { useRouter } from 'next/router';
+import React from 'react';
 
-import SvgSearchOff from "@/lib/components/Icons/SvgSearchOff";
+import SvgSearchOff from '@/lib/components/Icons/SvgSearchOff';
 
 export const FakeSearchbar = () => {
   const router = useRouter();
@@ -11,7 +11,7 @@ export const FakeSearchbar = () => {
     <Wrapper>
       <InputBar
         onClick={() => {
-          router.push("/search");
+          router.push('/search');
         }}
       >
         <SearchButton>
@@ -21,7 +21,7 @@ export const FakeSearchbar = () => {
           placeholder="강의명, 교수명으로 검색해주세요"
           disabled={true}
           onClick={() => {
-            router.push("/search");
+            router.push('/search');
           }}
         />
       </InputBar>

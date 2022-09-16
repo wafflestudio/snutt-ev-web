@@ -1,6 +1,6 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from '@tanstack/react-query';
 
-import { fetchLectureEvaluations } from "@/lib/api/apis";
+import { fetchLectureEvaluations } from '@/lib/api/apis';
 
 export function useLectureEvaluationsContainer(id: number) {
   const {
@@ -9,7 +9,7 @@ export function useLectureEvaluationsContainer(id: number) {
     fetchNextPage,
     hasNextPage,
   } = useInfiniteQuery(
-    ["lectureEvaluation", id],
+    ['lectureEvaluation', id],
     async ({ pageParam }) => {
       const data = await fetchLectureEvaluations(id, {
         cursor: pageParam,

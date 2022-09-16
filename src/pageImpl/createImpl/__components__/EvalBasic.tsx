@@ -1,11 +1,11 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
-import SvgStarSmallEmpty from "@/lib/components/Icons/SvgStarSmallEmpty";
-import SvgStarSmallFilled from "@/lib/components/Icons/SvgStarSmallFilled";
-import SvgWarning from "@/lib/components/Icons/SvgWarning";
-import { Detail, Title02 } from "@/lib/components/Text";
-import { resetMarPad } from "@/lib/styles";
-import { COLORS } from "@/lib/styles/colors";
+import SvgStarSmallEmpty from '@/lib/components/Icons/SvgStarSmallEmpty';
+import SvgStarSmallFilled from '@/lib/components/Icons/SvgStarSmallFilled';
+import SvgWarning from '@/lib/components/Icons/SvgWarning';
+import { Detail, Title02 } from '@/lib/components/Text';
+import { resetMarPad } from '@/lib/styles';
+import { COLORS } from '@/lib/styles/colors';
 
 interface Props {
   handleRating: (rating: number) => void;
@@ -51,10 +51,10 @@ export const EvalBasic = ({
   ];
 
   const placeHolder =
-    "강의에 대한 솔직한 리뷰를 남겨주세요. \nex) 과제, 출석, 교수님, 시험 난이도, 팀플 유무 등";
+    '강의에 대한 솔직한 리뷰를 남겨주세요. \nex) 과제, 출석, 교수님, 시험 난이도, 팀플 유무 등';
 
   const WARNING = {
-    unsatisfiedContents: "강의평을 30자 이상 남겨주세요",
+    unsatisfiedContents: '강의평을 30자 이상 남겨주세요',
   };
 
   return (
@@ -81,7 +81,7 @@ export const EvalBasic = ({
             color={COLORS.red}
             width={15}
             height={15}
-            style={{ marginRight: "2px", marginTop: "2px" }}
+            style={{ marginRight: '2px', marginTop: '2px' }}
           />
           <Detail style={{ color: COLORS.red }}>
             {WARNING.unsatisfiedContents}

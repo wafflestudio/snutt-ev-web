@@ -1,8 +1,8 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
-import ReviewIcon from "@/assets/icons/review_icon.svg";
-import SurprisedCatImage from "@/assets/icons/surprised_cat.svg";
-import { Title02 } from "@/lib/components/Text/Title";
+import ReviewIcon from '@/assets/icons/review_icon.svg';
+import SurprisedCatImage from '@/assets/icons/surprised_cat.svg';
+import { Title02 } from '@/lib/components/Text/Title';
 
 interface Props {
   resetErrorBoundary?: (...args: Array<unknown>) => void;
@@ -16,7 +16,7 @@ export const ErrorView = ({}: Props) => {
       <Title02>에러가 발생했어요</Title02>
       <Row>
         <ReviewIcon />
-        <Title02 style={{ marginTop: "8px", marginLeft: "6px" }}>
+        <Title02 style={{ marginTop: '8px', marginLeft: '6px' }}>
           하단의 강의평 탭을 다시 눌러주세요
         </Title02>
       </Row>

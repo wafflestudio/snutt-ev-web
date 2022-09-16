@@ -1,14 +1,14 @@
-import styled from "@emotion/styled/";
-import { useRouter } from "next/router";
-import { Fragment } from "react";
+import styled from '@emotion/styled/';
+import { useRouter } from 'next/router';
+import { Fragment } from 'react';
 
-import { AppBar } from "@/lib/components/Appbar";
-import SvgArrowBack from "@/lib/components/Icons/SvgArrowBack";
-import { Title01, Title02 } from "@/lib/components/Text";
-import { SemesterIntToString } from "@/lib/util";
-import { useMainLatestLectureContainer } from "@/pageImpl/mainImpl/__containers__";
+import { AppBar } from '@/lib/components/Appbar';
+import SvgArrowBack from '@/lib/components/Icons/SvgArrowBack';
+import { Title01, Title02 } from '@/lib/components/Text';
+import { SemesterIntToString } from '@/lib/util';
+import { useMainLatestLectureContainer } from '@/pageImpl/mainImpl/__containers__';
 
-import { RecentLectureItem } from "./__components__/RecentResultItem";
+import { RecentLectureItem } from './__components__/RecentResultItem';
 
 export const RecentImpl = () => {
   const router = useRouter();

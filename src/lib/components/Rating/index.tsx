@@ -1,8 +1,8 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
-import SvgStarSmallEmpty from "../Icons/SvgStarSmallEmpty";
-import SvgStarSmallFilled from "../Icons/SvgStarSmallFilled";
-import SvgStarSmallHalf from "../Icons/SvgStarSmallHalf";
+import SvgStarSmallEmpty from '../Icons/SvgStarSmallEmpty';
+import SvgStarSmallFilled from '../Icons/SvgStarSmallFilled';
+import SvgStarSmallHalf from '../Icons/SvgStarSmallHalf';
 
 interface Props {
   rating: number;

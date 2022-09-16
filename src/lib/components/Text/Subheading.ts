@@ -1,7 +1,7 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
-import { resetMarPad } from "@/lib/styles";
-import { COLORS } from "@/lib/styles/colors";
+import { resetMarPad } from '@/lib/styles';
+import { COLORS } from '@/lib/styles/colors';
 
 export const Subheading01 = styled.h2`
   ${resetMarPad}

@@ -1,23 +1,23 @@
-import styled from "@emotion/styled";
-import { Button, Dialog, DialogActions, DialogTitle } from "@mui/material";
-import { useRouter } from "next/router";
-import { Fragment, useEffect, useState } from "react";
+import styled from '@emotion/styled';
+import { Button, Dialog, DialogActions, DialogTitle } from '@mui/material';
+import { useRouter } from 'next/router';
+import { Fragment, useEffect, useState } from 'react';
 
-import { postLectureEvaluation } from "@/lib/api/apis";
-import { AppBar } from "@/lib/components/Appbar";
-import SvgArrowBack from "@/lib/components/Icons/SvgArrowBack";
-import { SemesterLectureDTO } from "@/lib/dto/core/semesterLecture";
-import { PostEvaluationQuery } from "@/lib/dto/postEvaluation";
-import { COLORS } from "@/lib/styles/colors";
+import { postLectureEvaluation } from '@/lib/api/apis';
+import { AppBar } from '@/lib/components/Appbar';
+import SvgArrowBack from '@/lib/components/Icons/SvgArrowBack';
+import { SemesterLectureDTO } from '@/lib/dto/core/semesterLecture';
+import { PostEvaluationQuery } from '@/lib/dto/postEvaluation';
+import { COLORS } from '@/lib/styles/colors';
 
-import { EvalBasic } from "./__components__/EvalBasic";
-import { EvalPolygon } from "./__components__/EvalPolygon";
-import { Header } from "./__components__/Header";
-import { usePolygonContainer, useSemestersContainer } from "./__containers__";
+import { EvalBasic } from './__components__/EvalBasic';
+import { EvalPolygon } from './__components__/EvalPolygon';
+import { Header } from './__components__/Header';
+import { usePolygonContainer, useSemestersContainer } from './__containers__';
 
 export const CreateImpl = () => {
   const router = useRouter();
-  const id = Number(router.query["id"]);
+  const id = Number(router.query['id']);
 
   const { data: lectureSemesters } = useSemestersContainer(id);
   const [isSemesterSelectorOpen, setIsSemesterSelectorOpen] = useState(false);
@@ -33,11 +33,11 @@ export const CreateImpl = () => {
   }, [lectureSemesters]);
 
   const [rating, setRating] = useState(-1);
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState('');
 
   const [step, setStep] = useState(0);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [dialogErrorMessage, setDialogErrorMessage] = useState("");
+  const [dialogErrorMessage, setDialogErrorMessage] = useState('');
 
   const { defaultValue, score, updateScore } = usePolygonContainer();
 
@@ -94,7 +94,7 @@ export const CreateImpl = () => {
   const postEvaluation = async () => {
     if (!validateRatings()) {
       setIsDialogOpen((status) => !status);
-      setDialogErrorMessage("별점을 입력해주세요");
+      setDialogErrorMessage('별점을 입력해주세요');
 
       return;
     }
@@ -115,15 +115,15 @@ export const CreateImpl = () => {
       } catch (errorCode) {
         if (errorCode === 29001) {
           setIsDialogOpen((status) => !status);
-          setDialogErrorMessage("이미 작성한 강의평이 존재합니다");
+          setDialogErrorMessage('이미 작성한 강의평이 존재합니다');
         } else {
           setIsDialogOpen((status) => !status);
-          setDialogErrorMessage("에러가 발생했습니다");
+          setDialogErrorMessage('에러가 발생했습니다');
         }
       }
     } else {
       setIsDialogOpen((status) => !status);
-      setDialogErrorMessage("에러가 발생했습니다");
+      setDialogErrorMessage('에러가 발생했습니다');
     }
   };
 
@@ -158,7 +158,7 @@ export const CreateImpl = () => {
     />,
   ];
 
-  const complete = step === stepComponents.length - 1 ? "완료" : "다음";
+  const complete = step === stepComponents.length - 1 ? '완료' : '다음';
 
   return (
     <>

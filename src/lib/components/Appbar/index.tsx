@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import { PropsWithChildren } from "react";
+import styled from '@emotion/styled';
+import { PropsWithChildren } from 'react';
 
 interface Props {
   LeftImage: React.FC;

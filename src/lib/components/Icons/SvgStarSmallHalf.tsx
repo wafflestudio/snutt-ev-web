@@ -1,5 +1,5 @@
-import * as React from "react";
-import { SVGProps } from "react";
+import * as React from 'react';
+import { SVGProps } from 'react';
 
 const SvgStarSmallHalf = (props: SVGProps<SVGSVGElement>) => (
   <svg
@@ -15,7 +15,7 @@ const SvgStarSmallHalf = (props: SVGProps<SVGSVGElement>) => (
     <mask
       id="star_small_half_svg__a"
       style={{
-        maskType: "alpha",
+        maskType: 'alpha',
       }}
       maskUnits="userSpaceOnUse"
       x={0}

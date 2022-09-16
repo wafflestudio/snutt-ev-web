@@ -1,5 +1,5 @@
-import Cookies from "js-cookie";
-import { useCallback, useEffect, useState } from "react";
+import Cookies from 'js-cookie';
+import { useCallback, useEffect, useState } from 'react';
 
 export default function useCookie(
   cookieName: string,

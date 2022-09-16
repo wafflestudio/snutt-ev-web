@@ -1,11 +1,11 @@
-import styled from "@emotion/styled";
-import { useRouter } from "next/router";
-import React from "react";
+import styled from '@emotion/styled';
+import { useRouter } from 'next/router';
+import React from 'react';
 
-import { AppBar } from "@/lib/components/Appbar";
-import SvgArrowBack from "@/lib/components/Icons/SvgArrowBack";
-import SvgFilter from "@/lib/components/Icons/SvgFilter";
-import SvgSearchOff from "@/lib/components/Icons/SvgSearchOff";
+import { AppBar } from '@/lib/components/Appbar';
+import SvgArrowBack from '@/lib/components/Icons/SvgArrowBack';
+import SvgFilter from '@/lib/components/Icons/SvgFilter';
+import SvgSearchOff from '@/lib/components/Icons/SvgSearchOff';
 
 interface Props {
   toggleOpenSearchSheet: () => void;
@@ -42,12 +42,12 @@ export const Searchbar: React.FC<Props> = ({
           </SearchButton>
           <Input
             placeholder="검색어를 입력하세요"
-            value={textQuery ?? ""}
+            value={textQuery ?? ''}
             onChange={(e) => {
               onChangeTextQuery(e.target.value);
             }}
             onKeyPress={(e) => {
-              e.key === "Enter" && onRefreshQuery();
+              e.key === 'Enter' && onRefreshQuery();
             }}
           />
           <TagButton onClick={toggleOpenSearchSheet}>

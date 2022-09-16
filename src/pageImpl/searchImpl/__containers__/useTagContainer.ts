@@ -1,8 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
 
-import { fetchTagInfos } from "@/lib/api/apis";
-import { TagWithColor } from "@/lib/dto/core/tag";
+import { fetchTagInfos } from '@/lib/api/apis';
+import { TagWithColor } from '@/lib/dto/core/tag';
 
 export function useTagContainer() {
   const [currentlyAppliedQuery, setCurrentAppliedQuery] =
@@ -10,7 +10,7 @@ export function useTagContainer() {
   const [selectedTags, setSelectedTags] = useState<TagWithColor[]>([]);
   const [textQuery, setTextQuery] = useState<string | undefined>();
 
-  const { data, error, isLoading } = useQuery(["tagInfos"], fetchTagInfos, {
+  const { data, error, isLoading } = useQuery(['tagInfos'], fetchTagInfos, {
     select: ({ tag_groups }) => ({
       tag_groups: tag_groups.map(({ color, tags, ...group }) => ({
         ...group,

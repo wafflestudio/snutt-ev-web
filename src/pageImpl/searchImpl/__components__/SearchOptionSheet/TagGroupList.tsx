@@ -1,6 +1,6 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
-import { TagGroupWithColor } from "@/lib/dto/core/tagGroup";
+import { TagGroupWithColor } from '@/lib/dto/core/tagGroup';
 
 interface Props {
   tagGroups: TagGroupWithColor[];
@@ -31,13 +31,13 @@ export const TagGroupList: React.FC<Props> = ({
 };
 
 const TagGroupItem = styled.div<{ isSelected: boolean }>`
-  font-family: "AppleSDGothicNeo";
+  font-family: 'AppleSDGothicNeo';
   font-size: 17px;
   font-weight: 700;
   margin-left: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
-  color: ${(props) => (props.isSelected ? "#000000" : "#b3b3b3")};
+  color: ${(props) => (props.isSelected ? '#000000' : '#b3b3b3')};
 `;
 
 const Wrapper = styled.div`

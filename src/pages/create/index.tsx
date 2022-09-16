@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import { CreateImpl } from "@/pageImpl/createImpl";
+import { CreateImpl } from '@/pageImpl/createImpl';
 
 export default function SearchView() {
   return <CreateImpl />;

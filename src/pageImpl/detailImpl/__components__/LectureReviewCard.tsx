@@ -1,13 +1,13 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
-import FossilIcon from "@/assets/icons/fossil.svg";
-import MoreVerticalIcon from "@/assets/icons/more_vertical.svg";
-import { CollapsableText } from "@/lib/components/CollapsableText";
-import { Rating } from "@/lib/components/Rating";
-import { Detail } from "@/lib/components/Text";
-import { EvaluationDTO } from "@/lib/dto/core/evaluation";
-import { COLORS } from "@/lib/styles/colors";
-import { SemesterIntToString } from "@/lib/util";
+import FossilIcon from '@/assets/icons/fossil.svg';
+import MoreVerticalIcon from '@/assets/icons/more_vertical.svg';
+import { CollapsableText } from '@/lib/components/CollapsableText';
+import { Rating } from '@/lib/components/Rating';
+import { Detail } from '@/lib/components/Text';
+import { EvaluationDTO } from '@/lib/dto/core/evaluation';
+import { COLORS } from '@/lib/styles/colors';
+import { SemesterIntToString } from '@/lib/util';
 
 interface Props {
   review: EvaluationDTO;
@@ -42,7 +42,7 @@ export const LectureReviewCard = ({
             </div>
           </SideInfo>
         </Header>
-        {review.content === "" ? (
+        {review.content === '' ? (
           <></>
         ) : (
           <Review>
@@ -59,7 +59,7 @@ const Wrapper = styled.div<{ isMintColor: boolean }>`
   box-sizing: border-box;
   margin-left: -20px;
   background-color: ${(props) =>
-    props.isMintColor && "rgba(27, 208, 200, 0.05)"};
+    props.isMintColor && 'rgba(27, 208, 200, 0.05)'};
 `;
 
 const Contents = styled.div`

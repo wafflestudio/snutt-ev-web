@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react';
 
 export default function useScrollLoader(loadMore: () => void) {
   const loader = useRef(null);
@@ -13,7 +13,7 @@ export default function useScrollLoader(loadMore: () => void) {
   useEffect(() => {
     const option = {
       root: null,
-      rootMargin: "20px",
+      rootMargin: '20px',
       threshold: 0,
     };
     const observer = new IntersectionObserver(handleObserver, option);

@@ -1,7 +1,7 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from '@tanstack/react-query';
 
-import { getLectures } from "@/lib/api/apis";
-import { TagDTO } from "@/lib/dto/core/tag";
+import { getLectures } from '@/lib/api/apis';
+import { TagDTO } from '@/lib/dto/core/tag';
 
 export default function useSearchOptionContainer(
   selectedTags: TagDTO[],
@@ -13,7 +13,7 @@ export default function useSearchOptionContainer(
     fetchNextPage,
     hasNextPage,
   } = useInfiniteQuery(
-    ["lectureSearch", textQuery, selectedTags],
+    ['lectureSearch', textQuery, selectedTags],
     ({ pageParam }) =>
       getLectures({
         query: textQuery,

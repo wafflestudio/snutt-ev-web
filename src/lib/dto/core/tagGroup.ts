@@ -1,4 +1,4 @@
-import { TagDTO, TagWithColor } from "./tag";
+import { TagDTO, TagWithColor } from './tag';
 
 export interface TagGroupDTO {
   id: number;

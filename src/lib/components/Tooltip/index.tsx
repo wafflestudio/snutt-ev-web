@@ -1,8 +1,8 @@
-import styled from "@emotion/styled";
-import { useEffect, useRef, useState } from "react";
+import styled from '@emotion/styled';
+import { useEffect, useRef, useState } from 'react';
 
-import SvgTooltip from "@/lib/components/Icons/SvgTooltip";
-import { TootTipContent } from "@/pageImpl/createImpl/__components__/ToolTipContent";
+import SvgTooltip from '@/lib/components/Icons/SvgTooltip';
+import { TootTipContent } from '@/pageImpl/createImpl/__components__/ToolTipContent';
 
 export const RatingTooltip = () => {
   const [tooltipOpen, setTooltipOpen] = useState(false);
@@ -19,10 +19,10 @@ export const RatingTooltip = () => {
   };
 
   useEffect(() => {
-    document.addEventListener("click", onClickOutsideButton);
+    document.addEventListener('click', onClickOutsideButton);
 
     return () => {
-      document.removeEventListener("click", onClickOutsideButton);
+      document.removeEventListener('click', onClickOutsideButton);
     };
   }, []);
 

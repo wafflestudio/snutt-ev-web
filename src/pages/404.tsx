@@ -1,10 +1,10 @@
-import styled from "@emotion/styled";
-import React from "react";
+import styled from '@emotion/styled';
+import React from 'react';
 
-import { AppBar } from "@/lib/components/Appbar";
-import SvgTimetableOn from "@/lib/components/Icons/SvgTimetableOn";
-import { SvgWaffleCat } from "@/lib/components/Icons/SvgWaffleCat";
-import { Title01, Title02 } from "@/lib/components/Text";
+import { AppBar } from '@/lib/components/Appbar';
+import SvgTimetableOn from '@/lib/components/Icons/SvgTimetableOn';
+import { SvgWaffleCat } from '@/lib/components/Icons/SvgWaffleCat';
+import { Title01, Title02 } from '@/lib/components/Text';
 
 export default function Custom404() {
   return (
@@ -13,7 +13,7 @@ export default function Custom404() {
         <Title01 style={{ marginLeft: 12 }}>강의평</Title01>
       </AppBar>
       <Container>
-        <Title02 style={{ marginBottom: 40, textAlign: "center" }}>
+        <Title02 style={{ marginBottom: 40, textAlign: 'center' }}>
           <b>404</b>
           <br />
           페이지를 찾을 수 없습니다
