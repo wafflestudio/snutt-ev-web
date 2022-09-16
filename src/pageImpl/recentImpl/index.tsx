@@ -1,19 +1,19 @@
-import styled from "@emotion/styled/"
-import { useRouter } from "next/router"
-import { Fragment } from "react"
+import styled from "@emotion/styled/";
+import { useRouter } from "next/router";
+import { Fragment } from "react";
 
-import { AppBar } from "@/lib/components/Appbar"
-import SvgArrowBack from "@/lib/components/Icons/SvgArrowBack"
-import { Title01, Title02 } from "@/lib/components/Text"
-import { SemesterIntToString } from "@/lib/util"
-import { useMainLatestLectureContainer } from "@/pageImpl/mainImpl/__containers__"
+import { AppBar } from "@/lib/components/Appbar";
+import SvgArrowBack from "@/lib/components/Icons/SvgArrowBack";
+import { Title01, Title02 } from "@/lib/components/Text";
+import { SemesterIntToString } from "@/lib/util";
+import { useMainLatestLectureContainer } from "@/pageImpl/mainImpl/__containers__";
 
-import { RecentLectureItem } from "./__components__/RecentResultItem"
+import { RecentLectureItem } from "./__components__/RecentResultItem";
 
 export const RecentImpl = () => {
-  const router = useRouter()
+  const router = useRouter();
 
-  const { recentLectureData } = useMainLatestLectureContainer()
+  const { recentLectureData } = useMainLatestLectureContainer();
 
   return (
     <Wrapper>
@@ -46,10 +46,10 @@ export const RecentImpl = () => {
         )}
       </RecentLectureList>
     </Wrapper>
-  )
-}
+  );
+};
 
-const Wrapper = styled.div``
+const Wrapper = styled.div``;
 
 const BackButton = styled.button`
   width: 30px;
@@ -57,13 +57,13 @@ const BackButton = styled.button`
   background: transparent;
   border: none;
   padding: 0;
-`
+`;
 
-const RecentLectureList = styled.div``
+const RecentLectureList = styled.div``;
 
 const SemesterDivider = styled(Title01)`
   background-color: rgba(0, 0, 0, 0.03);
   height: 40px;
   padding-left: 20px;
   line-height: 40px;
-`
+`;

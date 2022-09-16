@@ -1,11 +1,11 @@
-import styled from "@emotion/styled"
+import styled from "@emotion/styled";
 
-import { TagGroupWithColor } from "@/lib/dto/core/tagGroup"
+import { TagGroupWithColor } from "@/lib/dto/core/tagGroup";
 
 interface Props {
-  tagGroups: TagGroupWithColor[]
-  selectedTagGroup?: TagGroupWithColor
-  onTagGroupSelectionChange: (tagGroup: TagGroupWithColor) => void
+  tagGroups: TagGroupWithColor[];
+  selectedTagGroup?: TagGroupWithColor;
+  onTagGroupSelectionChange: (tagGroup: TagGroupWithColor) => void;
 }
 
 export const TagGroupList: React.FC<Props> = ({
@@ -20,15 +20,15 @@ export const TagGroupList: React.FC<Props> = ({
           isSelected={selectedTagGroup?.name === it.name}
           key={it.name}
           onClick={() => {
-            onTagGroupSelectionChange(it)
+            onTagGroupSelectionChange(it);
           }}
         >
           {it.name}
         </TagGroupItem>
       ))}
     </Wrapper>
-  )
-}
+  );
+};
 
 const TagGroupItem = styled.div<{ isSelected: boolean }>`
   font-family: "AppleSDGothicNeo";
@@ -38,10 +38,10 @@ const TagGroupItem = styled.div<{ isSelected: boolean }>`
   margin-top: 10px;
   margin-bottom: 10px;
   color: ${(props) => (props.isSelected ? "#000000" : "#b3b3b3")};
-`
+`;
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 120px;
-`
+`;

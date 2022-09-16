@@ -1,22 +1,22 @@
-import styled from "@emotion/styled"
-import { SliderUnstyled } from "@mui/material"
+import styled from "@emotion/styled";
+import { SliderUnstyled } from "@mui/material";
 
-import { RatingGraph } from "@/lib/components/RatingGraph"
-import { DetailHighlight, Title01 } from "@/lib/components/Text"
-import { RatingTooltip } from "@/lib/components/Tooltip"
+import { RatingGraph } from "@/lib/components/RatingGraph";
+import { DetailHighlight, Title01 } from "@/lib/components/Text";
+import { RatingTooltip } from "@/lib/components/Tooltip";
 
 interface Props {
-  defaultValue: number
+  defaultValue: number;
   score: {
-    top: number
-    left: number
-    right: number
-    bottom: number
-  }
+    top: number;
+    left: number;
+    right: number;
+    bottom: number;
+  };
   handleUpdateScore: (
     value: number,
     direction: "top" | "left" | "bottom" | "right",
-  ) => void
+  ) => void;
 }
 
 export const EvalPolygon = ({
@@ -24,7 +24,7 @@ export const EvalPolygon = ({
   score,
   handleUpdateScore,
 }: Props) => {
-  const { top, left, bottom, right } = score
+  const { top, left, bottom, right } = score;
 
   return (
     <Container>
@@ -100,8 +100,8 @@ export const EvalPolygon = ({
         </AxisLabel>
       </GraphWrapper>
     </Container>
-  )
-}
+  );
+};
 
 const Container = styled.div`
   display: flex;
@@ -110,21 +110,21 @@ const Container = styled.div`
   align-items: center;
   width: 100%;
   padding-top: 28px;
-`
+`;
 
 const Row = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-`
+`;
 
 const GraphWrapper = styled.div`
   height: 300px;
   width: 300px;
   position: relative;
   margin-top: 72px;
-`
+`;
 
 const CustomSlider = styled(SliderUnstyled)`
   display: inline-block;
@@ -162,46 +162,46 @@ const CustomSlider = styled(SliderUnstyled)`
     border: 2px solid #1ac5bd;
     background-color: #fff;
   }
-`
+`;
 
 const CustomSliderVertical = styled(CustomSlider)`
   height: 150px;
   width: 4px;
   padding: 0px 13px;
-`
+`;
 
 const CustomSliderHorizontal = styled(CustomSlider)`
   height: 4px;
   width: 150px;
   padding: 13px 0;
-`
+`;
 
 const CustomSliderRight = styled(CustomSliderHorizontal)`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-2px, -50%);
-`
+`;
 
 const CustomSliderLeft = styled(CustomSliderHorizontal)`
   position: absolute;
   top: 50%;
   left: 0%;
   transform: translate(0, -50%);
-`
+`;
 
 const CustomSliderTop = styled(CustomSliderVertical)`
   position: absolute;
   left: 50%;
   transform: translate(-50%, 10px);
-`
+`;
 
 const CustomSliderBottom = styled(CustomSliderVertical)`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, 8px);
-`
+`;
 const AxisLabel = styled.div`
   position: absolute;
   top: 0;
@@ -209,21 +209,21 @@ const AxisLabel = styled.div`
   width: 100%;
   height: 100%;
   z-index: -1;
-`
+`;
 
 const YAxisPositive = styled(DetailHighlight)`
   position: absolute;
   top: -5%;
   left: 50%;
   transform: translate(-50%, -50%);
-`
+`;
 
 const YAxisNegative = styled(DetailHighlight)`
   position: absolute;
   left: 50%;
   top: 105%;
   transform: translate(-50%, -50%);
-`
+`;
 const XAxisNegative = styled(DetailHighlight)`
   position: absolute;
   top: 56%;
@@ -231,7 +231,7 @@ const XAxisNegative = styled(DetailHighlight)`
   transform: translate(-50%, -50%);
   overflow: hidden;
   white-space: nowrap;
-`
+`;
 const XAxisPositive = styled(DetailHighlight)`
   position: absolute;
   top: 56%;
@@ -239,4 +239,4 @@ const XAxisPositive = styled(DetailHighlight)`
   transform: translate(-50%, -50%);
   overflow: hidden;
   white-space: nowrap;
-`
+`;

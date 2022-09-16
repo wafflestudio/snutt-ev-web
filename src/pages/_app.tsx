@@ -1,23 +1,23 @@
-import { css, Global } from "@emotion/react"
+import { css, Global } from "@emotion/react";
 import {
   QueryClient,
   QueryClientProvider,
   QueryErrorResetBoundary,
-} from "@tanstack/react-query"
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
-import type { AppProps } from "next/app"
-import Head from "next/head"
-import { Suspense, useEffect } from "react"
-import { ErrorBoundary } from "react-error-boundary"
+} from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import type { AppProps } from "next/app";
+import Head from "next/head";
+import { Suspense, useEffect } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 
-import { getEmailVerification } from "@/lib/api/apis"
-import { ErrorView } from "@/lib/components/Error"
-import useCookie from "@/lib/hooks/useCookie"
-import { appleSDGNeo } from "@/lib/styles/fonts"
-import { useMSW } from "@/mocks/integrations/browser"
-import { MailVerifyImpl } from "@/pageImpl/mailVerifyImpl"
+import { getEmailVerification } from "@/lib/api/apis";
+import { ErrorView } from "@/lib/components/Error";
+import useCookie from "@/lib/hooks/useCookie";
+import { appleSDGNeo } from "@/lib/styles/fonts";
+import { useMSW } from "@/mocks/integrations/browser";
+import { MailVerifyImpl } from "@/pageImpl/mailVerifyImpl";
 
-const isDevtool = process.env.NEXT_PUBLIC_REACT_QUERY_DEVTOOL === "true"
+const isDevtool = process.env.NEXT_PUBLIC_REACT_QUERY_DEVTOOL === "true";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,25 +26,25 @@ const queryClient = new QueryClient({
       suspense: true,
     },
   },
-})
+});
 
 function MyApp({ Component, pageProps }: AppProps) {
-  useMSW(false) // TODO: apply browser integration
+  useMSW(false); // TODO: apply browser integration
 
   const [isEmailVerified, updateEmailVerifedCookie] =
-    useCookie("email-verified")
+    useCookie("email-verified");
 
   useEffect(() => {
     const checkEmailVerification = async () => {
-      const res = await getEmailVerification()
-      updateEmailVerifedCookie(`${!!res.is_email_verified}`)
-    }
+      const res = await getEmailVerification();
+      updateEmailVerifedCookie(`${!!res.is_email_verified}`);
+    };
 
-    checkEmailVerification()
-  }, [updateEmailVerifedCookie])
+    checkEmailVerification();
+  }, [updateEmailVerifedCookie]);
 
   if (isEmailVerified === null) {
-    return
+    return;
   }
 
   if (isEmailVerified === "false") {
@@ -69,7 +69,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
         <MailVerifyImpl setVerification={updateEmailVerifedCookie} />
       </>
-    )
+    );
   }
 
   return (
@@ -110,7 +110,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         {isDevtool && <ReactQueryDevtools initialIsOpen={false} />}
       </QueryClientProvider>
     </>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;

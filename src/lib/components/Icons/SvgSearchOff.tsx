@@ -1,5 +1,5 @@
-import * as React from "react"
-import { SVGProps } from "react"
+import * as React from "react";
+import { SVGProps } from "react";
 
 const SvgTabSearchOff = (props: SVGProps<SVGSVGElement>) => (
   <svg
@@ -21,6 +21,6 @@ const SvgTabSearchOff = (props: SVGProps<SVGSVGElement>) => (
       mask="url(#tab_search_off_svg__a)"
     />
   </svg>
-)
+);
 
-export default SvgTabSearchOff
+export default SvgTabSearchOff;

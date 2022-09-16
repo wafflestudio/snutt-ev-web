@@ -1,7 +1,7 @@
-import styled from "@emotion/styled"
+import styled from "@emotion/styled";
 
-import { resetMarPad } from "@/lib/styles"
-import { COLORS } from "@/lib/styles/colors"
+import { resetMarPad } from "@/lib/styles";
+import { COLORS } from "@/lib/styles/colors";
 
 export const Subheading01 = styled.h2`
   ${resetMarPad}
@@ -10,7 +10,7 @@ export const Subheading01 = styled.h2`
   font-size: 14px;
   line-height: 17px;
   color: ${COLORS.black};
-`
+`;
 
 export const Subheading02 = styled.h2`
   ${resetMarPad}
@@ -19,4 +19,4 @@ export const Subheading02 = styled.h2`
   font-size: 14px;
   line-height: 15px;
   color: ${COLORS.black};
-`
+`;

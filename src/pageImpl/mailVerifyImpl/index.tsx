@@ -1,39 +1,39 @@
-import styled from "@emotion/styled"
-import { AxiosError } from "axios"
-import React, { ChangeEvent, useState } from "react"
-import CountDown, { CountdownRenderProps, zeroPad } from "react-countdown"
+import styled from "@emotion/styled";
+import { AxiosError } from "axios";
+import React, { ChangeEvent, useState } from "react";
+import CountDown, { CountdownRenderProps, zeroPad } from "react-countdown";
 
-import { postEmailVerificationCode } from "@/lib/api/apis"
-import { postEmailVerification } from "@/lib/api/apis"
-import { AppBar } from "@/lib/components/Appbar"
-import SvgTimetableOn from "@/lib/components/Icons/SvgTimetableOn"
+import { postEmailVerificationCode } from "@/lib/api/apis";
+import { postEmailVerification } from "@/lib/api/apis";
+import { AppBar } from "@/lib/components/Appbar";
+import SvgTimetableOn from "@/lib/components/Icons/SvgTimetableOn";
 import {
   Detail,
   Subheading01,
   Subheading02,
   Title01,
-} from "@/lib/components/Text"
-import { ApiError } from "@/lib/dto/core/error"
-import { COLORS } from "@/lib/styles/colors"
+} from "@/lib/components/Text";
+import { ApiError } from "@/lib/dto/core/error";
+import { COLORS } from "@/lib/styles/colors";
 
 interface Props {
   setVerification: (
     newValue: string,
     options?: Cookies.CookieAttributes | undefined,
-  ) => void
+  ) => void;
 }
 
 export const MailVerifyImpl = ({ setVerification }: Props) => {
-  const [email, setEmail] = useState("")
+  const [email, setEmail] = useState("");
 
-  const isRequestVerificationButtonDiasbled = email === ""
+  const isRequestVerificationButtonDiasbled = email === "";
 
-  const [verificationNumber, setVerificationNumber] = useState(0)
+  const [verificationNumber, setVerificationNumber] = useState(0);
 
   const [isVerificationNumberRequested, setIsVerificationNumberRequested] =
-    useState(false)
+    useState(false);
 
-  const [timeoutDeadline, setTimeoutDeadline] = useState(0)
+  const [timeoutDeadline, setTimeoutDeadline] = useState(0);
 
   enum VerificationState {
     TOO_MANY_REQUEST,
@@ -47,12 +47,13 @@ export const MailVerifyImpl = ({ setVerification }: Props) => {
 
   const [verificationState, setVerificationState] = useState<VerificationState>(
     VerificationState.NONE,
-  )
+  );
 
-  const isCompleteButtonDisabled = verificationState !== VerificationState.READY
+  const isCompleteButtonDisabled =
+    verificationState !== VerificationState.READY;
 
   const WARINING: {
-    [key in Exclude<VerificationState, VerificationState.READY>]: string
+    [key in Exclude<VerificationState, VerificationState.READY>]: string;
   } = {
     [VerificationState.TIMEOUT]: "인증요청에 실패했습니다. 다시 시도해주세요",
     [VerificationState.INVALID_NUMBER]:
@@ -62,7 +63,7 @@ export const MailVerifyImpl = ({ setVerification }: Props) => {
     [VerificationState.TOO_MANY_REQUEST]:
       "인증요청에 실패했습니다. 3분 후에 다시 시도해주세요",
     [VerificationState.NONE]: "",
-  }
+  };
 
   const countDownRenderer = ({
     minutes,
@@ -70,67 +71,67 @@ export const MailVerifyImpl = ({ setVerification }: Props) => {
     completed,
   }: CountdownRenderProps) => {
     if (completed) {
-      setVerificationState(VerificationState.TIMEOUT)
-      return <Subheading01 style={{ color: COLORS.red }}>00:00</Subheading01>
+      setVerificationState(VerificationState.TIMEOUT);
+      return <Subheading01 style={{ color: COLORS.red }}>00:00</Subheading01>;
     } else {
       verificationState === VerificationState.TIMEOUT &&
-        setVerificationState(VerificationState.READY)
+        setVerificationState(VerificationState.READY);
       return (
         <Subheading01 style={{ color: COLORS.red }}>
           {zeroPad(minutes)}:{zeroPad(seconds)}
         </Subheading01>
-      )
+      );
     }
-  }
+  };
 
   const requestVerificationNumberHandler = async () => {
     try {
       await postEmailVerification({ email: email + "@snu.ac.kr" })
         .then(() => {
-          setVerificationState(VerificationState.READY)
-          setIsVerificationNumberRequested(true)
-          setTimeoutDeadline(Date.now() + 179000)
+          setVerificationState(VerificationState.READY);
+          setIsVerificationNumberRequested(true);
+          setTimeoutDeadline(Date.now() + 179000);
         })
         .catch((e: AxiosError<ApiError>) => {
-          const errcode = e.response?.data.errcode
+          const errcode = e.response?.data.errcode;
 
           if (errcode === 36864) {
-            setVerificationState(VerificationState.ALREADY_VERIFIED)
-            return
+            setVerificationState(VerificationState.ALREADY_VERIFIED);
+            return;
           }
 
           if (errcode === 36865) {
-            setVerificationState(VerificationState.VERFIED_FROM_OTHER_MAIL)
-            return
+            setVerificationState(VerificationState.VERFIED_FROM_OTHER_MAIL);
+            return;
           }
 
           if (errcode === 40960) {
-            setVerificationState(VerificationState.TOO_MANY_REQUEST)
-            return
+            setVerificationState(VerificationState.TOO_MANY_REQUEST);
+            return;
           }
 
-          return
-        })
+          return;
+        });
     } catch (e) {
-      console.error(e)
-      setVerificationState(VerificationState.TIMEOUT)
+      console.error(e);
+      setVerificationState(VerificationState.TIMEOUT);
     }
-  }
+  };
 
   const verifyHandler = async () => {
     try {
       const res = await postEmailVerificationCode({
         code: verificationNumber,
-      })
+      });
 
       if (res.is_email_verified) {
-        setVerification("true")
+        setVerification("true");
       }
     } catch (e) {
-      console.error(e)
-      setVerificationState(VerificationState.INVALID_NUMBER)
+      console.error(e);
+      setVerificationState(VerificationState.INVALID_NUMBER);
     }
-  }
+  };
 
   return (
     <Wrapper>
@@ -151,7 +152,7 @@ export const MailVerifyImpl = ({ setVerification }: Props) => {
             <EmailInput
               placeholder={"이메일을 입력하세요"}
               onChange={(e) => {
-                setEmail(e.target.value)
+                setEmail(e.target.value);
               }}
             />
             <MailAddress>
@@ -176,9 +177,9 @@ export const MailVerifyImpl = ({ setVerification }: Props) => {
               placeholder={"인증번호 6자리를 입력하세요"}
               onChange={(e: ChangeEvent<HTMLInputElement>) => {
                 if (verificationState === VerificationState.INVALID_NUMBER) {
-                  setVerificationState(VerificationState.READY)
+                  setVerificationState(VerificationState.READY);
                 }
-                setVerificationNumber(parseInt(e.target.value))
+                setVerificationNumber(parseInt(e.target.value));
               }}
             />
             {isVerificationNumberRequested && (
@@ -207,23 +208,23 @@ export const MailVerifyImpl = ({ setVerification }: Props) => {
         </CompleteButton>
       </Content>
     </Wrapper>
-  )
-}
+  );
+};
 
-const Wrapper = styled.div``
+const Wrapper = styled.div``;
 
 const Content = styled.div`
   padding: 22px 20px 0 20px;
-`
+`;
 
 const DescriptionTextWrapper = styled.div`
   height: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-`
+`;
 
-const DescriptionText = styled.div``
+const DescriptionText = styled.div``;
 
 const EmailInputWrapper = styled.div`
   margin-top: 25px;
@@ -231,7 +232,7 @@ const EmailInputWrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 2px;
-`
+`;
 
 const EmailInputBar = styled.div`
   display: flex;
@@ -240,7 +241,7 @@ const EmailInputBar = styled.div`
   height: 34px;
   width: 100%;
   border-bottom: solid 1px #c4c4c4;
-`
+`;
 
 const VerificationNumberInputWrapper = styled.div`
   margin-top: 16px;
@@ -249,7 +250,7 @@ const VerificationNumberInputWrapper = styled.div`
   align-items: flex-start;
   gap: 2px;
   position: relative;
-`
+`;
 
 const VerificationNumberInputBar = styled.div`
   display: flex;
@@ -259,14 +260,14 @@ const VerificationNumberInputBar = styled.div`
   height: 34px;
   width: 100%;
   border-bottom: solid 1px #c4c4c4;
-`
+`;
 
 const MailAddress = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: 0 2px 0 2px;
-`
+`;
 
 const RequestVerificationButton = styled.button`
   width: 85px;
@@ -283,7 +284,7 @@ const RequestVerificationButton = styled.button`
   &:disabled {
     color: #b3b3b3;
   }
-`
+`;
 
 const CountDownWrapper = styled.div`
   width: 56px;
@@ -291,7 +292,7 @@ const CountDownWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-`
+`;
 
 const CompleteButton = styled.button`
   height: 60px;
@@ -303,7 +304,7 @@ const CompleteButton = styled.button`
   &:disabled {
     background-color: #c4c4c4;
   }
-`
+`;
 
 const TransparentInput = styled.input`
   border: none;
@@ -319,14 +320,14 @@ const TransparentInput = styled.input`
   ::placeholder {
     color: #c4c4c4;
   }
-`
+`;
 
-const EmailInput = styled(TransparentInput)``
+const EmailInput = styled(TransparentInput)``;
 
-const VerificationNumberInput = styled(TransparentInput)``
+const VerificationNumberInput = styled(TransparentInput)``;
 
 const WarningText = styled.div`
   height: 15px;
   position: absolute;
   bottom: -17px; // line height + 2px gap
-`
+`;

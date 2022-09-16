@@ -1,7 +1,7 @@
-import styled from "@emotion/styled"
+import styled from "@emotion/styled";
 
-import { resetMarPad } from "@/lib/styles"
-import { COLORS } from "@/lib/styles/colors"
+import { resetMarPad } from "@/lib/styles";
+import { COLORS } from "@/lib/styles/colors";
 
 export const Detail = styled.p`
   ${resetMarPad}
@@ -10,7 +10,7 @@ export const Detail = styled.p`
   font-size: 12px;
   line-height: 15px;
   color: ${COLORS.black};
-`
+`;
 
 export const DetailHighlight = styled.p`
   ${resetMarPad}
@@ -19,4 +19,4 @@ export const DetailHighlight = styled.p`
   font-size: 12px;
   line-height: 15px;
   color: ${COLORS.black};
-`
+`;

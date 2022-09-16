@@ -1,18 +1,18 @@
-import styled from "@emotion/styled"
+import styled from "@emotion/styled";
 
-import SvgStarSmallEmpty from "@/lib/components/Icons/SvgStarSmallEmpty"
-import SvgStarSmallFilled from "@/lib/components/Icons/SvgStarSmallFilled"
-import SvgWarning from "@/lib/components/Icons/SvgWarning"
-import { Detail, Title02 } from "@/lib/components/Text"
-import { resetMarPad } from "@/lib/styles"
-import { COLORS } from "@/lib/styles/colors"
+import SvgStarSmallEmpty from "@/lib/components/Icons/SvgStarSmallEmpty";
+import SvgStarSmallFilled from "@/lib/components/Icons/SvgStarSmallFilled";
+import SvgWarning from "@/lib/components/Icons/SvgWarning";
+import { Detail, Title02 } from "@/lib/components/Text";
+import { resetMarPad } from "@/lib/styles";
+import { COLORS } from "@/lib/styles/colors";
 
 interface Props {
-  handleRating: (rating: number) => void
-  rating: number
-  content: string
-  handleContent: (content: string) => void
-  contentsUnsatisfied: boolean
+  handleRating: (rating: number) => void;
+  rating: number;
+  content: string;
+  handleContent: (content: string) => void;
+  contentsUnsatisfied: boolean;
 }
 
 export const EvalBasic = ({
@@ -25,7 +25,7 @@ export const EvalBasic = ({
   const ratingImage = {
     empty: <SvgStarSmallEmpty width={30} height={30} />,
     filled: <SvgStarSmallFilled width={30} height={30} />,
-  }
+  };
 
   const ratings = [
     {
@@ -48,14 +48,14 @@ export const EvalBasic = ({
       empty: ratingImage.empty,
       filled: ratingImage.filled,
     },
-  ]
+  ];
 
   const placeHolder =
-    "강의에 대한 솔직한 리뷰를 남겨주세요. \nex) 과제, 출석, 교수님, 시험 난이도, 팀플 유무 등"
+    "강의에 대한 솔직한 리뷰를 남겨주세요. \nex) 과제, 출석, 교수님, 시험 난이도, 팀플 유무 등";
 
   const WARNING = {
     unsatisfiedContents: "강의평을 30자 이상 남겨주세요",
-  }
+  };
 
   return (
     <>
@@ -89,8 +89,8 @@ export const EvalBasic = ({
         </WarningContainer>
       )}
     </>
-  )
-}
+  );
+};
 
 const Container = styled.div`
   display: flex;
@@ -100,7 +100,7 @@ const Container = styled.div`
   width: 100%;
   height: 408px;
   padding-top: 28px;
-`
+`;
 
 const SubTitle = styled.p`
   ${resetMarPad}
@@ -111,18 +111,18 @@ const SubTitle = styled.p`
   line-height: 12px;
   color: #b3b3b3;
   margin-top: 7px;
-`
+`;
 
 const RatingContainer = styled.div`
   display: flex;
   margin-top: 4px;
   margin-bottom: 24px;
-`
+`;
 
 const RatingButton = styled.button`
   background-color: transparent;
   border: none;
-`
+`;
 
 const ContentTextarea = styled.textarea`
   width: 100%;
@@ -138,7 +138,7 @@ const ContentTextarea = styled.textarea`
   overflow-y: scroll;
   color: #777777;
   outline: none;
-`
+`;
 
 const WarningContainer = styled.div`
   display: flex;
@@ -146,4 +146,4 @@ const WarningContainer = styled.div`
   align-items: center;
   width: 100%;
   margin-top: 2px;
-`
+`;

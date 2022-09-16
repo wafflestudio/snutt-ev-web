@@ -1,17 +1,17 @@
-import styled from "@emotion/styled"
-import React, { useState } from "react"
+import styled from "@emotion/styled";
+import React, { useState } from "react";
 
-import { SearchResultLoading } from "@/lib/components/Miscellaneous/Loading"
-import useScrollLoader from "@/lib/hooks/useScrollLoader"
+import { SearchResultLoading } from "@/lib/components/Miscellaneous/Loading";
+import useScrollLoader from "@/lib/hooks/useScrollLoader";
 
-import { Searchbar } from "./__components__/Searchbar"
-import { SearchInitialPage } from "./__components__/SearchInitialPage"
-import { SearchNoResult } from "./__components__/SearchNoResult"
-import { SearchOptionSheet } from "./__components__/SearchOptionSheet"
-import { SearchResultItem } from "./__components__/SearchResultItem"
-import { ActiveTagList } from "./__components__/SelectedTagList"
-import useSearchOptionContainer from "./__containers__/useSearchOptionContainer"
-import { useTagContainer } from "./__containers__/useTagContainer"
+import { Searchbar } from "./__components__/Searchbar";
+import { SearchInitialPage } from "./__components__/SearchInitialPage";
+import { SearchNoResult } from "./__components__/SearchNoResult";
+import { SearchOptionSheet } from "./__components__/SearchOptionSheet";
+import { SearchResultItem } from "./__components__/SearchResultItem";
+import { ActiveTagList } from "./__components__/SelectedTagList";
+import useSearchOptionContainer from "./__containers__/useSearchOptionContainer";
+import { useTagContainer } from "./__containers__/useTagContainer";
 
 export const SearchImpl = () => {
   const {
@@ -22,27 +22,27 @@ export const SearchImpl = () => {
     refreshQueries,
     selectedTextQuery,
     updateTextQuery,
-  } = useTagContainer()
+  } = useTagContainer();
 
   const { searchResult, isFetchingNextPage, hasNextPage, fetchNextPage } =
     useSearchOptionContainer(
       currentlyAppliedQuery?.tags ?? [],
       currentlyAppliedQuery?.textQuery,
-    )
+    );
 
-  const { loaderRef } = useScrollLoader(fetchNextPage)
-  const [isSearchSheetOpen, setIsSearchSheetOpen] = useState(false)
+  const { loaderRef } = useScrollLoader(fetchNextPage);
+  const [isSearchSheetOpen, setIsSearchSheetOpen] = useState(false);
 
   const isEmptyQuery =
     currentlyAppliedQuery === undefined ||
     (currentlyAppliedQuery?.textQuery === "" &&
-      currentlyAppliedQuery?.tags.length === 0)
+      currentlyAppliedQuery?.tags.length === 0);
 
   return (
     <Wrapper>
       <Searchbar
         toggleOpenSearchSheet={() => {
-          setIsSearchSheetOpen((prev) => !prev)
+          setIsSearchSheetOpen((prev) => !prev);
         }}
         textQuery={selectedTextQuery}
         onChangeTextQuery={updateTextQuery}
@@ -82,17 +82,17 @@ export const SearchImpl = () => {
         isOpened={isSearchSheetOpen}
         onClose={() => setIsSearchSheetOpen(false)}
         onClickSubmit={() => {
-          refreshQueries()
-          setIsSearchSheetOpen(false)
+          refreshQueries();
+          setIsSearchSheetOpen(false);
         }}
       />
     </Wrapper>
-  )
-}
+  );
+};
 
-const Wrapper = styled.div``
+const Wrapper = styled.div``;
 
 const SearchResultList = styled.div`
   padding-left: 20px;
   padding-right: 20px;
-`
+`;

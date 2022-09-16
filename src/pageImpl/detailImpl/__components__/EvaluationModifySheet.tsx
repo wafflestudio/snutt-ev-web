@@ -1,18 +1,18 @@
-import styled from "@emotion/styled"
-import React from "react"
-import Sheet from "react-modal-sheet"
+import styled from "@emotion/styled";
+import React from "react";
+import Sheet from "react-modal-sheet";
 
-import ReportIcon from "@/assets/icons/report.svg"
-import TrashIcon from "@/assets/icons/trash.svg"
-import { Subheading02 } from "@/lib/components/Text"
+import ReportIcon from "@/assets/icons/report.svg";
+import TrashIcon from "@/assets/icons/trash.svg";
+import { Subheading02 } from "@/lib/components/Text";
 
 interface Props {
-  isOpened: boolean
-  onClose: () => void
-  onDeleteClicked: () => void
-  onReportClicked: () => void
-  isModifiable: boolean
-  isReportable: boolean
+  isOpened: boolean;
+  onClose: () => void;
+  onDeleteClicked: () => void;
+  onReportClicked: () => void;
+  isModifiable: boolean;
+  isReportable: boolean;
 }
 
 const EvaluationModifySheet: React.FC<Props> = ({
@@ -56,32 +56,32 @@ const EvaluationModifySheet: React.FC<Props> = ({
           </Sheet.Container>
           <Sheet.Backdrop
             onTap={() => {
-              onClose()
+              onClose();
             }}
           />
         </Sheet>
       )}
     </>
-  )
-}
+  );
+};
 
 const Wrapper = styled.div`
   display: flex;
   margin: 20px;
   justify-content: space-around;
   flex-direction: column;
-`
+`;
 
 const ReportContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-`
+`;
 
 const DeleteContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-`
+`;
 
-export default EvaluationModifySheet
+export default EvaluationModifySheet;

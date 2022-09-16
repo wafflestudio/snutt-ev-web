@@ -1,5 +1,5 @@
-import * as React from "react"
-import { SVGProps } from "react"
+import * as React from "react";
+import { SVGProps } from "react";
 
 const SvgUnchecked = (props: SVGProps<SVGSVGElement>) => (
   <svg
@@ -37,6 +37,6 @@ const SvgUnchecked = (props: SVGProps<SVGSVGElement>) => (
       mask="url(#unchecked_svg__a)"
     />
   </svg>
-)
+);
 
-export default SvgUnchecked
+export default SvgUnchecked;

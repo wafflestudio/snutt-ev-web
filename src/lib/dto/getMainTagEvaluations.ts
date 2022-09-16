@@ -1,10 +1,10 @@
-import { MainEvaluationDTO } from "@/lib/dto/core/mainEvaluation"
+import { MainEvaluationDTO } from "@/lib/dto/core/mainEvaluation";
 
 export interface GetMainTagEvalutionsQuery {
-  cursor?: string
+  cursor?: string;
 }
 
 export interface GetMainTagEvaluationsResult {
-  content: MainEvaluationDTO[]
-  cursor?: string
+  content: MainEvaluationDTO[];
+  cursor?: string;
 }

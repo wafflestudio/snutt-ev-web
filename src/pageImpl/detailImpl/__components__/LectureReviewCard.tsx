@@ -1,18 +1,18 @@
-import styled from "@emotion/styled"
+import styled from "@emotion/styled";
 
-import FossilIcon from "@/assets/icons/fossil.svg"
-import MoreVerticalIcon from "@/assets/icons/more_vertical.svg"
-import { CollapsableText } from "@/lib/components/CollapsableText"
-import { Rating } from "@/lib/components/Rating"
-import { Detail } from "@/lib/components/Text"
-import { EvaluationDTO } from "@/lib/dto/core/evaluation"
-import { COLORS } from "@/lib/styles/colors"
-import { SemesterIntToString } from "@/lib/util"
+import FossilIcon from "@/assets/icons/fossil.svg";
+import MoreVerticalIcon from "@/assets/icons/more_vertical.svg";
+import { CollapsableText } from "@/lib/components/CollapsableText";
+import { Rating } from "@/lib/components/Rating";
+import { Detail } from "@/lib/components/Text";
+import { EvaluationDTO } from "@/lib/dto/core/evaluation";
+import { COLORS } from "@/lib/styles/colors";
+import { SemesterIntToString } from "@/lib/util";
 
 interface Props {
-  review: EvaluationDTO
-  onMoreClick: () => void
-  isMyReview?: boolean
+  review: EvaluationDTO;
+  onMoreClick: () => void;
+  isMyReview?: boolean;
 }
 
 export const LectureReviewCard = ({
@@ -51,8 +51,8 @@ export const LectureReviewCard = ({
         )}
       </Contents>
     </Wrapper>
-  )
-}
+  );
+};
 
 const Wrapper = styled.div<{ isMintColor: boolean }>`
   width: calc(100% + 40px);
@@ -60,7 +60,7 @@ const Wrapper = styled.div<{ isMintColor: boolean }>`
   margin-left: -20px;
   background-color: ${(props) =>
     props.isMintColor && "rgba(27, 208, 200, 0.05)"};
-`
+`;
 
 const Contents = styled.div`
   height: 100%;
@@ -69,19 +69,19 @@ const Contents = styled.div`
   padding: 20px 0;
   margin: 0 20px;
   border-bottom: 1px solid ${COLORS.gray};
-`
+`;
 
 const Header = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-`
+`;
 const Semester = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-`
+`;
 
 const SemesterText = styled(Detail)`
   color: ${COLORS.darkGray};
@@ -89,23 +89,23 @@ const SemesterText = styled(Detail)`
   font-size: 10px;
   margin-left: 8px;
   line-height: 18px;
-`
+`;
 
 const FossilIconWrapper = styled.div`
   margin-left: 6px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-`
+`;
 
 const SideInfo = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-`
+`;
 
 const Review = styled.div`
   display: inline-block;
   width: 100%;
   margin-top: 12px;
-`
+`;

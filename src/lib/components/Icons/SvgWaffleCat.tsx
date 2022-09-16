@@ -2018,5 +2018,5 @@ export function SvgWaffleCat() {
         fill="#C4C4C4"
       />
     </svg>
-  )
+  );
 }

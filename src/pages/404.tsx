@@ -1,10 +1,10 @@
-import styled from "@emotion/styled"
-import React from "react"
+import styled from "@emotion/styled";
+import React from "react";
 
-import { AppBar } from "@/lib/components/Appbar"
-import SvgTimetableOn from "@/lib/components/Icons/SvgTimetableOn"
-import { SvgWaffleCat } from "@/lib/components/Icons/SvgWaffleCat"
-import { Title01, Title02 } from "@/lib/components/Text"
+import { AppBar } from "@/lib/components/Appbar";
+import SvgTimetableOn from "@/lib/components/Icons/SvgTimetableOn";
+import { SvgWaffleCat } from "@/lib/components/Icons/SvgWaffleCat";
+import { Title01, Title02 } from "@/lib/components/Text";
 
 export default function Custom404() {
   return (
@@ -22,7 +22,7 @@ export default function Custom404() {
         <OurName>@wafflestudio</OurName>
       </Container>
     </>
-  )
+  );
 }
 
 const Container = styled.div`
@@ -32,10 +32,10 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`
+`;
 
 const OurName = styled.div`
   font-family: AppleSDGothicNeo;
   font-size: 9px;
   margin-top: 25px;
-`
+`;

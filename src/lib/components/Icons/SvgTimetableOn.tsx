@@ -1,5 +1,5 @@
-import * as React from "react"
-import { SVGProps } from "react"
+import * as React from "react";
+import { SVGProps } from "react";
 
 const SvgTimetableOn = (props: SVGProps<SVGSVGElement>) => (
   <svg
@@ -27,6 +27,6 @@ const SvgTimetableOn = (props: SVGProps<SVGSVGElement>) => (
       mask="url(#timetable_on_svg__a)"
     />
   </svg>
-)
+);
 
-export default SvgTimetableOn
+export default SvgTimetableOn;

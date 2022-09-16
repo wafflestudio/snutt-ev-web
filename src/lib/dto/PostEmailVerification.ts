@@ -1,13 +1,13 @@
 export interface PostEmailVerificationParams {
-  email: string
+  email: string;
 }
 
 export interface PostEmailVerificationResult {}
 
 export interface PostEmailVerificationCodeParams {
-  code: number
+  code: number;
 }
 
 export interface PostEmailVerificationCodeResult {
-  is_email_verified: boolean
+  is_email_verified: boolean;
 }

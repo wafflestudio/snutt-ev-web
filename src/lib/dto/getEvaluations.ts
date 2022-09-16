@@ -1,17 +1,17 @@
-import { EvaluationDTO } from "@/lib/dto/core/evaluation"
+import { EvaluationDTO } from "@/lib/dto/core/evaluation";
 
 export interface GetEvaluationsQuery {
-  cursor: string
+  cursor: string;
 }
 
 export interface GetEvaluationsResult {
-  content: EvaluationDTO[]
-  cursor: string
-  size: number
-  last: boolean
-  total_count: number
+  content: EvaluationDTO[];
+  cursor: string;
+  size: number;
+  last: boolean;
+  total_count: number;
 }
 
 export interface GetMyEvaluationsResult {
-  evaluations: EvaluationDTO[]
+  evaluations: EvaluationDTO[];
 }

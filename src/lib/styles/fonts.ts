@@ -1,4 +1,4 @@
-import { css } from "@emotion/react"
+import { css } from "@emotion/react";
 
 export const appleSDGNeo = css`
   @font-face {
@@ -12,4 +12,4 @@ export const appleSDGNeo = css`
     src: url("/static/fonts/AppleSDGothicNeoB.ttf");
     font-weight: bold;
   }
-`
+`;

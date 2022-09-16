@@ -1,13 +1,13 @@
-import styled from "@emotion/styled"
+import styled from "@emotion/styled";
 
-import SvgChecked from "@/lib/components/Icons/SvgChecked"
-import SvgUnchecked from "@/lib/components/Icons/SvgUnchecked"
-import { TagWithColor } from "@/lib/dto/core/tag"
+import SvgChecked from "@/lib/components/Icons/SvgChecked";
+import SvgUnchecked from "@/lib/components/Icons/SvgUnchecked";
+import { TagWithColor } from "@/lib/dto/core/tag";
 
 interface Props {
-  tags: TagWithColor[]
-  selectedTags: TagWithColor[]
-  onToggleTag: (tag: TagWithColor) => void
+  tags: TagWithColor[];
+  selectedTags: TagWithColor[];
+  onToggleTag: (tag: TagWithColor) => void;
 }
 
 export const TagList: React.FC<Props> = ({
@@ -26,13 +26,13 @@ export const TagList: React.FC<Props> = ({
         />
       ))}
     </Wrapper>
-  )
-}
+  );
+};
 
 const TagItem: React.FC<{
-  isSelected: boolean
-  text: string
-  onClick: () => void
+  isSelected: boolean;
+  text: string;
+  onClick: () => void;
 }> = ({ isSelected, text, onClick }) => {
   return (
     <TagItemBox onClick={onClick}>
@@ -43,19 +43,19 @@ const TagItem: React.FC<{
       )}
       <TagItemText>{text}</TagItemText>
     </TagItemBox>
-  )
-}
+  );
+};
 
 const Wrapper = styled.div`
   overflow-y: scroll;
   width: calc(100% - 120px);
-`
+`;
 
 const TagItemBox = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-`
+`;
 
 const TagItemText = styled.div`
   font-family: "AppleSDGothicNeo";
@@ -65,4 +65,4 @@ const TagItemText = styled.div`
   margin-top: 10px;
   margin-bottom: 10px;
   color: "#000000";
-`
+`;

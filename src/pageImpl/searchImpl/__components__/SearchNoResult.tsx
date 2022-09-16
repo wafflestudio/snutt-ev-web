@@ -1,8 +1,8 @@
-import styled from "@emotion/styled"
-import React from "react"
+import styled from "@emotion/styled";
+import React from "react";
 
-import SvgSearchBig from "@/assets/icons/img_search_big.svg"
-import { Title02 } from "@/lib/components/Text"
+import SvgSearchBig from "@/assets/icons/img_search_big.svg";
+import { Title02 } from "@/lib/components/Text";
 
 export const SearchNoResult = () => {
   return (
@@ -10,8 +10,8 @@ export const SearchNoResult = () => {
       <SvgSearchBig />
       <Text style={{ marginTop: 40 }}>검색 결과가 없습니다.</Text>
     </Wrapper>
-  )
-}
+  );
+};
 
 const Wrapper = styled.div`
   display: flex;
@@ -21,8 +21,8 @@ const Wrapper = styled.div`
 
   height: 100%;
   margin-top: 25vh;
-`
+`;
 
 const Text = styled(Title02)`
   color: rgba(119, 119, 119, 0.7);
-`
+`;

@@ -1,102 +1,102 @@
-import styled from "@emotion/styled"
-import { Button, Dialog, DialogActions, DialogTitle } from "@mui/material"
-import { useRouter } from "next/router"
-import { Fragment, useEffect, useState } from "react"
+import styled from "@emotion/styled";
+import { Button, Dialog, DialogActions, DialogTitle } from "@mui/material";
+import { useRouter } from "next/router";
+import { Fragment, useEffect, useState } from "react";
 
-import { postLectureEvaluation } from "@/lib/api/apis"
-import { AppBar } from "@/lib/components/Appbar"
-import SvgArrowBack from "@/lib/components/Icons/SvgArrowBack"
-import { SemesterLectureDTO } from "@/lib/dto/core/semesterLecture"
-import { PostEvaluationQuery } from "@/lib/dto/postEvaluation"
-import { COLORS } from "@/lib/styles/colors"
+import { postLectureEvaluation } from "@/lib/api/apis";
+import { AppBar } from "@/lib/components/Appbar";
+import SvgArrowBack from "@/lib/components/Icons/SvgArrowBack";
+import { SemesterLectureDTO } from "@/lib/dto/core/semesterLecture";
+import { PostEvaluationQuery } from "@/lib/dto/postEvaluation";
+import { COLORS } from "@/lib/styles/colors";
 
-import { EvalBasic } from "./__components__/EvalBasic"
-import { EvalPolygon } from "./__components__/EvalPolygon"
-import { Header } from "./__components__/Header"
-import { usePolygonContainer, useSemestersContainer } from "./__containers__"
+import { EvalBasic } from "./__components__/EvalBasic";
+import { EvalPolygon } from "./__components__/EvalPolygon";
+import { Header } from "./__components__/Header";
+import { usePolygonContainer, useSemestersContainer } from "./__containers__";
 
 export const CreateImpl = () => {
-  const router = useRouter()
-  const id = Number(router.query["id"])
+  const router = useRouter();
+  const id = Number(router.query["id"]);
 
-  const { data: lectureSemesters } = useSemestersContainer(id)
-  const [isSemesterSelectorOpen, setIsSemesterSelectorOpen] = useState(false)
+  const { data: lectureSemesters } = useSemestersContainer(id);
+  const [isSemesterSelectorOpen, setIsSemesterSelectorOpen] = useState(false);
   const [selectedSemester, setSelectedSemester] = useState<
     SemesterLectureDTO | undefined
-  >(undefined)
+  >(undefined);
 
   useEffect(() => {
-    const latestLectureSemester = lectureSemesters?.semester_lectures[0]
+    const latestLectureSemester = lectureSemesters?.semester_lectures[0];
     if (latestLectureSemester) {
-      setSelectedSemester(latestLectureSemester)
+      setSelectedSemester(latestLectureSemester);
     }
-  }, [lectureSemesters])
+  }, [lectureSemesters]);
 
-  const [rating, setRating] = useState(-1)
-  const [content, setContent] = useState("")
+  const [rating, setRating] = useState(-1);
+  const [content, setContent] = useState("");
 
-  const [step, setStep] = useState(0)
-  const [isDialogOpen, setIsDialogOpen] = useState(false)
-  const [dialogErrorMessage, setDialogErrorMessage] = useState("")
+  const [step, setStep] = useState(0);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [dialogErrorMessage, setDialogErrorMessage] = useState("");
 
-  const { defaultValue, score, updateScore } = usePolygonContainer()
+  const { defaultValue, score, updateScore } = usePolygonContainer();
 
-  const [contentsUnsatisfied, setContentsUnsatisfied] = useState(true)
+  const [contentsUnsatisfied, setContentsUnsatisfied] = useState(true);
 
   const handleRating = (rating: number) => {
-    setRating(rating)
-  }
+    setRating(rating);
+  };
 
   const handleContent = (content: string) => {
-    setContent(content)
+    setContent(content);
 
-    const contentMinLength = 30
-    setContentsUnsatisfied(content.length < contentMinLength)
-  }
+    const contentMinLength = 30;
+    setContentsUnsatisfied(content.length < contentMinLength);
+  };
 
   const handleSemesterSelector = () => {
-    setIsSemesterSelectorOpen((status) => !status)
-  }
+    setIsSemesterSelectorOpen((status) => !status);
+  };
 
   const handleSelectedSemester = (semesterLecture: SemesterLectureDTO) => {
-    setSelectedSemester(semesterLecture)
-    setIsSemesterSelectorOpen((status) => !status)
-  }
+    setSelectedSemester(semesterLecture);
+    setIsSemesterSelectorOpen((status) => !status);
+  };
 
   const InvalidationDialog = () => (
     <Dialog
       open={isDialogOpen}
       onClose={() => {
-        setIsDialogOpen((status) => !status)
+        setIsDialogOpen((status) => !status);
       }}
     >
       <DialogTitle>{dialogErrorMessage}</DialogTitle>
       <DialogActions>
         <Button
           onClick={() => {
-            setIsDialogOpen((status) => !status)
+            setIsDialogOpen((status) => !status);
           }}
         >
           확인
         </Button>
       </DialogActions>
     </Dialog>
-  )
+  );
 
   const validateRatings = () => {
     if (rating === -1) {
-      return false
+      return false;
     }
 
-    return true
-  }
+    return true;
+  };
 
   const postEvaluation = async () => {
     if (!validateRatings()) {
-      setIsDialogOpen((status) => !status)
-      setDialogErrorMessage("별점을 입력해주세요")
+      setIsDialogOpen((status) => !status);
+      setDialogErrorMessage("별점을 입력해주세요");
 
-      return
+      return;
     }
 
     const query: PostEvaluationQuery = {
@@ -106,40 +106,40 @@ export const CreateImpl = () => {
       gains: score.bottom,
       life_balance: score.right,
       rating: rating + 1,
-    }
+    };
 
     if (selectedSemester?.id) {
       try {
-        await postLectureEvaluation(selectedSemester.id, query)
-        router.replace(`/detail?id=${id}`)
+        await postLectureEvaluation(selectedSemester.id, query);
+        router.replace(`/detail?id=${id}`);
       } catch (errorCode) {
         if (errorCode === 29001) {
-          setIsDialogOpen((status) => !status)
-          setDialogErrorMessage("이미 작성한 강의평이 존재합니다")
+          setIsDialogOpen((status) => !status);
+          setDialogErrorMessage("이미 작성한 강의평이 존재합니다");
         } else {
-          setIsDialogOpen((status) => !status)
-          setDialogErrorMessage("에러가 발생했습니다")
+          setIsDialogOpen((status) => !status);
+          setDialogErrorMessage("에러가 발생했습니다");
         }
       }
     } else {
-      setIsDialogOpen((status) => !status)
-      setDialogErrorMessage("에러가 발생했습니다")
+      setIsDialogOpen((status) => !status);
+      setDialogErrorMessage("에러가 발생했습니다");
     }
-  }
+  };
 
   const stepNext = () => {
     if (step < stepComponents.length - 1) {
-      setStep((step) => step + 1)
+      setStep((step) => step + 1);
     } else {
-      postEvaluation()
+      postEvaluation();
     }
-  }
+  };
 
   const stepPrev = () => {
     if (step > 0) {
-      setStep((step) => step - 1)
+      setStep((step) => step - 1);
     }
-  }
+  };
 
   const stepComponents = [
     <EvalPolygon
@@ -156,9 +156,9 @@ export const CreateImpl = () => {
       content={content}
       contentsUnsatisfied={contentsUnsatisfied}
     />,
-  ]
+  ];
 
-  const complete = step === stepComponents.length - 1 ? "완료" : "다음"
+  const complete = step === stepComponents.length - 1 ? "완료" : "다음";
 
   return (
     <>
@@ -168,7 +168,7 @@ export const CreateImpl = () => {
           LeftImage={() => (
             <BackButton
               onClick={() => {
-                step === 1 ? stepPrev() : router.back()
+                step === 1 ? stepPrev() : router.back();
               }}
             >
               <SvgArrowBack width={30} height={30} />
@@ -189,9 +189,9 @@ export const CreateImpl = () => {
           />
           {stepComponents.map((component, index) => {
             if (step === index) {
-              return <Fragment key={index}>{component}</Fragment>
+              return <Fragment key={index}>{component}</Fragment>;
             }
-            return null
+            return null;
           })}
           <Complete
             onClick={stepNext}
@@ -202,12 +202,12 @@ export const CreateImpl = () => {
         </Container>
       </Wrapper>
     </>
-  )
-}
+  );
+};
 
 const Wrapper = styled.div`
   margin-bottom: 90px;
-`
+`;
 
 const BackButton = styled.button`
   width: 30px;
@@ -215,7 +215,7 @@ const BackButton = styled.button`
   background: transparent;
   border: none;
   padding: 0;
-`
+`;
 
 const Container = styled.div`
   padding: 0px 20px 0px 20px;
@@ -225,7 +225,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   /* height: 100vh; */
-`
+`;
 
 const Complete = styled.button`
   position: fixed;
@@ -243,4 +243,4 @@ const Complete = styled.button`
   &:disabled {
     background-color: ${COLORS.gray20};
   }
-`
+`;

@@ -1,18 +1,18 @@
-import styled from "@emotion/styled"
-import { useRouter } from "next/router"
+import styled from "@emotion/styled";
+import { useRouter } from "next/router";
 
-import SvgPersonBlack from "@/lib/components/Icons/SvgPersonBlack"
-import SvgTagBlack from "@/lib/components/Icons/SvgTagBlack"
-import SvgWrite from "@/lib/components/Icons/SvgWrite"
-import { Subheading01 } from "@/lib/components/Text"
-import { LatestLectureDTO } from "@/lib/dto/core/latestLecture"
+import SvgPersonBlack from "@/lib/components/Icons/SvgPersonBlack";
+import SvgTagBlack from "@/lib/components/Icons/SvgTagBlack";
+import SvgWrite from "@/lib/components/Icons/SvgWrite";
+import { Subheading01 } from "@/lib/components/Text";
+import { LatestLectureDTO } from "@/lib/dto/core/latestLecture";
 
 interface Props {
-  content: LatestLectureDTO
+  content: LatestLectureDTO;
 }
 
 export const RecentLectureItem: React.FC<Props> = ({ content }) => {
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <Wrapper onClick={() => router.push(`/detail?id=${content.id}`)}>
@@ -36,8 +36,8 @@ export const RecentLectureItem: React.FC<Props> = ({ content }) => {
         <ItemBottomRight>
           <WriteButton
             onClick={(e) => {
-              router.push(`/create?id=${content.id}`)
-              e.stopPropagation()
+              router.push(`/create?id=${content.id}`);
+              e.stopPropagation();
             }}
           >
             <SvgWrite height={30} width={30} />
@@ -45,14 +45,14 @@ export const RecentLectureItem: React.FC<Props> = ({ content }) => {
         </ItemBottomRight>
       </ItemBottom>
     </Wrapper>
-  )
-}
+  );
+};
 
 const Wrapper = styled.div`
   padding: 10px 0 12px 0;
   margin: 0 20px 0 20px;
   border-bottom: solid 1px rgba(196, 196, 196, 0.3);
-`
+`;
 
 const ItemTop = styled.div`
   display: flex;
@@ -61,7 +61,7 @@ const ItemTop = styled.div`
   align-items: center;
 
   font-weight: bold;
-`
+`;
 
 const ItemBottom = styled.div`
   display: flex;
@@ -70,14 +70,14 @@ const ItemBottom = styled.div`
   justify-content: space-between;
 
   margin-top: 12px;
-`
+`;
 
 const ItemBottomLeft = styled.div`
   display: flex;
   height: 39px;
-`
+`;
 
-const ItemBottomRight = styled.div``
+const ItemBottomRight = styled.div``;
 
 const Icons = styled.div`
   height: 100%;
@@ -88,7 +88,7 @@ const Icons = styled.div`
 
   padding-top: 1px;
   padding-bottom: 1px;
-`
+`;
 
 const Texts = styled.div`
   height: 100%;
@@ -97,13 +97,13 @@ const Texts = styled.div`
   align-items: flex-start;
   margin-left: 10px;
   justify-content: space-between;
-`
+`;
 
 const SubjectText = styled(Subheading01)`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-`
+`;
 
 const InfoText = styled.div`
   font-family: AppleSDGothicNeo;
@@ -111,7 +111,7 @@ const InfoText = styled.div`
 
   font-size: 12px;
   line-height: 16.5px;
-`
+`;
 
 const LecturerText = styled.div`
   font-family: AppleSDGothicNeo;
@@ -119,7 +119,7 @@ const LecturerText = styled.div`
 
   font-size: 12px;
   line-height: 16.5px;
-`
+`;
 
 const WriteButton = styled.button`
   width: 30px;
@@ -128,4 +128,4 @@ const WriteButton = styled.button`
   background: transparent;
   border: none;
   padding: 0;
-`
+`;

@@ -1,11 +1,11 @@
-import styled from "@emotion/styled"
+import styled from "@emotion/styled";
 
-import ReviewIcon from "@/assets/icons/review_icon.svg"
-import SurprisedCatImage from "@/assets/icons/surprised_cat.svg"
-import { Title02 } from "@/lib/components/Text/Title"
+import ReviewIcon from "@/assets/icons/review_icon.svg";
+import SurprisedCatImage from "@/assets/icons/surprised_cat.svg";
+import { Title02 } from "@/lib/components/Text/Title";
 
 interface Props {
-  resetErrorBoundary?: (...args: Array<unknown>) => void
+  resetErrorBoundary?: (...args: Array<unknown>) => void;
 }
 
 export const ErrorView = ({}: Props) => {
@@ -25,8 +25,8 @@ export const ErrorView = ({}: Props) => {
       {/*  <button onClick={() => resetErrorBoundary()}>다시 불러오기</button>*/}
       {/*  }*/}
     </Container>
-  )
-}
+  );
+};
 
 const Container = styled.div`
   width: 100%;
@@ -35,8 +35,8 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`
+`;
 
 const Row = styled.div`
   display: inline-flex;
-`
+`;
