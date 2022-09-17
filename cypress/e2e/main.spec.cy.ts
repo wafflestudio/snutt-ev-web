@@ -1,4 +1,4 @@
-describe('empty spec', () => {
+describe('/main 페이지', () => {
   beforeEach(() => {
     cy.visit('/main');
   });

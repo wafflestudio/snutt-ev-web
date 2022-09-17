@@ -4,10 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "dev:test": "NODE_ENV=test next dev",
     "build": "next build",
-    "export": "next build && next export",
     "start": "next start",
+    "dev:test": "NODE_ENV=test next dev",
+    "build:test": "NODE_ENV=test next build",
+    "start:test": "NODE_ENV=test next start",
+    "export": "next build && next export",
     "lint": "next lint",
     "cy:open": "yarn cypress open",
     "cy:run": "yarn cypress run"
