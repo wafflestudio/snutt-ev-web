@@ -23,4 +23,7 @@ NEXT_PUBLIC_LOCAL_ACCESS_APIKEY=youraccessapikey
 
 # enable/disable react-query devtools
 NEXT_PUBLIC_REACT_QUERY_DEVTOOL=true
+
+# app env (local / dev / prod / test)
+NEXT_PUBLIC_APP_ENV=local
 ```
