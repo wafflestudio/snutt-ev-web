@@ -1,4 +1,4 @@
-export const latestLectures = {
+export const mockLatestLectures = {
   content: [
     {
       id: 2444,
@@ -28,4 +28,100 @@ export const latestLectures = {
     },
   ],
   total_count: 2,
+};
+
+export const mockMainTags = {
+  id: 1,
+  name: 'main',
+  ordering: -1,
+  color: null,
+  tags: [
+    { id: 1, name: '최신', description: '최근 등록된 강의평', ordering: 1 },
+    { id: 2, name: '추천', description: '학우들의 추천 강의', ordering: 2 },
+  ],
+};
+
+export const mockMainEvaluations = {
+  content: [
+    {
+      id: 6260,
+      content: 'asdfhajksdhkflaskldjfklajsdklfjaklsdf',
+      grade_satisfaction: 3,
+      teaching_skill: 3,
+      gains: 3,
+      life_balance: 1,
+      rating: 3,
+      like_count: 0,
+      dislike_count: 0,
+      is_hidden: false,
+      is_reported: false,
+      from_snuev: false,
+      year: 2016,
+      semester: 1,
+      lecture: { id: 353, title: '서양문명의 역사 1', instructor: '박재욱' },
+      is_modifiable: true,
+      is_reportable: false,
+      user: {
+        id: '630e3cb29382dc00102632a4',
+        email: 'woohm402@snu.ac.kr',
+        local_id: 'woohm402',
+      },
+    },
+    {
+      id: 6257,
+      content: 'qwerqwerqwerqwerqwerqwerqwerqwerqwe',
+      grade_satisfaction: 3,
+      teaching_skill: 3,
+      gains: 3,
+      life_balance: 2,
+      rating: 5,
+      like_count: 0,
+      dislike_count: 0,
+      is_hidden: false,
+      is_reported: false,
+      from_snuev: false,
+      year: 2020,
+      semester: 1,
+      lecture: { id: 2444, title: '물리학 1', instructor: '문송기' },
+      is_modifiable: true,
+      is_reportable: false,
+      user: {
+        id: '630e3cb29382dc00102632a4',
+        email: 'woohm402@snu.ac.kr',
+        local_id: 'woohm402',
+      },
+    },
+    {
+      id: 6254,
+      content: 'sdfsfsdfsdfdsfdsfsdfsdfsdfsdfsdfsd',
+      grade_satisfaction: 3,
+      teaching_skill: 3,
+      gains: 3,
+      life_balance: 3,
+      rating: 4,
+      like_count: 0,
+      dislike_count: 0,
+      is_hidden: false,
+      is_reported: false,
+      from_snuev: false,
+      year: 2019,
+      semester: 3,
+      lecture: {
+        id: 15,
+        title: '소그룹 고전원전읽기 1',
+        instructor: 'Maria Claudia Macias Rodriguez',
+      },
+      is_modifiable: false,
+      is_reportable: true,
+      user: {
+        id: '62b06d24b073f80011d3af74',
+        email: 'mog2512@snu.ac.kr',
+        local_id: 'yayaya',
+      },
+    },
+  ],
+  cursor: null,
+  size: 20,
+  last: true,
+  total_count: null,
 };

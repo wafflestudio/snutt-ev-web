@@ -1,6 +1,5 @@
 export interface MainEvaluationDTO {
   id: number;
-  user_id: string;
   content: string;
   grade_satisfaction: number;
   teaching_skill: number;
