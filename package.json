@@ -8,7 +8,8 @@
     "export": "next build && next export",
     "start": "next start",
     "lint": "next lint",
-    "cy:open": "cypress open"
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
   },
   "dependencies": {
     "@emotion/react": "^11.4.1",
