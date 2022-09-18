@@ -10,19 +10,22 @@ import { SearchNoResult } from './__components__/SearchNoResult';
 import { SearchOptionSheet } from './__components__/SearchOptionSheet';
 import { SearchResultItem } from './__components__/SearchResultItem';
 import { ActiveTagList } from './__components__/SelectedTagList';
-import { useSearchResult, useSearchTags } from './__containers__';
+import {
+  useSearchOptions,
+  useSearchResult,
+  useSearchTags,
+} from './__containers__';
 
 export const SearchImpl = () => {
+  const { tagGroups } = useSearchTags();
   const {
-    tagGroups,
     selectedTags,
     toggleTagSelection,
     currentlyAppliedQuery,
     refreshQueries,
     selectedTextQuery,
     updateTextQuery,
-  } = useSearchTags();
-
+  } = useSearchOptions();
   const { searchResult, isFetchingNextPage, hasNextPage, fetchNextPage } =
     useSearchResult(
       currentlyAppliedQuery?.tags ?? [],
