@@ -7,21 +7,17 @@ import { TagWithColor } from '@/lib/dto/core/tag';
 interface Props {
   tags: TagWithColor[];
   selectedTags: TagWithColor[];
-  onToggleTag: (tag: TagWithColor) => void;
+  onToggleTag: (tag: number) => void;
 }
 
-export const TagList: React.FC<Props> = ({
-  tags,
-  selectedTags,
-  onToggleTag,
-}) => {
+export const TagList = ({ tags, selectedTags, onToggleTag }: Props) => {
   return (
     <Wrapper>
       {tags.map((it) => (
         <TagItem
           isSelected={selectedTags.some((s) => s.name === it.name)}
           key={it.name}
-          onClick={() => onToggleTag(it)}
+          onClick={() => onToggleTag(it.id)}
           text={it.name}
         />
       ))}

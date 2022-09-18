@@ -1,20 +1,22 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 import { getLectures } from '@/lib/api/apis';
-import { TagDTO } from '@/lib/dto/core/tag';
 
-export const useSearchResult = (selectedTags: TagDTO[], textQuery?: string) => {
+export const useSearchResult = (
+  selectedTagIDs: number[],
+  textQuery?: string,
+) => {
   const {
     data: searchResult,
     isFetchingNextPage,
     fetchNextPage,
     hasNextPage,
   } = useInfiniteQuery(
-    ['lectureSearch', textQuery, selectedTags],
+    ['lectureSearch', textQuery, selectedTagIDs],
     ({ pageParam }) =>
       getLectures({
         query: textQuery,
-        tags: (selectedTags ?? []).map((it) => it.id),
+        tags: selectedTagIDs,
         page: pageParam,
       }),
     {
