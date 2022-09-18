@@ -3,10 +3,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { getLectures } from '@/lib/api/apis';
 import { TagDTO } from '@/lib/dto/core/tag';
 
-export default function useSearchOptionContainer(
-  selectedTags: TagDTO[],
-  textQuery?: string,
-) {
+export const useSearchResult = (selectedTags: TagDTO[], textQuery?: string) => {
   const {
     data: searchResult,
     isFetchingNextPage,
@@ -38,4 +35,4 @@ export default function useSearchOptionContainer(
     hasNextPage,
     fetchNextPage,
   };
-}
+};

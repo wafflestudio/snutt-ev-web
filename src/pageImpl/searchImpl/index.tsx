@@ -10,22 +10,24 @@ import { SearchNoResult } from './__components__/SearchNoResult';
 import { SearchOptionSheet } from './__components__/SearchOptionSheet';
 import { SearchResultItem } from './__components__/SearchResultItem';
 import { ActiveTagList } from './__components__/SelectedTagList';
-import useSearchOptionContainer from './__containers__/useSearchOptionContainer';
-import { useTagContainer } from './__containers__/useTagContainer';
+import {
+  useSearchOptions,
+  useSearchResult,
+  useSearchTags,
+} from './__containers__';
 
 export const SearchImpl = () => {
+  const { tagGroups } = useSearchTags();
   const {
-    tagGroups,
     selectedTags,
     toggleTagSelection,
     currentlyAppliedQuery,
     refreshQueries,
     selectedTextQuery,
     updateTextQuery,
-  } = useTagContainer();
-
+  } = useSearchOptions();
   const { searchResult, isFetchingNextPage, hasNextPage, fetchNextPage } =
-    useSearchOptionContainer(
+    useSearchResult(
       currentlyAppliedQuery?.tags ?? [],
       currentlyAppliedQuery?.textQuery,
     );
