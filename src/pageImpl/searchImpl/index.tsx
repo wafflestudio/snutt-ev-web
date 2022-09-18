@@ -63,7 +63,6 @@ export const SearchImpl = () => {
         onDeleteTag={toggleTagSelection}
       />
       <SearchResultList>
-        {/* FIXME: skip api request if input is "" */}
         {isEmptyQuery ? (
           <SearchInitialPage />
         ) : searchResult?.pages[0].content.length !== 0 ? (

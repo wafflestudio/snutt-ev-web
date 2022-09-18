@@ -6,14 +6,15 @@ interface Return {
   currentlyAppliedQuery: CurrentlyAppliedQuery | undefined;
   refreshQueries: () => void;
   toggleTagSelection: (tagID: number) => void;
-  selectedTextQuery: string | undefined;
-  updateTextQuery: (textQuery: string | undefined) => void;
+  selectedTextQuery: string;
+  updateTextQuery: (textQuery: string) => void;
   selectedTagIDs: number[];
 }
 
 export const useSearchOptions = (): Return => {
   const [selectedTagIDs, setSelectedTagIDs] = useState<number[]>([]);
-  const [textQuery, setTextQuery] = useState<string | undefined>();
+  const [searchKey, setSearchKey] = useState<string>('');
+
   const [currentlyAppliedQuery, setCurrentAppliedQuery] =
     useState<CurrentlyAppliedQuery>();
 
@@ -29,7 +30,7 @@ export const useSearchOptions = (): Return => {
   const refreshQueries = () => {
     setCurrentAppliedQuery({
       tags: selectedTagIDs,
-      textQuery: textQuery,
+      textQuery: searchKey,
     });
   };
 
@@ -37,8 +38,8 @@ export const useSearchOptions = (): Return => {
     currentlyAppliedQuery,
     refreshQueries,
     toggleTagSelection,
-    selectedTextQuery: textQuery,
-    updateTextQuery: setTextQuery,
+    selectedTextQuery: searchKey,
+    updateTextQuery: setSearchKey,
     selectedTagIDs,
   };
 };
