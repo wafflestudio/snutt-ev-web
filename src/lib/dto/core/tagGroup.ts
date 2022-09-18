@@ -4,14 +4,10 @@ export interface TagGroupDTO {
   id: number;
   name: string;
   ordering: number;
-  color: string;
+  color: string | null;
   tags: TagDTO[];
 }
 
-export interface TagGroupWithColor {
-  id: number;
-  name: string;
-  ordering: number;
-  color: string;
+export interface TagGroupWithColor extends TagGroupDTO {
   tags: TagWithColor[];
 }

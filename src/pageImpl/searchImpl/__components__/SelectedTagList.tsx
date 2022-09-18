@@ -26,7 +26,10 @@ const TagItem: React.FC<{
   onClick: () => void;
 }> = ({ tag, onClick }) => {
   return (
-    <TagItemBox onClick={onClick} style={{ backgroundColor: tag.color }}>
+    <TagItemBox
+      onClick={onClick}
+      style={{ backgroundColor: tag.color ?? undefined }}
+    >
       <TagText>{tag.name}</TagText>
       <SvgExitWhite width={15} height={15} />
     </TagItemBox>
