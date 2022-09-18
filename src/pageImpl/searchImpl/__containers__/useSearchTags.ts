@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { fetchTagInfos } from '@/lib/api/apis';
 import { TagWithColor } from '@/lib/dto/core/tag';
 
-export function useTagContainer() {
+export function useSearchTags() {
   const [currentlyAppliedQuery, setCurrentAppliedQuery] =
     useState<{ tags: TagWithColor[]; textQuery?: string }>();
   const [selectedTags, setSelectedTags] = useState<TagWithColor[]>([]);
