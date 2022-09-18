@@ -1,3 +1,5 @@
+import { EvServiceUserDto } from './core/user';
+
 export interface PostEvaluationQuery {
   content: string;
   grade_satisfaction: number;
@@ -9,7 +11,7 @@ export interface PostEvaluationQuery {
 
 export interface PostEvaluationResult {
   id: number;
-  user_id: string;
+  user: EvServiceUserDto;
   content: string;
   grade_satisfaction: number;
   teaching_skill: number;
