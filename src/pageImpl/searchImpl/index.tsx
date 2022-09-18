@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 import { SearchResultLoading } from '@/lib/components/Miscellaneous/Loading';
 import useScrollLoader from '@/lib/hooks/useScrollLoader';
@@ -19,7 +19,7 @@ import {
 export const SearchImpl = () => {
   const { tagGroups } = useSearchTags();
   const {
-    selectedTags,
+    selectedTagIDs,
     toggleTagSelection,
     currentlyAppliedQuery,
     refreshQueries,
@@ -39,6 +39,14 @@ export const SearchImpl = () => {
     currentlyAppliedQuery === undefined ||
     (currentlyAppliedQuery?.textQuery === '' &&
       currentlyAppliedQuery?.tags.length === 0);
+
+  const selectedTags = useMemo(
+    () =>
+      tagGroups
+        ?.flatMap((group) => group.tags)
+        .filter((tag) => selectedTagIDs.includes(tag.id)),
+    [selectedTagIDs, tagGroups],
+  );
 
   return (
     <Wrapper>

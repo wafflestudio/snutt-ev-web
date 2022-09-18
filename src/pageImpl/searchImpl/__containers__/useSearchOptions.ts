@@ -1,37 +1,34 @@
 import { useState } from 'react';
 
-import { TagWithColor } from '@/lib/dto/core/tag';
-
-type CurrentlyAppliedQuery = { tags: TagWithColor[]; textQuery?: string };
+type CurrentlyAppliedQuery = { tags: number[]; textQuery?: string };
 
 interface Return {
   currentlyAppliedQuery: CurrentlyAppliedQuery | undefined;
   refreshQueries: () => void;
-  toggleTagSelection: (tag: TagWithColor) => void;
+  toggleTagSelection: (tagID: number) => void;
   selectedTextQuery: string | undefined;
   updateTextQuery: (textQuery: string | undefined) => void;
-  selectedTags: TagWithColor[];
+  selectedTagIDs: number[];
 }
 
 export const useSearchOptions = (): Return => {
-  const [selectedTags, setSelectedTags] = useState<TagWithColor[]>([]);
+  const [selectedTagIDs, setSelectedTagIDs] = useState<number[]>([]);
   const [textQuery, setTextQuery] = useState<string | undefined>();
   const [currentlyAppliedQuery, setCurrentAppliedQuery] =
     useState<CurrentlyAppliedQuery>();
 
-  const toggleTagSelection = (tag: TagWithColor) => {
-    setSelectedTags((prev) => {
-      if (prev?.some((it) => it.name == tag.name)) {
-        return prev.filter((it) => it.name != tag.name);
-      } else {
-        return prev?.concat(tag);
-      }
-    });
+  const toggleTagSelection = (tagID: number) => {
+    const isExist = selectedTagIDs.includes(tagID);
+    const newSelectedTagIDs = isExist
+      ? selectedTagIDs.filter((id) => id !== tagID)
+      : selectedTagIDs.concat(tagID);
+
+    setSelectedTagIDs(newSelectedTagIDs);
   };
 
   const refreshQueries = () => {
     setCurrentAppliedQuery({
-      tags: selectedTags,
+      tags: selectedTagIDs,
       textQuery: textQuery,
     });
   };
@@ -42,6 +39,6 @@ export const useSearchOptions = (): Return => {
     toggleTagSelection,
     selectedTextQuery: textQuery,
     updateTextQuery: setTextQuery,
-    selectedTags,
+    selectedTagIDs,
   };
 };

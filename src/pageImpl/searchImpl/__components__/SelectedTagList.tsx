@@ -4,18 +4,15 @@ import SvgExitWhite from '@/lib/components/Icons/SvgExitWhite';
 import { TagWithColor } from '@/lib/dto/core/tag';
 
 interface Props {
-  selectedTags: TagWithColor[];
-  onDeleteTag: (tag: TagWithColor) => void;
+  selectedTags: TagWithColor[] | undefined;
+  onDeleteTag: (tag: number) => void;
 }
 
-export const ActiveTagList: React.FC<Props> = ({
-  selectedTags,
-  onDeleteTag,
-}) => {
+export const ActiveTagList = ({ selectedTags = [], onDeleteTag }: Props) => {
   return selectedTags.length === 0 ? null : (
     <Wrapper>
       {selectedTags.map((it) => (
-        <TagItem tag={it} key={it.name} onClick={() => onDeleteTag(it)} />
+        <TagItem tag={it} key={it.name} onClick={() => onDeleteTag(it.id)} />
       ))}
     </Wrapper>
   );

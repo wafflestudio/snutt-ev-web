@@ -12,20 +12,20 @@ import { TagList } from './TagList';
 interface Props {
   selectedTags: TagWithColor[];
   tagGroups: TagGroupWithColor[];
-  onToggleTag: (tag: TagWithColor) => void;
+  onToggleTag: (tag: number) => void;
   isOpened: boolean;
   onClose: () => void;
   onClickSubmit: () => void;
 }
 
-export const SearchOptionSheet: React.FC<Props> = ({
+export const SearchOptionSheet = ({
   selectedTags,
   tagGroups,
   onToggleTag,
   isOpened,
   onClose: onClose,
   onClickSubmit,
-}) => {
+}: Props) => {
   const [selectedTagGroup, setSelectedTagGroup] = useState<TagGroupWithColor>(
     tagGroups[0],
   );
