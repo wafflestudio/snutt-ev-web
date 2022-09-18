@@ -1,6 +1,11 @@
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 type CurrentlyAppliedQuery = { tags: number[]; textQuery?: string };
+type RouterQuery = {
+  tag?: string | string[];
+  q?: string;
+} & unknown;
 
 interface Return {
   currentlyAppliedQuery: CurrentlyAppliedQuery | undefined;
@@ -11,12 +16,27 @@ interface Return {
   selectedTagIDs: number[];
 }
 
+const getQueryFromRoute = ({ tag, q }: RouterQuery) => {
+  const tags = (() => {
+    if (typeof tag === 'undefined') return [];
+    if (typeof tag === 'string') return [Number(tag)];
+    return tag.map((id) => Number(id));
+  })();
+  const textQuery = q ?? '';
+
+  return { tags, textQuery };
+};
+
 export const useSearchOptions = (): Return => {
+  const router = useRouter();
   const [selectedTagIDs, setSelectedTagIDs] = useState<number[]>([]);
   const [searchKey, setSearchKey] = useState<string>('');
 
-  const [currentlyAppliedQuery, setCurrentAppliedQuery] =
-    useState<CurrentlyAppliedQuery>();
+  useEffect(() => {
+    const { tags, textQuery } = getQueryFromRoute(router.query as RouterQuery);
+    setSelectedTagIDs(tags);
+    setSearchKey(textQuery);
+  }, [router.query]);
 
   const toggleTagSelection = (tagID: number) => {
     const isExist = selectedTagIDs.includes(tagID);
@@ -27,11 +47,14 @@ export const useSearchOptions = (): Return => {
     setSelectedTagIDs(newSelectedTagIDs);
   };
 
+  const currentlyAppliedQuery = getQueryFromRoute(router.query as RouterQuery);
+
   const refreshQueries = () => {
-    setCurrentAppliedQuery({
-      tags: selectedTagIDs,
-      textQuery: searchKey,
-    });
+    const newParams = new URLSearchParams();
+    selectedTagIDs.forEach((id) => newParams.append('tag', `${id}`));
+    newParams.set('q', searchKey);
+
+    router.replace(`${router.pathname}?${newParams}`);
   };
 
   return {

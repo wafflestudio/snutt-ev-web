@@ -9,7 +9,7 @@ import SvgSearchOff from '@/lib/components/Icons/SvgSearchOff';
 
 interface Props {
   toggleOpenSearchSheet: () => void;
-  textQuery?: string;
+  textQuery: string;
   onChangeTextQuery: (text: string) => void;
   onRefreshQuery: () => void;
 }
