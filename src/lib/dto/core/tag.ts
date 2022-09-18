@@ -6,5 +6,5 @@ export interface TagDTO {
 }
 
 export interface TagWithColor extends TagDTO {
-  color: string;
+  color: string | null;
 }
