@@ -2,11 +2,22 @@ import { useState } from 'react';
 
 import { TagWithColor } from '@/lib/dto/core/tag';
 
-export const useSearchOptions = () => {
+type CurrentlyAppliedQuery = { tags: TagWithColor[]; textQuery?: string };
+
+interface Return {
+  currentlyAppliedQuery: CurrentlyAppliedQuery | undefined;
+  refreshQueries: () => void;
+  toggleTagSelection: (tag: TagWithColor) => void;
+  selectedTextQuery: string | undefined;
+  updateTextQuery: (textQuery: string | undefined) => void;
+  selectedTags: TagWithColor[];
+}
+
+export const useSearchOptions = (): Return => {
   const [selectedTags, setSelectedTags] = useState<TagWithColor[]>([]);
   const [textQuery, setTextQuery] = useState<string | undefined>();
   const [currentlyAppliedQuery, setCurrentAppliedQuery] =
-    useState<{ tags: TagWithColor[]; textQuery?: string }>();
+    useState<CurrentlyAppliedQuery>();
 
   const toggleTagSelection = (tag: TagWithColor) => {
     setSelectedTags((prev) => {
