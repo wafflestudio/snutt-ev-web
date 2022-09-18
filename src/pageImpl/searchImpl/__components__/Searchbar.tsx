@@ -14,21 +14,21 @@ interface Props {
   onRefreshQuery: () => void;
 }
 
-export const Searchbar: React.FC<Props> = ({
+export const Searchbar = ({
   toggleOpenSearchSheet,
   textQuery,
   onChangeTextQuery,
   onRefreshQuery,
-}) => {
+}: Props) => {
   const router = useRouter();
 
   return (
     <AppBar
-      LeftImage={() => (
+      LeftImage={
         <BackButton onClick={() => router.back()}>
           <SvgArrowBack width={30} height={30} />
         </BackButton>
-      )}
+      }
     >
       <InputBar>
         <SearchButton>
