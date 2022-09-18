@@ -1,7 +1,9 @@
+import { EvServiceUserDto } from './user';
+
 export interface EvaluationDTO {
   id: number;
   lecture_id: number;
-  user_id: string;
+  user: EvServiceUserDto;
   content: string;
   grade_satisfaction: number;
   teaching_skill: number | null;
