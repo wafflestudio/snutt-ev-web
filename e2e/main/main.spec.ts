@@ -11,7 +11,7 @@ class MainPage extends SnuttPage {
   }
 }
 
-test('AppBar', async ({ page }) => {
+test('헤더바', async ({ page }) => {
   const main = new MainPage(page);
   await main.goto();
 
@@ -23,15 +23,20 @@ test('AppBar', async ({ page }) => {
   await expect(main.getPage()).toHaveURL('/search/');
 });
 
-test('Recent', async ({ page }) => {
-  new MainPage(page);
-  // TODO: 지난 학기 강의평쪽 테스트코드 작성
+test('지난 학기 강의평', async () => {
+  // TODO:
 });
 
-test('Category Picker', async ({ page }) => {
+test('교양 강의평 둘러보기', async ({ page }) => {
   const main = new MainPage(page);
   await main.goto();
 
   const container = main.findByTestId('main-category-picker');
   await expect(container).toHaveCount(1);
+
+  // TODO: 더 테스트해야됨
+});
+
+test('강의평 목록', async () => {
+  // TODO:
 });
