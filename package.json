@@ -10,7 +10,8 @@
     "build:test": "NODE_ENV=test next build",
     "start:test": "NODE_ENV=test next start",
     "export": "next build && next export",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@emotion/react": "^11.4.1",
@@ -29,6 +30,7 @@
     "react-modal-sheet": "^1.5.2"
   },
   "devDependencies": {
+    "@playwright/test": "^1.25.2",
     "@svgr/cli": "^6.1.2",
     "@svgr/webpack": "^6.2.0",
     "@types/js-cookie": "^3.0.1",

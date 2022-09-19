@@ -2087,6 +2087,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@playwright/test@npm:^1.25.2":
+  version: 1.25.2
+  resolution: "@playwright/test@npm:1.25.2"
+  dependencies:
+    "@types/node": "*"
+    playwright-core: 1.25.2
+  bin:
+    playwright: cli.js
+  checksum: 3c24027bd9b305a3985cae35a4046e656dd0ffb76ef4dfcfc864f6c8492a643fc21c79048ee8169c5c1562d3cae493e7223a5473b127fef3bda7c7c52795c17d
+  languageName: node
+  linkType: hard
+
 "@popperjs/core@npm:^2.4.4":
   version: 2.11.0
   resolution: "@popperjs/core@npm:2.11.0"
@@ -3210,17 +3222,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"caniuse-lite@npm:^1.0.30001286":
-  version: 1.0.30001298
-  resolution: "caniuse-lite@npm:1.0.30001298"
-  checksum: 43566732d1b8746e3dfae57f558471c701b26b2c166fb9fc53ad750d83128b2eb680a5e08233717e64055779b408c72d3b2cfad6d4ae33a3e647a11dc1c0d515
-  languageName: node
-  linkType: hard
-
-"caniuse-lite@npm:^1.0.30001332":
-  version: 1.0.30001399
-  resolution: "caniuse-lite@npm:1.0.30001399"
-  checksum: dd105b06fbbdc89867780a2f4debc3ecb184cff82f35b34aaac486628fcc9cf6bacf37573a9cc22dedc661178d460fa8401374a933cb9d2f8ee67316d98b2a8f
+"caniuse-lite@npm:^1.0.30001286, caniuse-lite@npm:^1.0.30001332":
+  version: 1.0.30001406
+  resolution: "caniuse-lite@npm:1.0.30001406"
+  checksum: 1ae9701f0c58462f93add1236ed88f51ce3d7939f57afcde720763d1b18f78aa9afb0bfda620d47a32f5e14661e506037835e441ca4437cb821f4bba7bd7bcf8
   languageName: node
   linkType: hard
 
@@ -6128,6 +6133,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"playwright-core@npm:1.25.2":
+  version: 1.25.2
+  resolution: "playwright-core@npm:1.25.2"
+  bin:
+    playwright: cli.js
+  checksum: 24ada61e2132bd7278cf0aa0ef711280e1519c437efa0088a99c47ef994202f4c9880521d8c0c51ab854bef08806f372477d754aac1e790ea64f18cd346b5b2f
+  languageName: node
+  linkType: hard
+
 "popmotion@npm:11.0.5":
   version: 11.0.5
   resolution: "popmotion@npm:11.0.5"
@@ -6754,6 +6768,7 @@ __metadata:
     "@emotion/react": ^11.4.1
     "@emotion/styled": ^11.3.0
     "@mui/material": ^5.2.6
+    "@playwright/test": ^1.25.2
     "@svgr/cli": ^6.1.2
     "@svgr/webpack": ^6.2.0
     "@tanstack/react-query": ^4.3.4
