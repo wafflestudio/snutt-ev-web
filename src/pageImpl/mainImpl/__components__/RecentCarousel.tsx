@@ -14,7 +14,7 @@ export const RecentCarousel = ({ lectureList }: Props) => {
   const router = useRouter();
 
   return (
-    <Wrapper>
+    <Wrapper data-testid="main-recent">
       {/* <FakeSearchbar /> */}
       <CarouselHeader>
         <Title01>지난 학기 강의평을 남겨주세요</Title01>
