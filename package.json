@@ -10,9 +10,7 @@
     "build:test": "NODE_ENV=test next build",
     "start:test": "NODE_ENV=test next start",
     "export": "next build && next export",
-    "lint": "next lint",
-    "cy:open": "yarn cypress open",
-    "cy:run": "yarn cypress run"
+    "lint": "next lint"
   },
   "dependencies": {
     "@emotion/react": "^11.4.1",
@@ -39,7 +37,6 @@
     "@types/react-dom": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.36.2",
     "@typescript-eslint/parser": "^5.36.2",
-    "cypress": "^10.8.0",
     "eslint": "^8.23.1",
     "eslint-config-next": "^12.3.0",
     "eslint-config-prettier": "^8.5.0",
