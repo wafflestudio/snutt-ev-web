@@ -50,6 +50,7 @@ export const MainImpl = () => {
         <AppBarContent>
           <Title01 style={{ marginLeft: 12 }}>강의평</Title01>
           <SvgSearchOff
+            data-testid="main-search-icon"
             height={30}
             width={30}
             onClick={() => router.push('/search')}
@@ -65,7 +66,7 @@ export const MainImpl = () => {
         <Subheading02>데이터 로딩 OR 에러</Subheading02>
       )}
 
-      <CategoryPicker>
+      <CategoryPicker data-testid="main-category-picker">
         <Title01 style={{ marginBottom: 10 }}>교양 강의평 둘러보기</Title01>
         <StyledToggleButtonGroup
           value={selectedTag}

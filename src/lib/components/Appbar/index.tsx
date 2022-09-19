@@ -7,7 +7,7 @@ interface Props {
 
 export const AppBar = ({ LeftImage, children }: PropsWithChildren<Props>) => {
   return (
-    <Wrapper data-test="app-bar">
+    <Wrapper data-testid="app-bar">
       <AppBarLeft>
         {typeof LeftImage === 'function' ? <LeftImage /> : LeftImage}
       </AppBarLeft>
