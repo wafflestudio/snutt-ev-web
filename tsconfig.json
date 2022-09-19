@@ -17,6 +17,6 @@
     "paths": { "@/*": ["./*"] },
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "cypress.config.js", "cypress/support/e2e.js", "cypress/support/commands.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }
