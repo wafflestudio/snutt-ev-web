@@ -16,6 +16,7 @@ const config: PlaywrightTestConfig = {
   reporter: 'html',
 
   use: {
+    video: 'on',
     actionTimeout: 0,
     baseURL: `http://localhost:${PORT}`,
     trace: 'on-first-retry',
@@ -26,9 +27,6 @@ const config: PlaywrightTestConfig = {
     { name: 'Mobile Chrome', use: { ...devices['Pixel 5'] } },
     { name: 'Mobile Safari', use: { ...devices['iPhone 12'] } },
   ],
-
-  /* Folder for test artifacts such as screenshots, videos, traces, etc. */
-  outputDir: 'e2e-results/',
 
   /* Run your local dev server before starting the tests */
   webServer: {

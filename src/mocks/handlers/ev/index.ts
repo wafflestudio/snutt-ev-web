@@ -14,7 +14,16 @@ export const evHandlers = [
   rest.get<never, never, GetLatestLecturesResult>(
     '*/v1/users/me/lectures/latest',
     (req, res, ctx) => {
-      return res(ctx.json(mockLatestLectures));
+      const { TEST_RECENT_LECTURES_EXIST } = req.cookies;
+
+      switch (TEST_RECENT_LECTURES_EXIST) {
+        case 'true':
+          return res(ctx.json(mockLatestLectures));
+        case 'false':
+          return res(ctx.json({ content: [], total_count: 0 }));
+        default:
+          return res(ctx.status(403, 'TEST_RECENT_LECTURES_EXIST'));
+      }
     },
   ),
 
