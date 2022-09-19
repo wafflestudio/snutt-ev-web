@@ -1,6 +1,8 @@
 import type { PlaywrightTestConfig } from '@playwright/test';
 import { devices } from '@playwright/test';
 
+const PORT = 3001;
+
 const config: PlaywrightTestConfig = {
   testDir: './e2e',
   timeout: 30 * 1000,
@@ -15,7 +17,7 @@ const config: PlaywrightTestConfig = {
 
   use: {
     actionTimeout: 0,
-    baseURL: 'http://localhost:3000',
+    baseURL: `http://localhost:${PORT}`,
     trace: 'on-first-retry',
   },
 
@@ -30,8 +32,8 @@ const config: PlaywrightTestConfig = {
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'yarn dev:test',
-    port: 3000,
+    command: `PORT=${PORT} yarn dev:test`,
+    port: PORT,
   },
 };
 
