@@ -17,7 +17,10 @@ export const LectureCard = ({ lecture }: Props) => {
   const router = useRouter();
 
   return (
-    <Card onClick={() => router.push(`/detail?id=${lecture.id}`)}>
+    <Card
+      onClick={() => router.push(`/detail?id=${lecture.id}`)}
+      data-testid="main-recent-lecture-card"
+    >
       <CardTop>
         <LectureName>{lecture.title}</LectureName>
         <WriteButton
