@@ -1,4 +1,10 @@
-# Setup
+# SNUTT-web
+
+스누티티 강의평 웹뷰
+
+<br/><br/>
+
+## Setup
 
 ### yarn berry
 
@@ -7,6 +13,8 @@
 ```sh
 yarn dlx @yarnpkg/sdks vscode
 ```
+
+<br/>
 
 ### 환경 변수
 
@@ -27,3 +35,37 @@ NEXT_PUBLIC_REACT_QUERY_DEVTOOL=true
 # app env (local / dev / prod / test)
 NEXT_PUBLIC_APP_ENV=local
 ```
+
+<br/><br/>
+
+## Deployments
+
+- [github actions](./.github/workflows/)
+- SSG (`next export`)
+- AWS S3 & Cloudfront
+
+<br/><br/>
+
+## Package Manager
+
+`yarn berry` 를 이용하고 있습니다. (zero-install)
+
+<br/><br/>
+
+## Testing
+
+### e2e test
+
+[playwright](https://playwright.dev/) 를 이용하고 있습니다.
+
+```sh
+yarn test:e2e
+```
+
+첫 실행일 경우 playwright 가 요구하는 브라우저 preset 을 설치하게 됩니다.
+
+<br/>
+
+### unit test
+
+TODO
