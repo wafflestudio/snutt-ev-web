@@ -41,7 +41,26 @@ export const evHandlers = [
   rest.get<never, { tagId: string }, GetMainTagEvaluationsResult>(
     `*/v1/tags/main/:tagId/evaluations`,
     (req, res, ctx) => {
-      return res(ctx.json(mockMainEvaluations));
+      const cursor = Number(req.url.searchParams.get('cursor') ?? 0);
+      const size = mockMainEvaluations.length;
+      const MAX_PAGE = 4;
+      const total_count = MAX_PAGE * size;
+      const content = mockMainEvaluations.map((ev) => ({
+        ...ev,
+        id: ev.id + cursor,
+      }));
+
+      const isLastPage = cursor >= (MAX_PAGE - 1) * size;
+
+      return res(
+        ctx.json({
+          content,
+          cursor: isLastPage ? null : `${cursor + size}`,
+          size,
+          last: isLastPage,
+          total_count,
+        }),
+      );
     },
   ),
 ];
