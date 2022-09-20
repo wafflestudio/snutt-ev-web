@@ -61,7 +61,7 @@ test(
 
       // 첫 번째 강의평을 클릭하면 해당하는 페이지로 이동해야 한다
       await firstEv.locator('text=서양문명의 역사 1').click();
-      await expect(main.getPage()).toHaveURL('/detail/?id=353');
+      await expect(main.getPage()).toHaveURL('/detail?id=353');
     },
   ),
 );
