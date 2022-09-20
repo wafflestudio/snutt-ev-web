@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { ToggleButton, ToggleButtonGroup } from '@mui/material/';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import { Fragment } from 'react';
 
 import { AppBar } from '@/lib/components/Appbar';
 import SvgSearchOff from '@/lib/components/Icons/SvgSearchOff';
@@ -14,36 +14,24 @@ import useScrollLoader from '@/lib/hooks/useScrollLoader';
 import { EvaluationCard } from './__components__/EvaluationCard';
 import { RecentCarousel } from './__components__/RecentCarousel';
 import {
-  useMainEvaluationContainer,
-  useMainLatestLectureContainer,
-  useRecommendationTagsContainer,
+  useEvaluations,
+  useLatestLectures,
+  useRecommendationTags,
 } from './__containers__';
+import { useSelectTag } from './__containers__/useSelectTag';
 
 export const MainImpl = () => {
   const router = useRouter();
 
-  const [selectedTagId, setSelectedTagId] = useState<number>();
-  const { recommendationTags } = useRecommendationTagsContainer();
-  const { recentLectureData } = useMainLatestLectureContainer();
+  const { recommendationTags } = useRecommendationTags();
+  const { recentLectureData } = useLatestLectures();
+
+  const { selectedTagId, onClickTag } = useSelectTag(recommendationTags);
+
   const { searchResult, fetchNextPage, isFetchingNextPage, hasNextPage } =
-    useMainEvaluationContainer(selectedTagId);
+    useEvaluations(selectedTagId);
+
   const { loaderRef } = useScrollLoader(fetchNextPage);
-
-  useEffect(() => {
-    if (selectedTagId !== undefined) return;
-
-    setSelectedTagId(recommendationTags[0].id);
-  }, [recommendationTags, selectedTagId]);
-
-  const handleClickRecommendationTag = (
-    e: React.MouseEvent<HTMLElement, MouseEvent>,
-    tagId: number,
-  ) => {
-    e.preventDefault();
-    if (tagId) {
-      setSelectedTagId(tagId);
-    }
-  };
 
   const selectedTag = recommendationTags.find(
     (tag) => tag.id === selectedTagId,
@@ -76,7 +64,7 @@ export const MainImpl = () => {
         <StyledToggleButtonGroup
           value={selectedTagId}
           exclusive
-          onChange={handleClickRecommendationTag}
+          onChange={(e, tagId) => onClickTag(tagId)}
         >
           {recommendationTags.map((it) => (
             <ToggleButton
@@ -99,17 +87,17 @@ export const MainImpl = () => {
         searchResult?.pages[0].content.length === 0 ? (
           <EmptyReviewPlaceholder />
         ) : (
-          <React.Fragment>
+          <>
             {searchResult?.pages?.map((content, i) => (
-              <React.Fragment key={i}>
+              <Fragment key={i}>
                 {content.content.map((it) => (
                   <EvaluationCard evaluation={it} key={it.id} />
                 ))}
-              </React.Fragment>
+              </Fragment>
             ))}
             {hasNextPage && !isFetchingNextPage && <div ref={loaderRef} />}
             {isFetchingNextPage && <SearchResultLoading />}
-          </React.Fragment>
+          </>
         )
       ) : (
         <SearchResultLoading />

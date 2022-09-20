@@ -6,14 +6,14 @@ import { AppBar } from '@/lib/components/Appbar';
 import SvgArrowBack from '@/lib/components/Icons/SvgArrowBack';
 import { Title01, Title02 } from '@/lib/components/Text';
 import { SemesterIntToString } from '@/lib/util';
-import { useMainLatestLectureContainer } from '@/pageImpl/mainImpl/__containers__';
 
 import { RecentLectureItem } from './__components__/RecentResultItem';
+import { useLatestLectures } from './__containers__';
 
 export const RecentImpl = () => {
   const router = useRouter();
 
-  const { recentLectureData } = useMainLatestLectureContainer();
+  const { recentLectureData } = useLatestLectures();
 
   return (
     <Wrapper>
