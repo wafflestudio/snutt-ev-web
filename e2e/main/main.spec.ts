@@ -117,6 +117,47 @@ test(
   ),
 );
 
-test('강의평 목록', async () => {
-  // TODO:
-});
+test(
+  '강의평 목록이 비어있을 경우',
+  withCookie(
+    [getTestCookie('TEST_MAIN_EVALUATION_EXIST', 'false')],
+    async ({ page }) => {
+      const main = new MainPage(page);
+      await main.goto();
+
+      const cat = main.findByTestId('main-empty-review');
+      const ev = main.findByTestId('main-evaluation-card');
+      await expect(cat).toHaveCount(1);
+      await expect(ev).toHaveCount(0);
+    },
+  ),
+);
+
+test(
+  '강의평 목록이 비어있지 않을 경우',
+  withCookie(
+    [getTestCookie('TEST_MAIN_EVALUATION_EXIST', 'true')],
+    async ({ page }) => {
+      const main = new MainPage(page);
+      await main.goto();
+
+      const cat = main.findByTestId('main-empty-review');
+      const ev = main.findByTestId('main-evaluation-card');
+      await expect(ev).toHaveCount(6);
+
+      const firstEv = ev.first();
+      await expect(cat).toHaveCount(0);
+      await expect(firstEv).toContainText('박재욱');
+
+      await main.scrollToBottom();
+      await expect(ev).toHaveCount(9);
+      await main.scrollToBottom();
+      await expect(ev).toHaveCount(12);
+      await main.scrollToBottom();
+      await expect(ev).toHaveCount(12);
+
+      await firstEv.locator('text=서양문명의 역사 1').click();
+      await expect(main.getPage()).toHaveURL('/detail/?id=353');
+    },
+  ),
+);
