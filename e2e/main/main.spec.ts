@@ -42,7 +42,7 @@ test(
       await main.goto();
 
       const recentSection = main.findByTestId('main-recent');
-      expect(recentSection); // TODO: 보여지지 않음
+      await expect(recentSection).toHaveCount(0);
     },
   ),
 );
@@ -56,9 +56,13 @@ test(
       await main.goto();
 
       const recentSection = main.findByTestId('main-recent');
-      expect(recentSection); // TODO: 보여짐
+      await expect(recentSection).toHaveCount(1);
 
-      // TODO: 보여짐 + 정상 동작 (링크)
+      await main
+        .findByTestId('main-recent-lecture-card')
+        .locator('text=생물학')
+        .click();
+      await expect(main.getPage()).toHaveURL('/detail/?id=2512');
     },
   ),
 );
@@ -74,7 +78,25 @@ test(
       const container = main.findByTestId('main-category-picker');
       await expect(container).toHaveCount(1);
 
-      // TODO: 더 테스트해야됨
+      /* 토글 기능 test */
+      const toggleChip = main.findByTestId('main-category-toggle-chip');
+      const recentChip = toggleChip.locator('text=최신');
+      const recommendChip = toggleChip.locator('text=추천');
+      const detailText = main.findByTestId('main-category-detail');
+
+      await expect(recentChip).toHaveAttribute('aria-selected', `${true}`);
+      await expect(recommendChip).toHaveAttribute('aria-selected', `${false}`);
+      await expect(detailText).toHaveText('최근 등록된 강의평');
+
+      await recentChip.click();
+      await expect(recentChip).toHaveAttribute('aria-selected', `${true}`);
+      await expect(recommendChip).toHaveAttribute('aria-selected', `${false}`);
+      await expect(detailText).toHaveText('최근 등록된 강의평');
+
+      await recommendChip.click();
+      await expect(recommendChip).toHaveAttribute('aria-selected', `${true}`);
+      await expect(recentChip).toHaveAttribute('aria-selected', `${false}`);
+      await expect(detailText).toHaveText('학우들의 추천 강의');
     },
   ),
 );

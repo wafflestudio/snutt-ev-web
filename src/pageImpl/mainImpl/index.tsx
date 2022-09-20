@@ -9,7 +9,6 @@ import SvgTimetableOn from '@/lib/components/Icons/SvgTimetableOn';
 import { EmptyReviewPlaceholder } from '@/lib/components/Miscellaneous/EmptyReviewPlaceholder';
 import { SearchResultLoading } from '@/lib/components/Miscellaneous/Loading';
 import { Subheading02, Title01 } from '@/lib/components/Text';
-import { TagDTO } from '@/lib/dto/core/tag';
 import useScrollLoader from '@/lib/hooks/useScrollLoader';
 
 import { EvaluationCard } from './__components__/EvaluationCard';
@@ -23,26 +22,32 @@ import {
 export const MainImpl = () => {
   const router = useRouter();
 
-  const [selectedTag, setSelectedTag] = useState<TagDTO | undefined>(undefined);
+  const [selectedTagId, setSelectedTagId] = useState<number>();
   const { recommendationTags } = useRecommendationTagsContainer();
   const { recentLectureData } = useMainLatestLectureContainer();
   const { searchResult, fetchNextPage, isFetchingNextPage, hasNextPage } =
-    useMainEvaluationContainer(selectedTag);
+    useMainEvaluationContainer(selectedTagId);
   const { loaderRef } = useScrollLoader(fetchNextPage);
 
   useEffect(() => {
-    setSelectedTag(recommendationTags[0]);
-  }, [recommendationTags]);
+    if (selectedTagId !== undefined) return;
+
+    setSelectedTagId(recommendationTags[0].id);
+  }, [recommendationTags, selectedTagId]);
 
   const handleClickRecommendationTag = (
     e: React.MouseEvent<HTMLElement, MouseEvent>,
-    tag?: TagDTO,
+    tagId: number,
   ) => {
     e.preventDefault();
-    if (tag) {
-      setSelectedTag(tag);
+    if (tagId) {
+      setSelectedTagId(tagId);
     }
   };
+
+  const selectedTag = recommendationTags.find(
+    (tag) => tag.id === selectedTagId,
+  );
 
   return (
     <Wrapper>
@@ -69,21 +74,25 @@ export const MainImpl = () => {
       <CategoryPicker data-testid="main-category-picker">
         <Title01 style={{ marginBottom: 10 }}>교양 강의평 둘러보기</Title01>
         <StyledToggleButtonGroup
-          value={selectedTag}
+          value={selectedTagId}
           exclusive
           onChange={handleClickRecommendationTag}
         >
           {recommendationTags.map((it) => (
             <ToggleButton
-              value={it}
+              value={it.id}
               key={it.id}
               style={{ whiteSpace: 'nowrap', marginTop: '6px' }}
+              data-testid="main-category-toggle-chip"
+              aria-selected={it.id === selectedTagId}
             >
               {it.name}
             </ToggleButton>
           ))}
         </StyledToggleButtonGroup>
-        <CategoryDetail>{selectedTag?.description}</CategoryDetail>
+        <CategoryDetail data-testid="main-category-detail">
+          {selectedTag?.description}
+        </CategoryDetail>
       </CategoryPicker>
 
       {searchResult?.pages ? (

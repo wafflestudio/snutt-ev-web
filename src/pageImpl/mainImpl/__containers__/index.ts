@@ -5,30 +5,29 @@ import {
   getMainTagEvaluations,
   getMainTagInfos,
 } from '@/lib/api/apis';
-import { TagDTO } from '@/lib/dto/core/tag';
 
 export function useRecommendationTagsContainer() {
   const { data } = useQuery(['mainTags'], getMainTagInfos);
   return { recommendationTags: data?.tags ?? [] };
 }
 
-export function useMainEvaluationContainer(selectedTag?: TagDTO) {
+export function useMainEvaluationContainer(selectedTagId?: number) {
   const {
     data: searchResult,
     isFetchingNextPage,
     fetchNextPage,
     hasNextPage,
   } = useInfiniteQuery(
-    ['tagEvaluations', selectedTag],
+    ['tagEvaluations', selectedTagId],
     ({ pageParam }) =>
-      getMainTagEvaluations(selectedTag?.id ?? 1, {
+      getMainTagEvaluations(selectedTagId ?? 1, {
         cursor: pageParam,
       }),
     {
       getNextPageParam: (lastPage) => {
         return lastPage.cursor ?? undefined;
       },
-      enabled: selectedTag !== undefined,
+      enabled: selectedTagId !== undefined,
       suspense: false,
       retryDelay: 2000,
       retry: 5,
