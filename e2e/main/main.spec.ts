@@ -1,7 +1,8 @@
-import { withCookie } from '../utils/withCookiePage';
+import { expect, Page, test } from '@playwright/test';
+
 import { getTestCookie } from '../utils/cookie';
 import { SnuttPage } from '../utils/SnuttPage';
-import { test, expect, Page } from '@playwright/test';
+import { withCookie } from '../utils/withCookiePage';
 
 // TODO: https://playwright.dev/docs/test-fixtures 를 이용해서 코드 간소화 가능할지 확인
 
@@ -84,19 +85,34 @@ test(
       const recommendChip = toggleChip.locator('text=추천');
       const detailText = main.findByTestId('main-category-detail');
 
-      await expect(recentChip).toHaveAttribute('aria-selected', `${true}`);
-      await expect(recommendChip).toHaveAttribute('aria-selected', `${false}`);
-      await expect(detailText).toHaveText('최근 등록된 강의평');
-
-      await recentChip.click();
-      await expect(recentChip).toHaveAttribute('aria-selected', `${true}`);
-      await expect(recommendChip).toHaveAttribute('aria-selected', `${false}`);
-      await expect(detailText).toHaveText('최근 등록된 강의평');
+      await expectChipStatus('recent');
 
       await recommendChip.click();
-      await expect(recommendChip).toHaveAttribute('aria-selected', `${true}`);
-      await expect(recentChip).toHaveAttribute('aria-selected', `${false}`);
-      await expect(detailText).toHaveText('학우들의 추천 강의');
+      await expectChipStatus('recommend');
+
+      await recentChip.click();
+      await expectChipStatus('recent');
+
+      async function expectChipStatus(status: 'recent' | 'recommend') {
+        return Promise.all([
+          expect(recentChip).toHaveAttribute(
+            'aria-selected',
+            `${status === 'recent'}`,
+          ),
+          expect(recommendChip).toHaveAttribute(
+            'aria-selected',
+            `${status === 'recommend'}`,
+          ),
+          expect(detailText).toHaveText(
+            { recent: '최근 등록된 강의평', recommend: '학우들의 추천 강의' }[
+              status
+            ],
+          ),
+          expect(main.getPage()).toHaveURL(
+            `/main/?tag=${{ recent: 1, recommend: 2 }[status]}`,
+          ),
+        ]);
+      }
     },
   ),
 );
