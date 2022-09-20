@@ -14,5 +14,5 @@ test('헤더바가 잘 보여진다', async ({ page }) => {
   // 검색 버튼을 클릭하면 검색 페이지로 이동해야 한다
   const searchIcon = main.findByTestId('main-search-icon');
   await searchIcon.click();
-  await expect(main.getPage()).toHaveURL('/search');
+  await expect(main.getPage()).toHaveURL('/search/');
 });
