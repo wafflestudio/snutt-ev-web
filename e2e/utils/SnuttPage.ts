@@ -18,4 +18,10 @@ export class SnuttPage {
   getPage() {
     return this.page;
   }
+
+  scrollToBottom() {
+    return this.page.evaluate(() =>
+      window.scrollTo(0, document.body.scrollHeight),
+    );
+  }
 }

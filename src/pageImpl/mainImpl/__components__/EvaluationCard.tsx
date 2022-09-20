@@ -16,7 +16,7 @@ export const EvaluationCard = ({ evaluation }: Props) => {
   const router = useRouter();
 
   return (
-    <Wrapper>
+    <Wrapper data-testid="main-evaluation-card">
       <Contents>
         <Header>
           <HeaderLeft>

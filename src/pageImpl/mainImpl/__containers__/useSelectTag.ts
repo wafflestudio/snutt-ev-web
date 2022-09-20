@@ -14,11 +14,12 @@ export const useSelectTag = (tags: TagDTO[]) => {
 
   const setSelectedTagId = useCallback(
     (tagId: number) => {
+      if (selectedTagId === `${tagId}`) return;
       const params = new URLSearchParams();
       params.set('tag', `${tagId}`);
       router.replace(`${router.pathname}?${params}`);
     },
-    [router],
+    [router, selectedTagId],
   );
 
   useEffect(() => {

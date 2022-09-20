@@ -85,7 +85,7 @@ export const MainImpl = () => {
 
       {searchResult?.pages ? (
         searchResult?.pages[0].content.length === 0 ? (
-          <EmptyReviewPlaceholder />
+          <EmptyReviewPlaceholder data-testid="main-empty-review" />
         ) : (
           <>
             {searchResult?.pages?.map((content, i) => (
