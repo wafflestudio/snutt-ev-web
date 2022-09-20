@@ -40,7 +40,7 @@ test(
         .findByTestId('main-recent-lecture-card')
         .locator('text=생물학')
         .click();
-      await expect(main.getPage()).toHaveURL('/detail?id=2512');
+      await expect(main.getPage()).toHaveURL('/detail/?id=2512');
     },
   ),
 );
