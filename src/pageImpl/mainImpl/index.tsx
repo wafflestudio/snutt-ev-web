@@ -39,7 +39,7 @@ export const MainImpl = () => {
 
   return (
     <Wrapper>
-      <AppBar LeftImage={() => <SvgTimetableOn height={30} width={30} />}>
+      <AppBar LeftImage={<SvgTimetableOn height={30} width={30} />}>
         <AppBarContent>
           <Title01 style={{ marginLeft: 12 }}>강의평</Title01>
           <SvgSearchOff
