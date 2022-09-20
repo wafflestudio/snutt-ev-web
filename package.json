@@ -5,9 +5,13 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "export": "next build && next export",
     "start": "next start",
-    "lint": "next lint"
+    "dev:test": "NODE_ENV=test next dev",
+    "build:test": "NODE_ENV=test next build",
+    "start:test": "NODE_ENV=test next start",
+    "export": "next build && next export",
+    "lint": "next lint",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@emotion/react": "^11.4.1",
@@ -16,16 +20,17 @@
     "@tanstack/react-query": "^4.3.4",
     "@tanstack/react-query-devtools": "^4.3.5",
     "axios": "^0.24.0",
-    "framer-motion": "4.1.7",
+    "framer-motion": "^7.3.5",
     "js-cookie": "^3.0.1",
     "next": "^12.3.0",
     "react": "^18.2.0",
     "react-countdown": "^2.3.2",
     "react-dom": "^18.2.0",
     "react-error-boundary": "^3.1.4",
-    "react-modal-sheet": "^1.4.1"
+    "react-modal-sheet": "^1.5.2"
   },
   "devDependencies": {
+    "@playwright/test": "^1.25.2",
     "@svgr/cli": "^6.1.2",
     "@svgr/webpack": "^6.2.0",
     "@types/js-cookie": "^3.0.1",
@@ -45,5 +50,8 @@
     "prettier": "^2.3.2",
     "typescript": "^4.8.3"
   },
-  "packageManager": "yarn@3.2.3"
+  "packageManager": "yarn@3.2.3",
+  "msw": {
+    "workerDirectory": "public"
+  }
 }

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 import { SearchResultLoading } from '@/lib/components/Miscellaneous/Loading';
 import useScrollLoader from '@/lib/hooks/useScrollLoader';
@@ -10,22 +10,24 @@ import { SearchNoResult } from './__components__/SearchNoResult';
 import { SearchOptionSheet } from './__components__/SearchOptionSheet';
 import { SearchResultItem } from './__components__/SearchResultItem';
 import { ActiveTagList } from './__components__/SelectedTagList';
-import useSearchOptionContainer from './__containers__/useSearchOptionContainer';
-import { useTagContainer } from './__containers__/useTagContainer';
+import {
+  useSearchOptions,
+  useSearchResult,
+  useSearchTags,
+} from './__containers__';
 
 export const SearchImpl = () => {
+  const { tagGroups } = useSearchTags();
   const {
-    tagGroups,
-    selectedTags,
+    selectedTagIDs,
     toggleTagSelection,
     currentlyAppliedQuery,
     refreshQueries,
     selectedTextQuery,
     updateTextQuery,
-  } = useTagContainer();
-
+  } = useSearchOptions();
   const { searchResult, isFetchingNextPage, hasNextPage, fetchNextPage } =
-    useSearchOptionContainer(
+    useSearchResult(
       currentlyAppliedQuery?.tags ?? [],
       currentlyAppliedQuery?.textQuery,
     );
@@ -37,6 +39,14 @@ export const SearchImpl = () => {
     currentlyAppliedQuery === undefined ||
     (currentlyAppliedQuery?.textQuery === '' &&
       currentlyAppliedQuery?.tags.length === 0);
+
+  const selectedTags = useMemo(
+    () =>
+      tagGroups
+        ?.flatMap((group) => group.tags)
+        .filter((tag) => selectedTagIDs.includes(tag.id)),
+    [selectedTagIDs, tagGroups],
+  );
 
   return (
     <Wrapper>
@@ -53,7 +63,6 @@ export const SearchImpl = () => {
         onDeleteTag={toggleTagSelection}
       />
       <SearchResultList>
-        {/* FIXME: skip api request if input is "" */}
         {isEmptyQuery ? (
           <SearchInitialPage />
         ) : searchResult?.pages[0].content.length !== 0 ? (

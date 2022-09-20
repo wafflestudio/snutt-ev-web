@@ -3,9 +3,15 @@ import styled from '@emotion/styled';
 import SurprisedCatImage from '@/assets/icons/surprised_cat.svg';
 import { Subheading02 } from '@/lib/components/Text';
 
-export const EmptyReviewPlaceholder = () => {
+interface Props {
+  'data-testid'?: string;
+}
+
+export const EmptyReviewPlaceholder = ({
+  'data-testid': dataTestId,
+}: Props) => {
   return (
-    <Wrapper>
+    <Wrapper data-testid={dataTestId}>
       <SurprisedCatImage />
       <Subheading02 style={{ marginTop: 20 }}>
         아직 강의평이 없습니다.

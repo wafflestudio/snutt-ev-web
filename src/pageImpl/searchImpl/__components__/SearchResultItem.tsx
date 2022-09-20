@@ -11,15 +11,21 @@ interface Props {
   content: LectureDTO;
 }
 
-export const SearchResultItem: React.FC<Props> = ({ content }) => {
+export const SearchResultItem = ({ content }: Props) => {
   const router = useRouter();
 
   const rating = content.evaluation.avg_rating
     ? content.evaluation.avg_rating.toFixed(1)
     : 0;
 
+  const onClickItem = () => {
+    const params = new URLSearchParams();
+    params.set('id', `${content.id}`);
+    router.push(`/detail?${params}`);
+  };
+
   return (
-    <Wrapper onClick={() => router.push(`/detail?id=${content.id}`)}>
+    <Wrapper onClick={onClickItem}>
       <ItemTop>
         <SubjectText>{content.title}</SubjectText>
         <Rating>

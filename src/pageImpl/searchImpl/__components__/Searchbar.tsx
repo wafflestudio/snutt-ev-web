@@ -9,26 +9,26 @@ import SvgSearchOff from '@/lib/components/Icons/SvgSearchOff';
 
 interface Props {
   toggleOpenSearchSheet: () => void;
-  textQuery?: string;
+  textQuery: string;
   onChangeTextQuery: (text: string) => void;
   onRefreshQuery: () => void;
 }
 
-export const Searchbar: React.FC<Props> = ({
+export const Searchbar = ({
   toggleOpenSearchSheet,
   textQuery,
   onChangeTextQuery,
   onRefreshQuery,
-}) => {
+}: Props) => {
   const router = useRouter();
 
   return (
     <AppBar
-      LeftImage={() => (
+      LeftImage={
         <BackButton onClick={() => router.back()}>
           <SvgArrowBack width={30} height={30} />
         </BackButton>
-      )}
+      }
     >
       <InputBar>
         <SearchButton>
@@ -41,7 +41,7 @@ export const Searchbar: React.FC<Props> = ({
         </SearchButton>
         <Input
           placeholder="검색어를 입력하세요"
-          value={textQuery ?? ''}
+          value={textQuery}
           onChange={(e) => {
             onChangeTextQuery(e.target.value);
           }}

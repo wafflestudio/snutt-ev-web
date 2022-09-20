@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { ToggleButton, ToggleButtonGroup } from '@mui/material/';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import { Fragment } from 'react';
 
 import { AppBar } from '@/lib/components/Appbar';
 import SvgSearchOff from '@/lib/components/Icons/SvgSearchOff';
@@ -9,47 +9,41 @@ import SvgTimetableOn from '@/lib/components/Icons/SvgTimetableOn';
 import { EmptyReviewPlaceholder } from '@/lib/components/Miscellaneous/EmptyReviewPlaceholder';
 import { SearchResultLoading } from '@/lib/components/Miscellaneous/Loading';
 import { Subheading02, Title01 } from '@/lib/components/Text';
-import { TagDTO } from '@/lib/dto/core/tag';
 import useScrollLoader from '@/lib/hooks/useScrollLoader';
 
 import { EvaluationCard } from './__components__/EvaluationCard';
 import { RecentCarousel } from './__components__/RecentCarousel';
 import {
-  useMainEvaluationContainer,
-  useMainLatestLectureContainer,
-  useRecommendationTagsContainer,
+  useEvaluations,
+  useLatestLectures,
+  useRecommendationTags,
 } from './__containers__';
+import { useSelectTag } from './__containers__/useSelectTag';
 
 export const MainImpl = () => {
   const router = useRouter();
 
-  const [selectedTag, setSelectedTag] = useState<TagDTO | undefined>(undefined);
-  const { recommendationTags } = useRecommendationTagsContainer();
-  const { recentLectureData } = useMainLatestLectureContainer();
+  const { recommendationTags } = useRecommendationTags();
+  const { recentLectureData } = useLatestLectures();
+
+  const { selectedTagId, onClickTag } = useSelectTag(recommendationTags);
+
   const { searchResult, fetchNextPage, isFetchingNextPage, hasNextPage } =
-    useMainEvaluationContainer(selectedTag);
+    useEvaluations(selectedTagId);
+
   const { loaderRef } = useScrollLoader(fetchNextPage);
 
-  useEffect(() => {
-    setSelectedTag(recommendationTags[0]);
-  }, [recommendationTags]);
-
-  const handleClickRecommendationTag = (
-    e: React.MouseEvent<HTMLElement, MouseEvent>,
-    tag?: TagDTO,
-  ) => {
-    e.preventDefault();
-    if (tag) {
-      setSelectedTag(tag);
-    }
-  };
+  const selectedTag = recommendationTags.find(
+    (tag) => tag.id === selectedTagId,
+  );
 
   return (
     <Wrapper>
-      <AppBar LeftImage={() => <SvgTimetableOn height={30} width={30} />}>
+      <AppBar LeftImage={<SvgTimetableOn height={30} width={30} />}>
         <AppBarContent>
           <Title01 style={{ marginLeft: 12 }}>강의평</Title01>
           <SvgSearchOff
+            data-testid="main-search-icon"
             height={30}
             width={30}
             onClick={() => router.push('/search')}
@@ -65,41 +59,45 @@ export const MainImpl = () => {
         <Subheading02>데이터 로딩 OR 에러</Subheading02>
       )}
 
-      <CategoryPicker>
+      <CategoryPicker data-testid="main-category-picker">
         <Title01 style={{ marginBottom: 10 }}>교양 강의평 둘러보기</Title01>
         <StyledToggleButtonGroup
-          value={selectedTag}
+          value={selectedTagId}
           exclusive
-          onChange={handleClickRecommendationTag}
+          onChange={(e, tagId) => onClickTag(tagId)}
         >
           {recommendationTags.map((it) => (
             <ToggleButton
-              value={it}
+              value={it.id}
               key={it.id}
               style={{ whiteSpace: 'nowrap', marginTop: '6px' }}
+              data-testid="main-category-toggle-chip"
+              aria-selected={it.id === selectedTagId}
             >
               {it.name}
             </ToggleButton>
           ))}
         </StyledToggleButtonGroup>
-        <CategoryDetail>{selectedTag?.description}</CategoryDetail>
+        <CategoryDetail data-testid="main-category-detail">
+          {selectedTag?.description}
+        </CategoryDetail>
       </CategoryPicker>
 
       {searchResult?.pages ? (
         searchResult?.pages[0].content.length === 0 ? (
-          <EmptyReviewPlaceholder />
+          <EmptyReviewPlaceholder data-testid="main-empty-review" />
         ) : (
-          <React.Fragment>
+          <>
             {searchResult?.pages?.map((content, i) => (
-              <React.Fragment key={i}>
+              <Fragment key={i}>
                 {content.content.map((it) => (
                   <EvaluationCard evaluation={it} key={it.id} />
                 ))}
-              </React.Fragment>
+              </Fragment>
             ))}
             {hasNextPage && !isFetchingNextPage && <div ref={loaderRef} />}
             {isFetchingNextPage && <SearchResultLoading />}
-          </React.Fragment>
+          </>
         )
       ) : (
         <SearchResultLoading />

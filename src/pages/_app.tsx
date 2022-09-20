@@ -14,6 +14,7 @@ import { getEmailVerification } from '@/lib/api/apis';
 import { ErrorView } from '@/lib/components/Error';
 import useCookie from '@/lib/hooks/useCookie';
 import { appleSDGNeo } from '@/lib/styles/fonts';
+import { APP_ENV, IS_SERVER } from '@/lib/util/env';
 import { useMSW } from '@/mocks/integrations/browser';
 import { MailVerifyImpl } from '@/pageImpl/mailVerifyImpl';
 
@@ -24,24 +25,31 @@ const queryClient = new QueryClient({
     queries: {
       retry: 0,
       suspense: true,
+      refetchOnWindowFocus: false,
     },
   },
 });
 
+const isBrowserMSW = !IS_SERVER && APP_ENV === 'test';
+
 function MyApp({ Component, pageProps }: AppProps) {
-  useMSW(false); // TODO: apply browser integration
+  const isMSWEnabled = useMSW(isBrowserMSW);
 
   const [isEmailVerified, updateEmailVerifedCookie] =
     useCookie('email-verified');
 
   useEffect(() => {
+    if (isBrowserMSW && !isMSWEnabled) return;
+
     const checkEmailVerification = async () => {
       const res = await getEmailVerification();
       updateEmailVerifedCookie(`${!!res.is_email_verified}`);
     };
 
     checkEmailVerification();
-  }, [updateEmailVerifedCookie]);
+  }, [updateEmailVerifedCookie, isMSWEnabled]);
+
+  if (isBrowserMSW && !isMSWEnabled) return;
 
   if (isEmailVerified === null) {
     return;

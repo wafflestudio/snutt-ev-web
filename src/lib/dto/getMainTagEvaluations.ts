@@ -6,5 +6,5 @@ export interface GetMainTagEvalutionsQuery {
 
 export interface GetMainTagEvaluationsResult {
   content: MainEvaluationDTO[];
-  cursor?: string;
+  cursor: string | null;
 }
