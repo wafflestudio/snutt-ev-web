@@ -19,7 +19,9 @@ export class SnuttPage {
     return this.page;
   }
 
-  scrollToBottom() {
+  async scrollToBottom(delay = 100) {
+    await new Promise((res) => setTimeout(() => res(null), delay));
+
     return this.page.evaluate(() =>
       window.scrollTo(0, document.body.scrollHeight),
     );

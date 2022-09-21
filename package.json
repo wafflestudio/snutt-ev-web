@@ -30,7 +30,7 @@
     "react-modal-sheet": "^1.5.2"
   },
   "devDependencies": {
-    "@playwright/test": "^1.25.2",
+    "@playwright/test": "^1.26.0",
     "@svgr/cli": "^6.1.2",
     "@svgr/webpack": "^6.2.0",
     "@types/js-cookie": "^3.0.1",

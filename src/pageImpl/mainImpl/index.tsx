@@ -64,7 +64,10 @@ export const MainImpl = () => {
         <StyledToggleButtonGroup
           value={selectedTagId}
           exclusive
-          onChange={(e, tagId) => onClickTag(tagId)}
+          onChange={(e, tagId) => {
+            if (tagId === null) return;
+            onClickTag(tagId);
+          }}
         >
           {recommendationTags.map((it) => (
             <ToggleButton
