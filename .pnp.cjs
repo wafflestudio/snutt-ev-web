@@ -36,7 +36,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/react", "virtual:ef4a7200b72d65075e75e42dae81ce5805b1555697599c57e602dc775d8c9356736d5da3d05cf90e4eabab2b146aa8a2fb4238b3a5807246ed7a634308b390d2#npm:11.7.1"],\
             ["@emotion/styled", "virtual:ef4a7200b72d65075e75e42dae81ce5805b1555697599c57e602dc775d8c9356736d5da3d05cf90e4eabab2b146aa8a2fb4238b3a5807246ed7a634308b390d2#npm:11.3.0"],\
             ["@mui/material", "virtual:ef4a7200b72d65075e75e42dae81ce5805b1555697599c57e602dc775d8c9356736d5da3d05cf90e4eabab2b146aa8a2fb4238b3a5807246ed7a634308b390d2#npm:5.2.6"],\
-            ["@playwright/test", "npm:1.25.2"],\
+            ["@playwright/test", "npm:1.26.0"],\
             ["@svgr/cli", "npm:6.1.2"],\
             ["@svgr/webpack", "npm:6.2.0"],\
             ["@tanstack/react-query", "virtual:ef4a7200b72d65075e75e42dae81ce5805b1555697599c57e602dc775d8c9356736d5da3d05cf90e4eabab2b146aa8a2fb4238b3a5807246ed7a634308b390d2#npm:4.3.4"],\
@@ -3323,12 +3323,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@playwright/test", [\
-        ["npm:1.25.2", {\
-          "packageLocation": "./.yarn/cache/@playwright-test-npm-1.25.2-8da79c4411-3c24027bd9.zip/node_modules/@playwright/test/",\
+        ["npm:1.26.0", {\
+          "packageLocation": "./.yarn/cache/@playwright-test-npm-1.26.0-2fc6ca51fc-ce85c07e91.zip/node_modules/@playwright/test/",\
           "packageDependencies": [\
-            ["@playwright/test", "npm:1.25.2"],\
+            ["@playwright/test", "npm:1.26.0"],\
             ["@types/node", "npm:18.7.18"],\
-            ["playwright-core", "npm:1.25.2"]\
+            ["playwright-core", "npm:1.26.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -4848,7 +4848,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/browserslist-npm-4.19.1-e9de2a4009-c0777fd483.zip/node_modules/browserslist/",\
           "packageDependencies": [\
             ["browserslist", "npm:4.19.1"],\
-            ["caniuse-lite", "npm:1.0.30001406"],\
+            ["caniuse-lite", "npm:1.0.30001407"],\
             ["electron-to-chromium", "npm:1.4.38"],\
             ["escalade", "npm:3.1.1"],\
             ["node-releases", "npm:2.0.1"],\
@@ -4925,10 +4925,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["caniuse-lite", [\
-        ["npm:1.0.30001406", {\
-          "packageLocation": "./.yarn/cache/caniuse-lite-npm-1.0.30001406-ef77292316-1ae9701f0c.zip/node_modules/caniuse-lite/",\
+        ["npm:1.0.30001407", {\
+          "packageLocation": "./.yarn/cache/caniuse-lite-npm-1.0.30001407-c92521aae1-e1c449d22f.zip/node_modules/caniuse-lite/",\
           "packageDependencies": [\
-            ["caniuse-lite", "npm:1.0.30001406"]\
+            ["caniuse-lite", "npm:1.0.30001407"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -7916,7 +7916,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react", "npm:18.0.20"],\
             ["@types/react-dom", "npm:18.0.6"],\
             ["@types/sass", null],\
-            ["caniuse-lite", "npm:1.0.30001406"],\
+            ["caniuse-lite", "npm:1.0.30001407"],\
             ["fibers", null],\
             ["node-sass", null],\
             ["postcss", "npm:8.4.14"],\
@@ -8374,10 +8374,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["playwright-core", [\
-        ["npm:1.25.2", {\
-          "packageLocation": "./.yarn/unplugged/playwright-core-npm-1.25.2-734de773d7/node_modules/playwright-core/",\
+        ["npm:1.26.0", {\
+          "packageLocation": "./.yarn/unplugged/playwright-core-npm-1.26.0-ec7a735674/node_modules/playwright-core/",\
           "packageDependencies": [\
-            ["playwright-core", "npm:1.25.2"]\
+            ["playwright-core", "npm:1.26.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -9093,7 +9093,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/react", "virtual:ef4a7200b72d65075e75e42dae81ce5805b1555697599c57e602dc775d8c9356736d5da3d05cf90e4eabab2b146aa8a2fb4238b3a5807246ed7a634308b390d2#npm:11.7.1"],\
             ["@emotion/styled", "virtual:ef4a7200b72d65075e75e42dae81ce5805b1555697599c57e602dc775d8c9356736d5da3d05cf90e4eabab2b146aa8a2fb4238b3a5807246ed7a634308b390d2#npm:11.3.0"],\
             ["@mui/material", "virtual:ef4a7200b72d65075e75e42dae81ce5805b1555697599c57e602dc775d8c9356736d5da3d05cf90e4eabab2b146aa8a2fb4238b3a5807246ed7a634308b390d2#npm:5.2.6"],\
-            ["@playwright/test", "npm:1.25.2"],\
+            ["@playwright/test", "npm:1.26.0"],\
             ["@svgr/cli", "npm:6.1.2"],\
             ["@svgr/webpack", "npm:6.2.0"],\
             ["@tanstack/react-query", "virtual:ef4a7200b72d65075e75e42dae81ce5805b1555697599c57e602dc775d8c9356736d5da3d05cf90e4eabab2b146aa8a2fb4238b3a5807246ed7a634308b390d2#npm:4.3.4"],\
