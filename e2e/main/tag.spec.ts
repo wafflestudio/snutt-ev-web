@@ -19,6 +19,8 @@ test('교양 강의평 둘러보기', async ({ page }) => {
   await expectChipStatus('recent');
   await recommendChip.click();
   await expectChipStatus('recommend');
+  await recommendChip.click();
+  await expectChipStatus('recommend');
   await recentChip.click();
   await expectChipStatus('recent');
 

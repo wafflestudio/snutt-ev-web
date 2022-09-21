@@ -62,7 +62,11 @@ NEXT_PUBLIC_APP_ENV=local
 yarn test:e2e
 ```
 
-첫 실행일 경우 playwright 가 요구하는 브라우저 preset 을 설치하게 됩니다.
+첫 실행일 경우 playwright 가 요구하는 브라우저 preset 을 설치해야 합니다.
+
+```sh
+npx playwright@{package.json에 명시된 버전} install
+```
 
 <br/>
 

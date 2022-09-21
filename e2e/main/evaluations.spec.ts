@@ -39,20 +39,20 @@ test(
       const cat = main.findByTestId('main-empty-review');
       await expect(cat).toHaveCount(0);
 
-      // 강의평이 6개 보여야 한다
+      // 초기 강의평은 6개가 보여야 한다
       const ev = main.findByTestId('main-evaluation-card');
       await expect(ev).toHaveCount(6);
 
-      // 스크롤하면 세 개를 더 불러와 9개가 보여져야 한다
-      await main.scrollToBottom();
+      // 끝까지 스크롤하면 9개가 보여져야 한다
+      await main.scrollToBottom(50);
       await expect(ev).toHaveCount(9);
 
-      // 스크롤하면 세 개를 더 불러와 12개가 보여져야 한다
-      await main.scrollToBottom();
+      // 끝까지 스크롤하면 12개가 보여져야 한다
+      await main.scrollToBottom(50);
       await expect(ev).toHaveCount(12);
 
-      // 마지막 페이지에서 스크롤하면 더 불러오지 못하고 그대로 12개가 보여져야 한다
-      await main.scrollToBottom();
+      // 끝까지 스크롤해도 12개가 보여져야 한다 (마지막 페이지)
+      await main.scrollToBottom(50);
       await expect(ev).toHaveCount(12);
 
       // 첫 번째 강의평의 교수명에 박재욱이 나타나야 한다
