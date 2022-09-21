@@ -3,7 +3,7 @@ name: deploy-prod
 on:
   push:
     tags:
-      - 'prod/[0-9]{2}.[0-9]{2}.[0-9]{2}-[0-9]+'
+      - prod/*
 
 jobs:
   deploy:

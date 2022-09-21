@@ -3,7 +3,7 @@ name: deploy-dev
 on:
   push:
     tags:
-      - 'dev/[0-9]{2}.[0-9]{2}.[0-9]{2}-[0-9]+'
+      - dev/*
 
 jobs:
   deploy:
