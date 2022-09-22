@@ -1,5 +1,6 @@
 import { css, Global } from '@emotion/react';
 import {
+  Hydrate,
   QueryClient,
   QueryClientProvider,
   QueryErrorResetBoundary,
@@ -7,78 +8,36 @@ import {
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import { Suspense, useEffect } from 'react';
+import { Suspense, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
-import { getEmailVerification } from '@/lib/api/apis';
 import { ErrorView } from '@/lib/components/Error';
-import useCookie from '@/lib/hooks/useCookie';
 import { appleSDGNeo } from '@/lib/styles/fonts';
 import { APP_ENV, IS_SERVER } from '@/lib/util/env';
 import { useMSW } from '@/mocks/integrations/browser';
-import { MailVerifyImpl } from '@/pageImpl/mailVerifyImpl';
 
 const isDevtool = process.env.NEXT_PUBLIC_REACT_QUERY_DEVTOOL === 'true';
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: 0,
-      suspense: true,
-      refetchOnWindowFocus: false,
-    },
-  },
-});
-
 const isBrowserMSW = !IS_SERVER && APP_ENV === 'test';
 
-function MyApp({ Component, pageProps }: AppProps) {
+const createQueryClient = () =>
+  new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: 0,
+        refetchOnWindowFocus: false,
+      },
+    },
+  });
+
+function MyApp({
+  Component,
+  pageProps,
+}: AppProps<{ dehydratedState: unknown }>) {
+  const [queryClient] = useState(createQueryClient);
   const isMSWEnabled = useMSW(isBrowserMSW);
 
-  const [isEmailVerified, updateEmailVerifedCookie] =
-    useCookie('email-verified');
-
-  useEffect(() => {
-    if (isBrowserMSW && !isMSWEnabled) return;
-
-    const checkEmailVerification = async () => {
-      const res = await getEmailVerification();
-      updateEmailVerifedCookie(`${!!res.is_email_verified}`);
-    };
-
-    checkEmailVerification();
-  }, [updateEmailVerifedCookie, isMSWEnabled]);
-
   if (isBrowserMSW && !isMSWEnabled) return;
-
-  if (isEmailVerified === null) {
-    return;
-  }
-
-  if (isEmailVerified === 'false') {
-    return (
-      <>
-        <Head>
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
-          />
-        </Head>
-        <Global
-          styles={css`
-            html,
-            body {
-              padding: 0;
-              margin: 0 auto;
-              ${appleSDGNeo};
-              max-width: 768px;
-            }
-          `}
-        />
-        <MailVerifyImpl setVerification={updateEmailVerifedCookie} />
-      </>
-    );
-  }
 
   return (
     <>
@@ -100,22 +59,23 @@ function MyApp({ Component, pageProps }: AppProps) {
             }
           `}
         />
-
-        <QueryErrorResetBoundary>
-          {({ reset }) => (
-            <ErrorBoundary
-              onReset={reset}
-              fallbackRender={({ resetErrorBoundary }) => (
-                <ErrorView resetErrorBoundary={resetErrorBoundary} />
-              )}
-            >
-              <Suspense fallback={null}>
-                <Component {...pageProps} />
-              </Suspense>
-            </ErrorBoundary>
-          )}
-        </QueryErrorResetBoundary>
-        {isDevtool && <ReactQueryDevtools initialIsOpen={false} />}
+        <Hydrate state={pageProps.dehydratedState}>
+          <QueryErrorResetBoundary>
+            {({ reset }) => (
+              <ErrorBoundary
+                onReset={reset}
+                fallbackRender={({ resetErrorBoundary }) => (
+                  <ErrorView resetErrorBoundary={resetErrorBoundary} />
+                )}
+              >
+                <Suspense fallback={null}>
+                  <Component {...pageProps} />
+                </Suspense>
+              </ErrorBoundary>
+            )}
+          </QueryErrorResetBoundary>
+          {isDevtool && <ReactQueryDevtools initialIsOpen={false} />}
+        </Hydrate>
       </QueryClientProvider>
     </>
   );
