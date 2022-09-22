@@ -36,6 +36,14 @@ NEXT_PUBLIC_REACT_QUERY_DEVTOOL=true
 NEXT_PUBLIC_APP_ENV=local
 ```
 
+<br/>
+
+### Scripts
+
+```sh
+yarn setup-scripts
+```
+
 <br/><br/>
 
 ## Deployments
