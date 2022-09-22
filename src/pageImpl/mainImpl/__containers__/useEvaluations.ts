@@ -11,8 +11,9 @@ export function useEvaluations(selectedTagId?: number) {
   } = useInfiniteQuery(
     ['tagEvaluations', selectedTagId],
     ({ pageParam }) =>
-      getMainTagEvaluations(selectedTagId ?? 1, {
-        cursor: pageParam,
+      getMainTagEvaluations({
+        params: { id: selectedTagId ?? 1 },
+        query: { cursor: pageParam },
       }),
     {
       getNextPageParam: (lastPage) => {

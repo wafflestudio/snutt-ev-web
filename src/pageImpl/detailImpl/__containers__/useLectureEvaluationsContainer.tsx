@@ -11,8 +11,9 @@ export function useLectureEvaluationsContainer(id: number) {
   } = useInfiniteQuery(
     ['lectureEvaluation', id],
     async ({ pageParam }) => {
-      const data = await fetchLectureEvaluations(id, {
-        cursor: pageParam,
+      const data = await fetchLectureEvaluations({
+        params: { id },
+        query: { cursor: pageParam },
       });
       return data;
     },

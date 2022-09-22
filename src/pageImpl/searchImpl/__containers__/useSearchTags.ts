@@ -12,9 +12,11 @@ const select = ({ tag_groups }: GetTagInfosProcessedResult) => ({
 });
 
 export function useSearchTags() {
-  const { data, error, isLoading } = useQuery(['tagInfos'], fetchTagInfos, {
-    select,
-  });
+  const { data, error, isLoading } = useQuery(
+    ['tagInfos'],
+    () => fetchTagInfos(),
+    { select },
+  );
 
   return {
     tagGroups: data?.tag_groups,

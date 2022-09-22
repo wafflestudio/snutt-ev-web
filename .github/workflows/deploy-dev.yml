@@ -12,8 +12,10 @@ jobs:
     environment: development
     env:
       IMAGE_TAG: latest-dev
+      BUILD_NUMBER: ${{ github.run_number }}
       ECR_REGISTRY: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com
       ECR_REPOSITORY: snutt/snutt-ev-web
+      S3_BUCKET_NAME: snutt-ev-web-build
 
     steps:
       - name: Checkout
@@ -26,6 +28,12 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
+      - name: Upload Dockerrun.aws.json to S3
+        run: |
+          mv Dockerrun-dev.aws.json Dockerrun.aws.json
+          zip deploy-dev.zip Dockerrun.aws.json
+          aws s3 cp deploy-dev.zip s3://$S3_BUCKET_NAME/deploy-dev.zip
+
       - name: Login to ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
@@ -36,8 +44,19 @@ jobs:
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG --build-arg APP_ENV=dev .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-      
+
       - name: Delete untagged images in ECR
         run: |
           UNTAGGED_IMAGES=$( aws ecr list-images --repository-name $ECR_REPOSITORY --filter "tagStatus=UNTAGGED" --query 'imageIds[*]' --output json )
           aws ecr batch-delete-image --repository-name $ECR_REPOSITORY --image-ids "$UNTAGGED_IMAGES" || true
+
+      - name: Deploy to ElasticBeanstalk
+        run: |
+          aws elasticbeanstalk create-application-version \
+            --application-name snutt-ev-web \
+            --version-label dev-$BUILD_NUMBER \
+            --description dev-$BUILD_NUMBER \
+            --source-bundle S3Bucket=$S3_BUCKET_NAME,S3Key='deploy-dev.zip'
+          aws elasticbeanstalk update-environment \
+            --environment-name snutt-ev-web-dev \
+            --version-label dev-$BUILD_NUMBER
