@@ -10,6 +10,10 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     environment: development
+    env:
+      IMAGE_TAG: latest-dev
+      ECR_REGISTRY: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com
+      ECR_REPOSITORY: snutt/snutt-ev-web
 
     steps:
       - name: Checkout
@@ -22,20 +26,18 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Generate .env.production for build
-        run: |
-          cp .env.dev .env.production
+      - name: Login to ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Build & Export Next App
+      - name: Docker Build, tag, and push image to ECR
+        id: build-image
         run: |
-          yarn install
-          yarn export
-
-      - name: Deploy to S3 and Invalidate Cloudfront
-        id: deploy-s3
-        env:
-          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET_DEV }}
-          AWS_CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID_DEV }}
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+      
+      - name: Delete untagged images in ECR
         run: |
-          aws s3 sync ./out $AWS_S3_BUCKET --delete
-          aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
+          UNTAGGED_IMAGES=$( aws ecr list-images --repository-name $ECR_REPOSITORY --filter "tagStatus=UNTAGGED" --query 'imageIds[*]' --output json )
+          aws ecr batch-delete-image --repository-name $ECR_REPOSITORY --image-ids "$UNTAGGED_IMAGES" || true
