@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { AxiosError } from 'axios';
+import { useRouter } from 'next/router';
 import React, { ChangeEvent, useState } from 'react';
 import CountDown, { CountdownRenderProps, zeroPad } from 'react-countdown';
 
@@ -16,15 +17,9 @@ import {
 import { ApiError } from '@/lib/dto/core/error';
 import { COLORS } from '@/lib/styles/colors';
 
-interface Props {
-  setVerification: (
-    newValue: string,
-    options?: Cookies.CookieAttributes | undefined,
-  ) => void;
-}
-
-export const MailVerifyImpl = ({ setVerification }: Props) => {
+export const MailVerifyImpl = () => {
   const [email, setEmail] = useState('');
+  const router = useRouter();
 
   const isRequestVerificationButtonDiasbled = email === '';
 
@@ -125,7 +120,7 @@ export const MailVerifyImpl = ({ setVerification }: Props) => {
       });
 
       if (res.is_email_verified) {
-        setVerification('true');
+        router.replace('/main');
       }
     } catch (e) {
       console.error(e);
