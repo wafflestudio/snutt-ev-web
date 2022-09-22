@@ -9,7 +9,12 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    environment: production
+    env:
+      IMAGE_TAG: latest-prod
+      BUILD_NUMBER: ${{ github.run_number }}
+      ECR_REGISTRY: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com
+      ECR_REPOSITORY: snutt/snutt-ev-web
+      S3_BUCKET_NAME: snutt-ev-web-build
 
     steps:
       - name: Checkout
@@ -22,30 +27,45 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Generate .env.production for build
+      - name: Upload Dockerrun.aws.json to S3
         run: |
-          cp .env.prod .env.production
+          zip deploy-prod.zip Dockerrun.aws.json
+          aws s3 cp deploy-prod.zip s3://$S3_BUCKET_NAME/deploy-prod.zip
 
-      - name: Build & Export Next App
-        run: |
-          yarn install
-          yarn export
+      - name: Login to ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Deploy to S3 and Invalidate Cloudfront
-        id: deploy-s3
-        env:
-          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET_PROD }}
-          AWS_CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID_PROD }}
+      - name: Docker Build, tag, and push image to ECR
+        id: build-image
         run: |
-          aws s3 sync ./out $AWS_S3_BUCKET --delete
-          aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG --build-arg APP_ENV=prod .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+
+      - name: Delete untagged images in ECR
+        run: |
+          UNTAGGED_IMAGES=$( aws ecr list-images --repository-name $ECR_REPOSITORY --filter "tagStatus=UNTAGGED" --query 'imageIds[*]' --output json )
+          aws ecr batch-delete-image --repository-name $ECR_REPOSITORY --image-ids "$UNTAGGED_IMAGES" || true
+
+      - name: Deploy to ElasticBeanstalk
+        run: |
+          aws elasticbeanstalk create-application-version \
+            --application-name snutt-ev-web \
+            --version-label prod-$BUILD_NUMBER \
+            --description prod-$BUILD_NUMBER \
+            --source-bundle S3Bucket=$S3_BUCKET_NAME,S3Key='deploy-prod.zip'
+          aws elasticbeanstalk update-environment \
+            --environment-name snutt-ev-web-prod \
+            --version-label prod-$BUILD_NUMBER
 
       - name: Slack Notify
         uses: rtCamp/action-slack-notify@v2.1.2
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_CHANNEL: team-snutt
           SLACK_TITLE: NEW RELEASE
           SLACK_USERNAME: snutt-ev-web
-          SLACK_ICON: https://user-images.githubusercontent.com/54926767/151759341-659c1354-6849-4249-9411-968f164e80b7.png
-          SLACK_MESSAGE: Check <https://s3.console.aws.amazon.com/s3/buckets/snutt-ev-web?region=ap-northeast-2&tab=objects|S3> for updated environment
+          SLACK_ICON: https://user-images.githubusercontent.com/39977696/191924403-3a26618c-5568-4c22-b592-aedc77323e8d.png
+          SLACK_MESSAGE: Check <https://ap-northeast-2.console.aws.amazon.com/elasticbeanstalk/home?region=ap-northeast-2#/environment/dashboard?applicationName=snutt-ev-server&environmentId=e-tvyyex9rxp|EB> for updated environment (이거 서버임 바꿔야됨)
           SLACK_FOOTER: https://snutt-ev-web.wafflestudio.com
