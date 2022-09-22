@@ -1,5 +1,8 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { GetServerSidePropsContext } from 'next';
+
+import { IS_SERVER } from '@/lib/util/env';
 
 const apikey =
   Cookies.get('x-access-apikey') ||
@@ -16,12 +19,38 @@ const defaultHeaders = {
   'x-access-apikey': apikey,
 };
 
-export const coreClient = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_CORE_API_URL,
-  headers: defaultHeaders,
-});
+export const getServerSideHeaders = (context?: GetServerSidePropsContext) => {
+  if (context === undefined) return;
 
-export const evClient = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_EV_API_URL,
-  headers: defaultHeaders,
-});
+  const {
+    req: { cookies },
+  } = context;
+
+  const token = cookies['x-access-token'];
+  const apikey = cookies['x-access-apikey'];
+
+  if (!token || !apikey) return;
+
+  return {
+    'x-access-token': token,
+    'x-access-apikey': apikey,
+  };
+};
+
+export const coreClient = axios.create(
+  IS_SERVER
+    ? { baseURL: process.env.NEXT_PUBLIC_CORE_API_URL }
+    : {
+        baseURL: process.env.NEXT_PUBLIC_CORE_API_URL,
+        headers: defaultHeaders,
+      },
+);
+
+export const evClient = axios.create(
+  IS_SERVER
+    ? { baseURL: process.env.NEXT_PUBLIC_EV_API_URL }
+    : {
+        baseURL: process.env.NEXT_PUBLIC_EV_API_URL,
+        headers: defaultHeaders,
+      },
+);
