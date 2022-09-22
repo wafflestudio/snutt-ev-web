@@ -25,7 +25,7 @@ export const withGetServerSideProps = (
     const { emailVerification } = options;
 
     if (emailVerification) {
-      const { is_email_verified } = await getEmailVerification();
+      const { is_email_verified } = await getEmailVerification({ context });
 
       // 인증되어야 하는데 인증 안됐으면 인증 페이지로
       if (!is_email_verified && emailVerification === 'verified')
@@ -46,6 +46,8 @@ export const withGetServerSideProps = (
     // 아래 이슈 때문에 stringify 후 parse 해서 undefined 를 없애 준다.
     // https://github.com/TanStack/query/issues/1458
     const dehydratedState = JSON.parse(JSON.stringify(dehydrate(queryClient)));
+
+    console.log(dehydratedState);
 
     return { props: { ...ret.props, dehydratedState } };
   };

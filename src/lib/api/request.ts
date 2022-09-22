@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { GetServerSidePropsContext } from 'next';
 
 const apikey =
   Cookies.get('x-access-apikey') ||
@@ -14,6 +15,24 @@ const token =
 const defaultHeaders = {
   'x-access-token': token,
   'x-access-apikey': apikey,
+};
+
+export const getServerSideHeaders = (context?: GetServerSidePropsContext) => {
+  if (context === undefined) return;
+
+  const {
+    req: { cookies },
+  } = context;
+
+  const token = cookies['x-access-token'];
+  const apikey = cookies['x-access-apikey'];
+
+  if (!token || !apikey) return;
+
+  return {
+    'x-access-token': token,
+    'x-access-apikey': apikey,
+  };
 };
 
 export const coreClient = axios.create({
