@@ -32,5 +32,9 @@ export const useSelectTag = (tags: TagDTO[]) => {
     setSelectedTagId(tagId);
   };
 
-  return { selectedTagId: Number(selectedTagId), onClickTag };
+  return {
+    selectedTagId:
+      selectedTagId === undefined ? undefined : Number(selectedTagId),
+    onClickTag,
+  };
 };
