@@ -1,15 +1,13 @@
-import React from 'react';
-
 import { withGetServerSideProps } from '@/lib/util/withGetServersideProps';
-import { SearchImpl } from '@/pageImpl/searchImpl';
+import { MailVerifyImpl } from '@/pageImpl/mailVerifyImpl';
 
-export default function SearchView() {
-  return <SearchImpl />;
+export default function Verify() {
+  return <MailVerifyImpl />;
 }
 
 export const getServerSideProps = withGetServerSideProps(
   async () => {
     return { props: {} };
   },
-  { emailVerification: 'verified' },
+  { emailVerification: 'not-verified' },
 );
