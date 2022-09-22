@@ -7,7 +7,6 @@ WORKDIR /app
 COPY . .
 
 RUN cd /app && echo 'YARN VERSION IN BUILDER: ' && yarn --version
-RUN rm .env.local
 RUN if [ ${APP_ENV} = "dev" ] ; then cp .env.dev .env ; elif [ ${APP_ENV} = "prod" ] ; then cp .env.prod .env ; elif [ ${APP_ENV} = "test" ] ; then cp .env.test .env ; else exit 1 ; fi
 RUN yarn rebuild && yarn build
 
