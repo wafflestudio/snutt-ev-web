@@ -15,9 +15,11 @@ export const useSearchResult = (
     ['lectureSearch', textQuery, selectedTagIDs],
     ({ pageParam }) =>
       getLectures({
-        query: textQuery,
-        tags: selectedTagIDs,
-        page: pageParam,
+        query: {
+          query: textQuery,
+          tags: selectedTagIDs,
+          page: pageParam,
+        },
       }),
     {
       getNextPageParam: (lastPage) => {
