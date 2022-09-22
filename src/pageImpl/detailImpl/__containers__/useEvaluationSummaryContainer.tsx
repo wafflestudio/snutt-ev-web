@@ -8,12 +8,16 @@ export function useEvaluationSummaryContainer(id: number) {
   const { data, error, isLoading } = useQuery<
     GetEvaluationSummaryResponse,
     ApiError
-  >(['evaluationSummary', id], () => fetchEvaluationSummary(id), {
-    enabled: !isNaN(id),
-    retryDelay: 2000,
-    retry: 4,
-    suspense: false,
-  });
+  >(
+    ['evaluationSummary', id],
+    () => fetchEvaluationSummary({ params: { id } }),
+    {
+      enabled: !isNaN(id),
+      retryDelay: 2000,
+      retry: 4,
+      suspense: false,
+    },
+  );
 
   return {
     summaryData: data,

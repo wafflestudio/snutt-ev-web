@@ -50,16 +50,19 @@ export const DetailImpl = () => {
     undefined,
   );
 
-  const deleteMutation = useMutation(deleteEvaluation, {
-    onSuccess: () => {
-      queryClient.invalidateQueries(['evaluationSummary', Number(id)]);
-      queryClient.invalidateQueries(['myLectureEvaluation', Number(id)]);
-      queryClient.invalidateQueries(['lectureEvaluation', Number(id)]);
+  const deleteMutation = useMutation(
+    (id: number) => deleteEvaluation({ params: { id } }),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(['evaluationSummary', Number(id)]);
+        queryClient.invalidateQueries(['myLectureEvaluation', Number(id)]);
+        queryClient.invalidateQueries(['lectureEvaluation', Number(id)]);
+      },
+      onError: () => {
+        console.error('강의평 삭제에 실패하였습니다.');
+      },
     },
-    onError: () => {
-      console.error('강의평 삭제에 실패하였습니다.');
-    },
-  });
+  );
   const [deleteTargetId, setDeleteTargetId] = useState<number | undefined>(
     undefined,
   );
@@ -77,7 +80,7 @@ export const DetailImpl = () => {
 
   const reportMutation = useMutation(
     ({ id, content }: { id: number; content: string }) =>
-      postReportEvaluation(id, { content }),
+      postReportEvaluation({ params: { id }, body: { content } }),
     {
       onSuccess: () => {
         queryClient.invalidateQueries(['evaluationSummary']);
