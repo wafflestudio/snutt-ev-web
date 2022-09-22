@@ -11,7 +11,10 @@
     "start:test": "NODE_ENV=test next start",
     "export": "next build && next export",
     "lint": "next lint",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "setup-scripts": "chmod ug+x scripts/*",
+    "deploy:dev": "scripts/deploy.sh dev",
+    "deploy:prod": "scripts/deploy.sh prod"
   },
   "dependencies": {
     "@emotion/react": "^11.4.1",
