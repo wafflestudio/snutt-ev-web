@@ -7,7 +7,7 @@ export function useMyLectureEvaluationsContainer(id: number) {
   const { data: myReviewResult } = useQuery<GetMyEvaluationsResult>(
     ['myLectureEvaluation', id],
     async () => {
-      const data = await fetchMyLectureEvaluations(id);
+      const data = await fetchMyLectureEvaluations({ params: { id } });
       return data;
     },
     {

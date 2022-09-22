@@ -110,7 +110,10 @@ export const CreateImpl = () => {
 
     if (selectedSemester?.id) {
       try {
-        await postLectureEvaluation(selectedSemester.id, query);
+        await postLectureEvaluation({
+          params: { id: selectedSemester.id },
+          body: query,
+        });
         router.replace(`/detail?id=${id}`);
       } catch (errorCode) {
         if (errorCode === 29001) {
