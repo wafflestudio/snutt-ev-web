@@ -17,7 +17,8 @@ export const useSelectTag = (tags: TagDTO[]) => {
       if (selectedTagId === `${tagId}`) return;
       const params = new URLSearchParams();
       params.set('tag', `${tagId}`);
-      router.replace(`${router.pathname}?${params}`);
+      const url = `${router.pathname}?${params}`;
+      router.replace(url, undefined, { shallow: true });
     },
     [router, selectedTagId],
   );
