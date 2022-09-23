@@ -6,7 +6,7 @@ import { fetchSemesterLectures } from '@/lib/api/apis';
 export function useSemestersContainer(id: number) {
   const querySearch = useQuery(
     ['lectureSemester', id],
-    () => fetchSemesterLectures(id),
+    () => fetchSemesterLectures({ params: { id } }),
     {
       enabled: !isNaN(id),
     },
