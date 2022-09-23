@@ -17,7 +17,7 @@ import {
 } from './__containers__';
 
 export const SearchImpl = () => {
-  const { tagGroups } = useSearchTags();
+  const { data: tagGroups } = useSearchTags();
   const {
     selectedTagIDs,
     toggleTagSelection,
