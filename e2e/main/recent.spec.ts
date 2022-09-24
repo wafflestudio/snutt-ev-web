@@ -4,11 +4,13 @@ import { getTestCookie } from '../utils/cookie';
 import { withCookie } from '../utils/withCookiePage';
 import { MainPage } from './_page';
 
+const TEST_RECENT_LECTURES_EXIST = 'TEST_RECENT_LECTURES_EXIST';
+
 test(
   '지난 학기에 들은 강의가 없을 경우 지난 학기 강의평 섹션이 보여지지 않는다',
   withCookie(
     // 지난 학기에 들은 강의가 없을 경우
-    [getTestCookie('TEST_RECENT_LECTURES_EXIST', 'false')],
+    [getTestCookie(TEST_RECENT_LECTURES_EXIST, 'false')],
     async ({ page }) => {
       // 페이지에 접속하면
       const main = new MainPage(page);
@@ -22,10 +24,27 @@ test(
 );
 
 test(
+  '지난 학기에 들은 강의가 있을 경우 더보기 버튼이 정상 동작한다',
+  withCookie(
+    // 지난 학기에 들은 강의가 있을 경우
+    [getTestCookie(TEST_RECENT_LECTURES_EXIST, 'true')],
+    async ({ page }) => {
+      // 페이지에 접속하면
+      const main = new MainPage(page);
+      await main.goto();
+
+      // 더보기를 클릭하면 해당 강의 링크로 이동해야 한다
+      await main.findByTestId('main-recent-more-link').click();
+      await expect(main.getPage()).toHaveURL('/recent');
+    },
+  ),
+);
+
+test(
   '지난 학기에 들은 강의가 있을 경우 지난 학기 강의평 섹션이 정상적으로 보여진다',
   withCookie(
     // 지난 학기에 들은 강의가 있을 경우
-    [getTestCookie('TEST_RECENT_LECTURES_EXIST', 'true')],
+    [getTestCookie(TEST_RECENT_LECTURES_EXIST, 'true')],
     async ({ page }) => {
       // 페이지에 접속하면
       const main = new MainPage(page);
