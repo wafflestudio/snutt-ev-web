@@ -41,7 +41,7 @@ test('교양 강의평 둘러보기', async ({ page }) => {
         ],
       ),
       expect(main.getPage()).toHaveURL(
-        `/main/?tag=${{ recent: 1, recommend: 2 }[status]}`,
+        `/main?tag=${{ recent: 1, recommend: 2 }[status]}`,
       ),
     ]);
   }
