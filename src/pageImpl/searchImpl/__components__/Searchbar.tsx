@@ -24,7 +24,7 @@ export const Searchbar = ({
 
   return (
     <AppBar
-      LeftImage={
+      leftImage={
         <BackButton onClick={() => router.back()}>
           <SvgArrowBack width={30} height={30} />
         </BackButton>
