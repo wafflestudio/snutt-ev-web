@@ -25,8 +25,8 @@ export const LectureCard = ({ lecture }: Props) => {
         <LectureName>{lecture.title}</LectureName>
         <WriteButton
           onClick={(e) => {
-            router.push(`/create?id=${lecture.id}`);
             e.stopPropagation();
+            router.push(`/create?id=${lecture.id}`);
           }}
         >
           <SvgWrite height={20} width={20} />
@@ -53,10 +53,7 @@ export const LectureCard = ({ lecture }: Props) => {
   );
 };
 
-const Card = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+const Card = styled.article`
   min-width: 210px;
   min-height: 108px;
   padding: 11px 15px;
@@ -67,10 +64,10 @@ const Card = styled.div`
 
   margin: 0px 8px 0px 10px;
 `;
+
 const CardTop = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
 
