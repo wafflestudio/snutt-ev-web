@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import React from 'react';
 import Sheet from 'react-modal-sheet';
 
 import ReportIcon from '@/assets/icons/report.svg';

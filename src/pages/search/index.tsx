@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { fetchTagInfos } from '@/lib/api/apis';
 import { withGetServerSideProps } from '@/lib/util/withGetServersideProps';
 import { SearchImpl } from '@/pageImpl/searchImpl';

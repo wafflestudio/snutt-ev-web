@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import React from 'react';
 
 import { AppBar } from '@/lib/components/Appbar';
 import SvgTimetableOn from '@/lib/components/Icons/SvgTimetableOn';

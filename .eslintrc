@@ -13,6 +13,10 @@
     "@typescript-eslint/no-unused-vars": "error",
     "react-hooks/exhaustive-deps": "error",
     "simple-import-sort/imports": "error",
-    "react/jsx-no-useless-fragment": ["error", { "allowExpressions": true }]
+    "react/jsx-no-useless-fragment": ["error", { "allowExpressions": true }],
+    "no-restricted-imports": [
+      "error",
+      { "paths": [{ "name": "react", "importNames": ["default"] }] }
+    ]
   }
 }

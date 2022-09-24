@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import React from 'react';
 
 import SvgSearchBig from '@/assets/icons/img_search_big.svg';
 import { Title01, Title02 } from '@/lib/components/Text';

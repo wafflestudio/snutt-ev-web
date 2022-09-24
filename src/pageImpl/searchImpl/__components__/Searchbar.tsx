@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
-import React from 'react';
 
 import { AppBar } from '@/lib/components/Appbar';
 import SvgArrowBack from '@/lib/components/Icons/SvgArrowBack';

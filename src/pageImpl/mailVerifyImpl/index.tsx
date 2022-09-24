@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
-import React, { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import CountDown, { CountdownRenderProps, zeroPad } from 'react-countdown';
 
 import { postEmailVerificationCode } from '@/lib/api/apis';
