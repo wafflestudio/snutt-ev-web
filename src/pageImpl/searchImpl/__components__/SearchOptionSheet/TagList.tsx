@@ -5,7 +5,7 @@ import SvgUnchecked from '@/lib/components/Icons/SvgUnchecked';
 import { TagWithColor } from '@/lib/dto/core/tag';
 
 interface Props {
-  tags: TagWithColor[];
+  tags?: TagWithColor[];
   selectedTags: TagWithColor[];
   onToggleTag: (tag: number) => void;
 }
@@ -13,7 +13,7 @@ interface Props {
 export const TagList = ({ tags, selectedTags, onToggleTag }: Props) => {
   return (
     <Wrapper>
-      {tags.map((it) => (
+      {tags?.map((it) => (
         <TagItem
           isSelected={selectedTags.some((s) => s.name === it.name)}
           key={it.name}
