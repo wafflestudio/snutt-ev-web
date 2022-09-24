@@ -5,7 +5,7 @@ import { TagGroupWithColor } from '@/lib/dto/core/tagGroup';
 interface Props {
   tagGroups: TagGroupWithColor[];
   selectedTagGroup?: TagGroupWithColor;
-  onTagGroupSelectionChange: (tagGroup: TagGroupWithColor) => void;
+  onTagGroupSelectionChange: (tagGroupId: number) => void;
 }
 
 export const TagGroupList = ({
@@ -19,7 +19,7 @@ export const TagGroupList = ({
         <TagGroupItem
           isSelected={selectedTagGroup?.name === it.name}
           key={it.name}
-          onClick={() => onTagGroupSelectionChange(it)}
+          onClick={() => onTagGroupSelectionChange(it.id)}
         >
           {it.name}
         </TagGroupItem>

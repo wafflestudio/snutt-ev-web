@@ -26,11 +26,15 @@ export const SearchOptionSheet = ({
   onClose: onClose,
   onClickSubmit,
 }: Props) => {
-  const [selectedTagGroup, setSelectedTagGroup] = useState<TagGroupWithColor>(
-    tagGroups[0],
+  const [selectedTagGroupId, setSelectedTagGroupId] = useState<number>(
+    tagGroups[0]?.id,
   );
 
-  const visibleTags = selectedTagGroup.tags;
+  const selectedTagGroup = tagGroups.find((tg) => tg.id === selectedTagGroupId);
+
+  const visibleTags = selectedTagGroup?.tags;
+
+  const onTagGroupChange = (id: number) => setSelectedTagGroupId(id);
 
   return (
     <Sheet isOpen={isOpened} onClose={onClose} snapPoints={[420]}>
@@ -44,7 +48,7 @@ export const SearchOptionSheet = ({
               <TagGroupList
                 tagGroups={tagGroups}
                 selectedTagGroup={selectedTagGroup}
-                onTagGroupSelectionChange={setSelectedTagGroup}
+                onTagGroupSelectionChange={onTagGroupChange}
               />
               <TagList
                 tags={visibleTags}
