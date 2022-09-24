@@ -17,9 +17,9 @@ import { APP_ENV, IS_SERVER } from '@/lib/util/env';
 import { useMSW } from '@/mocks/integrations/browser';
 
 const isDevtool = process.env.NEXT_PUBLIC_REACT_QUERY_DEVTOOL === 'true';
-
-const isBrowserMSW = !IS_SERVER && APP_ENV === 'test';
-const isServerMSW = IS_SERVER && APP_ENV === 'test';
+const isMSW = APP_ENV === 'test';
+const isBrowserMSW = !IS_SERVER && isMSW;
+const isServerMSW = IS_SERVER && isMSW;
 
 if (isServerMSW) {
   import('../mocks/integrations/server')
@@ -51,7 +51,7 @@ function MyApp({
   const [queryClient] = useState(createQueryClient);
   const isMSWEnabled = useMSW(isBrowserMSW);
 
-  if (isBrowserMSW && !isMSWEnabled) return;
+  if (isMSW && !isMSWEnabled) return;
 
   return (
     <>
