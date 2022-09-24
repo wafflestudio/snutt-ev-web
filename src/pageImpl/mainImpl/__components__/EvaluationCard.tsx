@@ -15,16 +15,18 @@ interface Props {
 export const EvaluationCard = ({ evaluation }: Props) => {
   const router = useRouter();
 
+  const goToEvaluation = () => {
+    const query = new URLSearchParams();
+    query.set('id', `${evaluation.lecture.id}`);
+    router.push(`/detail?${query}`);
+  };
+
   return (
     <Wrapper data-testid="main-evaluation-card">
       <Contents>
-        <Header>
+        <Header onClick={goToEvaluation}>
           <HeaderLeft>
-            <LectureName
-              onClick={() => router.push(`/detail?id=${evaluation.lecture.id}`)}
-            >
-              {evaluation.lecture.title}
-            </LectureName>
+            <LectureName>{evaluation.lecture.title}</LectureName>
             <RatingSemester>
               <Rating rating={evaluation.rating} size={12} />
               <Semester>
@@ -59,9 +61,9 @@ const Contents = styled.div`
 const Header = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   margin-bottom: 12px;
+  cursor: pointer;
 `;
 
 const HeaderLeft = styled.div``;

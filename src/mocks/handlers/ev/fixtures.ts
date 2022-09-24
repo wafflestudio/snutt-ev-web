@@ -44,7 +44,8 @@ export const mockMainTags = {
 export const mockMainEvaluations = [
   {
     id: 6260,
-    content: 'asdfhajksdhkflaskldjfklajsdklfjaklsdf',
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. LAST_TEST_TEXT',
     grade_satisfaction: 3,
     teaching_skill: 3,
     gains: 3,

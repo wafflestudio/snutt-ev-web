@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 import { Subheading02, Title01 } from '@/lib/components/Text';
 import { LatestLectureDTO } from '@/lib/dto/core/latestLecture';
@@ -11,20 +11,15 @@ interface Props {
 }
 
 export const RecentCarousel = ({ lectureList }: Props) => {
-  const router = useRouter();
-
   return (
     <Wrapper data-testid="main-recent">
-      {/* <FakeSearchbar /> */}
       <CarouselHeader>
         <Title01>지난 학기 강의평을 남겨주세요</Title01>
-        <Subheading02
-          onClick={() => {
-            router.push('/recent');
-          }}
-        >
-          더보기 &gt;
-        </Subheading02>
+        <Link href="/recent" passHref>
+          <RecentLink data-testid="main-recent-more-link">
+            <Subheading02>더보기 &gt;</Subheading02>
+          </RecentLink>
+        </Link>
       </CarouselHeader>
       <SubjectCardCarousel>
         {lectureList.map((lecture) => (
@@ -38,6 +33,10 @@ export const RecentCarousel = ({ lectureList }: Props) => {
 const Wrapper = styled.div`
   border-bottom: 12px solid rgb(0, 0, 0, 0.03);
   padding: 0 20px 20px 20px;
+`;
+
+const RecentLink = styled.a`
+  text-decoration: none;
 `;
 
 const CarouselHeader = styled.div`
