@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { SliderUnstyled } from '@mui/material';
+import { Slider } from '@mui/material';
 
 import { RatingGraph } from '@/lib/components/RatingGraph';
 import { DetailHighlight, Title01 } from '@/lib/components/Text';
@@ -26,6 +26,14 @@ export const EvalPolygon = ({
 }: Props) => {
   const { top, left, bottom, right } = score;
 
+  const sliderCommonProps = {
+    min: 0,
+    max: 5,
+    step: 1,
+    defaultValue,
+    valueLabelDisplay: 'off' as const,
+  };
+
   return (
     <Container>
       <Row>
@@ -42,55 +50,35 @@ export const EvalPolygon = ({
           width={300}
         />
         <CustomSliderRight
-          marks
-          min={0}
-          max={5}
-          step={1}
-          defaultValue={defaultValue}
-          valueLabelDisplay={'off'}
           value={right}
-          onChange={(e: unknown, newValue: number) =>
-            handleUpdateScore(newValue as number, 'right')
-          }
+          onChange={withChangeSlider((newValue) =>
+            handleUpdateScore(newValue, 'right'),
+          )}
+          {...sliderCommonProps}
         />
         <CustomSliderTop
-          marks
-          min={0}
-          max={5}
-          step={1}
-          defaultValue={defaultValue}
-          valueLabelDisplay={'off'}
           value={top}
-          onChange={(e: unknown, newValue: number) =>
-            handleUpdateScore(newValue as number, 'top')
-          }
+          onChange={withChangeSlider((newValue) =>
+            handleUpdateScore(newValue as number, 'top'),
+          )}
           orientation={'vertical'}
+          {...sliderCommonProps}
         />
         <CustomSliderLeft
           dir="rtl"
-          marks
-          min={0}
-          max={5}
-          step={1}
-          defaultValue={defaultValue}
-          valueLabelDisplay={'off'}
           value={5 - left}
-          onChange={(e: unknown, newValue: number) =>
-            handleUpdateScore(5 - (newValue as number), 'left')
-          }
+          onChange={withChangeSlider((newValue) =>
+            handleUpdateScore(5 - (newValue as number), 'left'),
+          )}
+          {...sliderCommonProps}
         />
         <CustomSliderBottom
-          marks
-          min={0}
-          max={5}
-          step={1}
-          defaultValue={defaultValue}
-          valueLabelDisplay={'off'}
           value={5 - bottom}
-          onChange={(e: unknown, newValue: number) =>
-            handleUpdateScore(5 - (newValue as number), 'bottom')
-          }
+          onChange={withChangeSlider((newValue) =>
+            handleUpdateScore(5 - (newValue as number), 'bottom'),
+          )}
           orientation={'vertical'}
+          {...sliderCommonProps}
         />
         <AxisLabel>
           <YAxisPositive>성적 만족도</YAxisPositive>
@@ -101,6 +89,13 @@ export const EvalPolygon = ({
       </GraphWrapper>
     </Container>
   );
+};
+
+const withChangeSlider = (callback: (newValue: number) => void) => {
+  return (e: unknown, newValue: number | number[]) => {
+    if (Array.isArray(newValue)) return;
+    callback(newValue);
+  };
 };
 
 const Container = styled.div`
@@ -126,41 +121,28 @@ const GraphWrapper = styled.div`
   margin-top: 72px;
 `;
 
-const CustomSlider = styled(SliderUnstyled)`
+const CustomSlider = styled(Slider)`
   display: inline-block;
   position: relative;
   cursor: pointer;
-  touch-action: none;
-  -webkit-tap-highlight-color: transparent;
 
   & .MuiSlider-rail {
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 4px;
-    border-radius: 2px;
-    background-color: rgb(256, 256, 256, 0);
+    display: none;
   }
 
   & .MuiSlider-track {
-    display: block;
-    position: absolute;
-    height: 4px;
-    border-radius: 2px;
-    background-color: rgb(256, 256, 256, 0);
+    display: none;
   }
 
   & .MuiSlider-thumb {
-    position: absolute;
     width: 18px;
     height: 18px;
-    margin-left: -7px;
-    margin-top: -7px;
     box-sizing: border-box;
     border-radius: 50%;
-    outline: 0;
     border: 2px solid #1ac5bd;
     background-color: #fff;
+    box-shadow: none;
+    transition: none;
   }
 `;
 
@@ -193,15 +175,16 @@ const CustomSliderLeft = styled(CustomSliderHorizontal)`
 const CustomSliderTop = styled(CustomSliderVertical)`
   position: absolute;
   left: 50%;
-  transform: translate(-50%, 10px);
+  transform: translate(-50%, 0);
 `;
 
 const CustomSliderBottom = styled(CustomSliderVertical)`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, 8px);
+  transform: translate(-50%, 0);
 `;
+
 const AxisLabel = styled.div`
   position: absolute;
   top: 0;
