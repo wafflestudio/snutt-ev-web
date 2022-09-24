@@ -24,6 +24,7 @@ export const LectureCard = ({ lecture }: Props) => {
       <CardTop>
         <LectureName>{lecture.title}</LectureName>
         <WriteButton
+          data-testid="main-recent-lecture-write-button"
           onClick={(e) => {
             e.stopPropagation();
             router.push(`/create?id=${lecture.id}`);

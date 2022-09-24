@@ -33,9 +33,30 @@ test(
       const main = new MainPage(page);
       await main.goto();
 
-      // 더보기를 클릭하면 해당 강의 링크로 이동해야 한다
+      // 더보기를 클릭하면 지난 학기 강의 목록 링크로 이동해야 한다
       await main.findByTestId('main-recent-more-link').click();
       await expect(main.getPage()).toHaveURL('/recent');
+    },
+  ),
+);
+
+test(
+  '지난 학기에 들은 강의가 있을 경우 강의평의 작성 버튼이 정상 동작한다',
+  withCookie(
+    // 지난 학기에 들은 강의가 있을 경우
+    [getTestCookie(TEST_RECENT_LECTURES_EXIST, 'true')],
+    async ({ page }) => {
+      // 페이지에 접속하면
+      const main = new MainPage(page);
+      await main.goto();
+
+      // 지난 학기 강의를 클릭하면 해당 강의 링크로 이동해야 한다
+      await main
+        .findByTestId('main-recent-lecture-card')
+        .filter({ hasText: '생물학' })
+        .locator('[data-testid=main-recent-lecture-write-button]')
+        .click();
+      await expect(main.getPage()).toHaveURL('/create?id=2512');
     },
   ),
 );
