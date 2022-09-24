@@ -16,9 +16,8 @@ export const AppBar = ({ LeftImage, children }: PropsWithChildren<Props>) => {
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.header`
   display: flex;
-  flex-direction: row;
   align-items: center;
   order: 1;
   height: 56px;
