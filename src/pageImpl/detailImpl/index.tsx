@@ -122,11 +122,11 @@ export const DetailImpl = () => {
 
   const appBar = (
     <AppBar
-      LeftImage={() => (
+      leftImage={
         <BackButton onClick={goBack}>
           <SvgArrowBack width={30} height={30} />
         </BackButton>
-      )}
+      }
     >
       <AppBarContent>
         <Title01 style={{ marginLeft: 12 }}>강의평</Title01>

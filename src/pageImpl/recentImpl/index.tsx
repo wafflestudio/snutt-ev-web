@@ -18,11 +18,11 @@ export const RecentImpl = () => {
   return (
     <Wrapper>
       <AppBar
-        LeftImage={() => (
+        leftImage={
           <BackButton onClick={() => router.back()}>
             <SvgArrowBack width={30} height={30} />
           </BackButton>
-        )}
+        }
       >
         <Title01 style={{ marginLeft: 12 }}>최근 강의 목록</Title01>
       </AppBar>

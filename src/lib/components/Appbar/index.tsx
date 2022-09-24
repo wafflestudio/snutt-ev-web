@@ -2,15 +2,13 @@ import styled from '@emotion/styled';
 import { PropsWithChildren, ReactNode } from 'react';
 
 interface Props {
-  LeftImage: React.FC | ReactNode; // TODO: ReactNode 만 허용하기
+  leftImage: ReactNode;
 }
 
-export const AppBar = ({ LeftImage, children }: PropsWithChildren<Props>) => {
+export const AppBar = ({ leftImage, children }: PropsWithChildren<Props>) => {
   return (
     <Wrapper data-testid="app-bar">
-      <AppBarLeft>
-        {typeof LeftImage === 'function' ? <LeftImage /> : LeftImage}
-      </AppBarLeft>
+      <AppBarLeft>{leftImage}</AppBarLeft>
       {children}
     </Wrapper>
   );

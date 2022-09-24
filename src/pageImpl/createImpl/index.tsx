@@ -168,7 +168,7 @@ export const CreateImpl = () => {
       <InvalidationDialog />
       <Wrapper>
         <AppBar
-          LeftImage={() => (
+          leftImage={
             <BackButton
               onClick={() => {
                 step === 1 ? stepPrev() : router.back();
@@ -176,7 +176,7 @@ export const CreateImpl = () => {
             >
               <SvgArrowBack width={30} height={30} />
             </BackButton>
-          )}
+          }
         />
         <Container>
           <Header
