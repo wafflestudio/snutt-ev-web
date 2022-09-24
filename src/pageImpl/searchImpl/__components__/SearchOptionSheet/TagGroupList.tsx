@@ -8,20 +8,18 @@ interface Props {
   onTagGroupSelectionChange: (tagGroup: TagGroupWithColor) => void;
 }
 
-export const TagGroupList: React.FC<Props> = ({
+export const TagGroupList = ({
   tagGroups,
   selectedTagGroup,
   onTagGroupSelectionChange,
-}) => {
+}: Props) => {
   return (
     <Wrapper>
       {tagGroups.map((it) => (
         <TagGroupItem
           isSelected={selectedTagGroup?.name === it.name}
           key={it.name}
-          onClick={() => {
-            onTagGroupSelectionChange(it);
-          }}
+          onClick={() => onTagGroupSelectionChange(it)}
         >
           {it.name}
         </TagGroupItem>
@@ -31,13 +29,13 @@ export const TagGroupList: React.FC<Props> = ({
 };
 
 const TagGroupItem = styled.div<{ isSelected: boolean }>`
+  margin: 10px 0 10px 20px;
+
   font-family: 'AppleSDGothicNeo';
   font-size: 17px;
   font-weight: 700;
-  margin-left: 20px;
-  margin-top: 10px;
-  margin-bottom: 10px;
   color: ${(props) => (props.isSelected ? '#000000' : '#b3b3b3')};
+  transition: 0.2s color;
 `;
 
 const Wrapper = styled.div`
