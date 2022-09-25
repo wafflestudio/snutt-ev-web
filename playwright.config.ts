@@ -23,10 +23,8 @@ const config: PlaywrightTestConfig = {
   },
 
   /* Configure projects for major browsers */
-  projects: [
-    { name: 'Mobile Chrome', use: { ...devices['Pixel 5'] } },
-    { name: 'Mobile Safari', use: { ...devices['iPhone 12'] } },
-  ],
+  /* 사파리에서 되면 되는거아닐까? */
+  projects: [{ name: 'Mobile Safari', use: { ...devices['iPhone 12'] } }],
 
   /* Run your local dev server before starting the tests */
   webServer: {
