@@ -41,20 +41,7 @@ NEXT_PUBLIC_APP_ENV=local
 ## Deployments
 
 - [github actions](./.github/workflows/)
-- SSG (`next export`)
-- AWS S3 & Cloudfront
-- Dockerize
-
-```sh
-# dev
-docker build -t snutt/snutt-ev-web-dev --build-arg APP_ENV=dev .
-
-# prod
-docker build -t snutt/snutt-ev-web --build-arg APP_ENV=prod .
-
-# test
-docker build -t snutt/snutt-ev-web --build-arg APP_ENV=test .
-```
+- Using [**_Elastic Beanstalk_**](https://aws.amazon.com/ko/elasticbeanstalk/) (docker)
 
 <br/><br/>
 
