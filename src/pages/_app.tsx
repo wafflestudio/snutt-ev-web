@@ -22,16 +22,15 @@ const isBrowserMSW = !IS_SERVER && isMSW;
 const isServerMSW = IS_SERVER && isMSW;
 
 if (isServerMSW) {
-  import('../mocks/integrations/server')
-    .then(({ server }) => {
+  (async () => {
+    try {
+      const { server } = await import('../mocks/integrations/server');
       server.listen({ onUnhandledRequest: 'bypass' });
-      console.log('Server MSW Enabled');
-    })
-    .catch((err) => {
-      console.log('qwerqwerqwer===qwer=qw=er=qw');
-      console.log(err);
-      console.log('qwerqwerqwer===qwer=qw=er=qw');
-    });
+      console.debug('Server MSW Enabled');
+    } catch (err) {
+      console.debug('Server MSW Failed');
+    }
+  })();
 }
 
 const createQueryClient = () =>
