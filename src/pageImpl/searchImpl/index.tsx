@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import React, { useMemo, useState } from 'react';
+import { Fragment, useMemo, useState } from 'react';
 
 import { SearchResultLoading } from '@/lib/components/Miscellaneous/Loading';
 import useScrollLoader from '@/lib/hooks/useScrollLoader';
@@ -66,20 +66,20 @@ export const SearchImpl = () => {
         {isEmptyQuery ? (
           <SearchInitialPage />
         ) : searchResult?.pages[0].content.length !== 0 ? (
-          <React.Fragment>
+          <>
             {searchResult?.pages?.map((content, i) => (
-              <React.Fragment key={i}>
+              <Fragment key={i}>
                 {content.content.map((it) => (
                   <SearchResultItem
                     content={it}
                     key={it.course_number + it.instructor}
                   />
                 ))}
-              </React.Fragment>
+              </Fragment>
             ))}
             {hasNextPage && !isFetchingNextPage && <div ref={loaderRef} />}
             {isFetchingNextPage && <SearchResultLoading />}
-          </React.Fragment>
+          </>
         ) : (
           <SearchNoResult />
         )}

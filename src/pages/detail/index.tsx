@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { withGetServerSideProps } from '@/lib/util/withGetServersideProps';
 import { DetailImpl } from '@/pageImpl/detailImpl';
 

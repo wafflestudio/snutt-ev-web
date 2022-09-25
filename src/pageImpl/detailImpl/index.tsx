@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Router, useRouter } from 'next/router';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import FossilIcon from '@/assets/icons/fossil.svg';
 import { deleteEvaluation, postReportEvaluation } from '@/lib/api/apis';
@@ -296,7 +296,7 @@ export const DetailImpl = () => {
                     isMyReview
                   />
                 ))}
-                <React.Fragment>
+                <>
                   {searchResult?.pages
                     ?.flatMap((page) => page.content)
                     .map((it) => (
@@ -312,7 +312,7 @@ export const DetailImpl = () => {
                     <div ref={loaderRef} />
                   )}
                   {isFetchingNextPage && <SearchResultLoading />}
-                </React.Fragment>
+                </>
               </ReviewList>
             </EvaluationDetail>
           )}
