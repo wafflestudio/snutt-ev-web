@@ -70,6 +70,8 @@ docker build -t snutt/snutt-ev-web --build-arg APP_ENV=test .
 
 [playwright](https://playwright.dev/) 를 이용하고 있습니다.
 
+root directory 의 [e2e](./e2e/) 폴더 아래에 페이지별로 e2e 테스트코드를 **`*.spec.ts`** 파일에 작성합니다.
+
 ```sh
 yarn test:e2e
 ```
@@ -84,4 +86,10 @@ npx playwright@{package.json에 명시된 버전} install
 
 ### unit test
 
-TODO
+[jest](https://jestjs.io/) 를 이용하고 있습니다.
+
+비즈니스 계산 로직이 들어 있는 [usecase](./src/usecases/) 들에 대해, 함수별로 파일 바로 옆에 unit 테스트코드를 **`{usecase}.test.ts`** 파일에 작성합니다.
+
+```sh
+yarn test:unit
+```
