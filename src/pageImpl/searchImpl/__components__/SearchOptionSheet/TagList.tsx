@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
-import SvgChecked from '@/lib/components/Icons/SvgChecked';
-import SvgUnchecked from '@/lib/components/Icons/SvgUnchecked';
 import { TagWithColor } from '@/lib/dto/core/tag';
+
+import { TagItem } from './TagItem';
 
 interface Props {
   tags?: TagWithColor[];
@@ -25,40 +25,7 @@ export const TagList = ({ tags, selectedTags, onToggleTag }: Props) => {
   );
 };
 
-const TagItem: React.FC<{
-  isSelected: boolean;
-  text: string;
-  onClick: () => void;
-}> = ({ isSelected, text, onClick }) => {
-  return (
-    <TagItemBox onClick={onClick}>
-      {isSelected ? (
-        <SvgChecked width={15} height={15} />
-      ) : (
-        <SvgUnchecked width={15} height={15} />
-      )}
-      <TagItemText>{text}</TagItemText>
-    </TagItemBox>
-  );
-};
-
 const Wrapper = styled.div`
   overflow-y: scroll;
   width: calc(100% - 120px);
-`;
-
-const TagItemBox = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
-const TagItemText = styled.div`
-  font-family: 'AppleSDGothicNeo';
-  font-size: 14px;
-  font-weight: 400;
-  margin-left: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  color: '#000000';
 `;

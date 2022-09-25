@@ -11,7 +11,7 @@ interface Props {
   content: LatestLectureDTO;
 }
 
-export const RecentLectureItem: React.FC<Props> = ({ content }) => {
+export const RecentLectureItem = ({ content }: Props) => {
   const router = useRouter();
 
   return (

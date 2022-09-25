@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { Detail } from '@/lib/components/Text';
 
@@ -8,7 +8,7 @@ interface Props {
   truncBy?: number;
 }
 
-export const CollapsableText: React.FC<Props> = ({ text, truncBy = 120 }) => {
+export const CollapsableText = ({ text, truncBy = 120 }: Props) => {
   const [expanded, setExpanded] = useState(false);
 
   const renderedText =
