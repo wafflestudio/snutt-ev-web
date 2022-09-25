@@ -8,6 +8,8 @@ type Return = {
 
 /**
  * 강의 목록을 년도-학기 에 맞게 포맷하는 함수
+ * 네이밍 추천받습니다..
+ *
  * @param lectures 강의 목록
  * @returns 년도 학기 로 re-format 된 배열
  */
