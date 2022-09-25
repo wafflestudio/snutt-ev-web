@@ -1,28 +1,21 @@
 import styled from '@emotion/styled';
 import { ToggleButton, ToggleButtonGroup } from '@mui/material/';
-import { useRouter } from 'next/router';
 import { Fragment } from 'react';
 
-import { AppBar } from '@/lib/components/Appbar';
-import SvgSearchOff from '@/lib/components/Icons/SvgSearchOff';
-import SvgTimetableOn from '@/lib/components/Icons/SvgTimetableOn';
 import { EmptyReviewPlaceholder } from '@/lib/components/Miscellaneous/EmptyReviewPlaceholder';
 import { SearchResultLoading } from '@/lib/components/Miscellaneous/Loading';
 import { Subheading02, Title01 } from '@/lib/components/Text';
 import useScrollLoader from '@/lib/hooks/useScrollLoader';
 
-import { EvaluationCard } from './__components__/EvaluationCard';
-import { RecentCarousel } from './__components__/RecentCarousel';
+import { EvaluationCard, MainAppBar, RecentCarousel } from './__components__';
 import {
   useEvaluations,
   useLatestLectures,
   useRecommendationTags,
+  useSelectTag,
 } from './__containers__';
-import { useSelectTag } from './__containers__/useSelectTag';
 
 export const MainImpl = () => {
-  const router = useRouter();
-
   const { recommendationTags } = useRecommendationTags();
   const { recentLectureData } = useLatestLectures();
 
@@ -39,24 +32,10 @@ export const MainImpl = () => {
 
   return (
     <Wrapper>
-      <AppBar leftImage={<SvgTimetableOn height={30} width={30} />}>
-        <AppBarContent>
-          <Title01 style={{ marginLeft: 12 }}>강의평</Title01>
-          <SvgSearchOff
-            data-testid="main-search-icon"
-            height={30}
-            width={30}
-            onClick={() => router.push('/search')}
-          />
-        </AppBarContent>
-      </AppBar>
+      <MainAppBar />
 
-      {recentLectureData ? (
-        recentLectureData.length === 0 ? null : (
-          <RecentCarousel lectureList={recentLectureData} />
-        )
-      ) : (
-        <Subheading02>데이터 로딩 OR 에러</Subheading02>
+      {recentLectureData?.length && (
+        <RecentCarousel lectureList={recentLectureData} />
       )}
 
       <CategoryPicker data-testid="main-category-picker">
@@ -69,15 +48,15 @@ export const MainImpl = () => {
             onClickTag(tagId);
           }}
         >
-          {recommendationTags.map((it) => (
+          {recommendationTags.map(({ id, name }) => (
             <ToggleButton
-              value={it.id}
-              key={it.id}
+              value={id}
+              key={id}
               style={{ whiteSpace: 'nowrap', marginTop: '6px' }}
               data-testid="main-category-toggle-chip"
-              aria-selected={it.id === selectedTagId}
+              aria-selected={id === selectedTagId}
             >
-              {it.name}
+              {name}
             </ToggleButton>
           ))}
         </StyledToggleButtonGroup>
@@ -110,15 +89,6 @@ export const MainImpl = () => {
 };
 
 const Wrapper = styled.div``;
-
-const AppBarContent = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding-right: 12px;
-`;
 
 const CategoryPicker = styled.div`
   padding: 20px 20px 0 20px;
