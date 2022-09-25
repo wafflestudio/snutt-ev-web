@@ -128,6 +128,10 @@ const CustomSlider = styled(Slider)`
     background-color: #fff;
     box-shadow: none;
     transition: none;
+
+    &::after {
+      content: none;
+    }
   }
 `;
 
