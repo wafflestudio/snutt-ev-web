@@ -75,6 +75,11 @@ function MyApp({
               /* tab 하이라이트 색 제거 */
               -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
             }
+
+            input:focus {
+              /* input 테두리 파란색 제거 */
+              outline: none;
+            }
           `}
         />
         <Hydrate state={pageProps.dehydratedState}>
