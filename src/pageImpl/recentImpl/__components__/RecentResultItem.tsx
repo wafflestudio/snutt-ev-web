@@ -15,7 +15,10 @@ export const RecentLectureItem = ({ content }: Props) => {
   const router = useRouter();
 
   return (
-    <Wrapper onClick={() => router.push(`/detail?id=${content.id}`)}>
+    <Wrapper
+      onClick={() => router.push(`/detail?id=${content.id}`)}
+      data-testid="recent-lecture-item"
+    >
       <ItemTop>
         <SubjectText>{content.title}</SubjectText>
       </ItemTop>
@@ -35,9 +38,10 @@ export const RecentLectureItem = ({ content }: Props) => {
         </ItemBottomLeft>
         <ItemBottomRight>
           <WriteButton
+            data-testid="recent-lecture-write-btn"
             onClick={(e) => {
-              router.push(`/create?id=${content.id}`);
               e.stopPropagation();
+              router.push(`/create?id=${content.id}`);
             }}
           >
             <SvgWrite height={30} width={30} />
@@ -52,6 +56,7 @@ const Wrapper = styled.div`
   padding: 10px 0 12px 0;
   margin: 0 20px 0 20px;
   border-bottom: solid 1px rgba(196, 196, 196, 0.3);
+  cursor: pointer;
 `;
 
 const ItemTop = styled.div`

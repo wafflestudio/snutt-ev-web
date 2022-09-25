@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
-import { Fragment } from 'react';
 
 import { AppBar } from '@/lib/components/Appbar';
 import SvgArrowBack from '@/lib/components/Icons/SvgArrowBack';
@@ -13,7 +12,7 @@ import { useLatestLectures } from './__containers__';
 export const RecentImpl = () => {
   const router = useRouter();
 
-  const { recentLectureData } = useLatestLectures();
+  const { data: recentLectureData } = useLatestLectures();
 
   return (
     <Wrapper>
@@ -27,21 +26,30 @@ export const RecentImpl = () => {
         <Title01 style={{ marginLeft: 12 }}>최근 강의 목록</Title01>
       </AppBar>
       <RecentLectureList>
-        {recentLectureData ? (
-          recentLectureData.map((it, i, array) => (
-            <Fragment key={it.id}>
-              {array[i - 1]?.taken_year + array[i - 1]?.taken_semester ===
-              it.taken_year + it.taken_semester ? null : (
-                <SemesterDivider>
-                  {it.taken_year}년 {SemesterIntToString(it.taken_semester)}학기
-                </SemesterDivider>
-              )}
-              <RecentLectureItem content={it} key={it.id} />
-            </Fragment>
-          ))
-        ) : (
-          <Title02>최근 학기에 수강한 강의가 없습니다</Title02>
-        )}
+        {recentLectureData &&
+          (recentLectureData.length ? (
+            recentLectureData.map(({ year, semester, lectures }) => {
+              const title = `${year}년 ${SemesterIntToString(semester)}학기`;
+
+              return (
+                <SemesterLectureWrapper
+                  key={title}
+                  data-testid="recent-semester"
+                >
+                  <SemesterDivider data-testid="recent-semester-title">
+                    {title}
+                  </SemesterDivider>
+                  {lectures.map((lecture) => (
+                    <RecentLectureItem content={lecture} key={lecture.id} />
+                  ))}
+                </SemesterLectureWrapper>
+              );
+            })
+          ) : (
+            <Title02 data-testid="recent-empty">
+              최근 학기에 수강한 강의가 없습니다
+            </Title02>
+          ))}
       </RecentLectureList>
     </Wrapper>
   );
@@ -65,3 +73,5 @@ const SemesterDivider = styled(Title01)`
   padding-left: 20px;
   line-height: 40px;
 `;
+
+const SemesterLectureWrapper = styled.div``;
