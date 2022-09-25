@@ -49,24 +49,15 @@ export const Header = ({
       <SelectorWrapper>
         <SemesterSelectorContainer>
           <SemesterSelector onClick={handleSemesterSelector}>
-            {selectedSemester
-              ? `${selectedSemester.year}-${SemesterIntToString(
-                  selectedSemester.semester,
-                )}학기`
-              : ''}
+            {selectedSemester ? `${selectedSemester.year}-${SemesterIntToString(selectedSemester.semester)}학기` : ''}
 
             <SvgArrowDown width="10" />
           </SemesterSelector>
           {isSemesterSelectorOpen && (
             <SemesterButtonsContainer>
               {lectureSemesters?.map((lecture) => (
-                <SemesterButton
-                  key={lecture.id}
-                  onClick={() => handleSelectedSemester(lecture)}
-                >
-                  {`${lecture.year}-${SemesterIntToString(
-                    lecture.semester,
-                  )}학기`}
+                <SemesterButton key={lecture.id} onClick={() => handleSelectedSemester(lecture)}>
+                  {`${lecture.year}-${SemesterIntToString(lecture.semester)}학기`}
                 </SemesterButton>
               ))}
             </SemesterButtonsContainer>

@@ -26,9 +26,7 @@ export const SearchOptionSheet = ({
   onClose: onClose,
   onClickSubmit,
 }: Props) => {
-  const [selectedTagGroupId, setSelectedTagGroupId] = useState<number>(
-    tagGroups[0]?.id,
-  );
+  const [selectedTagGroupId, setSelectedTagGroupId] = useState<number>(tagGroups[0]?.id);
 
   const selectedTagGroup = tagGroups.find((tg) => tg.id === selectedTagGroupId);
 
@@ -50,11 +48,7 @@ export const SearchOptionSheet = ({
                 selectedTagGroup={selectedTagGroup}
                 onTagGroupSelectionChange={onTagGroupChange}
               />
-              <TagList
-                tags={visibleTags}
-                selectedTags={selectedTags}
-                onToggleTag={onToggleTag}
-              />
+              <TagList tags={visibleTags} selectedTags={selectedTags} onToggleTag={onToggleTag} />
             </TagSelectWrapper>
             <SubmitButton onClick={onClickSubmit}>필터 적용</SubmitButton>
           </Wrapper>
@@ -83,9 +77,7 @@ const TagSelectWrapper = styled.div`
   flex-grow: 1;
   display: flex;
   flex-direction: row;
-  height: calc(
-    100% - 50px - 64px
-  ); // subtract height of header and height of button
+  height: calc(100% - 50px - 64px); // subtract height of header and height of button
 `;
 
 const SubmitButton = styled.div`

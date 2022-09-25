@@ -14,9 +14,7 @@ interface Props {
 export const SearchResultItem = ({ content }: Props) => {
   const router = useRouter();
 
-  const rating = content.evaluation.avg_rating
-    ? content.evaluation.avg_rating.toFixed(1)
-    : 0;
+  const rating = content.evaluation.avg_rating ? content.evaluation.avg_rating.toFixed(1) : 0;
 
   const onClickItem = () => {
     const params = new URLSearchParams();

@@ -16,9 +16,7 @@ export const ErrorView = ({}: Props) => {
       <Title02>에러가 발생했어요</Title02>
       <Row>
         <ReviewIcon />
-        <Title02 style={{ marginTop: '8px', marginLeft: '6px' }}>
-          하단의 강의평 탭을 다시 눌러주세요
-        </Title02>
+        <Title02 style={{ marginTop: '8px', marginLeft: '6px' }}>하단의 강의평 탭을 다시 눌러주세요</Title02>
       </Row>
 
       {/*{resetErrorBoundary &&*/}

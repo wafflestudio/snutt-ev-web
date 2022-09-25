@@ -8,12 +8,7 @@ import { postEmailVerificationCode } from '@/lib/api/apis';
 import { postEmailVerification } from '@/lib/api/apis';
 import { AppBar } from '@/lib/components/Appbar';
 import SvgTimetableOn from '@/lib/components/Icons/SvgTimetableOn';
-import {
-  Detail,
-  Subheading01,
-  Subheading02,
-  Title01,
-} from '@/lib/components/Text';
+import { Detail, Subheading01, Subheading02, Title01 } from '@/lib/components/Text';
 import { ApiError } from '@/lib/dto/core/error';
 import { COLORS } from '@/lib/styles/colors';
 
@@ -25,8 +20,7 @@ export const MailVerifyImpl = () => {
 
   const [verificationNumber, setVerificationNumber] = useState(0);
 
-  const [isVerificationNumberRequested, setIsVerificationNumberRequested] =
-    useState(false);
+  const [isVerificationNumberRequested, setIsVerificationNumberRequested] = useState(false);
 
   const [timeoutDeadline, setTimeoutDeadline] = useState(0);
 
@@ -40,37 +34,27 @@ export const MailVerifyImpl = () => {
     READY,
   }
 
-  const [verificationState, setVerificationState] = useState<VerificationState>(
-    VerificationState.NONE,
-  );
+  const [verificationState, setVerificationState] = useState<VerificationState>(VerificationState.NONE);
 
-  const isCompleteButtonDisabled =
-    verificationState !== VerificationState.READY;
+  const isCompleteButtonDisabled = verificationState !== VerificationState.READY;
 
   const WARINING: {
     [key in Exclude<VerificationState, VerificationState.READY>]: string;
   } = {
     [VerificationState.TIMEOUT]: '인증요청에 실패했습니다. 다시 시도해주세요',
-    [VerificationState.INVALID_NUMBER]:
-      '인증번호가 틀렸습니다. 다시 시도해주세요',
+    [VerificationState.INVALID_NUMBER]: '인증번호가 틀렸습니다. 다시 시도해주세요',
     [VerificationState.ALREADY_VERIFIED]: '이미 인증된 계정입니다',
     [VerificationState.VERFIED_FROM_OTHER_MAIL]: '이미 사용된 메일입니다',
-    [VerificationState.TOO_MANY_REQUEST]:
-      '인증요청에 실패했습니다. 3분 후에 다시 시도해주세요',
+    [VerificationState.TOO_MANY_REQUEST]: '인증요청에 실패했습니다. 3분 후에 다시 시도해주세요',
     [VerificationState.NONE]: '',
   };
 
-  const countDownRenderer = ({
-    minutes,
-    seconds,
-    completed,
-  }: CountdownRenderProps) => {
+  const countDownRenderer = ({ minutes, seconds, completed }: CountdownRenderProps) => {
     if (completed) {
       setVerificationState(VerificationState.TIMEOUT);
       return <Subheading01 style={{ color: COLORS.red }}>00:00</Subheading01>;
     } else {
-      verificationState === VerificationState.TIMEOUT &&
-        setVerificationState(VerificationState.READY);
+      verificationState === VerificationState.TIMEOUT && setVerificationState(VerificationState.READY);
       return (
         <Subheading01 style={{ color: COLORS.red }}>
           {zeroPad(minutes)}:{zeroPad(seconds)}
@@ -177,26 +161,18 @@ export const MailVerifyImpl = () => {
             />
             {isVerificationNumberRequested && (
               <CountDownWrapper>
-                <CountDown
-                  date={timeoutDeadline}
-                  renderer={countDownRenderer}
-                />
+                <CountDown date={timeoutDeadline} renderer={countDownRenderer} />
               </CountDownWrapper>
             )}
           </VerificationNumberInputBar>
           {verificationState !== VerificationState.READY && (
             <WarningText>
-              <Detail style={{ color: COLORS.red }}>
-                {WARINING[verificationState]}
-              </Detail>
+              <Detail style={{ color: COLORS.red }}>{WARINING[verificationState]}</Detail>
             </WarningText>
           )}
         </VerificationNumberInputWrapper>
 
-        <CompleteButton
-          onClick={verifyHandler}
-          disabled={isCompleteButtonDisabled}
-        >
+        <CompleteButton onClick={verifyHandler} disabled={isCompleteButtonDisabled}>
           <Title01 style={{ color: 'white' }}>완료</Title01>
         </CompleteButton>
       </Content>

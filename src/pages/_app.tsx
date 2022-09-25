@@ -1,10 +1,5 @@
 import { css, Global } from '@emotion/react';
-import {
-  Hydrate,
-  QueryClient,
-  QueryClientProvider,
-  QueryErrorResetBoundary,
-} from '@tanstack/react-query';
+import { Hydrate, QueryClient, QueryClientProvider, QueryErrorResetBoundary } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
@@ -43,10 +38,7 @@ const createQueryClient = () =>
     },
   });
 
-function MyApp({
-  Component,
-  pageProps,
-}: AppProps<{ dehydratedState: unknown }>) {
+function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: unknown }>) {
   const [queryClient] = useState(createQueryClient);
   const isMSWEnabled = useMSW(isBrowserMSW);
 
@@ -55,10 +47,7 @@ function MyApp({
   return (
     <>
       <Head>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
-        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
       </Head>
       <QueryClientProvider client={queryClient}>
         <Global
@@ -87,9 +76,7 @@ function MyApp({
             {({ reset }) => (
               <ErrorBoundary
                 onReset={reset}
-                fallbackRender={({ resetErrorBoundary }) => (
-                  <ErrorView resetErrorBoundary={resetErrorBoundary} />
-                )}
+                fallbackRender={({ resetErrorBoundary }) => <ErrorView resetErrorBoundary={resetErrorBoundary} />}
               >
                 <Suspense fallback={null}>
                   <Component {...pageProps} />

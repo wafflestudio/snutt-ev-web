@@ -1,12 +1,7 @@
 import { SVGProps } from 'react';
 
 const SvgWarning = (props: SVGProps<SVGSVGElement>) => (
-  <svg
-    viewBox="0 0 30 30"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    {...props}
-  >
+  <svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
     <circle cx="15" cy="15" r="9" stroke={props.color} strokeWidth="1.5" />
     <circle cx="15" cy="20" r="1" fill={props.color} />
     <path

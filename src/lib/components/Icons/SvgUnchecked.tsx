@@ -1,22 +1,9 @@
 import { SVGProps } from 'react';
 
 const SvgUnchecked = (props: SVGProps<SVGSVGElement>) => (
-  <svg
-    viewBox="0 0 30 30"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    {...props}
-  >
+  <svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
     <circle cx={15} cy={15} r={14} fill="#F2F2F2" />
-    <mask
-      id="unchecked_svg__a"
-      maskUnits="userSpaceOnUse"
-      x={6.48}
-      y={4.98}
-      width={17.678}
-      height={17.678}
-      fill="#000"
-    >
+    <mask id="unchecked_svg__a" maskUnits="userSpaceOnUse" x={6.48} y={4.98} width={17.678} height={17.678} fill="#000">
       <path fill="#fff" d="M6.48 4.98h17.678v17.678H6.48z" />
       <path
         fillRule="evenodd"

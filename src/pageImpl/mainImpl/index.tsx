@@ -8,12 +8,7 @@ import { Subheading02, Title01 } from '@/lib/components/Text';
 import useScrollLoader from '@/lib/hooks/useScrollLoader';
 
 import { EvaluationCard, MainAppBar, RecentCarousel } from './__components__';
-import {
-  useEvaluations,
-  useLatestLectures,
-  useRecommendationTags,
-  useSelectTag,
-} from './__containers__';
+import { useEvaluations, useLatestLectures, useRecommendationTags, useSelectTag } from './__containers__';
 
 export const MainImpl = () => {
   const { recommendationTags } = useRecommendationTags();
@@ -21,22 +16,17 @@ export const MainImpl = () => {
 
   const { selectedTagId, onClickTag } = useSelectTag(recommendationTags);
 
-  const { searchResult, fetchNextPage, isFetchingNextPage, hasNextPage } =
-    useEvaluations(selectedTagId);
+  const { searchResult, fetchNextPage, isFetchingNextPage, hasNextPage } = useEvaluations(selectedTagId);
 
   const { loaderRef } = useScrollLoader(fetchNextPage);
 
-  const selectedTag = recommendationTags.find(
-    (tag) => tag.id === selectedTagId,
-  );
+  const selectedTag = recommendationTags.find((tag) => tag.id === selectedTagId);
 
   return (
     <Wrapper>
       <MainAppBar />
 
-      {recentLectureData && recentLectureData.length > 0 && (
-        <RecentCarousel lectureList={recentLectureData} />
-      )}
+      {recentLectureData && recentLectureData.length > 0 && <RecentCarousel lectureList={recentLectureData} />}
 
       <CategoryPicker data-testid="main-category-picker">
         <Title01 style={{ marginBottom: 10 }}>교양 강의평 둘러보기</Title01>
@@ -60,9 +50,7 @@ export const MainImpl = () => {
             </ToggleButton>
           ))}
         </StyledToggleButtonGroup>
-        <CategoryDetail data-testid="main-category-detail">
-          {selectedTag?.description}
-        </CategoryDetail>
+        <CategoryDetail data-testid="main-category-detail">{selectedTag?.description}</CategoryDetail>
       </CategoryPicker>
 
       {searchResult?.pages ? (

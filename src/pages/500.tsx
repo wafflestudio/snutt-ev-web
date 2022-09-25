@@ -12,9 +12,7 @@ export default function Custom500() {
         <Title01 style={{ marginLeft: 12 }}>강의평</Title01>
       </AppBar>
       <Container>
-        <Title02 style={{ marginBottom: 40, textAlign: 'center' }}>
-          오류가 발생했습니다.
-        </Title02>
+        <Title02 style={{ marginBottom: 40, textAlign: 'center' }}>오류가 발생했습니다.</Title02>
         <SvgWaffleCat />
         <OurName>@wafflestudio</OurName>
       </Container>

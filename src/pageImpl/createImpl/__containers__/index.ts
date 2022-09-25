@@ -4,13 +4,9 @@ import { useState } from 'react';
 import { fetchSemesterLectures } from '@/lib/api/apis';
 
 export function useSemestersContainer(id: number) {
-  const querySearch = useQuery(
-    ['lectureSemester', id],
-    () => fetchSemesterLectures({ params: { id } }),
-    {
-      enabled: !isNaN(id),
-    },
-  );
+  const querySearch = useQuery(['lectureSemester', id], () => fetchSemesterLectures({ params: { id } }), {
+    enabled: !isNaN(id),
+  });
   const { data, error } = querySearch;
 
   return {
@@ -34,10 +30,7 @@ export function usePolygonContainer() {
     right: defaultValue,
   });
 
-  const updateScore = (
-    value: number,
-    direction: 'top' | 'left' | 'bottom' | 'right',
-  ) => {
+  const updateScore = (value: number, direction: 'top' | 'left' | 'bottom' | 'right') => {
     const realValue = value;
     const nextValue = realValue < 1 ? 1 : realValue;
     setScore((prev) => ({

@@ -15,10 +15,7 @@ export const RecentLectureItem = ({ content }: Props) => {
   const router = useRouter();
 
   return (
-    <Wrapper
-      onClick={() => router.push(`/detail?id=${content.id}`)}
-      data-testid="recent-lecture-item"
-    >
+    <Wrapper onClick={() => router.push(`/detail?id=${content.id}`)} data-testid="recent-lecture-item">
       <ItemTop>
         <SubjectText>{content.title}</SubjectText>
       </ItemTop>

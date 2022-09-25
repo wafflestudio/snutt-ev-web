@@ -2,10 +2,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 
 import { getLectures } from '@/lib/api/apis';
 
-export const useSearchResult = (
-  selectedTagIDs: number[],
-  textQuery?: string,
-) => {
+export const useSearchResult = (selectedTagIDs: number[], textQuery?: string) => {
   const {
     data: searchResult,
     isFetchingNextPage,

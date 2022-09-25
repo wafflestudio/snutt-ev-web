@@ -13,12 +13,7 @@ interface Props {
   onRefreshQuery: () => void;
 }
 
-export const Searchbar = ({
-  toggleOpenSearchSheet,
-  textQuery,
-  onChangeTextQuery,
-  onRefreshQuery,
-}: Props) => {
+export const Searchbar = ({ toggleOpenSearchSheet, textQuery, onChangeTextQuery, onRefreshQuery }: Props) => {
   const router = useRouter();
 
   return (
@@ -31,12 +26,7 @@ export const Searchbar = ({
     >
       <InputBar>
         <SearchButton>
-          <SvgSearchOff
-            height={30}
-            width={30}
-            stroke-witdh={1}
-            onClick={onRefreshQuery}
-          />
+          <SvgSearchOff height={30} width={30} stroke-witdh={1} onClick={onRefreshQuery} />
         </SearchButton>
         <Input
           placeholder="검색어를 입력하세요"

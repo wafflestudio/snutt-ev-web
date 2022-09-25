@@ -21,9 +21,7 @@ export const CreateImpl = () => {
 
   const { data: lectureSemesters } = useSemestersContainer(id);
   const [isSemesterSelectorOpen, setIsSemesterSelectorOpen] = useState(false);
-  const [selectedSemester, setSelectedSemester] = useState<
-    SemesterLectureDTO | undefined
-  >(undefined);
+  const [selectedSemester, setSelectedSemester] = useState<SemesterLectureDTO | undefined>(undefined);
 
   useEffect(() => {
     const latestLectureSemester = lectureSemesters?.semester_lectures[0];
@@ -145,12 +143,7 @@ export const CreateImpl = () => {
   };
 
   const stepComponents = [
-    <EvalPolygon
-      key={1}
-      defaultValue={defaultValue}
-      score={score}
-      handleUpdateScore={updateScore}
-    />,
+    <EvalPolygon key={1} defaultValue={defaultValue} score={score} handleUpdateScore={updateScore} />,
     <EvalBasic
       key={2}
       handleRating={handleRating}
@@ -196,10 +189,7 @@ export const CreateImpl = () => {
             }
             return null;
           })}
-          <Complete
-            onClick={stepNext}
-            disabled={step === stepComponents.length - 1 && contentsUnsatisfied}
-          >
+          <Complete onClick={stepNext} disabled={step === stepComponents.length - 1 && contentsUnsatisfied}>
             {complete}
           </Complete>
         </Container>

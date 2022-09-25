@@ -15,11 +15,7 @@ interface Props {
   isMyReview?: boolean;
 }
 
-export const LectureReviewCard = ({
-  review,
-  onMoreClick,
-  isMyReview = false,
-}: Props) => {
+export const LectureReviewCard = ({ review, onMoreClick, isMyReview = false }: Props) => {
   return (
     <Wrapper isMintColor={isMyReview}>
       <Contents>
@@ -56,8 +52,7 @@ const Wrapper = styled.div<{ isMintColor: boolean }>`
   width: calc(100% + 40px);
   box-sizing: border-box;
   margin-left: -20px;
-  background-color: ${(props) =>
-    props.isMintColor && 'rgba(27, 208, 200, 0.05)'};
+  background-color: ${(props) => props.isMintColor && 'rgba(27, 208, 200, 0.05)'};
 `;
 
 const Contents = styled.div`

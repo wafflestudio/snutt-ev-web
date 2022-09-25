@@ -1,12 +1,7 @@
 import { SVGProps } from 'react';
 
 const SvgTimetableOn = (props: SVGProps<SVGSVGElement>) => (
-  <svg
-    viewBox="0 0 60 60"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    {...props}
-  >
+  <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
     <mask id="timetable_on_svg__a" fill="#fff">
       <path
         fillRule="evenodd"

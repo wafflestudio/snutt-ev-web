@@ -14,32 +14,11 @@ export const Rating = ({ rating, size }: Props) => {
 
   for (let i = 1; i < 6; i++) {
     if (rating - i > -0.25) {
-      stars.push(
-        <SvgStarSmallFilled
-          height={size}
-          width={size}
-          style={{ marginRight: 1 }}
-          key={i}
-        />,
-      );
+      stars.push(<SvgStarSmallFilled height={size} width={size} style={{ marginRight: 1 }} key={i} />);
     } else if (rating - i <= -0.25 && rating - i >= -0.75) {
-      stars.push(
-        <SvgStarSmallHalf
-          height={size}
-          width={size}
-          style={{ marginRight: 1 }}
-          key={i}
-        />,
-      );
+      stars.push(<SvgStarSmallHalf height={size} width={size} style={{ marginRight: 1 }} key={i} />);
     } else {
-      stars.push(
-        <SvgStarSmallEmpty
-          height={size}
-          width={size}
-          style={{ marginRight: 1 }}
-          key={i}
-        />,
-      );
+      stars.push(<SvgStarSmallEmpty height={size} width={size} style={{ marginRight: 1 }} key={i} />);
     }
   }
 

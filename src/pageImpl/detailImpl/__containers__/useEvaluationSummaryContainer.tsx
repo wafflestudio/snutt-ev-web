@@ -5,10 +5,7 @@ import { ApiError } from '@/lib/dto/core/error';
 import { GetEvaluationSummaryResponse } from '@/lib/dto/getEvaluationSummary';
 
 export function useEvaluationSummaryContainer(id: number) {
-  const { data, error, isLoading } = useQuery<
-    GetEvaluationSummaryResponse,
-    ApiError
-  >(
+  const { data, error, isLoading } = useQuery<GetEvaluationSummaryResponse, ApiError>(
     ['evaluationSummary', id],
     () => fetchEvaluationSummary({ params: { id } }),
     {

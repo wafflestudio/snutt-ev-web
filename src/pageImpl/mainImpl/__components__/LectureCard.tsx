@@ -17,10 +17,7 @@ export const LectureCard = ({ lecture }: Props) => {
   const router = useRouter();
 
   return (
-    <Card
-      onClick={() => router.push(`/detail?id=${lecture.id}`)}
-      data-testid="main-recent-lecture-card"
-    >
+    <Card onClick={() => router.push(`/detail?id=${lecture.id}`)} data-testid="main-recent-lecture-card">
       <CardTop>
         <LectureName>{lecture.title}</LectureName>
         <WriteButton
@@ -45,9 +42,7 @@ export const LectureCard = ({ lecture }: Props) => {
             {lecture.department}, {lecture.academic_year}
           </Detail>
           <Detail>{lecture.instructor}</Detail>
-          <Detail>{`${lecture.taken_year}년 ${SemesterIntToString(
-            lecture.taken_semester,
-          )}학기`}</Detail>
+          <Detail>{`${lecture.taken_year}년 ${SemesterIntToString(lecture.taken_semester)}학기`}</Detail>
         </Texts>
       </CardBottom>
     </Card>
