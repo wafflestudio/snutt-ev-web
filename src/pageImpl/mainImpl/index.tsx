@@ -34,7 +34,7 @@ export const MainImpl = () => {
     <Wrapper>
       <MainAppBar />
 
-      {recentLectureData?.length && (
+      {recentLectureData && recentLectureData.length > 0 && (
         <RecentCarousel lectureList={recentLectureData} />
       )}
 
