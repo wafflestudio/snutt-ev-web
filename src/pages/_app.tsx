@@ -70,6 +70,11 @@ function MyApp({
               ${appleSDGNeo};
               max-width: 768px;
             }
+
+            * {
+              /* tab 하이라이트 색 제거 */
+              -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+            }
           `}
         />
         <Hydrate state={pageProps.dehydratedState}>
