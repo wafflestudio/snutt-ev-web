@@ -12,15 +12,9 @@ type Options = {
     | undefined; // 상관없음
 };
 
-type Callback = (
-  context: GetServerSidePropsContext,
-  clients: Clients,
-) => ReturnType<GetServerSideProps>;
+type Callback = (context: GetServerSidePropsContext, clients: Clients) => ReturnType<GetServerSideProps>;
 
-export const withGetServerSideProps = (
-  callback: Callback,
-  options: Partial<Options> = {},
-): GetServerSideProps => {
+export const withGetServerSideProps = (callback: Callback, options: Partial<Options> = {}): GetServerSideProps => {
   return async (context) => {
     const { emailVerification } = options;
 

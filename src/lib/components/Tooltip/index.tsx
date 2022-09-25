@@ -10,10 +10,7 @@ export const RatingTooltip = () => {
 
   const onClickOutsideButton = (e: Event) => {
     e.preventDefault();
-    if (
-      buttonRef.current &&
-      (buttonRef.current as any).contains(e.target) === false
-    ) {
+    if (buttonRef.current && (buttonRef.current as any).contains(e.target) === false) {
       setTooltipOpen(false);
     }
   };
@@ -28,10 +25,7 @@ export const RatingTooltip = () => {
 
   return (
     <Wrapper>
-      <TooltipButton
-        onClick={() => setTooltipOpen(!tooltipOpen)}
-        ref={buttonRef}
-      >
+      <TooltipButton onClick={() => setTooltipOpen(!tooltipOpen)} ref={buttonRef}>
         <SvgTooltip width={30} height={30} />
       </TooltipButton>
       {tooltipOpen && <TootTipContent />}

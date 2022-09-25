@@ -13,17 +13,10 @@ interface Props {
     right: number;
     bottom: number;
   };
-  handleUpdateScore: (
-    value: number,
-    direction: 'top' | 'left' | 'bottom' | 'right',
-  ) => void;
+  handleUpdateScore: (value: number, direction: 'top' | 'left' | 'bottom' | 'right') => void;
 }
 
-export const EvalPolygon = ({
-  defaultValue,
-  score,
-  handleUpdateScore,
-}: Props) => {
+export const EvalPolygon = ({ defaultValue, score, handleUpdateScore }: Props) => {
   const { top, left, bottom, right } = score;
 
   const sliderCommonProps = {
@@ -51,32 +44,24 @@ export const EvalPolygon = ({
         />
         <CustomSliderRight
           value={right}
-          onChange={withChangeSlider((newValue) =>
-            handleUpdateScore(newValue, 'right'),
-          )}
+          onChange={withChangeSlider((newValue) => handleUpdateScore(newValue, 'right'))}
           {...sliderCommonProps}
         />
         <CustomSliderTop
           value={top}
-          onChange={withChangeSlider((newValue) =>
-            handleUpdateScore(newValue as number, 'top'),
-          )}
+          onChange={withChangeSlider((newValue) => handleUpdateScore(newValue as number, 'top'))}
           orientation={'vertical'}
           {...sliderCommonProps}
         />
         <CustomSliderLeft
           dir="rtl"
           value={5 - left}
-          onChange={withChangeSlider((newValue) =>
-            handleUpdateScore(5 - (newValue as number), 'left'),
-          )}
+          onChange={withChangeSlider((newValue) => handleUpdateScore(5 - (newValue as number), 'left'))}
           {...sliderCommonProps}
         />
         <CustomSliderBottom
           value={5 - bottom}
-          onChange={withChangeSlider((newValue) =>
-            handleUpdateScore(5 - (newValue as number), 'bottom'),
-          )}
+          onChange={withChangeSlider((newValue) => handleUpdateScore(5 - (newValue as number), 'bottom'))}
           orientation={'vertical'}
           {...sliderCommonProps}
         />

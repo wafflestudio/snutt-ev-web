@@ -32,13 +32,8 @@ export const RecentImpl = () => {
               const title = `${year}년 ${SemesterIntToString(semester)}학기`;
 
               return (
-                <SemesterLectureWrapper
-                  key={title}
-                  data-testid="recent-semester"
-                >
-                  <SemesterDivider data-testid="recent-semester-title">
-                    {title}
-                  </SemesterDivider>
+                <SemesterLectureWrapper key={title} data-testid="recent-semester">
+                  <SemesterDivider data-testid="recent-semester-title">{title}</SemesterDivider>
                   {lectures.map((lecture) => (
                     <RecentLectureItem content={lecture} key={lecture.id} />
                   ))}
@@ -46,9 +41,7 @@ export const RecentImpl = () => {
               );
             })
           ) : (
-            <Title02 data-testid="recent-empty">
-              최근 학기에 수강한 강의가 없습니다
-            </Title02>
+            <Title02 data-testid="recent-empty">최근 학기에 수강한 강의가 없습니다</Title02>
           ))}
       </RecentLectureList>
     </Wrapper>

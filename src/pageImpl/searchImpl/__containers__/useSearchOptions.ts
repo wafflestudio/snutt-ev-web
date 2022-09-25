@@ -40,9 +40,7 @@ export const useSearchOptions = (): Return => {
 
   const toggleTagSelection = (tagID: number) => {
     const isExist = selectedTagIDs.includes(tagID);
-    const newSelectedTagIDs = isExist
-      ? selectedTagIDs.filter((id) => id !== tagID)
-      : selectedTagIDs.concat(tagID);
+    const newSelectedTagIDs = isExist ? selectedTagIDs.filter((id) => id !== tagID) : selectedTagIDs.concat(tagID);
 
     setSelectedTagIDs(newSelectedTagIDs);
   };

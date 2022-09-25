@@ -1,12 +1,7 @@
 import { SVGProps } from 'react';
 
 const SvgTabSearchOff = (props: SVGProps<SVGSVGElement>) => (
-  <svg
-    viewBox="0 0 30 30"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    {...props}
-  >
+  <svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
     <mask id="tab_search_off_svg__a" fill="#fff">
       <path
         fillRule="evenodd"

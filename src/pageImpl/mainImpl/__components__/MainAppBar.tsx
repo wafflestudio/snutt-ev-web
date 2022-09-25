@@ -13,12 +13,7 @@ export const MainAppBar = () => {
     <AppBar leftImage={<SvgTimetableOn height={30} width={30} />}>
       <AppBarContent>
         <Title>강의평</Title>
-        <SvgSearchOff
-          data-testid="main-search-icon"
-          height={30}
-          width={30}
-          onClick={() => router.push('/search')}
-        />
+        <SvgSearchOff data-testid="main-search-icon" height={30} width={30} onClick={() => router.push('/search')} />
       </AppBarContent>
     </AppBar>
   );

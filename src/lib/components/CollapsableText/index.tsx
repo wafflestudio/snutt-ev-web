@@ -11,22 +11,15 @@ interface Props {
 export const CollapsableText = ({ text, truncBy = 120 }: Props) => {
   const [expanded, setExpanded] = useState(false);
 
-  const renderedText =
-    text.length > truncBy && !expanded ? text.slice(0, truncBy) + '...' : text;
+  const renderedText = text.length > truncBy && !expanded ? text.slice(0, truncBy) + '...' : text;
 
   const onClickMoreLess = () => setExpanded((status) => !status);
 
   return (
-    <Detail
-      style={{ overflowWrap: 'break-word', whiteSpace: 'pre-wrap' }}
-      data-testid="collapsable-text-content"
-    >
+    <Detail style={{ overflowWrap: 'break-word', whiteSpace: 'pre-wrap' }} data-testid="collapsable-text-content">
       {renderedText}
       {text.length > truncBy && (
-        <MoreLessButton
-          onClick={onClickMoreLess}
-          data-testid="collapsable-text-moreless-btn"
-        >
+        <MoreLessButton onClick={onClickMoreLess} data-testid="collapsable-text-moreless-btn">
           {expanded ? ' 접기' : ' 더보기'}
         </MoreLessButton>
       )}

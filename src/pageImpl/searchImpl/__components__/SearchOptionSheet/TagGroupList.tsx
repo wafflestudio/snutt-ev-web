@@ -8,11 +8,7 @@ interface Props {
   onTagGroupSelectionChange: (tagGroupId: number) => void;
 }
 
-export const TagGroupList = ({
-  tagGroups,
-  selectedTagGroup,
-  onTagGroupSelectionChange,
-}: Props) => {
+export const TagGroupList = ({ tagGroups, selectedTagGroup, onTagGroupSelectionChange }: Props) => {
   return (
     <Wrapper>
       {tagGroups.map((it) => (

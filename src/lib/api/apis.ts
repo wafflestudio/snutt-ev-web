@@ -2,36 +2,17 @@ import { GetServerSidePropsContext } from 'next';
 
 import { DeleteEvaluationResult } from '@/lib/dto/deleteEvaluation';
 import { GetEmailVerificationResult } from '@/lib/dto/getEmailVerification';
-import {
-  GetEvaluationsQuery,
-  GetEvaluationsResult,
-  GetMyEvaluationsResult,
-} from '@/lib/dto/getEvaluations';
+import { GetEvaluationsQuery, GetEvaluationsResult, GetMyEvaluationsResult } from '@/lib/dto/getEvaluations';
 import { GetEvaluationSummaryResponse } from '@/lib/dto/getEvaluationSummary';
 import { GetLatestLecturesResult } from '@/lib/dto/getLatestLectures';
 import { GetLecturesQuery, GetLecturesResult } from '@/lib/dto/getLectures';
-import {
-  GetMainTagEvaluationsResult,
-  GetMainTagEvalutionsQuery,
-} from '@/lib/dto/getMainTagEvaluations';
+import { GetMainTagEvaluationsResult, GetMainTagEvalutionsQuery } from '@/lib/dto/getMainTagEvaluations';
 import { GetMainTagInfosResult } from '@/lib/dto/getMainTagInfos';
 import { GetSemesterLecturesResult } from '@/lib/dto/getSemesterLectures';
-import {
-  PostEmailVerificationCodeParams,
-  PostEmailVerificationCodeResult,
-} from '@/lib/dto/PostEmailVerification';
-import {
-  PostEmailVerificationParams,
-  PostEmailVerificationResult,
-} from '@/lib/dto/PostEmailVerification';
-import {
-  PostEvaluationQuery,
-  PostEvaluationResult,
-} from '@/lib/dto/postEvaluation';
-import {
-  PostReportEvaluationParams,
-  PostReportEvaluationResult,
-} from '@/lib/dto/postReportEvaluation';
+import { PostEmailVerificationCodeParams, PostEmailVerificationCodeResult } from '@/lib/dto/PostEmailVerification';
+import { PostEmailVerificationParams, PostEmailVerificationResult } from '@/lib/dto/PostEmailVerification';
+import { PostEvaluationQuery, PostEvaluationResult } from '@/lib/dto/postEvaluation';
+import { PostReportEvaluationParams, PostReportEvaluationResult } from '@/lib/dto/postReportEvaluation';
 
 import { GetTagInfosProcessedResult } from '../dto/getTagInfos';
 import { coreClient, evClient, getServerSideHeaders } from './request';
@@ -76,24 +57,16 @@ export async function fetchSemesterLectures(args: Args<{ id: number }>) {
 }
 
 // 강의평 생성 api
-export async function postLectureEvaluation(
-  args: Args<{ id: number }, undefined, PostEvaluationQuery>,
-) {
+export async function postLectureEvaluation(args: Args<{ id: number }, undefined, PostEvaluationQuery>) {
   const endpoint = `/v1/semester-lectures/${args.params.id}/evaluations`;
   const headers = getServerSideHeaders(args.context);
 
-  const response = await evClient.post<PostEvaluationResult>(
-    endpoint,
-    args.body,
-    { headers },
-  );
+  const response = await evClient.post<PostEvaluationResult>(endpoint, args.body, { headers });
   return response.data;
 }
 
 // 강좌의 강의평 목록 api
-export async function fetchLectureEvaluations(
-  args: Args<{ id: number }, GetEvaluationsQuery>,
-) {
+export async function fetchLectureEvaluations(args: Args<{ id: number }, GetEvaluationsQuery>) {
   const endpoint = `v1/lectures/${args.params.id}/evaluations`;
   const headers = getServerSideHeaders(args.context);
 
@@ -147,9 +120,7 @@ export async function getMainTagInfos(args: Args = {}) {
   return response.data;
 }
 
-export async function getMainTagEvaluations(
-  args: Args<{ id: number }, GetMainTagEvalutionsQuery>,
-) {
+export async function getMainTagEvaluations(args: Args<{ id: number }, GetMainTagEvalutionsQuery>) {
   const endpoint = `/v1/tags/main/${args.params.id}/evaluations`;
   const headers = getServerSideHeaders(args.context);
 
@@ -170,23 +141,15 @@ export async function deleteEvaluation(args: Args<{ id: number }>) {
   return response.data;
 }
 
-export async function postReportEvaluation(
-  args: Args<{ id: number }, undefined, PostReportEvaluationParams>,
-) {
+export async function postReportEvaluation(args: Args<{ id: number }, undefined, PostReportEvaluationParams>) {
   const endpoint = `/v1/evaluations/${args.params.id}/report`;
   const headers = getServerSideHeaders(args.context);
 
-  const response = await evClient.post<PostReportEvaluationResult>(
-    endpoint,
-    args.body,
-    { headers },
-  );
+  const response = await evClient.post<PostReportEvaluationResult>(endpoint, args.body, { headers });
   return response.data;
 }
 
-export async function getEmailVerification(
-  args: Args,
-): Promise<GetEmailVerificationResult> {
+export async function getEmailVerification(args: Args): Promise<GetEmailVerificationResult> {
   const endpoint = `/v1/user/email/verification`;
   const headers = getServerSideHeaders(args.context);
 
@@ -196,30 +159,18 @@ export async function getEmailVerification(
   return response.data;
 }
 
-export async function postEmailVerification(
-  args: Args<undefined, undefined, PostEmailVerificationParams>,
-) {
+export async function postEmailVerification(args: Args<undefined, undefined, PostEmailVerificationParams>) {
   const endpoint = `/v1/user/email/verification`;
   const headers = getServerSideHeaders(args.context);
 
-  const response = await coreClient.post<PostEmailVerificationResult>(
-    endpoint,
-    args.body,
-    { headers },
-  );
+  const response = await coreClient.post<PostEmailVerificationResult>(endpoint, args.body, { headers });
   return response.data;
 }
 
-export async function postEmailVerificationCode(
-  args: Args<undefined, undefined, PostEmailVerificationCodeParams>,
-) {
+export async function postEmailVerificationCode(args: Args<undefined, undefined, PostEmailVerificationCodeParams>) {
   const endpoint = `/v1/user/email/verification/code`;
   const headers = getServerSideHeaders(args.context);
 
-  const response = await coreClient.post<PostEmailVerificationCodeResult>(
-    endpoint,
-    args.body,
-    { headers },
-  );
+  const response = await coreClient.post<PostEmailVerificationCodeResult>(endpoint, args.body, { headers });
   return response.data;
 }

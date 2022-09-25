@@ -34,8 +34,7 @@ export const useSelectTag = (tags: TagDTO[]) => {
   };
 
   return {
-    selectedTagId:
-      selectedTagId === undefined ? undefined : Number(selectedTagId),
+    selectedTagId: selectedTagId === undefined ? undefined : Number(selectedTagId),
     onClickTag,
   };
 };

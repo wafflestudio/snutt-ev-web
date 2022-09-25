@@ -15,13 +15,7 @@ interface Props {
   contentsUnsatisfied: boolean;
 }
 
-export const EvalBasic = ({
-  handleRating,
-  rating,
-  handleContent,
-  content,
-  contentsUnsatisfied,
-}: Props) => {
+export const EvalBasic = ({ handleRating, rating, handleContent, content, contentsUnsatisfied }: Props) => {
   const ratingImage = {
     empty: <SvgStarSmallEmpty width={30} height={30} />,
     filled: <SvgStarSmallFilled width={30} height={30} />,
@@ -50,8 +44,7 @@ export const EvalBasic = ({
     },
   ];
 
-  const placeHolder =
-    '강의에 대한 솔직한 리뷰를 남겨주세요. \nex) 과제, 출석, 교수님, 시험 난이도, 팀플 유무 등';
+  const placeHolder = '강의에 대한 솔직한 리뷰를 남겨주세요. \nex) 과제, 출석, 교수님, 시험 난이도, 팀플 유무 등';
 
   const WARNING = {
     unsatisfiedContents: '강의평을 30자 이상 남겨주세요',
@@ -69,23 +62,12 @@ export const EvalBasic = ({
             </RatingButton>
           ))}
         </RatingContainer>
-        <ContentTextarea
-          value={content}
-          onChange={(e) => handleContent(e.target.value)}
-          placeholder={placeHolder}
-        />
+        <ContentTextarea value={content} onChange={(e) => handleContent(e.target.value)} placeholder={placeHolder} />
       </Container>
       {contentsUnsatisfied && (
         <WarningContainer>
-          <SvgWarning
-            color={COLORS.red}
-            width={15}
-            height={15}
-            style={{ marginRight: '2px', marginTop: '2px' }}
-          />
-          <Detail style={{ color: COLORS.red }}>
-            {WARNING.unsatisfiedContents}
-          </Detail>
+          <SvgWarning color={COLORS.red} width={15} height={15} style={{ marginRight: '2px', marginTop: '2px' }} />
+          <Detail style={{ color: COLORS.red }}>{WARNING.unsatisfiedContents}</Detail>
         </WarningContainer>
       )}
     </>

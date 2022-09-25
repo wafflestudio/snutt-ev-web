@@ -46,9 +46,7 @@ test(
 
       // 2022년 여름학기, 2022년 1학기 두 학기가 순서대로 보여져야 한다
       await expect(semesters).toHaveCount(2);
-      await expect(semesters.nth(0).locator(sTitle)).toHaveText(
-        '2022년 여름학기',
-      );
+      await expect(semesters.nth(0).locator(sTitle)).toHaveText('2022년 여름학기');
       await expect(semesters.nth(1).locator(sTitle)).toHaveText('2022년 1학기');
 
       // 각 학기별로 3개씩의 강의가 보여져야 한다
@@ -99,10 +97,7 @@ test(
 
       const lectures = recent.findByTestId('recent-lecture-item');
 
-      await lectures
-        .filter({ hasText: '물리학' })
-        .locator('[data-testid=recent-lecture-write-btn]')
-        .click();
+      await lectures.filter({ hasText: '물리학' }).locator('[data-testid=recent-lecture-write-btn]').click();
       await expect(page).toHaveURL('/create?id=2444');
     },
   ),

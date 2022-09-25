@@ -18,10 +18,7 @@ const select = (data: GetLatestLecturesResult): Return => {
   data.content.forEach((lecture) => {
     const { taken_semester, taken_year } = lecture;
 
-    const existYearSemester = ret.find(
-      ({ year, semester }) =>
-        year === taken_year && semester === taken_semester,
-    );
+    const existYearSemester = ret.find(({ year, semester }) => year === taken_year && semester === taken_semester);
 
     // 기존에 없을 경우, 새로 만들어서 푸시
     if (existYearSemester) {
@@ -37,9 +34,7 @@ const select = (data: GetLatestLecturesResult): Return => {
       });
   });
 
-  return ret.sort((a, b) =>
-    a.year === b.year ? b.semester - a.semester : b.year - a.year,
-  );
+  return ret.sort((a, b) => (a.year === b.year ? b.semester - a.semester : b.year - a.year));
 };
 
 export function useLatestLectures() {

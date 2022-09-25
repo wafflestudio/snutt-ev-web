@@ -76,10 +76,7 @@ test(
       await expect(recentSection).toHaveCount(1);
 
       // 지난 학기 강의를 클릭하면 해당 강의 링크로 이동해야 한다
-      await main
-        .findByTestId('main-recent-lecture-card')
-        .locator('text=생물학')
-        .click();
+      await main.findByTestId('main-recent-lecture-card').locator('text=생물학').click();
       await expect(main.getPage()).toHaveURL('/detail?id=2512');
     },
   ),

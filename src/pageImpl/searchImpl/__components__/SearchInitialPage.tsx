@@ -8,9 +8,7 @@ export const SearchInitialPage = () => {
     <Wrapper>
       <SvgSearchBig />
       <Title style={{ marginTop: 25 }}>SNUTT 검색 꿀팁 &#127855;</Title>
-      <Subtitle style={{ marginTop: 34 }}>
-        다양한 조합으로 검색해보세요.
-      </Subtitle>
+      <Subtitle style={{ marginTop: 34 }}>다양한 조합으로 검색해보세요.</Subtitle>
       <ContentText>ex) 2학년 컴공 전필</ContentText>
       <br />
       <Subtitle>줄임말로 검색해보세요.</Subtitle>

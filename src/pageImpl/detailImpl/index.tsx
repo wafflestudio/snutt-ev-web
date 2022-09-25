@@ -1,13 +1,5 @@
 import styled from '@emotion/styled';
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  TextField,
-} from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Router, useRouter } from 'next/router';
 import { useState } from 'react';
@@ -39,33 +31,25 @@ export const DetailImpl = () => {
   const { id } = router.query;
 
   const { summaryData } = useEvaluationSummaryContainer(Number(id));
-  const { searchResult, fetchNextPage, isFetchingNextPage, hasNextPage } =
-    useLectureEvaluationsContainer(Number(id));
+  const { searchResult, fetchNextPage, isFetchingNextPage, hasNextPage } = useLectureEvaluationsContainer(Number(id));
   const { myReviewResult } = useMyLectureEvaluationsContainer(Number(id));
   const { loaderRef } = useScrollLoader(fetchNextPage);
 
   const queryClient = useQueryClient();
 
-  const [moreSheetItem, setMoreSheetItem] = useState<EvaluationDTO | undefined>(
-    undefined,
-  );
+  const [moreSheetItem, setMoreSheetItem] = useState<EvaluationDTO | undefined>(undefined);
 
-  const deleteMutation = useMutation(
-    (id: number) => deleteEvaluation({ params: { id } }),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(['evaluationSummary', Number(id)]);
-        queryClient.invalidateQueries(['myLectureEvaluation', Number(id)]);
-        queryClient.invalidateQueries(['lectureEvaluation', Number(id)]);
-      },
-      onError: () => {
-        console.error('강의평 삭제에 실패하였습니다.');
-      },
+  const deleteMutation = useMutation((id: number) => deleteEvaluation({ params: { id } }), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['evaluationSummary', Number(id)]);
+      queryClient.invalidateQueries(['myLectureEvaluation', Number(id)]);
+      queryClient.invalidateQueries(['lectureEvaluation', Number(id)]);
     },
-  );
-  const [deleteTargetId, setDeleteTargetId] = useState<number | undefined>(
-    undefined,
-  );
+    onError: () => {
+      console.error('강의평 삭제에 실패하였습니다.');
+    },
+  });
+  const [deleteTargetId, setDeleteTargetId] = useState<number | undefined>(undefined);
   const handleDeleteEvaluation = () => {
     setDeleteTargetId(moreSheetItem?.id);
     setMoreSheetItem(undefined);
@@ -79,8 +63,7 @@ export const DetailImpl = () => {
   };
 
   const reportMutation = useMutation(
-    ({ id, content }: { id: number; content: string }) =>
-      postReportEvaluation({ params: { id }, body: { content } }),
+    ({ id, content }: { id: number; content: string }) => postReportEvaluation({ params: { id }, body: { content } }),
     {
       onSuccess: () => {
         queryClient.invalidateQueries(['evaluationSummary']);
@@ -92,9 +75,7 @@ export const DetailImpl = () => {
     },
   );
   const [reportReason, setReportReason] = useState<string>('');
-  const [reportTargetId, setReportTargetId] = useState<number | undefined>(
-    undefined,
-  );
+  const [reportTargetId, setReportTargetId] = useState<number | undefined>(undefined);
   const handleReportEvaluation = () => {
     setReportTargetId(moreSheetItem?.id);
     setMoreSheetItem(undefined);
@@ -109,8 +90,7 @@ export const DetailImpl = () => {
 
   const count = searchResult?.pages[searchResult?.pages.length - 1].total_count;
   const isEmpty = count === 0 && myReviewResult?.evaluations.length === 0;
-  const showSnuevWarning =
-    !isEmpty && !summaryData?.evaluation?.avg_life_balance;
+  const showSnuevWarning = !isEmpty && !summaryData?.evaluation?.avg_life_balance;
 
   const goBack = () => {
     if (((router as Router).components['/detail'] as any).initial) {
@@ -176,9 +156,7 @@ export const DetailImpl = () => {
         >
           <DialogTitle>강의평 신고</DialogTitle>
           <DialogContent>
-            <DialogContentText>
-              강의평 신고 사유를 적어주세요.
-            </DialogContentText>
+            <DialogContentText>강의평 신고 사유를 적어주세요.</DialogContentText>
             <TextField
               autoFocus
               margin="dense"
@@ -213,17 +191,12 @@ export const DetailImpl = () => {
             <ReviewSummaryLeft>
               <Title01>{summaryData?.title}</Title01>
               <InstructorName>
-                {summaryData?.instructor} / {summaryData?.credit}학점 (
-                {summaryData?.classification})
+                {summaryData?.instructor} / {summaryData?.credit}학점 ({summaryData?.classification})
               </InstructorName>
             </ReviewSummaryLeft>
             <ReviewSummaryRight>
               <ReviewScore>
-                {isEmpty ? (
-                  <SvgStarSmallEmpty height={19} width={19} />
-                ) : (
-                  <SvgStarSmallFilled height={19} width={19} />
-                )}
+                {isEmpty ? <SvgStarSmallEmpty height={19} width={19} /> : <SvgStarSmallFilled height={19} width={19} />}
                 <Title01 style={{ marginLeft: 6, marginTop: 0 }}>
                   {summaryData?.evaluation?.avg_rating?.toFixed(1)}
                 </Title01>
@@ -235,9 +208,7 @@ export const DetailImpl = () => {
           {showSnuevWarning && (
             <SnuevWarning>
               <FossilIcon />
-              <SnuevWarningText>
-                와플스튜디오에서 발굴한 옛 강의평은 세부 항목 점수가 없습니다.
-              </SnuevWarningText>
+              <SnuevWarningText>와플스튜디오에서 발굴한 옛 강의평은 세부 항목 점수가 없습니다.</SnuevWarningText>
             </SnuevWarning>
           )}
 
@@ -250,9 +221,7 @@ export const DetailImpl = () => {
               </PositionedRatingToolTip>
               <ReviewDiagram>
                 <DiagramTop>
-                  <AxisLabel style={{ marginBottom: 10 }}>
-                    성적 만족도
-                  </AxisLabel>
+                  <AxisLabel style={{ marginBottom: 10 }}>성적 만족도</AxisLabel>
                 </DiagramTop>
                 <DiagramMiddle>
                   <YAxisLabel>강의력</YAxisLabel>
@@ -263,16 +232,10 @@ export const DetailImpl = () => {
                   ) : (
                     <GraphWrapper>
                       <RatingGraph
-                        gradeSatisfaction={
-                          summaryData?.evaluation?.avg_grade_satisfaction ?? 0
-                        }
-                        lifeBalance={
-                          summaryData?.evaluation?.avg_life_balance ?? 0
-                        }
+                        gradeSatisfaction={summaryData?.evaluation?.avg_grade_satisfaction ?? 0}
+                        lifeBalance={summaryData?.evaluation?.avg_life_balance ?? 0}
                         gains={summaryData?.evaluation?.avg_gains ?? 0}
-                        teachingSkill={
-                          summaryData?.evaluation?.avg_teaching_skill ?? 0
-                        }
+                        teachingSkill={summaryData?.evaluation?.avg_teaching_skill ?? 0}
                         height={280}
                         width={280}
                       />
@@ -308,9 +271,7 @@ export const DetailImpl = () => {
                         }}
                       />
                     ))}
-                  {hasNextPage && !isFetchingNextPage && (
-                    <div ref={loaderRef} />
-                  )}
+                  {hasNextPage && !isFetchingNextPage && <div ref={loaderRef} />}
                   {isFetchingNextPage && <SearchResultLoading />}
                 </>
               </ReviewList>

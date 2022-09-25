@@ -7,14 +7,7 @@ interface Props {
   width: number;
 }
 
-export const RatingGraph = ({
-  gradeSatisfaction,
-  lifeBalance,
-  gains,
-  teachingSkill,
-  height,
-  width,
-}: Props) => {
+export const RatingGraph = ({ gradeSatisfaction, lifeBalance, gains, teachingSkill, height, width }: Props) => {
   const xMid = width / 2;
   const yMid = height / 2;
 
@@ -24,12 +17,7 @@ export const RatingGraph = ({
   const teachingSkillX = xMid - teachingSkill * (xMid / 5);
 
   return (
-    <svg
-      width={width}
-      height={height}
-      viewBox={`0 0 ${height} ${width}`}
-      fill="none"
-    >
+    <svg width={width} height={height} viewBox={`0 0 ${height} ${width}`} fill="none">
       <path d={`M 0 ${yMid} L ${width} ${yMid}`} stroke="rgb(194, 194, 194)" />
       <path d={`M ${xMid} 0 L ${xMid} ${height}`} stroke="rgb(194, 194, 194)" />
       <path
@@ -43,58 +31,41 @@ export const RatingGraph = ({
         stroke="rgba(194, 194, 194, 0.5)"
       />
       <path
-        d={`M ${width * 0.1} ${yMid} L ${xMid} ${height * 0.1} L ${
-          width * 0.9
-        } ${yMid} L ${xMid} ${height * 0.9} L ${width * 0.1} ${yMid} Z`}
+        d={`M ${width * 0.1} ${yMid} L ${xMid} ${height * 0.1} L ${width * 0.9} ${yMid} L ${xMid} ${height * 0.9} L ${
+          width * 0.1
+        } ${yMid} Z`}
         stroke="rgba(194, 194, 194, 0.5)"
       />
       <path
-        d={`M ${width * 0.2} ${yMid} L ${xMid} ${height * 0.2} L ${
-          width * 0.8
-        } ${yMid} L ${xMid} ${height * 0.8} L ${width * 0.2} ${yMid} Z`}
+        d={`M ${width * 0.2} ${yMid} L ${xMid} ${height * 0.2} L ${width * 0.8} ${yMid} L ${xMid} ${height * 0.8} L ${
+          width * 0.2
+        } ${yMid} Z`}
         stroke="rgba(194, 194, 194, 0.5)"
       />
       <path
-        d={`M ${width * 0.3} ${yMid} L ${xMid} ${height * 0.3} L ${
-          width * 0.7
-        } ${yMid} L ${xMid} ${height * 0.7} L ${width * 0.3} ${yMid} Z`}
+        d={`M ${width * 0.3} ${yMid} L ${xMid} ${height * 0.3} L ${width * 0.7} ${yMid} L ${xMid} ${height * 0.7} L ${
+          width * 0.3
+        } ${yMid} Z`}
         stroke="rgba(194, 194, 194, 0.5)"
       />
       <path
-        d={`M ${width * 0.4} ${yMid} L ${xMid} ${height * 0.4} L ${
-          width * 0.6
-        } ${yMid} L ${xMid} ${height * 0.6} L ${width * 0.4} ${yMid} Z`}
+        d={`M ${width * 0.4} ${yMid} L ${xMid} ${height * 0.4} L ${width * 0.6} ${yMid} L ${xMid} ${height * 0.6} L ${
+          width * 0.4
+        } ${yMid} Z`}
         stroke="rgba(194, 194, 194, 0.5)"
       />
     </svg>
   );
 };
 
-export const RatingGraphAxis = ({
-  height,
-  width,
-}: {
-  height: number;
-  width: number;
-}) => {
+export const RatingGraphAxis = ({ height, width }: { height: number; width: number }) => {
   const xMid = width / 2;
   const yMid = height / 2;
 
   return (
-    <svg
-      width={width}
-      height={height}
-      viewBox={`0 0 ${height} ${width}`}
-      fill="none"
-    >
-      <path
-        d={`M 0 ${yMid} L ${width} ${yMid}`}
-        stroke="rgb(194, 194, 194, 0.5)"
-      />
-      <path
-        d={`M ${xMid} 0 L ${xMid} ${height}`}
-        stroke="rgb(194, 194, 194, 0.5)"
-      />
+    <svg width={width} height={height} viewBox={`0 0 ${height} ${width}`} fill="none">
+      <path d={`M 0 ${yMid} L ${width} ${yMid}`} stroke="rgb(194, 194, 194, 0.5)" />
+      <path d={`M ${xMid} 0 L ${xMid} ${height}`} stroke="rgb(194, 194, 194, 0.5)" />
     </svg>
   );
 };

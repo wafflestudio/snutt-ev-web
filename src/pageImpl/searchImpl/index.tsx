@@ -10,11 +10,7 @@ import { SearchNoResult } from './__components__/SearchNoResult';
 import { SearchOptionSheet } from './__components__/SearchOptionSheet';
 import { SearchResultItem } from './__components__/SearchResultItem';
 import { ActiveTagList } from './__components__/SelectedTagList';
-import {
-  useSearchOptions,
-  useSearchResult,
-  useSearchTags,
-} from './__containers__';
+import { useSearchOptions, useSearchResult, useSearchTags } from './__containers__';
 
 export const SearchImpl = () => {
   const { data: tagGroups } = useSearchTags();
@@ -26,25 +22,20 @@ export const SearchImpl = () => {
     selectedTextQuery,
     updateTextQuery,
   } = useSearchOptions();
-  const { searchResult, isFetchingNextPage, hasNextPage, fetchNextPage } =
-    useSearchResult(
-      currentlyAppliedQuery?.tags ?? [],
-      currentlyAppliedQuery?.textQuery,
-    );
+  const { searchResult, isFetchingNextPage, hasNextPage, fetchNextPage } = useSearchResult(
+    currentlyAppliedQuery?.tags ?? [],
+    currentlyAppliedQuery?.textQuery,
+  );
 
   const { loaderRef } = useScrollLoader(fetchNextPage);
   const [isSearchSheetOpen, setIsSearchSheetOpen] = useState(false);
 
   const isEmptyQuery =
     currentlyAppliedQuery === undefined ||
-    (currentlyAppliedQuery?.textQuery === '' &&
-      currentlyAppliedQuery?.tags.length === 0);
+    (currentlyAppliedQuery?.textQuery === '' && currentlyAppliedQuery?.tags.length === 0);
 
   const selectedTags = useMemo(
-    () =>
-      tagGroups
-        ?.flatMap((group) => group.tags)
-        .filter((tag) => selectedTagIDs.includes(tag.id)),
+    () => tagGroups?.flatMap((group) => group.tags).filter((tag) => selectedTagIDs.includes(tag.id)),
     [selectedTagIDs, tagGroups],
   );
 
@@ -58,10 +49,7 @@ export const SearchImpl = () => {
         onChangeTextQuery={updateTextQuery}
         onRefreshQuery={refreshQueries}
       />
-      <ActiveTagList
-        selectedTags={selectedTags}
-        onDeleteTag={toggleTagSelection}
-      />
+      <ActiveTagList selectedTags={selectedTags} onDeleteTag={toggleTagSelection} />
       <SearchResultList>
         {isEmptyQuery ? (
           <SearchInitialPage />
@@ -70,10 +58,7 @@ export const SearchImpl = () => {
             {searchResult?.pages?.map((content, i) => (
               <Fragment key={i}>
                 {content.content.map((it) => (
-                  <SearchResultItem
-                    content={it}
-                    key={it.course_number + it.instructor}
-                  />
+                  <SearchResultItem content={it} key={it.course_number + it.instructor} />
                 ))}
               </Fragment>
             ))}

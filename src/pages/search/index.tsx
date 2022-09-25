@@ -8,9 +8,7 @@ export default function SearchView() {
 
 export const getServerSideProps = withGetServerSideProps(
   async (context, { queryClient }) => {
-    await Promise.all([
-      queryClient.prefetchQuery(['tagInfos'], () => fetchTagInfos({ context })),
-    ]);
+    await Promise.all([queryClient.prefetchQuery(['tagInfos'], () => fetchTagInfos({ context }))]);
 
     return { props: {} };
   },
