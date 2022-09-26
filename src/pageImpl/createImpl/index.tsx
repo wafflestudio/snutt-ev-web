@@ -13,13 +13,13 @@ import { COLORS } from '@/lib/styles/colors';
 import { EvalBasic } from './__components__/EvalBasic';
 import { EvalPolygon } from './__components__/EvalPolygon';
 import { Header } from './__components__/Header';
-import { usePolygonContainer, useSemestersContainer } from './__containers__';
+import { useLectureSemesters, usePolygon } from './__containers__';
 
 export const CreateImpl = () => {
   const router = useRouter();
   const id = Number(router.query['id']);
 
-  const { data: lectureSemesters } = useSemestersContainer(id);
+  const { data: lectureSemesters } = useLectureSemesters(id);
   const [isSemesterSelectorOpen, setIsSemesterSelectorOpen] = useState(false);
   const [selectedSemester, setSelectedSemester] = useState<SemesterLectureDTO | undefined>(undefined);
 
@@ -37,7 +37,7 @@ export const CreateImpl = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [dialogErrorMessage, setDialogErrorMessage] = useState('');
 
-  const { defaultValue, score, updateScore } = usePolygonContainer();
+  const { defaultValue, score, updateScore } = usePolygon();
 
   const [contentsUnsatisfied, setContentsUnsatisfied] = useState(true);
 
