@@ -111,23 +111,25 @@ const CustomSlider = styled(Slider)`
   position: relative;
   cursor: pointer;
 
-  & .MuiSlider-rail {
+  .MuiSlider-rail {
     display: none;
   }
 
-  & .MuiSlider-track {
+  .MuiSlider-track {
     display: none;
   }
 
-  & .MuiSlider-thumb {
+  .MuiSlider-thumb {
     width: 18px;
     height: 18px;
     box-sizing: border-box;
     border-radius: 50%;
     border: 2px solid #1ac5bd;
     background-color: #fff;
-    box-shadow: none;
     transition: none;
+
+    // important 안주면 Mui default css 우선순위가 더 높음
+    box-shadow: none !important;
 
     &::after {
       content: none;
