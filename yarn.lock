@@ -2911,10 +2911,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^18.7.19":
-  version: 18.7.19
-  resolution: "@types/node@npm:18.7.19"
-  checksum: 879366b379599cd0e06bff86973c82497de57d23b113967d20cac94994acdf2c47b6fc5cb92d007a9ff1939bd037257a5f3965e7bbda70cfa6b949a40e4e14a8
+"@types/node@npm:^18.7.21":
+  version: 18.7.21
+  resolution: "@types/node@npm:18.7.21"
+  checksum: 9e0558dd44766fb3b1b26815e9877849d8f1188115e0d2bee540cee2c5a11f90e4c00ee059edae8ea018e7f66217e4bf53271536c9a6fd05e33f713b8daa4c66
   languageName: node
   linkType: hard
 
@@ -8085,9 +8085,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"snutt-web-next@workspace:.":
+"snutt-ev-web@workspace:.":
   version: 0.0.0-use.local
-  resolution: "snutt-web-next@workspace:."
+  resolution: "snutt-ev-web@workspace:."
   dependencies:
     "@babel/core": ^7.19.1
     "@babel/preset-env": ^7.19.1
@@ -8102,7 +8102,7 @@ __metadata:
     "@tanstack/react-query": ^4.3.9
     "@tanstack/react-query-devtools": ^4.3.9
     "@types/cookie": ^0.5.1
-    "@types/node": ^18.7.19
+    "@types/node": ^18.7.21
     "@types/react": ^18.0.21
     "@types/react-dom": ^18.0.6
     "@typescript-eslint/eslint-plugin": ^5.38.0
