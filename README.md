@@ -1,4 +1,4 @@
-# SNUTT-web
+# snutt-ev-web
 
 스누티티 강의평 웹뷰
 
