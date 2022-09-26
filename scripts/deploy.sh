@@ -14,7 +14,7 @@ newTagName="${tagFormat}${newTagNumber}"
 echo
 echo "=================================="
 echo
-echo "   Created tag: ${newTagName}   "
+echo "   Created tag: \033[1m${newTagName}\033[0m   "
 echo
 echo "=================================="
 echo
