@@ -1,3 +1,6 @@
+/**
+ * @deprecated use usecases/lecture/semesterToString instead
+ */
 export function SemesterIntToString(semester: number | undefined) {
   switch (semester) {
     case 1:
