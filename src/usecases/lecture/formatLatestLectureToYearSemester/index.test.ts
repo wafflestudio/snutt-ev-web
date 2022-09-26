@@ -2,7 +2,7 @@ import { expect, test } from '@jest/globals';
 
 import { LatestLectureDTO } from '@/lib/dto/core/latestLecture';
 
-import { formatLecturesToYearSemesterLectures as target } from './formatLecturesToYearSemesterLectures';
+import { formatLatestLectureToYearSemester as target } from '.';
 
 const getDummyLecture = (id: number, year: number, semester: number): LatestLectureDTO => ({
   id,
@@ -18,7 +18,7 @@ const getDummyLecture = (id: number, year: number, semester: number): LatestLect
   taken_semester: semester,
 });
 
-test('formatLecturesToYearSemesterLectures', () => {
+test('formatLatestLectureToYearSemester', () => {
   const testcases = [
     {
       input: [],

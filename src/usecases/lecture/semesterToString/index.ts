@@ -1,7 +1,6 @@
-/**
- * @deprecated use usecases/lecture/semesterToString instead
- */
-export function SemesterIntToString(semester: number | undefined) {
+import { Semester } from '@/entities/lecture';
+
+export const semesterToString = (semester: Semester) => {
   switch (semester) {
     case 1:
       return '1';
@@ -14,4 +13,4 @@ export function SemesterIntToString(semester: number | undefined) {
     default:
       return '';
   }
-}
+};

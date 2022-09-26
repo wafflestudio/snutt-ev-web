@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { AppBar } from '@/lib/components/Appbar';
 import SvgArrowBack from '@/lib/components/Icons/SvgArrowBack';
 import { Title01, Title02 } from '@/lib/components/Text';
-import { SemesterIntToString } from '@/lib/util';
+import { semesterToString } from '@/usecases/lecture/semesterToString';
 
 import { RecentLectureItem } from './__components__/RecentResultItem';
 import { useLatestLectures } from './__containers__';
@@ -29,7 +29,7 @@ export const RecentImpl = () => {
         {recentLectureData &&
           (recentLectureData.length ? (
             recentLectureData.map(({ year, semester, lectures }) => {
-              const title = `${year}년 ${SemesterIntToString(semester)}학기`;
+              const title = `${year}년 ${semesterToString(semester)}학기`;
 
               return (
                 <SemesterLectureWrapper key={title} data-testid="recent-semester">
