@@ -13,7 +13,7 @@ type Return = {
  * @param lectures 강의 목록
  * @returns 년도 학기 로 re-format 된 배열
  */
-export const formatLecturesToYearSemesterLectures = (lectures: LatestLectureDTO[]): Return => {
+export const formatLatestLectureToYearSemester = (lectures: LatestLectureDTO[]): Return => {
   const ret = [] as Return;
 
   lectures.forEach((lecture) => {
