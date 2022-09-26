@@ -1,6 +1,5 @@
 export interface SemesterLectureDTO {
   id: number;
-  lecture_number: string;
   year: number;
   semester: number;
   credit: number;
