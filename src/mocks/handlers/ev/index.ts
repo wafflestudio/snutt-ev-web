@@ -3,8 +3,9 @@ import { rest } from 'msw';
 import { GetLatestLecturesResult } from '@/lib/dto/getLatestLectures';
 import { GetMainTagEvaluationsResult } from '@/lib/dto/getMainTagEvaluations';
 import { GetMainTagInfosResult } from '@/lib/dto/getMainTagInfos';
+import { GetSemesterLecturesResult } from '@/lib/dto/getSemesterLectures';
 
-import { mockLatestLectures, mockMainEvaluations, mockMainTags } from './fixtures';
+import { mockLatestLectures, mockMainEvaluations, mockMainTags, mockSemesterLectures } from './fixtures';
 
 export const evHandlers = [
   rest.get<never, never, GetLatestLecturesResult>('*/v1/users/me/lectures/latest', (req, res, ctx) => {
@@ -19,10 +20,6 @@ export const evHandlers = [
   }),
 
   rest.get<never, never, GetMainTagInfosResult>(`*/v1/tags/main`, (req, res, ctx) => {
-    // TODO: track this here
-    // https://wafflestudio.slack.com/archives/C0PAVPS5T/p1663401847494509
-    // eslint-disable-next-line
-      // @ts-ignore
     return res(ctx.json(mockMainTags));
   }),
 
@@ -52,6 +49,13 @@ export const evHandlers = [
           total_count,
         }),
       );
+    },
+  ),
+
+  rest.get<never, { lectureId: string }, GetSemesterLecturesResult>(
+    `*/v1/lectures/:lectureId/semester-lectures`,
+    (req, res, ctx) => {
+      return res(ctx.json(mockSemesterLectures));
     },
   ),
 ];

@@ -41,8 +41,8 @@ export const Header = ({
           marginTop: '10px',
         }}
       >
-        <LectureName>{lectureName}</LectureName>
-        <LectureInstructor>
+        <LectureName data-testid="create-header-lecture-name">{lectureName}</LectureName>
+        <LectureInstructor data-testid="create-header-lecture-detail">
           {lectureInstructor} / {lectureCredit}학점 ({lectureClassification})
         </LectureInstructor>
       </Column>
