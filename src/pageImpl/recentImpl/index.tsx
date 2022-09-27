@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { AppBar } from '@/lib/components/Appbar';
 import SvgArrowBack from '@/lib/components/Icons/SvgArrowBack';
 import { Title01, Title02 } from '@/lib/components/Text';
-import { semesterToString } from '@/usecases/lecture/semesterToString';
+import { semesterToString } from '@/lib/util/semesterToString';
 
 import { RecentLectureItem } from './__components__/RecentResultItem';
 import { useLatestLectures } from './__containers__';

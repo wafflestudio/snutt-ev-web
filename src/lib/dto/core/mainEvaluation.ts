@@ -1,3 +1,5 @@
+import { Semester } from './semester';
+
 export interface MainEvaluationDTO {
   id: number;
   content: string;
@@ -10,7 +12,7 @@ export interface MainEvaluationDTO {
   dislike_count: number;
   is_hidden: boolean;
   year: number;
-  semester: number;
+  semester: Semester;
   lecture: {
     id: number;
     title: string;

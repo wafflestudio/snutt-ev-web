@@ -1,3 +1,5 @@
+import { Semester } from './semester';
+
 export interface LatestLectureDTO {
   id: number;
   title: string;
@@ -9,5 +11,5 @@ export interface LatestLectureDTO {
   category: string;
   classification: string;
   taken_year: number;
-  taken_semester: number;
+  taken_semester: Semester;
 }
