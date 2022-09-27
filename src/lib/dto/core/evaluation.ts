@@ -1,3 +1,4 @@
+import { Semester } from './semester';
 import { EvServiceUserDto } from './user';
 
 export interface EvaluationDTO {
@@ -15,7 +16,7 @@ export interface EvaluationDTO {
   is_hidden: boolean;
   is_reportable: boolean;
   year: number;
-  semester: number;
+  semester: Semester;
   is_modifiable: boolean;
   from_snuev: boolean;
 }

@@ -1,4 +1,4 @@
-import { Semester } from '@/entities/lecture';
+import { Semester } from '@/lib/dto/core/semester';
 
 export const semesterToString = (semester: Semester) => {
   switch (semester) {
