@@ -3,8 +3,8 @@ import { useState } from 'react';
 import Sheet from 'react-modal-sheet';
 
 import SvgExit from '@/lib/components/Icons/SvgExit';
-import { TagWithColor } from '@/lib/dto/core/tag';
-import { TagGroupWithColor } from '@/lib/dto/core/tagGroup';
+import { TagWithColor } from '@/lib/dto/tag';
+import { TagGroupWithColor } from '@/lib/dto/tagGroup';
 
 import { TagGroupList } from './TagGroupList';
 import { TagList } from './TagList';

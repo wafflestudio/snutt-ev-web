@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { TagWithColor } from '@/lib/dto/core/tag';
+import { TagWithColor } from '@/lib/dto/tag';
 
 import { TagItem } from './TagItem';
 

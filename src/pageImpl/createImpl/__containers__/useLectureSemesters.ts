@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { fetchSemesterLectures } from '@/lib/api/apis';
+import { fetchSemesterLectures } from '@/lib/apis/ev';
 
 export function useLectureSemesters(id: number) {
   return useQuery(['lectureSemester', id], () => fetchSemesterLectures({ params: { id } }), {

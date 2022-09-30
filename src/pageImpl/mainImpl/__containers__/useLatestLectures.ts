@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { fetchLatestLectures } from '@/lib/api/apis';
+import { fetchLatestLectures } from '@/lib/apis/ev';
 
 export function useLatestLectures() {
   const { data, error } = useQuery(['latestLectures'], () => fetchLatestLectures());

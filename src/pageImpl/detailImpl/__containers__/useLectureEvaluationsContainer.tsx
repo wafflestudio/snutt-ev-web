@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-import { fetchLectureEvaluations } from '@/lib/api/apis';
+import { fetchLectureEvaluations } from '@/lib/apis/ev';
 
 export function useLectureEvaluationsContainer(id: number) {
   const {

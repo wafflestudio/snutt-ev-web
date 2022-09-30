@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-import { getLectures } from '@/lib/api/apis';
+import { getLectures } from '@/lib/apis/ev';
 
 export const useSearchResult = (selectedTagIDs: number[], textQuery?: string) => {
   const {

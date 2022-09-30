@@ -5,7 +5,7 @@ import SvgPersonBlack from '@/lib/components/Icons/SvgPersonBlack';
 import SvgStarCyan from '@/lib/components/Icons/SvgStarCyan';
 import SvgTagBlack from '@/lib/components/Icons/SvgTagBlack';
 import { Subheading01 } from '@/lib/components/Text';
-import { LectureDTO } from '@/lib/dto/core/lecture';
+import { LectureDTO } from '@/lib/dto/lecture';
 
 interface Props {
   content: LectureDTO;

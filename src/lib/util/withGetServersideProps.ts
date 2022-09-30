@@ -1,7 +1,7 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 
-import { getEmailVerification } from '@/lib/api/apis';
+import { getEmailVerification } from '@/lib/apis/core';
 
 type Clients = { queryClient: QueryClient };
 

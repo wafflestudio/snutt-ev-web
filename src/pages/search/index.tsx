@@ -1,4 +1,4 @@
-import { fetchTagInfos } from '@/lib/api/apis';
+import { fetchTagInfos } from '@/lib/apis/ev';
 import { withGetServerSideProps } from '@/lib/util/withGetServersideProps';
 import { SearchImpl } from '@/pageImpl/searchImpl';
 

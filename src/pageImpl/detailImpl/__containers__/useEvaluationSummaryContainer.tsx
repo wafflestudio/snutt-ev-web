@@ -1,11 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { fetchEvaluationSummary } from '@/lib/api/apis';
-import { ApiError } from '@/lib/dto/core/error';
-import { GetEvaluationSummaryResponse } from '@/lib/dto/getEvaluationSummary';
+import { fetchEvaluationSummary } from '@/lib/apis/ev';
 
 export function useEvaluationSummaryContainer(id: number) {
-  const { data, error, isLoading } = useQuery<GetEvaluationSummaryResponse, ApiError>(
+  const { data, error, isLoading } = useQuery(
     ['evaluationSummary', id],
     () => fetchEvaluationSummary({ params: { id } }),
     {

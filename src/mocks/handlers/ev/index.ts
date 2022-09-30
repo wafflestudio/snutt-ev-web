@@ -1,9 +1,11 @@
 import { rest } from 'msw';
 
-import { GetLatestLecturesResult } from '@/lib/dto/getLatestLectures';
-import { GetMainTagEvaluationsResult } from '@/lib/dto/getMainTagEvaluations';
-import { GetMainTagInfosResult } from '@/lib/dto/getMainTagInfos';
-import { GetSemesterLecturesResult } from '@/lib/dto/getSemesterLectures';
+import {
+  GetLatestLecturesResult,
+  GetMainTagEvaluationsResult,
+  GetMainTagInfosResult,
+  GetSemesterLecturesResult,
+} from '@/lib/apis/ev/types';
 
 import { mockLatestLectures, mockMainEvaluations, mockMainTags, mockSemesterLectures } from './fixtures';
 

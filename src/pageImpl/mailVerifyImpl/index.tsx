@@ -4,12 +4,11 @@ import { useRouter } from 'next/router';
 import { ChangeEvent, useState } from 'react';
 import CountDown, { CountdownRenderProps, zeroPad } from 'react-countdown';
 
-import { postEmailVerificationCode } from '@/lib/api/apis';
-import { postEmailVerification } from '@/lib/api/apis';
+import { postEmailVerification, postEmailVerificationCode } from '@/lib/apis/core';
 import { AppBar } from '@/lib/components/Appbar';
 import SvgTimetableOn from '@/lib/components/Icons/SvgTimetableOn';
 import { Detail, Subheading01, Subheading02, Title01 } from '@/lib/components/Text';
-import { ApiError } from '@/lib/dto/core/error';
+import { ApiError } from '@/lib/dto/error';
 import { COLORS } from '@/lib/styles/colors';
 
 export const MailVerifyImpl = () => {

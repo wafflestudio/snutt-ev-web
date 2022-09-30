@@ -3,11 +3,11 @@ import { Button, Dialog, DialogActions, DialogTitle } from '@mui/material';
 import { useRouter } from 'next/router';
 import { Fragment, useEffect, useState } from 'react';
 
-import { postLectureEvaluation } from '@/lib/api/apis';
+import { postLectureEvaluation } from '@/lib/apis/ev';
+import { PostEvaluationQuery } from '@/lib/apis/ev/types';
 import { AppBar } from '@/lib/components/Appbar';
 import SvgArrowBack from '@/lib/components/Icons/SvgArrowBack';
-import { SemesterLectureDTO } from '@/lib/dto/core/semesterLecture';
-import { PostEvaluationQuery } from '@/lib/dto/postEvaluation';
+import { SemesterLectureDTO } from '@/lib/dto/semesterLecture';
 import { COLORS } from '@/lib/styles/colors';
 
 import { EvalBasic } from './__components__/EvalBasic';

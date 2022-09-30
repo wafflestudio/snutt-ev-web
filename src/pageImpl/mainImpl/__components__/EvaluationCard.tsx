@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { CollapsableText } from '@/lib/components/CollapsableText';
 import { Rating } from '@/lib/components/Rating';
 import { Detail, Subheading01 } from '@/lib/components/Text';
-import { MainEvaluationDTO } from '@/lib/dto/core/mainEvaluation';
+import { MainEvaluationDTO } from '@/lib/dto/mainEvaluation';
 import { COLORS } from '@/lib/styles/colors';
 import { SemesterIntToString } from '@/lib/util';
 
