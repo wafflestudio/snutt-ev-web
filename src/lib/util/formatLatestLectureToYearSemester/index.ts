@@ -1,4 +1,4 @@
-import { LatestLectureDTO } from '@/lib/dto/core/latestLecture';
+import { LatestLectureDTO } from '@/lib/dto/latestLecture';
 
 type Return = {
   year: number;

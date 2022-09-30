@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import SvgExitWhite from '@/lib/components/Icons/SvgExitWhite';
-import { TagWithColor } from '@/lib/dto/core/tag';
+import { TagWithColor } from '@/lib/dto/tag';
 
 interface Props {
   tag: TagWithColor;

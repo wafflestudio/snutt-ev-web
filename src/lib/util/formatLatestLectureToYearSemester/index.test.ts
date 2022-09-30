@@ -1,6 +1,6 @@
 import { expect, test } from '@jest/globals';
 
-import { LatestLectureDTO } from '@/lib/dto/core/latestLecture';
+import { LatestLectureDTO } from '@/lib/dto/latestLecture';
 
 import { formatLatestLectureToYearSemester as target } from '.';
 

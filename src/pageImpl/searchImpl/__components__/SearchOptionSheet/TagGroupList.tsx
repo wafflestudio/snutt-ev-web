@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { TagGroupWithColor } from '@/lib/dto/core/tagGroup';
+import { TagGroupWithColor } from '@/lib/dto/tagGroup';
 
 interface Props {
   tagGroups: TagGroupWithColor[];

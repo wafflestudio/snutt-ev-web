@@ -1,10 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { fetchMyLectureEvaluations } from '@/lib/api/apis';
-import { GetMyEvaluationsResult } from '@/lib/dto/getEvaluations';
+import { fetchMyLectureEvaluations } from '@/lib/apis/ev';
 
 export function useMyLectureEvaluationsContainer(id: number) {
-  const { data: myReviewResult } = useQuery<GetMyEvaluationsResult>(
+  const { data: myReviewResult } = useQuery(
     ['myLectureEvaluation', id],
     async () => {
       const data = await fetchMyLectureEvaluations({ params: { id } });

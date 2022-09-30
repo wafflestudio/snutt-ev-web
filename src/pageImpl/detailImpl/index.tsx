@@ -5,7 +5,7 @@ import { Router, useRouter } from 'next/router';
 import { useState } from 'react';
 
 import FossilIcon from '@/assets/icons/fossil.svg';
-import { deleteEvaluation, postReportEvaluation } from '@/lib/api/apis';
+import { deleteEvaluation, postReportEvaluation } from '@/lib/apis/ev';
 import { AppBar } from '@/lib/components/Appbar';
 import SvgArrowBack from '@/lib/components/Icons/SvgArrowBack';
 import SvgStarSmallEmpty from '@/lib/components/Icons/SvgStarSmallEmpty';
@@ -16,7 +16,7 @@ import { SearchResultLoading } from '@/lib/components/Miscellaneous/Loading';
 import { RatingGraph, RatingGraphAxis } from '@/lib/components/RatingGraph';
 import { Detail, Subheading02, Title01 } from '@/lib/components/Text';
 import { RatingTooltip } from '@/lib/components/Tooltip';
-import { EvaluationDTO } from '@/lib/dto/core/evaluation';
+import { EvaluationDTO } from '@/lib/dto/evaluation';
 import useScrollLoader from '@/lib/hooks/useScrollLoader';
 import { COLORS } from '@/lib/styles/colors';
 import { useLectureEvaluationsContainer } from '@/pageImpl/detailImpl/__containers__/useLectureEvaluationsContainer';

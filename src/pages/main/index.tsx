@@ -1,4 +1,4 @@
-import { fetchLatestLectures, getMainTagInfos } from '@/lib/api/apis';
+import { fetchLatestLectures, getMainTagInfos } from '@/lib/apis/ev';
 import { withGetServerSideProps } from '@/lib/util/withGetServersideProps';
 import { MainImpl } from '@/pageImpl/mainImpl';
 

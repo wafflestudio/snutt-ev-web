@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { fetchLatestLectures } from '@/lib/api/apis';
-import { GetLatestLecturesResult } from '@/lib/dto/getLatestLectures';
+import { fetchLatestLectures } from '@/lib/apis/ev';
+import { GetLatestLecturesResult } from '@/lib/apis/ev/types';
 import { formatLatestLectureToYearSemester } from '@/lib/util/formatLatestLectureToYearSemester';
 
 const select = (data: GetLatestLecturesResult) => {

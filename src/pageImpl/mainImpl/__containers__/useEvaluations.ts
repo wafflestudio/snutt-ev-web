@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-import { getMainTagEvaluations } from '@/lib/api/apis';
+import { getMainTagEvaluations } from '@/lib/apis/ev';
 
 export function useEvaluations(selectedTagId?: number) {
   const {

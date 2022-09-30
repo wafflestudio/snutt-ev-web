@@ -6,7 +6,7 @@ import SvgPersonBlack from '@/lib/components/Icons/SvgPersonBlack';
 import SvgTagBlack from '@/lib/components/Icons/SvgTagBlack';
 import SvgWrite from '@/lib/components/Icons/SvgWrite';
 import { Detail, Subheading01 } from '@/lib/components/Text';
-import { LatestLectureDTO } from '@/lib/dto/core/latestLecture';
+import { LatestLectureDTO } from '@/lib/dto/latestLecture';
 import { SemesterIntToString } from '@/lib/util';
 
 interface Props {

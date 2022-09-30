@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import Link from 'next/link';
 
 import { Subheading02, Title01 } from '@/lib/components/Text';
-import { LatestLectureDTO } from '@/lib/dto/core/latestLecture';
+import { LatestLectureDTO } from '@/lib/dto/latestLecture';
 
 import { LectureCard } from './LectureCard';
 
