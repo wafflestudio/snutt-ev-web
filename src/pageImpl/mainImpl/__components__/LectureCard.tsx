@@ -7,7 +7,7 @@ import SvgTagBlack from '@/lib/components/Icons/SvgTagBlack';
 import SvgWrite from '@/lib/components/Icons/SvgWrite';
 import { Detail, Subheading01 } from '@/lib/components/Text';
 import { LatestLectureDTO } from '@/lib/dto/latestLecture';
-import { SemesterIntToString } from '@/lib/util';
+import { semesterToString } from '@/lib/util/semesterToString';
 
 interface Props {
   lecture: LatestLectureDTO;
@@ -42,7 +42,7 @@ export const LectureCard = ({ lecture }: Props) => {
             {lecture.department}, {lecture.academic_year}
           </Detail>
           <Detail>{lecture.instructor}</Detail>
-          <Detail>{`${lecture.taken_year}년 ${SemesterIntToString(lecture.taken_semester)}학기`}</Detail>
+          <Detail>{`${lecture.taken_year}년 ${semesterToString(lecture.taken_semester)}학기`}</Detail>
         </Texts>
       </CardBottom>
     </Card>

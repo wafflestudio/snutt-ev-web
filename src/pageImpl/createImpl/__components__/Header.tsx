@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import SvgArrowDown from '@/lib/components/Icons/SvgArrowDown';
 import { Subheading02, Title01 } from '@/lib/components/Text';
 import { SemesterLectureDTO } from '@/lib/dto/semesterLecture';
-import { SemesterIntToString } from '@/lib/util';
+import { semesterToString } from '@/lib/util/semesterToString';
 
 interface Props {
   lectureName?: string;
@@ -49,7 +49,7 @@ export const Header = ({
       <SelectorWrapper>
         <SemesterSelectorContainer>
           <SemesterSelector onClick={handleSemesterSelector}>
-            {selectedSemester ? `${selectedSemester.year}-${SemesterIntToString(selectedSemester.semester)}학기` : ''}
+            {selectedSemester ? `${selectedSemester.year}-${semesterToString(selectedSemester.semester)}학기` : ''}
 
             <SvgArrowDown width="10" />
           </SemesterSelector>
@@ -57,7 +57,7 @@ export const Header = ({
             <SemesterButtonsContainer>
               {lectureSemesters?.map((lecture) => (
                 <SemesterButton key={lecture.id} onClick={() => handleSelectedSemester(lecture)}>
-                  {`${lecture.year}-${SemesterIntToString(lecture.semester)}학기`}
+                  {`${lecture.year}-${semesterToString(lecture.semester)}학기`}
                 </SemesterButton>
               ))}
             </SemesterButtonsContainer>
