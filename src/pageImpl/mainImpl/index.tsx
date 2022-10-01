@@ -1,11 +1,14 @@
 import styled from '@emotion/styled';
 import { ToggleButton, ToggleButtonGroup } from '@mui/material/';
+import Link from 'next/link';
 import { Fragment } from 'react';
 
+import SvgChevron from '@/lib/components/Icons/SvgChevronRight';
 import { EmptyReviewPlaceholder } from '@/lib/components/Miscellaneous/EmptyReviewPlaceholder';
 import { SearchResultLoading } from '@/lib/components/Miscellaneous/Loading';
 import { Subheading02, Title01 } from '@/lib/components/Text';
 import useScrollLoader from '@/lib/hooks/useScrollLoader';
+import { APP_ENV } from '@/lib/util/env';
 
 import { EvaluationCard, MainAppBar, RecentCarousel } from './__components__';
 import { useEvaluations, useLatestLectures, useRecommendationTags, useSelectTag } from './__containers__';
@@ -29,7 +32,19 @@ export const MainImpl = () => {
       {recentLectureData && recentLectureData.length > 0 && <RecentCarousel lectureList={recentLectureData} />}
 
       <CategoryPicker data-testid="main-category-picker">
-        <Title01 style={{ marginBottom: 10 }}>교양 강의평 둘러보기</Title01>
+        <CategoryPickerTitleWrapper>
+          <CategoryPickerTitle>강의평 둘러보기</CategoryPickerTitle>
+          {
+            // TODO: feature flag
+            APP_ENV !== 'prod' && (
+              <Link passHref href={'/me/evaluations'}>
+                <CategoryPickerLink as="a" data-testid="main-my-evaluations-link">
+                  내가 남긴 강의평 <SvgChevron />
+                </CategoryPickerLink>
+              </Link>
+            )
+          }
+        </CategoryPickerTitleWrapper>
         <StyledToggleButtonGroup
           value={selectedTagId}
           exclusive
@@ -122,4 +137,20 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)`
       color: #ffffff;
     }
   }
+`;
+
+const CategoryPickerTitleWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+`;
+
+const CategoryPickerTitle = styled(Title01)`
+  margin: 0;
+`;
+
+const CategoryPickerLink = styled(Subheading02)`
+  color: #777777;
+  text-decoration: none;
 `;
