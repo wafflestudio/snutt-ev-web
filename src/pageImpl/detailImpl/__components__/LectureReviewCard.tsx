@@ -7,7 +7,7 @@ import { Rating } from '@/lib/components/Rating';
 import { Detail } from '@/lib/components/Text';
 import { EvaluationDTO } from '@/lib/dto/evaluation';
 import { COLORS } from '@/lib/styles/colors';
-import { SemesterIntToString } from '@/lib/util';
+import { semesterToString } from '@/lib/util/semesterToString';
 
 interface Props {
   review: EvaluationDTO;
@@ -24,7 +24,7 @@ export const LectureReviewCard = ({ review, onMoreClick, isMyReview = false }: P
             <Rating rating={review.rating} size={12} />
             <Semester>
               <SemesterText>
-                {review.year}년 {SemesterIntToString(review.semester)}학기
+                {review.year}년 {semesterToString(review.semester)}학기
               </SemesterText>
             </Semester>
             {review.from_snuev && (

@@ -6,7 +6,7 @@ import { Rating } from '@/lib/components/Rating';
 import { Detail, Subheading01 } from '@/lib/components/Text';
 import { MainEvaluationDTO } from '@/lib/dto/mainEvaluation';
 import { COLORS } from '@/lib/styles/colors';
-import { SemesterIntToString } from '@/lib/util';
+import { semesterToString } from '@/lib/util/semesterToString';
 
 interface Props {
   evaluation: MainEvaluationDTO;
@@ -30,7 +30,7 @@ export const EvaluationCard = ({ evaluation }: Props) => {
             <RatingSemester>
               <Rating rating={evaluation.rating} size={12} />
               <Semester>
-                {evaluation.year}년 {SemesterIntToString(evaluation.semester)}
+                {evaluation.year}년 {semesterToString(evaluation.semester)}
                 학기
               </Semester>
             </RatingSemester>
