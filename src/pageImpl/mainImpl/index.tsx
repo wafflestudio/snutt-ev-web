@@ -11,18 +11,22 @@ import useScrollLoader from '@/lib/hooks/useScrollLoader';
 import { APP_ENV } from '@/lib/util/env';
 
 import { EvaluationCard, MainAppBar, RecentCarousel } from './__components__';
-import { useEvaluations, useLatestLectures, useRecommendationTags, useSelectTag } from './__containers__';
+import { useSelectTag } from './__containers__';
+import { useEvaluations, useLatestLectures, useMainTags } from './__queries__';
 
 export const MainImpl = () => {
-  const { recommendationTags } = useRecommendationTags();
-  const { recentLectureData } = useLatestLectures();
+  const { data: mainTags } = useMainTags();
+  const { data: latestLectures } = useLatestLectures();
+
+  const recommendationTags = mainTags?.tags ?? [];
 
   const { selectedTagId, onClickTag } = useSelectTag(recommendationTags);
 
-  const { searchResult, fetchNextPage, isFetchingNextPage, hasNextPage } = useEvaluations(selectedTagId);
+  const { data: searchResult, fetchNextPage, isFetchingNextPage, hasNextPage } = useEvaluations(selectedTagId);
 
   const { loaderRef } = useScrollLoader(fetchNextPage);
 
+  const recentLectureData = latestLectures?.content;
   const selectedTag = recommendationTags.find((tag) => tag.id === selectedTagId);
 
   return (
@@ -106,6 +110,7 @@ const CategoryDetail = styled(Subheading02)`
   padding-bottom: 10px;
   color: rgb(119, 119, 119);
 `;
+
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)`
   flex-wrap: wrap;
 
