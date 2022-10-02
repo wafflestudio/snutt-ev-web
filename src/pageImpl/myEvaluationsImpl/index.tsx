@@ -3,8 +3,7 @@ import styled from '@emotion/styled';
 import { SearchResultLoading } from '@/lib/components/Miscellaneous/Loading';
 import useScrollLoader from '@/lib/hooks/useScrollLoader';
 
-import { MyEvaluationCard, MyEvaluationsAppBar } from './__components__';
-import { MyEvaluationEmpty } from './__components__/MyEvaluationEmpty';
+import { MyEvaluationCard, MyEvaluationEmpty, MyEvaluationsAppBar } from './__components__';
 import { useMyEvaluations } from './__queries__';
 
 export const MyEvaluationsImpl = () => {

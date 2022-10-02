@@ -6,7 +6,7 @@ import SvgArrowBack from '@/lib/components/Icons/SvgArrowBack';
 import { Title01, Title02 } from '@/lib/components/Text';
 import { semesterToString } from '@/lib/util/semesterToString';
 
-import { RecentLectureItem } from './__components__/RecentResultItem';
+import { RecentLectureItem } from './__components__';
 import { useLatestLectures } from './__containers__';
 
 export const RecentImpl = () => {
