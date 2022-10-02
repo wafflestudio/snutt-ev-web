@@ -56,7 +56,7 @@ export type DeleteEvaluationResult = unknown;
 export type GetEvaluationsQuery = { cursor: string };
 export type GetEvaluationsResult = {
   content: EvaluationDTO[];
-  cursor: string;
+  cursor: string | null;
   size: number;
   last: boolean;
   total_count: number;
