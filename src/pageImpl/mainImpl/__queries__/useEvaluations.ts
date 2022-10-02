@@ -3,12 +3,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { getMainTagEvaluations } from '@/lib/apis/ev';
 
 export function useEvaluations(selectedTagId?: number) {
-  const {
-    data: searchResult,
-    isFetchingNextPage,
-    fetchNextPage,
-    hasNextPage,
-  } = useInfiniteQuery(
+  return useInfiniteQuery(
     ['tagEvaluations', selectedTagId],
     ({ pageParam }) =>
       getMainTagEvaluations({
@@ -25,11 +20,4 @@ export function useEvaluations(selectedTagId?: number) {
       retry: 5,
     },
   );
-
-  return {
-    searchResult,
-    isFetchingNextPage,
-    hasNextPage,
-    fetchNextPage,
-  };
 }
