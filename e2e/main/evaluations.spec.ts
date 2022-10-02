@@ -92,3 +92,16 @@ test(
     },
   ),
 );
+
+test(
+  '내 강의평 보기 버튼이 정상 동작한다',
+  withCookie([], async ({ page }) => {
+    // 페이지에 접속하면
+    const main = new MainPage(page);
+    await main.goto();
+
+    const myLink = main.findByTestId('main-my-evaluations-link');
+    await myLink.click();
+    await expect(main.getPage()).toHaveURL('/me/evaluations');
+  }),
+);

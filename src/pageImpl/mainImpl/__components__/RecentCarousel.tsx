@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import Link from 'next/link';
 
+import SvgChevron from '@/lib/components/Icons/SvgChevronRight';
 import { Subheading02, Title01 } from '@/lib/components/Text';
 import { LatestLectureDTO } from '@/lib/dto/latestLecture';
 
@@ -16,8 +17,8 @@ export const RecentCarousel = ({ lectureList }: Props) => {
       <CarouselHeader>
         <Title01>지난 학기 강의평을 남겨주세요</Title01>
         <Link href="/recent" passHref>
-          <RecentLink data-testid="main-recent-more-link">
-            <Subheading02>더보기 &gt;</Subheading02>
+          <RecentLink data-testid="main-recent-more-link" as="a">
+            강의 목록 <SvgChevron />
           </RecentLink>
         </Link>
       </CarouselHeader>
@@ -35,8 +36,9 @@ const Wrapper = styled.div`
   padding: 0 20px 20px 20px;
 `;
 
-const RecentLink = styled.a`
+const RecentLink = styled(Subheading02)`
   text-decoration: none;
+  color: #777777;
 `;
 
 const CarouselHeader = styled.div`
@@ -46,6 +48,7 @@ const CarouselHeader = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const SubjectCardCarousel = styled.div`
