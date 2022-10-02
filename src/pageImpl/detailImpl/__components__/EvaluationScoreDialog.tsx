@@ -17,7 +17,12 @@ export const EvaluationScoreDialog = ({ isOpen, close, evaluation }: Props) => {
     <Dialog open={isOpen} onClose={close}>
       {evaluation && (
         <Wrapper data-testid="detail-evaluation-score-dialog" data-id={evaluation.id}>
-          <CloseButton width={30} height={30} />
+          <CloseButton
+            data-testid="detail-evaluation-score-dialog-close-button"
+            width={30}
+            height={30}
+            onClick={close}
+          />
           <EvaluationDetailScore score={evaluation} />
         </Wrapper>
       )}
