@@ -9,10 +9,8 @@ export const evClient = axios.create(
     : {
         baseURL: process.env.NEXT_PUBLIC_EV_API_URL,
         headers: {
-          'x-access-token':
-            parse(document.cookie)['x-access-token'] || process.env.NEXT_PUBLIC_LOCAL_ACCESS_TOKEN || '',
-          'x-access-apikey':
-            parse(document.cookie)['x-access-apikey'] || process.env.NEXT_PUBLIC_LOCAL_ACCESS_APIKEY || '',
+          'x-access-token': parse(document.cookie)['x-access-token'] ?? '',
+          'x-access-apikey': parse(document.cookie)['x-access-apikey'] ?? '',
         },
       },
 );
