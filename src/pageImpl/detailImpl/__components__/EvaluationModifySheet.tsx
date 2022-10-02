@@ -14,7 +14,7 @@ interface Props {
   isReportable: boolean;
 }
 
-const EvaluationModifySheet = ({
+export const EvaluationModifySheet = ({
   isOpened,
   onClose,
   onDeleteClicked,
@@ -69,5 +69,3 @@ const DeleteContainer = styled.div`
   flex-direction: row;
   align-items: center;
 `;
-
-export default EvaluationModifySheet;

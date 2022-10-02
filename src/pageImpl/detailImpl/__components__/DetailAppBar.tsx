@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Router, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
 import { AppBar } from '@/lib/components/Appbar';
 import SvgArrowBack from '@/lib/components/Icons/SvgArrowBack';
@@ -8,18 +8,11 @@ import { Title01 } from '@/lib/components/Text';
 
 interface Props {
   id: number;
+  goBack: () => void;
 }
 
-export const DetailAppBar = ({ id }: Props) => {
+export const DetailAppBar = ({ id, goBack }: Props) => {
   const router = useRouter();
-
-  const goBack = () => {
-    if (((router as Router).components['/detail'] as any).initial) {
-      router.replace('/main');
-    } else {
-      router.back();
-    }
-  };
 
   return (
     <AppBar
