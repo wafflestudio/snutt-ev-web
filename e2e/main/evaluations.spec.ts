@@ -42,7 +42,7 @@ test(
       // 고양이는 안 보여야 한다
       await expect(cat).toHaveCount(0);
 
-      // 첫 번째 강의평의 교수명에 박재욱이 나타나야 한다
+      // 첫 번째 강의평의 교수명이 잘 나타나야 한다
       await expect(firstEv).toContainText('박재욱');
 
       // 초기 강의평은 6개가 보여야 한다
