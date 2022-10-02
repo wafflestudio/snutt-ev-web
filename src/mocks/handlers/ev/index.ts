@@ -1,18 +1,24 @@
 import { rest } from 'msw';
 
 import {
+  GetEvaluationsResult,
+  GetEvaluationSummaryResponse,
   GetLatestLecturesResult,
   GetMainTagEvaluationsResult,
   GetMainTagInfosResult,
+  GetMyLectureEvaluationsResult,
   GetSemesterLecturesResult,
   ListMyEvaluationsResponse,
 } from '@/lib/apis/ev/types';
 
 import {
+  mockEvaluationSummary,
   mockLatestLectures,
+  mockLectureEvaluations,
   mockMainEvaluations,
   mockMainTags,
   mockMyEvaluations,
+  mockMyLectureEvaluations,
   mockSemesterLectures,
 } from './fixtures';
 
@@ -76,6 +82,25 @@ export const evHandlers = [
 
     const paginatedResult = getPaginatedResult(mockMyEvaluations, req.url.searchParams.get('cursor') ?? undefined);
 
+    return res(ctx.json(paginatedResult));
+  }),
+
+  rest.get<never, never, GetEvaluationSummaryResponse>(
+    `*/v1/lectures/:lectureId/evaluation-summary`,
+    (req, res, ctx) => {
+      return res(ctx.json(mockEvaluationSummary));
+    },
+  ),
+
+  rest.get<never, never, GetMyLectureEvaluationsResult>(
+    `*/v1/lectures/:lectureId/evaluations/users/me`,
+    (req, res, ctx) => {
+      return res(ctx.json(mockMyLectureEvaluations));
+    },
+  ),
+
+  rest.get<never, never, GetEvaluationsResult>(`*/v1/lectures/:lectureId/evaluations`, (req, res, ctx) => {
+    const paginatedResult = getPaginatedResult(mockLectureEvaluations, req.url.searchParams.get('cursor') ?? undefined);
     return res(ctx.json(paginatedResult));
   }),
 ];

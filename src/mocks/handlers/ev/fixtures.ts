@@ -364,3 +364,64 @@ export const mockMyEvaluations = [
     is_reportable: false,
   },
 ];
+
+export const mockEvaluationSummary = {
+  id: 353,
+  title: '서양문명의 역사 1',
+  instructor: '박재욱',
+  department: '서양사학과',
+  course_number: '043.034',
+  credit: 3,
+  academic_year: '1학년',
+  category: '역사와 철학',
+  classification: '교양',
+  evaluation: { avg_grade_satisfaction: 3, avg_teaching_skill: 3, avg_gains: 3, avg_life_balance: 2, avg_rating: 3.5 },
+};
+
+export const mockMyLectureEvaluations = {
+  evaluations: [
+    {
+      id: 6260,
+      content: 'asdfhajksdhkflaskldjfklajsdklfjaklsdf',
+      grade_satisfaction: 3,
+      teaching_skill: 3,
+      gains: 3,
+      life_balance: 1,
+      rating: 3,
+      like_count: 0,
+      dislike_count: 0,
+      is_hidden: false,
+      is_reported: false,
+      from_snuev: false,
+      year: 2016,
+      semester: 1,
+      lecture_id: 353,
+      is_modifiable: true,
+      is_reportable: false,
+      user: { id: '630e3cb29382dc00102632a4', email: 'woohm402@snu.ac.kr', local_id: 'woohm402' },
+    },
+  ],
+};
+
+export const mockLectureEvaluations = [
+  {
+    id: 27,
+    content: 'dldl',
+    grade_satisfaction: 3,
+    teaching_skill: 3,
+    gains: 3,
+    life_balance: 3,
+    rating: 4,
+    like_count: 0,
+    dislike_count: 0,
+    is_hidden: false,
+    is_reported: false,
+    from_snuev: false,
+    year: 2020,
+    semester: 3,
+    lecture_id: 353,
+    is_modifiable: false,
+    is_reportable: true,
+    user: { id: '61e6d3d385f7c4001067a447', email: 'mog2512@snu.ac.kr', local_id: 'helloman' },
+  },
+];
