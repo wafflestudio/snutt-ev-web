@@ -95,11 +95,18 @@ export const evHandlers = [
   rest.get<never, never, GetMyLectureEvaluationsResult>(
     `*/v1/lectures/:lectureId/evaluations/users/me`,
     (req, res, ctx) => {
+      const { TEST_DETAIL_MY_EVALUATION_EXIST = 'true' } = req.cookies;
+      if (TEST_DETAIL_MY_EVALUATION_EXIST === 'false') return res(ctx.json({ evaluations: [] }));
+
       return res(ctx.json(mockMyLectureEvaluations));
     },
   ),
 
   rest.get<never, never, GetEvaluationsResult>(`*/v1/lectures/:lectureId/evaluations`, (req, res, ctx) => {
+    const { TEST_DETAIL_EVALUATION_EXIST = 'true' } = req.cookies;
+    if (TEST_DETAIL_EVALUATION_EXIST === 'false')
+      return res(ctx.json({ content: [], cursor: null, size: 20, last: true, total_count: 0 }));
+
     const paginatedResult = getPaginatedResult(mockLectureEvaluations, req.url.searchParams.get('cursor') ?? undefined);
     return res(ctx.json(paginatedResult));
   }),

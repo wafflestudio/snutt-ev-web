@@ -1,19 +1,14 @@
 import styled from '@emotion/styled';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Router, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 import FossilIcon from '@/assets/icons/fossil.svg';
 import { deleteEvaluation, postReportEvaluation } from '@/lib/apis/ev';
-import { AppBar } from '@/lib/components/Appbar';
-import SvgArrowBack from '@/lib/components/Icons/SvgArrowBack';
 import SvgStarSmallEmpty from '@/lib/components/Icons/SvgStarSmallEmpty';
 import SvgStarSmallFilled from '@/lib/components/Icons/SvgStarSmallFilled';
-import SvgWrite from '@/lib/components/Icons/SvgWrite';
 import { EmptyReviewPlaceholder } from '@/lib/components/Miscellaneous/EmptyReviewPlaceholder';
 import { SearchResultLoading } from '@/lib/components/Miscellaneous/Loading';
-import { RatingGraph, RatingGraphAxis } from '@/lib/components/RatingGraph';
 import { Detail, Subheading02, Title01 } from '@/lib/components/Text';
 import { RatingTooltip } from '@/lib/components/Tooltip';
 import { EvaluationDTO } from '@/lib/dto/evaluation';
@@ -21,8 +16,13 @@ import useScrollLoader from '@/lib/hooks/useScrollLoader';
 import { COLORS } from '@/lib/styles/colors';
 import { useLectureEvaluationsContainer } from '@/pageImpl/detailImpl/__containers__/useLectureEvaluationsContainer';
 
+import { DeleteEvaluationDialog } from './__components__/DeleteEvaluationDialog';
+import { DetailAppBar } from './__components__/DetailAppBar';
+import { EvaluationDetailScore } from './__components__/EvaluationDetailScore';
 import EvaluationModifySheet from './__components__/EvaluationModifySheet';
+import { EvaluationScoreDialog } from './__components__/EvaluationScoreDialog';
 import { LectureReviewCard } from './__components__/LectureReviewCard';
+import { ReportEvaluationDialog } from './__components__/ReportEvaluationDialog';
 import { useEvaluationSummaryContainer } from './__containers__/useEvaluationSummaryContainer';
 import { useMyLectureEvaluationsContainer } from './__containers__/useMyLectureEvaluationsContainer';
 
@@ -37,7 +37,8 @@ export const DetailImpl = () => {
 
   const queryClient = useQueryClient();
 
-  const [moreSheetItem, setMoreSheetItem] = useState<EvaluationDTO | undefined>(undefined);
+  const [moreSheetItem, setMoreSheetItem] = useState<EvaluationDTO>();
+  const [scoreDetailPopupItemId, setScoreDetailPopupItemId] = useState<number>();
 
   const deleteMutation = useMutation((id: number) => deleteEvaluation({ params: { id } }), {
     onSuccess: () => {
@@ -74,117 +75,32 @@ export const DetailImpl = () => {
       },
     },
   );
-  const [reportReason, setReportReason] = useState<string>('');
   const [reportTargetId, setReportTargetId] = useState<number | undefined>(undefined);
   const handleReportEvaluation = () => {
     setReportTargetId(moreSheetItem?.id);
     setMoreSheetItem(undefined);
   };
-  const handleReportEvaluationConfirm = async () => {
+  const handleReportEvaluationConfirm = async (r: string) => {
     const target = reportTargetId;
     setReportTargetId(undefined);
     if (target !== undefined) {
-      reportMutation.mutate({ id: target, content: reportReason ?? '' });
+      reportMutation.mutate({ id: target, content: r });
     }
   };
 
   const count = searchResult?.pages[searchResult?.pages.length - 1].total_count;
   const isEmpty = count === 0 && myReviewResult?.evaluations.length === 0;
   const showSnuevWarning = !isEmpty && !summaryData?.evaluation?.avg_life_balance;
-
-  const goBack = () => {
-    if (((router as Router).components['/detail'] as any).initial) {
-      router.replace('/main');
-    } else {
-      router.back();
-    }
-  };
-
-  const appBar = (
-    <AppBar
-      leftImage={
-        <BackButton onClick={goBack}>
-          <SvgArrowBack width={30} height={30} />
-        </BackButton>
-      }
-    >
-      <AppBarContent>
-        <Title01 style={{ marginLeft: 12 }}>강의평</Title01>
-        <WriteButton onClick={() => router.push(`/create?id=${id}`)}>
-          <SvgWrite height={30} width={30} />
-        </WriteButton>
-      </AppBarContent>
-    </AppBar>
+  const myLectureEvaluations = myReviewResult?.evaluations;
+  const lectureEvaluations = searchResult?.pages?.flatMap((page) => page.content);
+  const scoreDetailPopupItem = [...(myLectureEvaluations ?? []), ...(lectureEvaluations ?? [])].find(
+    (item) => item.id === scoreDetailPopupItemId,
   );
-
-  if (searchResult === undefined || myReviewResult === undefined) {
-    return <Wrapper>{appBar}</Wrapper>;
-  }
 
   return (
     <>
       <Wrapper>
-        <Dialog
-          open={deleteTargetId !== undefined}
-          onClose={() => {
-            setDeleteTargetId(undefined);
-          }}
-        >
-          <DialogTitle>이 강의평을 삭제하시겠습니까?</DialogTitle>
-          <DialogActions>
-            <Button
-              onClick={() => {
-                setDeleteTargetId(undefined);
-              }}
-            >
-              취소
-            </Button>
-            <Button
-              onClick={() => {
-                handleDeleteEvaluationConfirm();
-              }}
-            >
-              삭제
-            </Button>
-          </DialogActions>
-        </Dialog>
-        <Dialog
-          open={reportTargetId !== undefined}
-          onClose={() => {
-            setReportTargetId(undefined);
-          }}
-        >
-          <DialogTitle>강의평 신고</DialogTitle>
-          <DialogContent>
-            <DialogContentText>강의평 신고 사유를 적어주세요.</DialogContentText>
-            <TextField
-              autoFocus
-              margin="dense"
-              fullWidth
-              variant="standard"
-              onChange={(e) => {
-                setReportReason(e.target.value);
-              }}
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button
-              onClick={() => {
-                setReportTargetId(undefined);
-              }}
-            >
-              취소
-            </Button>
-            <Button
-              onClick={() => {
-                handleReportEvaluationConfirm();
-              }}
-            >
-              신고
-            </Button>
-          </DialogActions>
-        </Dialog>
-        {appBar}
+        <DetailAppBar id={Number(id)} />
 
         <Content>
           <ReviewSummary>
@@ -219,71 +135,63 @@ export const DetailImpl = () => {
               <PositionedRatingToolTip>
                 <RatingTooltip />
               </PositionedRatingToolTip>
-              <ReviewDiagram>
-                <DiagramTop>
-                  <AxisLabel style={{ marginBottom: 10 }}>성적 만족도</AxisLabel>
-                </DiagramTop>
-                <DiagramMiddle>
-                  <YAxisLabel>강의력</YAxisLabel>
-                  {showSnuevWarning ? (
-                    <GraphWrapper>
-                      <RatingGraphAxis height={280} width={280} />
-                    </GraphWrapper>
-                  ) : (
-                    <GraphWrapper>
-                      <RatingGraph
-                        gradeSatisfaction={summaryData?.evaluation?.avg_grade_satisfaction ?? 0}
-                        lifeBalance={summaryData?.evaluation?.avg_life_balance ?? 0}
-                        gains={summaryData?.evaluation?.avg_gains ?? 0}
-                        teachingSkill={summaryData?.evaluation?.avg_teaching_skill ?? 0}
-                        height={280}
-                        width={280}
-                      />
-                    </GraphWrapper>
-                  )}
-                  <YAxisLabel>수라밸</YAxisLabel>
-                </DiagramMiddle>
-                <DiagramBottom>
-                  <AxisLabel>얻어가는 것</AxisLabel>
-                </DiagramBottom>
-              </ReviewDiagram>
+              <EvaluationDetailScore
+                score={{
+                  gains: summaryData?.evaluation.avg_gains ?? null,
+                  grade_satisfaction: summaryData?.evaluation.avg_grade_satisfaction ?? null,
+                  life_balance: summaryData?.evaluation.avg_life_balance ?? null,
+                  teaching_skill: summaryData?.evaluation.avg_teaching_skill ?? null,
+                }}
+                isSnuevWarning={showSnuevWarning}
+              />
 
-              <ReviewList>
-                {myReviewResult?.evaluations.map((content) => (
-                  <LectureReviewCard
-                    review={content}
-                    key={content.id}
-                    onMoreClick={() => {
-                      setMoreSheetItem(content);
-                    }}
-                    isMyReview
-                  />
-                ))}
-                <>
-                  {searchResult?.pages
-                    ?.flatMap((page) => page.content)
-                    .map((it) => (
+              {myLectureEvaluations && lectureEvaluations && (
+                <ReviewList>
+                  {myLectureEvaluations.map((content) => (
+                    <LectureReviewCard
+                      review={content}
+                      key={content.id}
+                      onMoreClick={() => setMoreSheetItem(content)}
+                      onScoreDetailClick={() => setScoreDetailPopupItemId(content.id)}
+                      isMyReview
+                    />
+                  ))}
+                  <>
+                    {lectureEvaluations.map((it) => (
                       <LectureReviewCard
                         review={it}
                         key={it.id}
-                        onMoreClick={() => {
-                          setMoreSheetItem(it);
-                        }}
+                        onMoreClick={() => setMoreSheetItem(it)}
+                        onScoreDetailClick={() => setScoreDetailPopupItemId(it.id)}
                       />
                     ))}
-                  {hasNextPage && !isFetchingNextPage && <div ref={loaderRef} />}
-                  {isFetchingNextPage && <SearchResultLoading />}
-                </>
-              </ReviewList>
+                    {hasNextPage && !isFetchingNextPage && <div ref={loaderRef} />}
+                    {isFetchingNextPage && <SearchResultLoading />}
+                  </>
+                </ReviewList>
+              )}
             </EvaluationDetail>
           )}
         </Content>
       </Wrapper>
+      <DeleteEvaluationDialog
+        isOpen={deleteTargetId !== undefined}
+        close={() => setDeleteTargetId(undefined)}
+        confirmDelete={handleDeleteEvaluationConfirm}
+      />
+      <ReportEvaluationDialog
+        isOpen={reportTargetId !== undefined}
+        close={() => setReportTargetId(undefined)}
+        report={handleReportEvaluationConfirm}
+      />
+      <EvaluationScoreDialog
+        isOpen={scoreDetailPopupItemId !== undefined}
+        close={() => setScoreDetailPopupItemId(undefined)}
+        evaluation={scoreDetailPopupItem}
+      />
       <EvaluationModifySheet
         isOpened={moreSheetItem !== undefined}
-        onClose={() => {
-          setMoreSheetItem(undefined);
-        }}
+        onClose={() => setMoreSheetItem(undefined)}
         onReportClicked={handleReportEvaluation}
         onDeleteClicked={handleDeleteEvaluation}
         isModifiable={moreSheetItem?.is_modifiable ?? false}
@@ -294,32 +202,6 @@ export const DetailImpl = () => {
 };
 
 const Wrapper = styled.div``;
-
-const BackButton = styled.button`
-  width: 30px;
-  height: 30px;
-  background: transparent;
-  border: none;
-  padding: 0;
-`;
-
-const WriteButton = styled.button`
-  width: 30px;
-  height: 30px;
-  z-index: 9999;
-  background: transparent;
-  border: none;
-  padding: 0;
-`;
-
-const AppBarContent = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding-right: 12px;
-`;
 
 const Content = styled.div`
   padding: 0 20px 0 20px;
@@ -372,54 +254,6 @@ const ReviewCount = styled(Detail)`
   margin-top: 3px;
   color: rgb(102, 102, 102);
   white-space: nowrap;
-`;
-
-const ReviewDiagram = styled.div`
-  height: 330px;
-  width: 290px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-content: center;
-  text-align: center;
-  align-self: center;
-  padding: 8px 0 8px 0;
-  margin-bottom: 10px;
-
-  position: relative;
-  z-index: -10;
-`;
-
-const DiagramTop = styled.div``;
-
-const DiagramMiddle = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  position: relative;
-`;
-
-const DiagramBottom = styled.div`
-  height: 28px;
-`;
-
-const AxisLabel = styled.span`
-  font-family: AppleSDGothicNeo;
-  font-weight: bold;
-  font-size: 10px;
-  line-height: 11px;
-`;
-
-const YAxisLabel = styled(AxisLabel)`
-  margin-top: 20px;
-`;
-
-const GraphWrapper = styled.div`
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
 `;
 
 const ReviewList = styled.div``;

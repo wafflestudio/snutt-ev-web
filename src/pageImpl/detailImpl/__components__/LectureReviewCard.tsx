@@ -3,21 +3,24 @@ import styled from '@emotion/styled';
 import FossilIcon from '@/assets/icons/fossil.svg';
 import MoreVerticalIcon from '@/assets/icons/more_vertical.svg';
 import { CollapsableText } from '@/lib/components/CollapsableText';
+import SvgMaximize from '@/lib/components/Icons/SvgMaximize';
 import { Rating } from '@/lib/components/Rating';
 import { Detail } from '@/lib/components/Text';
 import { EvaluationDTO } from '@/lib/dto/evaluation';
 import { COLORS } from '@/lib/styles/colors';
+import { APP_ENV } from '@/lib/util/env';
 import { semesterToString } from '@/lib/util/semesterToString';
 
 interface Props {
   review: EvaluationDTO;
   onMoreClick: () => void;
+  onScoreDetailClick: () => void;
   isMyReview?: boolean;
 }
 
-export const LectureReviewCard = ({ review, onMoreClick, isMyReview = false }: Props) => {
+export const LectureReviewCard = ({ review, onMoreClick, isMyReview = false, onScoreDetailClick }: Props) => {
   return (
-    <Wrapper isMintColor={isMyReview}>
+    <Wrapper isMintColor={isMyReview} data-testid="detail-evaluation-card">
       <Contents>
         <Header>
           <SideInfo>
@@ -33,9 +36,14 @@ export const LectureReviewCard = ({ review, onMoreClick, isMyReview = false }: P
               </FossilIconWrapper>
             )}
             <div style={{ flexGrow: 1 }} />
-            <div onClick={onMoreClick}>
+            {APP_ENV !== 'prod' && (
+              <div onClick={onScoreDetailClick} data-testid="detail-evaluation-score-button">
+                <SvgMaximize />
+              </div>
+            )}
+            <MoreButtonWrapper onClick={onMoreClick}>
               <MoreVerticalIcon />
-            </div>
+            </MoreButtonWrapper>
           </SideInfo>
         </Header>
         {review.content === '' ? null : (
@@ -101,4 +109,8 @@ const Review = styled.div`
   display: inline-block;
   width: 100%;
   margin-top: 12px;
+`;
+
+const MoreButtonWrapper = styled.div`
+  margin-left: 12px;
 `;

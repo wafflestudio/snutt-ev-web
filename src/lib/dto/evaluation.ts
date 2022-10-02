@@ -6,7 +6,7 @@ export interface EvaluationDTO {
   lecture_id: number;
   user: EvServiceUserDto;
   content: string;
-  grade_satisfaction: number;
+  grade_satisfaction: number | null;
   teaching_skill: number | null;
   gains: number | null;
   life_balance: number | null;
