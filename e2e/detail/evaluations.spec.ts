@@ -21,12 +21,14 @@ test(
 
       // TODO: 강의평 삭제 기능 테스트
 
-      // TODO: 강의평 점수 자세히 보기 기능 테스트
+      // 강의평 점수 자세히 보기 기능 테스트
       const myEvaluation = detail.findByTestId('detail-evaluation-card').first();
       await expect(detail.findByTestId('detail-evaluation-score-dialog')).toHaveCount(0);
       await myEvaluation.locator('[data-testid=detail-evaluation-score-button]').click();
       await expect(detail.findByTestId('detail-evaluation-score-dialog')).toHaveAttribute('data-id', '6260');
       await expect(detail.findByTestId('detail-evaluation-score-dialog')).toHaveCount(1);
+      await detail.findByTestId('detail-evaluation-score-dialog-close-button').click();
+      await expect(detail.findByTestId('detail-evaluation-score-dialog')).toHaveCount(0);
     },
   ),
 );
