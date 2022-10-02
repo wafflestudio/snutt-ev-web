@@ -10,9 +10,7 @@ import SvgArrowBack from '@/lib/components/Icons/SvgArrowBack';
 import { SemesterLectureDTO } from '@/lib/dto/semesterLecture';
 import { COLORS } from '@/lib/styles/colors';
 
-import { EvalBasic } from './__components__/EvalBasic';
-import { EvalPolygon } from './__components__/EvalPolygon';
-import { Header } from './__components__/Header';
+import { EvalBasic, EvalPolygon, Header } from './__components__';
 import { useLectureSemesters, usePolygon } from './__containers__';
 
 export const CreateImpl = () => {

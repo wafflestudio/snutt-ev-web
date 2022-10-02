@@ -9,6 +9,12 @@
     "react-hooks/exhaustive-deps": "error",
     "simple-import-sort/imports": "error",
     "react/jsx-no-useless-fragment": ["error", { "allowExpressions": true }],
-    "no-restricted-imports": ["error", { "paths": [{ "name": "react", "importNames": ["default"] }] }]
+    "no-restricted-imports": [
+      "error",
+      {
+        "paths": [{ "name": "react", "importNames": ["default", "FC"] }],
+        "patterns": [{ "group": ["./__[a-z]*__/*"], "message": "index.ts 를 통해 export해 주세요." }]
+      }
+    ]
   }
 }

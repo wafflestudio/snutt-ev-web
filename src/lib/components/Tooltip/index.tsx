@@ -7,11 +7,11 @@ import { TootTipContent } from './ToolTipContent';
 
 export const RatingTooltip = () => {
   const [tooltipOpen, setTooltipOpen] = useState(false);
-  const buttonRef = useRef(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const onClickOutsideButton = (e: Event) => {
     e.preventDefault();
-    if (buttonRef.current && (buttonRef.current as any).contains(e.target) === false) {
+    if (buttonRef.current && buttonRef.current.contains(e.target as Node) === false) {
       setTooltipOpen(false);
     }
   };
