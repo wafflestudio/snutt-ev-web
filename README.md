@@ -25,15 +25,22 @@ yarn dlx @yarnpkg/sdks vscode
 NEXT_PUBLIC_CORE_API_URL=https://snutt-api-dev.wafflestudio.com
 NEXT_PUBLIC_EV_API_URL=https://snutt-api-dev.wafflestudio.com/ev-service
 
-# secrets
-NEXT_PUBLIC_LOCAL_ACCESS_TOKEN=youraccesstoken
-NEXT_PUBLIC_LOCAL_ACCESS_APIKEY=youraccessapikey
-
 # enable/disable react-query devtools
 NEXT_PUBLIC_REACT_QUERY_DEVTOOL=true
 
 # app env (local / dev / prod / test)
 NEXT_PUBLIC_APP_ENV=local
+```
+
+<br/>
+
+### 인증
+
+사용하려는 브라우저의 cookie 에 아래 값들을 세팅해준다.
+
+```
+x-access-apikey
+x-access-token
 ```
 
 <br/><br/>
