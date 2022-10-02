@@ -1,179 +1,146 @@
 import styled from '@emotion/styled';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useRouter } from 'next/router';
+import { Router, useRouter } from 'next/router';
 import { useState } from 'react';
 
 import FossilIcon from '@/assets/icons/fossil.svg';
-import { deleteEvaluation, postReportEvaluation } from '@/lib/apis/ev';
-import SvgStarSmallEmpty from '@/lib/components/Icons/SvgStarSmallEmpty';
-import SvgStarSmallFilled from '@/lib/components/Icons/SvgStarSmallFilled';
 import { EmptyReviewPlaceholder } from '@/lib/components/Miscellaneous/EmptyReviewPlaceholder';
 import { SearchResultLoading } from '@/lib/components/Miscellaneous/Loading';
-import { Detail, Subheading02, Title01 } from '@/lib/components/Text';
 import { RatingTooltip } from '@/lib/components/Tooltip';
-import { EvaluationDTO } from '@/lib/dto/evaluation';
 import useScrollLoader from '@/lib/hooks/useScrollLoader';
 import { COLORS } from '@/lib/styles/colors';
-import { useLectureEvaluationsContainer } from '@/pageImpl/detailImpl/__containers__/useLectureEvaluationsContainer';
 
-import { DeleteEvaluationDialog } from './__components__/DeleteEvaluationDialog';
-import { DetailAppBar } from './__components__/DetailAppBar';
-import { EvaluationDetailScore } from './__components__/EvaluationDetailScore';
-import EvaluationModifySheet from './__components__/EvaluationModifySheet';
-import { EvaluationScoreDialog } from './__components__/EvaluationScoreDialog';
-import { LectureReviewCard } from './__components__/LectureReviewCard';
-import { ReportEvaluationDialog } from './__components__/ReportEvaluationDialog';
-import { useEvaluationSummaryContainer } from './__containers__/useEvaluationSummaryContainer';
-import { useMyLectureEvaluationsContainer } from './__containers__/useMyLectureEvaluationsContainer';
+import {
+  DeleteEvaluationDialog,
+  DetailAppBar,
+  EvaluationDetailScore,
+  EvaluationModifySheet,
+  EvaluationScoreDialog,
+  LectureEvaluationSummary,
+  LectureReviewCard,
+  ReportEvaluationDialog,
+} from './__components__';
+import {
+  useDeleteEvaluation,
+  useEvaluationSummary,
+  useLectureEvaluations,
+  useLectureMyEvaluations,
+  useReportEvaluation,
+} from './__queries__';
 
 export const DetailImpl = () => {
   const router = useRouter();
-  const { id } = router.query;
+  const lectureId = Number(router.query.id);
 
-  const { summaryData } = useEvaluationSummaryContainer(Number(id));
-  const { searchResult, fetchNextPage, isFetchingNextPage, hasNextPage } = useLectureEvaluationsContainer(Number(id));
-  const { myReviewResult } = useMyLectureEvaluationsContainer(Number(id));
+  const { data: summaryData } = useEvaluationSummary(lectureId);
+  const { data: myReviewResult } = useLectureMyEvaluations(lectureId);
+  const { data: searchResult, fetchNextPage, isFetchingNextPage, hasNextPage } = useLectureEvaluations(lectureId);
+
+  const { mutateAsync: deleteEvaluation } = useDeleteEvaluation(lectureId);
+  const { mutateAsync: reportEvaluation } = useReportEvaluation(lectureId);
+
   const { loaderRef } = useScrollLoader(fetchNextPage);
 
-  const queryClient = useQueryClient();
-
-  const [moreSheetItem, setMoreSheetItem] = useState<EvaluationDTO>();
+  const [moreSheetItemId, setMoreSheetItemId] = useState<number>();
+  const [deleteTargetId, setDeleteTargetId] = useState<number>();
+  const [reportTargetId, setReportTargetId] = useState<number>();
   const [scoreDetailPopupItemId, setScoreDetailPopupItemId] = useState<number>();
-
-  const deleteMutation = useMutation((id: number) => deleteEvaluation({ params: { id } }), {
-    onSuccess: () => {
-      queryClient.invalidateQueries(['evaluationSummary', Number(id)]);
-      queryClient.invalidateQueries(['myLectureEvaluation', Number(id)]);
-      queryClient.invalidateQueries(['lectureEvaluation', Number(id)]);
-    },
-    onError: () => {
-      console.error('강의평 삭제에 실패하였습니다.');
-    },
-  });
-  const [deleteTargetId, setDeleteTargetId] = useState<number | undefined>(undefined);
-  const handleDeleteEvaluation = () => {
-    setDeleteTargetId(moreSheetItem?.id);
-    setMoreSheetItem(undefined);
-  };
-  const handleDeleteEvaluationConfirm = async () => {
-    const target = deleteTargetId;
-    setDeleteTargetId(undefined);
-    if (target !== undefined) {
-      deleteMutation.mutate(target);
-    }
-  };
-
-  const reportMutation = useMutation(
-    ({ id, content }: { id: number; content: string }) => postReportEvaluation({ params: { id }, body: { content } }),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(['evaluationSummary']);
-        queryClient.invalidateQueries(['lectureEvaluation']);
-      },
-      onError: () => {
-        console.error('강의평 신고에 실패하였습니다.');
-      },
-    },
-  );
-  const [reportTargetId, setReportTargetId] = useState<number | undefined>(undefined);
-  const handleReportEvaluation = () => {
-    setReportTargetId(moreSheetItem?.id);
-    setMoreSheetItem(undefined);
-  };
-  const handleReportEvaluationConfirm = async (r: string) => {
-    const target = reportTargetId;
-    setReportTargetId(undefined);
-    if (target !== undefined) {
-      reportMutation.mutate({ id: target, content: r });
-    }
-  };
 
   const count = searchResult?.pages[searchResult?.pages.length - 1].total_count;
   const isEmpty = count === 0 && myReviewResult?.evaluations.length === 0;
   const showSnuevWarning = !isEmpty && !summaryData?.evaluation?.avg_life_balance;
   const myLectureEvaluations = myReviewResult?.evaluations;
   const lectureEvaluations = searchResult?.pages?.flatMap((page) => page.content);
-  const scoreDetailPopupItem = [...(myLectureEvaluations ?? []), ...(lectureEvaluations ?? [])].find(
-    (item) => item.id === scoreDetailPopupItemId,
-  );
+  const allEvaluations = [...(myLectureEvaluations ?? []), ...(lectureEvaluations ?? [])];
+  const moreSheetItem = allEvaluations.find((item) => item.id === moreSheetItemId);
+  const scoreDetailPopupItem = allEvaluations.find((item) => item.id === scoreDetailPopupItemId);
+
+  const handleDeleteEvaluation = () => {
+    setDeleteTargetId(moreSheetItemId);
+    setMoreSheetItemId(undefined);
+  };
+  const handleDeleteEvaluationConfirm = async () => {
+    if (deleteTargetId === undefined) return;
+    await deleteEvaluation(deleteTargetId);
+    setDeleteTargetId(undefined);
+  };
+  const handleReportEvaluation = () => {
+    setReportTargetId(moreSheetItemId);
+    setMoreSheetItemId(undefined);
+  };
+  const handleReportEvaluationConfirm = async (content: string) => {
+    if (reportTargetId === undefined) return;
+    await reportEvaluation({ id: reportTargetId, content });
+    setReportTargetId(undefined);
+  };
+
+  const goBack = () => {
+    if (((router as Router).components['/detail'] as { initial?: true }).initial) {
+      router.replace('/main');
+    } else {
+      router.back();
+    }
+  };
 
   return (
-    <>
-      <Wrapper>
-        <DetailAppBar id={Number(id)} />
+    <Wrapper>
+      <DetailAppBar id={lectureId} goBack={goBack} />
 
-        <Content>
-          <ReviewSummary>
-            <ReviewSummaryLeft>
-              <Title01>{summaryData?.title}</Title01>
-              <InstructorName>
-                {summaryData?.instructor} / {summaryData?.credit}학점 ({summaryData?.classification})
-              </InstructorName>
-            </ReviewSummaryLeft>
-            <ReviewSummaryRight>
-              <ReviewScore>
-                {isEmpty ? <SvgStarSmallEmpty height={19} width={19} /> : <SvgStarSmallFilled height={19} width={19} />}
-                <Title01 style={{ marginLeft: 6, marginTop: 0 }}>
-                  {summaryData?.evaluation?.avg_rating?.toFixed(1)}
-                </Title01>
-              </ReviewScore>
-              <ReviewCount>{count}개의 강의평</ReviewCount>
-            </ReviewSummaryRight>
-          </ReviewSummary>
+      <Content>
+        <LectureEvaluationSummary summaryData={summaryData} isEmpty={isEmpty} count={count} />
 
-          {showSnuevWarning && (
-            <SnuevWarning>
-              <FossilIcon />
-              <SnuevWarningText>와플스튜디오에서 발굴한 옛 강의평은 세부 항목 점수가 없습니다.</SnuevWarningText>
-            </SnuevWarning>
-          )}
+        {showSnuevWarning && (
+          <SnuevWarning>
+            <FossilIcon />
+            <SnuevWarningText>와플스튜디오에서 발굴한 옛 강의평은 세부 항목 점수가 없습니다.</SnuevWarningText>
+          </SnuevWarning>
+        )}
 
-          {isEmpty ? (
-            <EmptyReviewPlaceholder />
-          ) : (
-            <EvaluationDetail>
-              <PositionedRatingToolTip>
-                <RatingTooltip />
-              </PositionedRatingToolTip>
-              <EvaluationDetailScore
-                score={{
-                  gains: summaryData?.evaluation.avg_gains ?? null,
-                  grade_satisfaction: summaryData?.evaluation.avg_grade_satisfaction ?? null,
-                  life_balance: summaryData?.evaluation.avg_life_balance ?? null,
-                  teaching_skill: summaryData?.evaluation.avg_teaching_skill ?? null,
-                }}
-                isSnuevWarning={showSnuevWarning}
-              />
+        {isEmpty ? (
+          <EmptyReviewPlaceholder />
+        ) : (
+          <EvaluationDetail>
+            <PositionedRatingToolTip>
+              <RatingTooltip />
+            </PositionedRatingToolTip>
+            <EvaluationDetailScore
+              score={{
+                gains: summaryData?.evaluation.avg_gains ?? null,
+                grade_satisfaction: summaryData?.evaluation.avg_grade_satisfaction ?? null,
+                life_balance: summaryData?.evaluation.avg_life_balance ?? null,
+                teaching_skill: summaryData?.evaluation.avg_teaching_skill ?? null,
+              }}
+              isSnuevWarning={showSnuevWarning}
+            />
 
-              {myLectureEvaluations && lectureEvaluations && (
-                <ReviewList>
-                  {myLectureEvaluations.map((content) => (
+            {myLectureEvaluations && lectureEvaluations && (
+              <ReviewList>
+                {myLectureEvaluations.map((content) => (
+                  <LectureReviewCard
+                    review={content}
+                    key={content.id}
+                    onMoreClick={() => setMoreSheetItemId(content.id)}
+                    onScoreDetailClick={() => setScoreDetailPopupItemId(content.id)}
+                    isMyReview
+                  />
+                ))}
+                <>
+                  {lectureEvaluations.map((it) => (
                     <LectureReviewCard
-                      review={content}
-                      key={content.id}
-                      onMoreClick={() => setMoreSheetItem(content)}
-                      onScoreDetailClick={() => setScoreDetailPopupItemId(content.id)}
-                      isMyReview
+                      review={it}
+                      key={it.id}
+                      onMoreClick={() => setMoreSheetItemId(it.id)}
+                      onScoreDetailClick={() => setScoreDetailPopupItemId(it.id)}
                     />
                   ))}
-                  <>
-                    {lectureEvaluations.map((it) => (
-                      <LectureReviewCard
-                        review={it}
-                        key={it.id}
-                        onMoreClick={() => setMoreSheetItem(it)}
-                        onScoreDetailClick={() => setScoreDetailPopupItemId(it.id)}
-                      />
-                    ))}
-                    {hasNextPage && !isFetchingNextPage && <div ref={loaderRef} />}
-                    {isFetchingNextPage && <SearchResultLoading />}
-                  </>
-                </ReviewList>
-              )}
-            </EvaluationDetail>
-          )}
-        </Content>
-      </Wrapper>
+                  {hasNextPage && !isFetchingNextPage && <div ref={loaderRef} />}
+                  {isFetchingNextPage && <SearchResultLoading />}
+                </>
+              </ReviewList>
+            )}
+          </EvaluationDetail>
+        )}
+      </Content>
+
       <DeleteEvaluationDialog
         isOpen={deleteTargetId !== undefined}
         close={() => setDeleteTargetId(undefined)}
@@ -190,14 +157,14 @@ export const DetailImpl = () => {
         evaluation={scoreDetailPopupItem}
       />
       <EvaluationModifySheet
-        isOpened={moreSheetItem !== undefined}
-        onClose={() => setMoreSheetItem(undefined)}
+        isOpened={moreSheetItemId !== undefined}
+        onClose={() => setMoreSheetItemId(undefined)}
         onReportClicked={handleReportEvaluation}
         onDeleteClicked={handleDeleteEvaluation}
         isModifiable={moreSheetItem?.is_modifiable ?? false}
         isReportable={moreSheetItem?.is_reportable ?? false}
       />
-    </>
+    </Wrapper>
   );
 };
 
@@ -216,44 +183,6 @@ const EvaluationDetail = styled.div`
   align-content: center;
   justify-content: center;
   position: relative;
-`;
-
-const ReviewSummary = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
-  padding: 10px 0 10px 0;
-  border-bottom: solid 1px rgb(232, 232, 232);
-`;
-
-const ReviewSummaryLeft = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-right: 10px;
-`;
-
-const InstructorName = styled(Subheading02)`
-  margin-top: 3px;
-  color: rgb(119, 119, 119);
-`;
-
-const ReviewSummaryRight = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const ReviewScore = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-content: center;
-`;
-
-const ReviewCount = styled(Detail)`
-  margin-top: 3px;
-  color: rgb(102, 102, 102);
-  white-space: nowrap;
 `;
 
 const ReviewList = styled.div``;

@@ -1,10 +1,5 @@
 {
-  "extends": [
-    "next",
-    "next/core-web-vitals",
-    "plugin:prettier/recommended",
-    "plugin:@typescript-eslint/recommended"
-  ],
+  "extends": ["next", "next/core-web-vitals", "plugin:prettier/recommended", "plugin:@typescript-eslint/recommended"],
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "simple-import-sort"],
   "root": true,
@@ -14,9 +9,6 @@
     "react-hooks/exhaustive-deps": "error",
     "simple-import-sort/imports": "error",
     "react/jsx-no-useless-fragment": ["error", { "allowExpressions": true }],
-    "no-restricted-imports": [
-      "error",
-      { "paths": [{ "name": "react", "importNames": ["default"] }] }
-    ]
+    "no-restricted-imports": ["error", { "paths": [{ "name": "react", "importNames": ["default"] }] }]
   }
 }
