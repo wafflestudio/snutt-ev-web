@@ -4,16 +4,18 @@ import { Fragment, useMemo, useState } from 'react';
 import { SearchResultLoading } from '@/lib/components/Miscellaneous/Loading';
 import useScrollLoader from '@/lib/hooks/useScrollLoader';
 
-import { Searchbar } from './__components__/Searchbar';
-import { SearchInitialPage } from './__components__/SearchInitialPage';
-import { SearchNoResult } from './__components__/SearchNoResult';
-import { SearchOptionSheet } from './__components__/SearchOptionSheet';
-import { SearchResultItem } from './__components__/SearchResultItem';
-import { ActiveTagList } from './__components__/SelectedTagList';
-import { useSearchOptions, useSearchResult, useSearchTags } from './__containers__';
+import {
+  ActiveTagList,
+  Searchbar,
+  SearchInitialPage,
+  SearchNoResult,
+  SearchOptionSheet,
+  SearchResultItem,
+} from './__components__';
+import { useSearchOptions } from './__containers__';
+import { useSearchResult, useSearchTags } from './__queries__';
 
 export const SearchImpl = () => {
-  const { data: tagGroups } = useSearchTags();
   const {
     selectedTagIDs,
     toggleTagSelection,
@@ -22,12 +24,17 @@ export const SearchImpl = () => {
     selectedTextQuery,
     updateTextQuery,
   } = useSearchOptions();
-  const { searchResult, isFetchingNextPage, hasNextPage, fetchNextPage } = useSearchResult(
-    currentlyAppliedQuery?.tags ?? [],
-    currentlyAppliedQuery?.textQuery,
-  );
+
+  const { data: tagGroups } = useSearchTags();
+  const {
+    data: searchResult,
+    isFetchingNextPage,
+    hasNextPage,
+    fetchNextPage,
+  } = useSearchResult(currentlyAppliedQuery?.tags ?? [], currentlyAppliedQuery?.textQuery);
 
   const { loaderRef } = useScrollLoader(fetchNextPage);
+
   const [isSearchSheetOpen, setIsSearchSheetOpen] = useState(false);
 
   const isEmptyQuery =
@@ -70,8 +77,8 @@ export const SearchImpl = () => {
         )}
       </SearchResultList>
       <SearchOptionSheet
-        selectedTags={selectedTags || []}
-        tagGroups={tagGroups || []}
+        selectedTags={selectedTags ?? []}
+        tagGroups={tagGroups ?? []}
         onToggleTag={toggleTagSelection}
         isOpened={isSearchSheetOpen}
         onClose={() => setIsSearchSheetOpen(false)}
