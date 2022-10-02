@@ -61,9 +61,16 @@ export type GetEvaluationsResult = {
   last: boolean;
   total_count: number;
 };
-export type GetMyEvaluationsResult = { evaluations: EvaluationDTO[] };
+export type GetMyLectureEvaluationsResult = { evaluations: EvaluationDTO[] };
 export type GetLecturesQuery = { query?: string; tags: number[]; page: number };
 export type GetLecturesResult = { content: LectureDTO[]; page?: number; size: number; last: boolean };
 export type GetMainTagEvalutionsQuery = { cursor?: string };
 export type GetMainTagEvaluationsResult = { content: MainEvaluationDTO[]; cursor: string | null };
 export type GetMainTagInfosResult = TagGroupDTO;
+export type ListMyEvaluationsResponse = {
+  content: MainEvaluationDTO[];
+  cursor: string | null;
+  size: number;
+  last: boolean;
+  total_count: number;
+};

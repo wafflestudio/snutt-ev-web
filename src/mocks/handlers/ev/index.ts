@@ -5,9 +5,34 @@ import {
   GetMainTagEvaluationsResult,
   GetMainTagInfosResult,
   GetSemesterLecturesResult,
+  ListMyEvaluationsResponse,
 } from '@/lib/apis/ev/types';
 
-import { mockLatestLectures, mockMainEvaluations, mockMainTags, mockSemesterLectures } from './fixtures';
+import {
+  mockLatestLectures,
+  mockMainEvaluations,
+  mockMainTags,
+  mockMyEvaluations,
+  mockSemesterLectures,
+} from './fixtures';
+
+const getPaginatedResult = <T extends { id: number }>(
+  baseContents: T[],
+  cursor?: string,
+  options?: { maxPage?: number },
+) => {
+  const _cursor = Number(cursor ?? 0);
+  const size = baseContents.length;
+  const MAX_PAGE = options?.maxPage ?? 4;
+  const total_count = MAX_PAGE * size;
+  const isLastPage = _cursor >= (MAX_PAGE - 1) * size;
+  const content = baseContents.map((ev) => ({
+    ...ev,
+    id: ev.id + _cursor,
+  }));
+
+  return { content, cursor: isLastPage ? null : `${_cursor + size}`, size, last: isLastPage, total_count };
+};
 
 export const evHandlers = [
   rest.get<never, never, GetLatestLecturesResult>('*/v1/users/me/lectures/latest', (req, res, ctx) => {
@@ -31,26 +56,9 @@ export const evHandlers = [
       const { TEST_MAIN_EVALUATION_EXIST = 'true' } = req.cookies;
       if (TEST_MAIN_EVALUATION_EXIST === 'false') return res(ctx.json({ content: [], cursor: null }));
 
-      const cursor = Number(req.url.searchParams.get('cursor') ?? 0);
-      const size = mockMainEvaluations.length;
-      const MAX_PAGE = 4;
-      const total_count = MAX_PAGE * size;
-      const content = mockMainEvaluations.map((ev) => ({
-        ...ev,
-        id: ev.id + cursor,
-      }));
+      const paginatedResult = getPaginatedResult(mockMainEvaluations, req.url.searchParams.get('cursor') ?? undefined);
 
-      const isLastPage = cursor >= (MAX_PAGE - 1) * size;
-
-      return res(
-        ctx.json({
-          content,
-          cursor: isLastPage ? null : `${cursor + size}`,
-          size,
-          last: isLastPage,
-          total_count,
-        }),
-      );
+      return res(ctx.json(paginatedResult));
     },
   ),
 
@@ -60,4 +68,14 @@ export const evHandlers = [
       return res(ctx.json(mockSemesterLectures));
     },
   ),
+
+  rest.get<never, never, ListMyEvaluationsResponse>(`*/v1/evaluations/users/me`, (req, res, ctx) => {
+    const { TEST_MY_EVALUATION_EXIST = 'true' } = req.cookies;
+    if (TEST_MY_EVALUATION_EXIST === 'false')
+      return res(ctx.json({ content: [], cursor: null, size: 20, last: true, total_count: 0 }));
+
+    const paginatedResult = getPaginatedResult(mockMyEvaluations, req.url.searchParams.get('cursor') ?? undefined);
+
+    return res(ctx.json(paginatedResult));
+  }),
 ];

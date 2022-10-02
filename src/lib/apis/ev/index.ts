@@ -13,9 +13,10 @@ import type {
   GetMainTagEvaluationsResult,
   GetMainTagEvalutionsQuery,
   GetMainTagInfosResult,
-  GetMyEvaluationsResult,
+  GetMyLectureEvaluationsResult,
   GetSemesterLecturesResult,
   GetTagInfosProcessedResult,
+  ListMyEvaluationsResponse,
   PostEvaluationQuery,
   PostEvaluationResult,
   PostReportEvaluationParams,
@@ -71,7 +72,7 @@ export async function fetchMyLectureEvaluations(args: Args<{ id: number }>) {
   const endpoint = `/v1/lectures/${args.params.id}/evaluations/users/me`;
   const headers = getServerSideHeaders(args.context);
 
-  const response = await evClient.get<GetMyEvaluationsResult>(endpoint, { headers });
+  const response = await evClient.get<GetMyLectureEvaluationsResult>(endpoint, { headers });
   return response.data;
 }
 
@@ -122,5 +123,15 @@ export async function postReportEvaluation(args: Args<{ id: number }, undefined,
   const headers = getServerSideHeaders(args.context);
 
   const response = await evClient.post<PostReportEvaluationResult>(endpoint, args.body, { headers });
+  return response.data;
+}
+
+export async function listMyEvaluations(args: Args<undefined, { cursor?: string }>) {
+  const endpoint = `/v1/evaluations/users/me`;
+  const headers = getServerSideHeaders(args.context);
+  const query = new URLSearchParams();
+  if (args.query.cursor) query.set('cursor', args.query.cursor);
+
+  const response = await evClient.get<ListMyEvaluationsResponse>(endpoint, { headers, params: query });
   return response.data;
 }
