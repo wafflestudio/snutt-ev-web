@@ -44,9 +44,15 @@ export const evHandlers = [
   rest.get<never, never, GetLatestLecturesResult>('*/v1/users/me/lectures/latest', (req, res, ctx) => {
     const { TEST_RECENT_LECTURES_EXIST = 'true' } = req.cookies;
 
+    const isFilterNoMyEvaluation = req.url.searchParams.get('filter') === 'no-my-evaluations';
+
     switch (TEST_RECENT_LECTURES_EXIST) {
       case 'true':
-        return res(ctx.json(mockLatestLectures));
+        return res(
+          isFilterNoMyEvaluation
+            ? ctx.json({ content: mockLatestLectures.slice(0, 2), total_count: 2 })
+            : ctx.json({ content: mockLatestLectures, total_count: 6 }),
+        );
       case 'false':
         return res(ctx.json({ content: [], total_count: 0 }));
     }

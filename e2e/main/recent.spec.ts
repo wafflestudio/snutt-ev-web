@@ -74,6 +74,7 @@ test(
       // 지난 학기 강의 섹션이 보여야 한다
       const recentSection = main.findByTestId('main-recent');
       await expect(recentSection).toHaveCount(1);
+      await expect(main.findByTestId('main-recent-lecture-card')).toHaveCount(2);
 
       // 지난 학기 강의를 클릭하면 해당 강의 링크로 이동해야 한다
       await main.findByTestId('main-recent-lecture-card').locator('text=생물학').click();

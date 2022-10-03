@@ -1,5 +1,6 @@
 import { evClient } from '@/clients/axiosEvClient';
 import { Args } from '@/lib/util/apiArgs';
+import { APP_ENV } from '@/lib/util/env';
 import { getServerSideHeaders } from '@/lib/util/getServerSideHeaders';
 
 import type {
@@ -24,11 +25,14 @@ import type {
 } from './types';
 
 // 지난 학기 들은 강의 목록 불러오는 api
-export async function fetchLatestLectures(args: Args = {}) {
+export async function fetchLatestLectures(args: Args<undefined, { filter?: 'no-my-evaluations' }>) {
   const endpoint = `/v1/users/me/lectures/latest`;
   const headers = getServerSideHeaders(args.context);
 
-  const response = await evClient.get<GetLatestLecturesResult>(endpoint, { headers });
+  const response = await evClient.get<GetLatestLecturesResult>(
+    endpoint,
+    APP_ENV === 'prod' ? { headers } : { headers, params: args.query },
+  );
   return response.data;
 }
 

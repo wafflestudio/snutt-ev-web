@@ -9,5 +9,5 @@ const select = (data: GetLatestLecturesResult) => {
 };
 
 export function useLatestLectures() {
-  return useQuery(['latestLectures'], () => fetchLatestLectures(), { select });
+  return useQuery(['latestLectures', {}], () => fetchLatestLectures({ query: {} }), { select });
 }
