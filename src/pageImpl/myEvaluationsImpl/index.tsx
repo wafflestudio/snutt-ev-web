@@ -16,7 +16,7 @@ export const MyEvaluationsImpl = () => {
 
   return (
     <Wrapper>
-      <MyEvaluationsAppBar />
+      <MyEvaluationsAppBar totalCount={evaluationPages?.pages[0]?.total_count} />
       {isLoading || !evaluations ? (
         <SearchResultLoading />
       ) : isEmpty ? (

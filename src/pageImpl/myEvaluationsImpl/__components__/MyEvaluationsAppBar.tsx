@@ -3,9 +3,14 @@ import { useRouter } from 'next/router';
 
 import { AppBar } from '@/lib/components/Appbar';
 import SvgArrowBack from '@/lib/components/Icons/SvgArrowBack';
-import { Title01 } from '@/lib/components/Text';
+import { Detail, Title01 } from '@/lib/components/Text';
+import { COLORS } from '@/lib/styles/colors';
 
-export const MyEvaluationsAppBar = () => {
+interface Props {
+  totalCount?: number;
+}
+
+export const MyEvaluationsAppBar = ({ totalCount }: Props) => {
   const router = useRouter();
 
   return (
@@ -17,6 +22,7 @@ export const MyEvaluationsAppBar = () => {
       }
     >
       <Title>내가 남긴 강의평</Title>
+      {totalCount !== undefined && <Count data-testid="my-evaluations-total-count">({totalCount}개)</Count>}
     </AppBar>
   );
 };
@@ -31,4 +37,9 @@ const BackButton = styled.button`
 
 const Title = styled(Title01)`
   margin-left: 12px;
+`;
+
+const Count = styled(Detail)`
+  margin-left: 8px;
+  color: ${COLORS.gray2};
 `;
