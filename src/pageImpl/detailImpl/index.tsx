@@ -112,31 +112,29 @@ export const DetailImpl = () => {
               isSnuevWarning={showSnuevWarning}
             />
 
-            {myLectureEvaluations && lectureEvaluations && (
-              <ReviewList>
-                {myLectureEvaluations.map((content) => (
+            <ReviewList>
+              {myLectureEvaluations?.map((content) => (
+                <LectureReviewCard
+                  review={content}
+                  key={content.id}
+                  onMoreClick={() => setMoreSheetItemId(content.id)}
+                  onScoreDetailClick={() => setScoreDetailPopupItemId(content.id)}
+                  isMyReview
+                />
+              ))}
+              <>
+                {lectureEvaluations?.map((it) => (
                   <LectureReviewCard
-                    review={content}
-                    key={content.id}
-                    onMoreClick={() => setMoreSheetItemId(content.id)}
-                    onScoreDetailClick={() => setScoreDetailPopupItemId(content.id)}
-                    isMyReview
+                    review={it}
+                    key={it.id}
+                    onMoreClick={() => setMoreSheetItemId(it.id)}
+                    onScoreDetailClick={() => setScoreDetailPopupItemId(it.id)}
                   />
                 ))}
-                <>
-                  {lectureEvaluations.map((it) => (
-                    <LectureReviewCard
-                      review={it}
-                      key={it.id}
-                      onMoreClick={() => setMoreSheetItemId(it.id)}
-                      onScoreDetailClick={() => setScoreDetailPopupItemId(it.id)}
-                    />
-                  ))}
-                  {hasNextPage && !isFetchingNextPage && <div ref={loaderRef} />}
-                  {isFetchingNextPage && <SearchResultLoading />}
-                </>
-              </ReviewList>
-            )}
+                {hasNextPage && !isFetchingNextPage && <div ref={loaderRef} />}
+                {isFetchingNextPage && <SearchResultLoading />}
+              </>
+            </ReviewList>
           </EvaluationDetail>
         )}
       </Content>
