@@ -23,7 +23,7 @@ export const EvaluationScoreDialog = ({ isOpen, close, evaluation }: Props) => {
             height={30}
             onClick={close}
           />
-          <EvaluationDetailScore score={evaluation} />
+          <EvaluationDetailScore score={evaluation} size={240} />
         </Wrapper>
       )}
     </Dialog>

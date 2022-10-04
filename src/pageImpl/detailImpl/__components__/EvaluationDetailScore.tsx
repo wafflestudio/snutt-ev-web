@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Box } from '@mui/material';
 
 import { RatingGraph, RatingGraphAxis } from '@/lib/components/RatingGraph';
 import { EvaluationDTO } from '@/lib/dto/evaluation';
@@ -6,68 +7,47 @@ import { EvaluationDTO } from '@/lib/dto/evaluation';
 interface Props {
   score: Pick<EvaluationDTO, 'grade_satisfaction' | 'teaching_skill' | 'gains' | 'life_balance'>;
   isSnuevWarning?: boolean;
+  size?: number;
 }
 
-export const EvaluationDetailScore = ({ score, isSnuevWarning = false }: Props) => {
+export const EvaluationDetailScore = ({ score, isSnuevWarning = false, size = 280 }: Props) => {
   return (
-    <ReviewDiagram>
-      <DiagramTop>
-        <AxisLabel style={{ marginBottom: 10 }}>성적 만족도</AxisLabel>
-      </DiagramTop>
-      <DiagramMiddle>
-        <YAxisLabel>강의력</YAxisLabel>
+    <ReviewDiagram $size={size}>
+      <GraphWrapper>
         {isSnuevWarning ? (
-          <GraphWrapper>
-            <RatingGraphAxis height={280} width={280} />
-          </GraphWrapper>
+          <RatingGraphAxis height={size} width={size} />
         ) : (
-          <GraphWrapper>
-            <RatingGraph
-              gradeSatisfaction={score.grade_satisfaction ?? 0}
-              lifeBalance={score.life_balance ?? 0}
-              gains={score.gains ?? 0}
-              teachingSkill={score.teaching_skill ?? 0}
-              height={280}
-              width={280}
-            />
-          </GraphWrapper>
+          <RatingGraph
+            gradeSatisfaction={score.grade_satisfaction ?? 0}
+            lifeBalance={score.life_balance ?? 0}
+            gains={score.gains ?? 0}
+            teachingSkill={score.teaching_skill ?? 0}
+            height={size}
+            width={size}
+          />
         )}
-        <YAxisLabel>수라밸</YAxisLabel>
-      </DiagramMiddle>
-      <DiagramBottom>
-        <AxisLabel>얻어가는 것</AxisLabel>
-      </DiagramBottom>
+      </GraphWrapper>
+
+      <AxisLabel sx={{ left: '0%', top: 'calc(50% + 4px)' }}>강의력</AxisLabel>
+      <AxisLabel sx={{ left: '50%', top: '8px', transform: 'translateX(-50%)' }}>성적 만족도</AxisLabel>
+      <AxisLabel sx={{ right: '0%', top: 'calc(50% + 4px)' }}>수라밸</AxisLabel>
+      <AxisLabel sx={{ left: '50%', bottom: '12px', transform: 'translateX(-50%)' }}>얻어가는 것</AxisLabel>
     </ReviewDiagram>
   );
 };
 
-const DiagramTop = styled.div``;
+const AxisLabel = styled(Box)`
+  position: absolute;
 
-const DiagramMiddle = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  position: relative;
-`;
-
-const DiagramBottom = styled.div`
-  height: 28px;
-`;
-
-const AxisLabel = styled.span`
   font-family: AppleSDGothicNeo;
   font-weight: bold;
   font-size: 10px;
   line-height: 11px;
 `;
 
-const YAxisLabel = styled(AxisLabel)`
-  margin-top: 20px;
-`;
-
-const ReviewDiagram = styled.div`
-  height: 330px;
-  width: 290px;
+const ReviewDiagram = styled.div<{ $size: number }>`
+  width: ${({ $size }) => $size}px;
+  height: ${({ $size }) => $size}px;
 
   display: flex;
   flex-direction: column;
@@ -75,7 +55,7 @@ const ReviewDiagram = styled.div`
   align-content: center;
   text-align: center;
   align-self: center;
-  padding: 8px 0 8px 0;
+  padding: 28px 0 28px 0;
   margin-bottom: 10px;
 
   position: relative;
