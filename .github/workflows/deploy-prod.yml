@@ -63,9 +63,9 @@ jobs:
         uses: rtCamp/action-slack-notify@v2.1.2
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_CHANNEL: team-snutt
+          SLACK_CHANNEL: team-snutt-deploy
           SLACK_TITLE: NEW RELEASE
           SLACK_USERNAME: snutt-ev-web
           SLACK_ICON: https://user-images.githubusercontent.com/39977696/191924403-3a26618c-5568-4c22-b592-aedc77323e8d.png
-          SLACK_MESSAGE: Check <https://ap-northeast-2.console.aws.amazon.com/elasticbeanstalk/home?region=ap-northeast-2#/environment/dashboard?applicationName=snutt-ev-server&environmentId=e-tvyyex9rxp|EB> for updated environment (이거 서버임 바꿔야됨)
+          SLACK_MESSAGE: Check <https://ap-northeast-2.console.aws.amazon.com/elasticbeanstalk/home?region=ap-northeast-2#/environment/monitoring?applicationName=snutt-ev-web&environmentId=e-ehdmyes2rm|EB> for updated environment
           SLACK_FOOTER: https://snutt-ev-web.wafflestudio.com
