@@ -3,7 +3,8 @@ export const COLORS = {
   gray: '#F2F2F2',
   gray20: '#C4C4C4',
   gray2: '#B3B3B3',
-  darkGray: 'rgba(119, 119, 119, 1)',
+  darkGray: '#777777',
   red: '#E54459',
   blue: '#1BD0C8',
-};
+  white: '#FFFFFF',
+} as const;

@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 
 import { resetMarPad } from '@/lib/styles';
-import { COLORS } from '@/lib/styles/colors';
 
 export const Title01 = styled.h1`
   ${resetMarPad}
@@ -9,7 +8,7 @@ export const Title01 = styled.h1`
   font-weight: bold;
   font-size: 17px;
   line-height: 20.5px;
-  color: ${COLORS.black};
+  color: ${({ theme }) => theme.colors.text.default};
 `;
 
 export const Title02 = styled.h1`
@@ -18,5 +17,5 @@ export const Title02 = styled.h1`
   font-weight: normal;
   font-size: 17px;
   line-height: 20.5px;
-  color: ${COLORS.black};
+  color: ${({ theme }) => theme.colors.text.default};
 `;

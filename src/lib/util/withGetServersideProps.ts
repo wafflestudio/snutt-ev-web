@@ -1,7 +1,9 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query';
+import { parse } from 'cookie';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 
 import { getEmailVerification } from '@/lib/apis/core';
+import { ThemeType } from '@/lib/styles/theme';
 
 type Clients = { queryClient: QueryClient };
 
@@ -30,8 +32,8 @@ export const withGetServerSideProps = (callback: Callback, options: Partial<Opti
         return { redirect: { destination: '/main', permanent: false } };
     }
 
-    // TODO: 쿠키 등에서 파싱
-    const viewState = { mode: 'dark' };
+    const cookie = parse(context.req.headers.cookie ?? ''); // experimental. TODO: 제대로
+    const theme: ThemeType = cookie.theme === 'dark' ? 'dark' : 'light';
 
     const queryClient = new QueryClient();
     const ret = await callback(context, { queryClient });
@@ -44,6 +46,6 @@ export const withGetServerSideProps = (callback: Callback, options: Partial<Opti
     // https://github.com/TanStack/query/issues/1458
     const dehydratedState = JSON.parse(JSON.stringify(dehydrate(queryClient)));
 
-    return { props: { ...ret.props, dehydratedState, viewState } };
+    return { props: { ...ret.props, dehydratedState, theme } };
   };
 };

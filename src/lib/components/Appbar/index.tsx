@@ -23,7 +23,7 @@ const Wrapper = styled.header`
   position: sticky;
   top: 0;
 
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.bg};
   border-bottom: solid 1px rgba(179, 179, 179, 0.3);
   z-index: 99;
 `;
