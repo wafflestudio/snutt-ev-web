@@ -6,6 +6,7 @@ import Head from 'next/head';
 import { Suspense, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
+import { ViewContext, ViewContextProvider } from '@/contexts/viewContext';
 import { ErrorView } from '@/lib/components/Error';
 import { appleSDGNeo } from '@/lib/styles/fonts';
 import { APP_ENV, IS_SERVER } from '@/lib/util/env';
@@ -38,7 +39,7 @@ const createQueryClient = () =>
     },
   });
 
-function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: unknown }>) {
+function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: unknown } & { viewState: ViewContext }>) {
   const [queryClient] = useState(createQueryClient);
   const isMSWEnabled = useMSW(isBrowserMSW);
 
@@ -49,44 +50,46 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: unknown }>)
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
       </Head>
-      <QueryClientProvider client={queryClient}>
-        <Global
-          styles={css`
-            html,
-            body {
-              padding: 0;
-              margin: 0 auto;
-              ${appleSDGNeo};
-              max-width: 768px;
-            }
+      <Global
+        styles={css`
+          html,
+          body {
+            padding: 0;
+            margin: 0 auto;
+            ${appleSDGNeo};
+            max-width: 768px;
+          }
 
-            * {
-              /* tab 하이라이트 색 제거 */
-              -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-            }
+          * {
+            /* tab 하이라이트 색 제거 */
+            -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+          }
 
-            input:focus {
-              /* input 테두리 파란색 제거 */
-              outline: none;
-            }
-          `}
-        />
-        <Hydrate state={pageProps.dehydratedState}>
-          <QueryErrorResetBoundary>
-            {({ reset }) => (
-              <ErrorBoundary
-                onReset={reset}
-                fallbackRender={({ resetErrorBoundary }) => <ErrorView resetErrorBoundary={resetErrorBoundary} />}
-              >
-                <Suspense fallback={null}>
-                  <Component {...pageProps} />
-                </Suspense>
-              </ErrorBoundary>
-            )}
-          </QueryErrorResetBoundary>
-          {isDevtool && <ReactQueryDevtools initialIsOpen={false} />}
-        </Hydrate>
-      </QueryClientProvider>
+          input:focus {
+            /* input 테두리 파란색 제거 */
+            outline: none;
+          }
+        `}
+      />
+      <ViewContextProvider value={pageProps.viewState}>
+        <QueryClientProvider client={queryClient}>
+          <Hydrate state={pageProps.dehydratedState}>
+            <QueryErrorResetBoundary>
+              {({ reset }) => (
+                <ErrorBoundary
+                  onReset={reset}
+                  fallbackRender={({ resetErrorBoundary }) => <ErrorView resetErrorBoundary={resetErrorBoundary} />}
+                >
+                  <Suspense fallback={null}>
+                    <Component {...pageProps} />
+                  </Suspense>
+                </ErrorBoundary>
+              )}
+            </QueryErrorResetBoundary>
+            {isDevtool && <ReactQueryDevtools initialIsOpen={false} />}
+          </Hydrate>
+        </QueryClientProvider>
+      </ViewContextProvider>
     </>
   );
 }

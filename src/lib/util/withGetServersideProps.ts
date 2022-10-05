@@ -30,6 +30,9 @@ export const withGetServerSideProps = (callback: Callback, options: Partial<Opti
         return { redirect: { destination: '/main', permanent: false } };
     }
 
+    // TODO: 쿠키 등에서 파싱
+    const viewState = { mode: 'dark' };
+
     const queryClient = new QueryClient();
     const ret = await callback(context, { queryClient });
 
@@ -41,6 +44,6 @@ export const withGetServerSideProps = (callback: Callback, options: Partial<Opti
     // https://github.com/TanStack/query/issues/1458
     const dehydratedState = JSON.parse(JSON.stringify(dehydrate(queryClient)));
 
-    return { props: { ...ret.props, dehydratedState } };
+    return { props: { ...ret.props, dehydratedState, viewState } };
   };
 };
