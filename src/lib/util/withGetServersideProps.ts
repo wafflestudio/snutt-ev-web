@@ -1,4 +1,5 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query';
+import { parse } from 'cookie';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 
 import { getEmailVerification } from '@/lib/apis/core';
@@ -31,7 +32,8 @@ export const withGetServerSideProps = (callback: Callback, options: Partial<Opti
         return { redirect: { destination: '/main', permanent: false } };
     }
 
-    const theme: ThemeType = 'dark';
+    const cookie = parse(context.req.headers.cookie ?? ''); // experimental. TODO: 제대로
+    const theme: ThemeType = cookie.theme === 'dark' ? 'dark' : 'light';
 
     const queryClient = new QueryClient();
     const ret = await callback(context, { queryClient });
