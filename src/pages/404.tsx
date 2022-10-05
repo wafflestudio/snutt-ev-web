@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { GetStaticProps } from 'next';
 
 import { AppBar } from '@/lib/components/Appbar';
 import SvgTimetableOn from '@/lib/components/Icons/SvgTimetableOn';
@@ -23,6 +24,11 @@ export default function Custom404() {
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  // 에러 페이지는 쿠키를 읽을 수 없으므로 어쩔 수 없이 light 테마로 보여준다.
+  return { props: { theme: 'light' } };
+};
 
 const Container = styled.div`
   width: 100%;
