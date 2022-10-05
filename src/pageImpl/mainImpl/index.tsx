@@ -101,14 +101,14 @@ const CategoryPicker = styled.div`
   padding: 20px 20px 0 20px;
   position: sticky;
   top: 45px;
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.bg};
   z-index: 50;
 `;
 
 const CategoryDetail = styled(Subheading02)`
   margin-top: 10px;
   padding-bottom: 10px;
-  color: rgb(119, 119, 119);
+  color: ${({ theme }) => theme.colors.text.desc};
 `;
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)`
@@ -117,6 +117,8 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)`
   .MuiToggleButtonGroup-grouped {
     margin-right: 10px;
     border: 0;
+    color: ${({ theme }) => theme.colors.text.toggle};
+
     &.Mui-disabled {
       border: 1px solid #777777;
       height: 30px;

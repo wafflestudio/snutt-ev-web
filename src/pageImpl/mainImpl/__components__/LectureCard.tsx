@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 
-import SvgClockBlack from '@/assets/icons/clock_black.svg';
+import { SvgClockBlack } from '@/lib/components/Icons/SvgClockBlack';
 import SvgPersonBlack from '@/lib/components/Icons/SvgPersonBlack';
 import SvgTagBlack from '@/lib/components/Icons/SvgTagBlack';
 import SvgWrite from '@/lib/components/Icons/SvgWrite';
@@ -35,7 +35,7 @@ export const LectureCard = ({ lecture }: Props) => {
         <Icons>
           <SvgTagBlack height={15} width={15} />
           <SvgPersonBlack height={15} width={15} />
-          <SvgClockBlack />
+          <SvgClockBlack height={15} width={15} />
         </Icons>
         <Texts>
           <Detail>
