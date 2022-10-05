@@ -1,4 +1,5 @@
-import { css, Global } from '@emotion/react';
+import { ThemeProvider } from '@emotion/react';
+import { createTheme, ThemeProvider as ThemeProviderMui } from '@mui/material/styles';
 import { Hydrate, QueryClient, QueryClientProvider, QueryErrorResetBoundary } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import type { AppProps } from 'next/app';
@@ -6,9 +7,9 @@ import Head from 'next/head';
 import { Suspense, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
-import { ViewContext, ViewContextProvider } from '@/contexts/viewContext';
 import { ErrorView } from '@/lib/components/Error';
-import { appleSDGNeo } from '@/lib/styles/fonts';
+import { GlobalStyles } from '@/lib/styles/global';
+import { themeObject, ThemeType } from '@/lib/styles/theme';
 import { APP_ENV, IS_SERVER } from '@/lib/util/env';
 import { useMSW } from '@/mocks/integrations/browser';
 
@@ -39,39 +40,19 @@ const createQueryClient = () =>
     },
   });
 
-function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: unknown } & { viewState: ViewContext }>) {
+function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: unknown; theme: ThemeType }>) {
   const [queryClient] = useState(createQueryClient);
   const isMSWEnabled = useMSW(isBrowserMSW);
 
   if (isMSW && !isMSWEnabled) return;
 
   return (
-    <>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-      </Head>
-      <Global
-        styles={css`
-          html,
-          body {
-            padding: 0;
-            margin: 0 auto;
-            ${appleSDGNeo};
-            max-width: 768px;
-          }
-
-          * {
-            /* tab 하이라이트 색 제거 */
-            -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-          }
-
-          input:focus {
-            /* input 테두리 파란색 제거 */
-            outline: none;
-          }
-        `}
-      />
-      <ViewContextProvider value={pageProps.viewState}>
+    <ThemeProviderMui theme={createTheme()}>
+      <ThemeProvider theme={themeObject['light']}>
+        <Head>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        </Head>
+        <GlobalStyles />
         <QueryClientProvider client={queryClient}>
           <Hydrate state={pageProps.dehydratedState}>
             <QueryErrorResetBoundary>
@@ -89,8 +70,8 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: unknown } &
             {isDevtool && <ReactQueryDevtools initialIsOpen={false} />}
           </Hydrate>
         </QueryClientProvider>
-      </ViewContextProvider>
-    </>
+      </ThemeProvider>
+    </ThemeProviderMui>
   );
 }
 

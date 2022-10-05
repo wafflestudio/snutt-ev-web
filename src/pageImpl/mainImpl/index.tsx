@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { ToggleButton, ToggleButtonGroup } from '@mui/material/';
+import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 import Link from 'next/link';
 import { Fragment } from 'react';
 
@@ -114,7 +114,7 @@ const CategoryDetail = styled(Subheading02)`
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)`
   flex-wrap: wrap;
 
-  & .MuiToggleButtonGroup-grouped {
+  .MuiToggleButtonGroup-grouped {
     margin-right: 10px;
     border: 0;
     &.Mui-disabled {
