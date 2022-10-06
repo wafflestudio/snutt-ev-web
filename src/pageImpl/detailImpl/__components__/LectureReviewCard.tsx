@@ -8,7 +8,6 @@ import { Rating } from '@/lib/components/Rating';
 import { Detail } from '@/lib/components/Text';
 import { EvaluationDTO } from '@/lib/dto/evaluation';
 import { COLORS } from '@/lib/styles/colors';
-import { APP_ENV } from '@/lib/util/env';
 import { semesterToString } from '@/lib/util/semesterToString';
 
 interface Props {
@@ -36,11 +35,11 @@ export const LectureReviewCard = ({ review, onMoreClick, isMyReview = false, onS
               </FossilIconWrapper>
             )}
             <div style={{ flexGrow: 1 }} />
-            {APP_ENV !== 'prod' && (
-              <div onClick={onScoreDetailClick} data-testid="detail-evaluation-score-button">
-                <SvgMaximize />
-              </div>
-            )}
+
+            <div onClick={onScoreDetailClick} data-testid="detail-evaluation-score-button">
+              <SvgMaximize />
+            </div>
+
             <MoreButtonWrapper onClick={onMoreClick}>
               <MoreVerticalIcon />
             </MoreButtonWrapper>
