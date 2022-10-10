@@ -8,7 +8,6 @@ import { EmptyReviewPlaceholder } from '@/lib/components/Miscellaneous/EmptyRevi
 import { SearchResultLoading } from '@/lib/components/Miscellaneous/Loading';
 import { Subheading02, Title01 } from '@/lib/components/Text';
 import useScrollLoader from '@/lib/hooks/useScrollLoader';
-import { APP_ENV } from '@/lib/util/env';
 
 import { EvaluationCard, MainAppBar, RecentCarousel } from './__components__';
 import { useSelectTag } from './__containers__';
@@ -38,16 +37,11 @@ export const MainImpl = () => {
       <CategoryPicker data-testid="main-category-picker">
         <CategoryPickerTitleWrapper>
           <CategoryPickerTitle>강의평 둘러보기</CategoryPickerTitle>
-          {
-            // TODO: feature flag
-            APP_ENV !== 'prod' && (
-              <Link passHref href={'/me/evaluations'}>
-                <CategoryPickerLink as="a" data-testid="main-my-evaluations-link">
-                  내가 남긴 강의평 <SvgChevron />
-                </CategoryPickerLink>
-              </Link>
-            )
-          }
+          <Link passHref href={'/me/evaluations'}>
+            <CategoryPickerLink as="a" data-testid="main-my-evaluations-link">
+              내가 남긴 강의평 <SvgChevron />
+            </CategoryPickerLink>
+          </Link>
         </CategoryPickerTitleWrapper>
         <StyledToggleButtonGroup
           value={selectedTagId}
