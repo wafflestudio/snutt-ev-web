@@ -2731,32 +2731,33 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/query-core@npm:4.3.8":
-  version: 4.3.8
-  resolution: "@tanstack/query-core@npm:4.3.8"
-  checksum: 25ea16db7632f5acc7c80e60b9f1410cf9df430240ec5077a1607c3ffea14db2c78db800f7bc70efafd7ce26f7216cda767824fa279049cc9c7e40ac1818f38e
+"@tanstack/query-core@npm:4.12.0":
+  version: 4.12.0
+  resolution: "@tanstack/query-core@npm:4.12.0"
+  checksum: 535719c2079c18bb83e459b968858c424b3404b34d662e853389067dae3b2dc61b5f92b28a93237830cac3de7d35ef61793d7ddb1df6b45bc7fe31ae7ddba246
   languageName: node
   linkType: hard
 
-"@tanstack/react-query-devtools@npm:^4.3.9":
-  version: 4.3.9
-  resolution: "@tanstack/react-query-devtools@npm:4.3.9"
+"@tanstack/react-query-devtools@npm:^4.12.0":
+  version: 4.12.0
+  resolution: "@tanstack/react-query-devtools@npm:4.12.0"
   dependencies:
     "@tanstack/match-sorter-utils": ^8.1.1
+    superjson: ^1.10.0
     use-sync-external-store: ^1.2.0
   peerDependencies:
-    "@tanstack/react-query": 4.3.9
+    "@tanstack/react-query": 4.12.0
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 00f22dd2fc79873fba51be2f6561d87ac825a4bf58aa4a90f4aba8bbc025b3d6d513ed31b09d10234aba6fcc717abbe41aef6b5806f098bd260460bcaa2063e2
+  checksum: 72b10b2b046aa0e2da233cd1326a7d573c3516fdbb9eb1b7566cb985ba6ed323c8645cddb4b8f4ce7dddfb15a7d287f8966bb3856724b3f18d1568a283bbc4ea
   languageName: node
   linkType: hard
 
-"@tanstack/react-query@npm:^4.3.9":
-  version: 4.3.9
-  resolution: "@tanstack/react-query@npm:4.3.9"
+"@tanstack/react-query@npm:^4.12.0":
+  version: 4.12.0
+  resolution: "@tanstack/react-query@npm:4.12.0"
   dependencies:
-    "@tanstack/query-core": 4.3.8
+    "@tanstack/query-core": 4.12.0
     use-sync-external-store: ^1.2.0
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -2767,7 +2768,7 @@ __metadata:
       optional: true
     react-native:
       optional: true
-  checksum: 1f77aadda55722519458185b4db5378d05d95bcbe9f7c4fda0ef82121a975223ede1a56729db6030984b336e533c04b1c7aa8fed344e5c52ec73a0486b65f8e7
+  checksum: 7c3688735bafa58e6993e1161fd53ec9d4f065de8cb04c4ec696e7e53fe86aef333df88553c8cecad278154c66ebe18c2c7072b0a0bbdce03c7112aabca81cda
   languageName: node
   linkType: hard
 
@@ -4048,6 +4049,15 @@ __metadata:
   version: 0.5.0
   resolution: "cookie@npm:0.5.0"
   checksum: 1f4bd2ca5765f8c9689a7e8954183f5332139eb72b6ff783d8947032ec1fdf43109852c178e21a953a30c0dd42257828185be01b49d1eb1a67fd054ca588a180
+  languageName: node
+  linkType: hard
+
+"copy-anything@npm:^3.0.2":
+  version: 3.0.2
+  resolution: "copy-anything@npm:3.0.2"
+  dependencies:
+    is-what: ^4.1.6
+  checksum: 394491d62ab0c77c81616668bce51b91cf4e7b539bd530bb5b22c226151b0bc6122c01de21ffe46d5ec273f504fb34f6569f349ffb823fa814dddb8b27a4750c
   languageName: node
   linkType: hard
 
@@ -5881,6 +5891,13 @@ __metadata:
   dependencies:
     call-bind: ^1.0.2
   checksum: 95bd9a57cdcb58c63b1c401c60a474b0f45b94719c30f548c891860f051bc2231575c290a6b420c6bc6e7ed99459d424c652bd5bf9a1d5259505dc35b4bf83de
+  languageName: node
+  linkType: hard
+
+"is-what@npm:^4.1.6":
+  version: 4.1.7
+  resolution: "is-what@npm:4.1.7"
+  checksum: aade39dcc45a209d6cb2f2d5dbcf0e63ed894aadbae37bd5693c64e9876a27632431b43fc9d9332ebf0795eddd2abc11a2d0f3c6fa41c36330616a645660530e
   languageName: node
   linkType: hard
 
@@ -8110,8 +8127,8 @@ __metadata:
     "@playwright/test": ^1.27.1
     "@svgr/cli": ^6.3.1
     "@svgr/webpack": ^6.3.1
-    "@tanstack/react-query": ^4.3.9
-    "@tanstack/react-query-devtools": ^4.3.9
+    "@tanstack/react-query": ^4.12.0
+    "@tanstack/react-query-devtools": ^4.12.0
     "@types/cookie": ^0.5.1
     "@types/js-cookie": ^3.0.2
     "@types/node": ^18.7.21
@@ -8397,6 +8414,15 @@ __metadata:
   version: 4.0.13
   resolution: "stylis@npm:4.0.13"
   checksum: 8ea7a87028b6383c6a982231c4b5b6150031ce028e0fdaf7b2ace82253d28a8af50cc5a9da8a421d3c7c4441592f393086e332795add672aa4a825f0fe3713a3
+  languageName: node
+  linkType: hard
+
+"superjson@npm:^1.10.0":
+  version: 1.10.1
+  resolution: "superjson@npm:1.10.1"
+  dependencies:
+    copy-anything: ^3.0.2
+  checksum: 2ddaa4c97d7dffb9ed597a21b5a320c93fa0b463e5c38d83e3a0bfb9da4fc4183dbf4d7798ff32322d0a17ed45e3469d15e7d1a0116beecdbe0d16b622999c54
   languageName: node
   linkType: hard
 
