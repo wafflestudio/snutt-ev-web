@@ -40,7 +40,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/styled", "virtual:804ff26d610d54aa38bd28c972bd24abb171bac3818efeed327583ab550161b4742c407fbd84e07faf14642448024e8c66a18f93ab081b96d45f0e96fc46ca8c#npm:11.10.4"],\
             ["@jest/globals", "npm:29.0.3"],\
             ["@mui/material", "virtual:804ff26d610d54aa38bd28c972bd24abb171bac3818efeed327583ab550161b4742c407fbd84e07faf14642448024e8c66a18f93ab081b96d45f0e96fc46ca8c#npm:5.10.8"],\
-            ["@playwright/test", "npm:1.26.0"],\
+            ["@playwright/test", "npm:1.27.1"],\
             ["@svgr/cli", "npm:6.3.1"],\
             ["@svgr/webpack", "npm:6.3.1"],\
             ["@tanstack/react-query", "virtual:804ff26d610d54aa38bd28c972bd24abb171bac3818efeed327583ab550161b4742c407fbd84e07faf14642448024e8c66a18f93ab081b96d45f0e96fc46ca8c#npm:4.3.9"],\
@@ -4013,12 +4013,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@playwright/test", [\
-        ["npm:1.26.0", {\
-          "packageLocation": "./.yarn/cache/@playwright-test-npm-1.26.0-2fc6ca51fc-ce85c07e91.zip/node_modules/@playwright/test/",\
+        ["npm:1.27.1", {\
+          "packageLocation": "./.yarn/cache/@playwright-test-npm-1.27.1-ebcb7fdc03-92f219a78c.zip/node_modules/@playwright/test/",\
           "packageDependencies": [\
-            ["@playwright/test", "npm:1.26.0"],\
+            ["@playwright/test", "npm:1.27.1"],\
             ["@types/node", "npm:18.7.18"],\
-            ["playwright-core", "npm:1.26.0"]\
+            ["playwright-core", "npm:1.27.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -10105,10 +10105,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["playwright-core", [\
-        ["npm:1.26.0", {\
-          "packageLocation": "./.yarn/unplugged/playwright-core-npm-1.26.0-ec7a735674/node_modules/playwright-core/",\
+        ["npm:1.27.1", {\
+          "packageLocation": "./.yarn/unplugged/playwright-core-npm-1.27.1-5f07cc4685/node_modules/playwright-core/",\
           "packageDependencies": [\
-            ["playwright-core", "npm:1.26.0"]\
+            ["playwright-core", "npm:1.27.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -10889,7 +10889,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/styled", "virtual:804ff26d610d54aa38bd28c972bd24abb171bac3818efeed327583ab550161b4742c407fbd84e07faf14642448024e8c66a18f93ab081b96d45f0e96fc46ca8c#npm:11.10.4"],\
             ["@jest/globals", "npm:29.0.3"],\
             ["@mui/material", "virtual:804ff26d610d54aa38bd28c972bd24abb171bac3818efeed327583ab550161b4742c407fbd84e07faf14642448024e8c66a18f93ab081b96d45f0e96fc46ca8c#npm:5.10.8"],\
-            ["@playwright/test", "npm:1.26.0"],\
+            ["@playwright/test", "npm:1.27.1"],\
             ["@svgr/cli", "npm:6.3.1"],\
             ["@svgr/webpack", "npm:6.3.1"],\
             ["@tanstack/react-query", "virtual:804ff26d610d54aa38bd28c972bd24abb171bac3818efeed327583ab550161b4742c407fbd84e07faf14642448024e8c66a18f93ab081b96d45f0e96fc46ca8c#npm:4.3.9"],\
