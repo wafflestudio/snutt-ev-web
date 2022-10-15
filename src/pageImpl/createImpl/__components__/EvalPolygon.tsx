@@ -42,6 +42,12 @@ export const EvalPolygon = ({ defaultValue, score, handleUpdateScore }: Props) =
           height={300}
           width={300}
         />
+        <AxisLabel>
+          <YAxisPositive>성적 만족도</YAxisPositive>
+          <YAxisNegative>얻어가는 것</YAxisNegative>
+          <XAxisNegative>강의력</XAxisNegative>
+          <XAxisPositive>수라밸</XAxisPositive>
+        </AxisLabel>
         <CustomSliderRight
           value={right}
           onChange={withChangeSlider((newValue) => handleUpdateScore(newValue, 'right'))}
@@ -65,12 +71,6 @@ export const EvalPolygon = ({ defaultValue, score, handleUpdateScore }: Props) =
           orientation={'vertical'}
           {...sliderCommonProps}
         />
-        <AxisLabel>
-          <YAxisPositive>성적 만족도</YAxisPositive>
-          <YAxisNegative>얻어가는 것</YAxisNegative>
-          <XAxisNegative>강의력</XAxisNegative>
-          <XAxisPositive>수라밸</XAxisPositive>
-        </AxisLabel>
       </GraphWrapper>
     </Container>
   );
@@ -182,7 +182,6 @@ const AxisLabel = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
 `;
 
 const YAxisPositive = styled(DetailHighlight)`
@@ -198,19 +197,21 @@ const YAxisNegative = styled(DetailHighlight)`
   top: 105%;
   transform: translate(-50%, -50%);
 `;
+
 const XAxisNegative = styled(DetailHighlight)`
   position: absolute;
   top: 56%;
-  left: 10%;
-  transform: translate(-50%, -50%);
+  left: 0%;
+  transform: translate(0%, -50%);
   overflow: hidden;
   white-space: nowrap;
 `;
+
 const XAxisPositive = styled(DetailHighlight)`
   position: absolute;
   top: 56%;
-  left: 90%;
-  transform: translate(-50%, -50%);
+  right: 0%;
+  transform: translate(0%, -50%);
   overflow: hidden;
   white-space: nowrap;
 `;
