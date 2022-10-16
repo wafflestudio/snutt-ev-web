@@ -12,8 +12,5 @@ test('페이지에 접속하면 헤더바가 정상적으로 보여진다', asyn
   await expect(create.findByTestId('create-header-lecture-detail')).toHaveText('문송기 / 3학점 (교양)');
 
   // 헤더의 학기 목록 드롭다운이 정상 동작해야 한다
-
-  // 강의평 점수 영역이 정상 동작해야 한다
-
-  // 강의평 생성 버튼이 정상 동작해야 한다
+  // TODO:
 });
