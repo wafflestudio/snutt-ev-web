@@ -1,6 +1,7 @@
 # Builder
 FROM node:16-alpine AS builder
 ARG APP_ENV
+ARG GIT_SHA
 ENV NODE_ENV production
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
@@ -8,6 +9,7 @@ COPY . .
 
 RUN cd /app && echo 'YARN VERSION IN BUILDER: ' && yarn --version
 RUN if [ ${APP_ENV} = "dev" ] ; then cp .env.dev .env.production ; elif [ ${APP_ENV} = "prod" ] ; then cp .env.prod .env.production ; elif [ ${APP_ENV} = "test" ] ; then cp .env.test .env.production ; else exit 1 ; fi
+RUN echo "NEXT_PUBLIC_GIT_SHA=${GIT_SHA}" >> .env
 RUN yarn rebuild && yarn build
 
 # Runner

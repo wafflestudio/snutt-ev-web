@@ -19,6 +19,10 @@ const isMSW = APP_ENV === 'test';
 const isBrowserMSW = !IS_SERVER && isMSW;
 const isServerMSW = IS_SERVER && isMSW;
 
+if (!IS_SERVER) {
+  window.git = process.env.NEXT_PUBLIC_GIT_SHA ?? '';
+}
+
 if (isServerMSW) {
   (async () => {
     try {
