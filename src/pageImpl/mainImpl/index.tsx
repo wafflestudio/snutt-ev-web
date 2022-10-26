@@ -37,7 +37,7 @@ export const MainImpl = () => {
       <CategoryPicker data-testid="main-category-picker">
         <CategoryPickerTitleWrapper>
           <CategoryPickerTitle>강의평 둘러보기</CategoryPickerTitle>
-          <Link passHref href={'/me/evaluations'}>
+          <Link passHref href={'/me/evaluations'} legacyBehavior>
             <CategoryPickerLink as="a" data-testid="main-my-evaluations-link">
               내가 남긴 강의평 <SvgChevron />
             </CategoryPickerLink>
