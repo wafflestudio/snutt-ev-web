@@ -1,13 +1,13 @@
 import styled from '@emotion/styled';
 
-import SurprisedCatImage from '@/assets/icons/surprised_cat.svg';
 import { SvgReviewIcon } from '@/lib/components/Icons/SvgReviewIcon';
+import { SvgSurprisedCat } from '@/lib/components/Icons/SvgSurprisedCat';
 import { Title02 } from '@/lib/components/Text/Title';
 
 export const ErrorView = () => {
   return (
     <Container>
-      <SurprisedCatImage />
+      <SvgSurprisedCat />
       <br />
       <Title02>에러가 발생했어요</Title02>
       <Row>
