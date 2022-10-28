@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { Router, useRouter } from 'next/router';
 import { useState } from 'react';
 
-import FossilIcon from '@/assets/icons/fossil.svg';
+import { SvgFossil } from '@/lib/components/Icons/SvgFossil';
 import { EmptyReviewPlaceholder } from '@/lib/components/Miscellaneous/EmptyReviewPlaceholder';
 import { SearchResultLoading } from '@/lib/components/Miscellaneous/Loading';
 import { RatingTooltip } from '@/lib/components/Tooltip';
@@ -90,7 +90,7 @@ export const DetailImpl = () => {
 
         {showSnuevWarning && (
           <SnuevWarning>
-            <FossilIcon />
+            <SvgFossil />
             <SnuevWarningText>와플스튜디오에서 발굴한 옛 강의평은 세부 항목 점수가 없습니다.</SnuevWarningText>
           </SnuevWarning>
         )}

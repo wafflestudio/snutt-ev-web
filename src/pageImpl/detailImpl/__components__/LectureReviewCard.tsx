@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
-import FossilIcon from '@/assets/icons/fossil.svg';
 import MoreVerticalIcon from '@/assets/icons/more_vertical.svg';
 import { CollapsableText } from '@/lib/components/CollapsableText';
+import { SvgFossil } from '@/lib/components/Icons/SvgFossil';
 import SvgMaximize from '@/lib/components/Icons/SvgMaximize';
 import { Rating } from '@/lib/components/Rating';
 import { Detail } from '@/lib/components/Text';
@@ -29,11 +29,13 @@ export const LectureReviewCard = ({ review, onMoreClick, isMyReview = false, onS
                 {review.year}년 {semesterToString(review.semester)}학기
               </SemesterText>
             </Semester>
+
             {review.from_snuev && (
               <FossilIconWrapper>
-                <FossilIcon />
+                <SvgFossil />
               </FossilIconWrapper>
             )}
+
             <div style={{ flexGrow: 1 }} />
 
             <div onClick={onScoreDetailClick} data-testid="detail-evaluation-score-button">
