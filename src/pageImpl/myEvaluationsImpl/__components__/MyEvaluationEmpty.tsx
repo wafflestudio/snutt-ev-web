@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import SurprisedCatImage from '@/assets/icons/surprised_cat.svg';
+import { SvgSurprisedCat } from '@/lib/components/Icons/SvgSurprisedCat';
 import { Detail } from '@/lib/components/Text';
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 export const MyEvaluationEmpty = ({ className }: Props) => {
   return (
     <Wrapper className={className} data-testid="my-evaluations-empty">
-      <SurprisedCatImage />
+      <SvgSurprisedCat />
       <Caption>아직 작성한 강의평이 없습니다.</Caption>
     </Wrapper>
   );

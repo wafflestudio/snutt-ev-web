@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 
-import SvgSearchBig from '@/assets/icons/img_search_big.svg';
+import { SvgImgSearchBig } from '@/lib/components/Icons/SvgImgSearchBig';
 import { Title02 } from '@/lib/components/Text';
 
 export const SearchNoResult = () => {
   return (
     <Wrapper>
-      <SvgSearchBig />
+      <SvgImgSearchBig />
       <Text style={{ marginTop: 40 }}>검색 결과가 없습니다.</Text>
     </Wrapper>
   );

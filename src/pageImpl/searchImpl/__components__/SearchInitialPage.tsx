@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 
-import SvgSearchBig from '@/assets/icons/img_search_big.svg';
+import { SvgImgSearchBig } from '@/lib/components/Icons/SvgImgSearchBig';
 import { Title01, Title02 } from '@/lib/components/Text';
 
 export const SearchInitialPage = () => {
   return (
     <Wrapper>
-      <SvgSearchBig />
+      <SvgImgSearchBig />
       <Title style={{ marginTop: 25 }}>SNUTT 검색 꿀팁 &#127855;</Title>
       <Subtitle style={{ marginTop: 34 }}>다양한 조합으로 검색해보세요.</Subtitle>
       <ContentText>ex) 2학년 컴공 전필</ContentText>

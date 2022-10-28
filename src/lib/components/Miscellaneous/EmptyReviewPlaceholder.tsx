@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import SurprisedCatImage from '@/assets/icons/surprised_cat.svg';
+import { SvgSurprisedCat } from '@/lib/components/Icons/SvgSurprisedCat';
 import { Subheading02 } from '@/lib/components/Text';
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 export const EmptyReviewPlaceholder = ({ 'data-testid': dataTestId }: Props) => {
   return (
     <Wrapper data-testid={dataTestId}>
-      <SurprisedCatImage />
+      <SvgSurprisedCat />
       <Subheading02 style={{ marginTop: 20 }}>아직 강의평이 없습니다.</Subheading02>
       <Subheading02 style={{ marginTop: 10 }}>가장 먼저 강의평을 남겨주세요!</Subheading02>
     </Wrapper>

@@ -61,10 +61,7 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: unknown; th
           <Hydrate state={pageProps.dehydratedState}>
             <QueryErrorResetBoundary>
               {({ reset }) => (
-                <ErrorBoundary
-                  onReset={reset}
-                  fallbackRender={({ resetErrorBoundary }) => <ErrorView resetErrorBoundary={resetErrorBoundary} />}
-                >
+                <ErrorBoundary onReset={reset} fallbackRender={() => <ErrorView />}>
                   <Suspense fallback={null}>
                     <Component {...pageProps} />
                   </Suspense>

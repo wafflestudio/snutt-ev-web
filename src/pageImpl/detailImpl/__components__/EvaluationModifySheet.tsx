@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import Sheet from 'react-modal-sheet';
 
-import ReportIcon from '@/assets/icons/report.svg';
-import TrashIcon from '@/assets/icons/trash.svg';
+import { SvgReport } from '@/lib/components/Icons/SvgReport';
+import { SvgTrash } from '@/lib/components/Icons/SvgTrash';
 import { Subheading02 } from '@/lib/components/Text';
 
 interface Props {
@@ -29,13 +29,13 @@ export const EvaluationModifySheet = ({
           <Wrapper>
             {isModifiable && (
               <DeleteContainer onClick={onDeleteClicked}>
-                <TrashIcon />
+                <SvgTrash />
                 <Subheading02 style={{ marginLeft: '25px' }}>강의평 삭제</Subheading02>
               </DeleteContainer>
             )}
             {isReportable && (
               <ReportContainer onClick={onReportClicked}>
-                <ReportIcon />
+                <SvgReport />
                 <Subheading02 style={{ marginLeft: '25px' }}>강의평 신고하기</Subheading02>
               </ReportContainer>
             )}
