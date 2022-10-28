@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 
-import MoreVerticalIcon from '@/assets/icons/more_vertical.svg';
 import { CollapsableText } from '@/lib/components/CollapsableText';
 import { SvgFossil } from '@/lib/components/Icons/SvgFossil';
 import SvgMaximize from '@/lib/components/Icons/SvgMaximize';
+import { SvgMoreVertical } from '@/lib/components/Icons/SvgMoreVertical';
 import { Rating } from '@/lib/components/Rating';
 import { Detail } from '@/lib/components/Text';
 import { EvaluationDTO } from '@/lib/dto/evaluation';
@@ -43,7 +43,7 @@ export const LectureReviewCard = ({ review, onMoreClick, isMyReview = false, onS
             </div>
 
             <MoreButtonWrapper onClick={onMoreClick}>
-              <MoreVerticalIcon />
+              <SvgMoreVertical />
             </MoreButtonWrapper>
           </SideInfo>
         </Header>
