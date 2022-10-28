@@ -16,11 +16,11 @@ export const RecentCarousel = ({ lectureList }: Props) => {
     <Wrapper data-testid="main-recent">
       <CarouselHeader>
         <Title01>지난 학기 강의평을 남겨주세요</Title01>
-        <Link href="/recent" passHref legacyBehavior>
-          <RecentLink data-testid="main-recent-more-link" as="a">
+        <RecentLink href="/recent">
+          <RecentLinkText data-testid="main-recent-more-link" as="a">
             강의 목록 <SvgChevron />
-          </RecentLink>
-        </Link>
+          </RecentLinkText>
+        </RecentLink>
       </CarouselHeader>
       <SubjectCardCarousel>
         {lectureList.map((lecture) => (
@@ -36,8 +36,11 @@ const Wrapper = styled.div`
   padding: 0 20px 20px 20px;
 `;
 
-const RecentLink = styled(Subheading02)`
+const RecentLink = styled(Link)`
   text-decoration: none;
+`;
+
+const RecentLinkText = styled(Subheading02)`
   color: #777777;
 `;
 
