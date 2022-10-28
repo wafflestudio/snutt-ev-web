@@ -37,11 +37,11 @@ export const MainImpl = () => {
       <CategoryPicker data-testid="main-category-picker">
         <CategoryPickerTitleWrapper>
           <CategoryPickerTitle>강의평 둘러보기</CategoryPickerTitle>
-          <Link passHref href={'/me/evaluations'} legacyBehavior>
-            <CategoryPickerLink as="a" data-testid="main-my-evaluations-link">
+          <CategoryPickerLink href={'/me/evaluations'}>
+            <CategoryPickerText data-testid="main-my-evaluations-link">
               내가 남긴 강의평 <SvgChevron />
-            </CategoryPickerLink>
-          </Link>
+            </CategoryPickerText>
+          </CategoryPickerLink>
         </CategoryPickerTitleWrapper>
         <StyledToggleButtonGroup
           value={selectedTagId}
@@ -151,7 +151,10 @@ const CategoryPickerTitle = styled(Title01)`
   margin: 0;
 `;
 
-const CategoryPickerLink = styled(Subheading02)`
-  color: #777777;
+const CategoryPickerLink = styled(Link)`
   text-decoration: none;
+`;
+
+const CategoryPickerText = styled(Subheading02)`
+  color: #777777;
 `;
