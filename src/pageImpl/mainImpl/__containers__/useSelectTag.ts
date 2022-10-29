@@ -11,6 +11,7 @@ export const useSelectTag = (tags: TagDTO[]) => {
   const router = useRouter();
 
   const selectedTagId = (router.query as RouterQuery).tag;
+  const firstTagId = tags[0]?.id;
 
   const setSelectedTagId = useCallback(
     (tagId: number) => {
@@ -25,9 +26,10 @@ export const useSelectTag = (tags: TagDTO[]) => {
 
   useEffect(() => {
     if (selectedTagId !== undefined) return;
+    if (typeof firstTagId !== 'number') return;
 
-    setSelectedTagId(tags[0]?.id);
-  }, [tags, setSelectedTagId, selectedTagId]);
+    setSelectedTagId(firstTagId);
+  }, [firstTagId, setSelectedTagId, selectedTagId]);
 
   const onClickTag = (tagId: number) => {
     setSelectedTagId(tagId);
