@@ -1987,10 +1987,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:16.11.66":
-  version: 16.11.66
-  resolution: "@types/node@npm:16.11.66"
-  checksum: bf190db14d1f32ab10588dd1a1e30bb2e9ba9b78281fce7a81fa80d914f9b3203d48cf1c6a8f96ef6b0edbba281478d2c68d6ebb7719c896f2dd62429c64ef09
+"@types/node@npm:^18.11.7":
+  version: 18.11.7
+  resolution: "@types/node@npm:18.11.7"
+  checksum: 69d630825cf6fbf580d08d76a4d4836ef8c34ed4fe0842221ade87d275f517099cbfabe8e22397208e564bd24926db97699ab9db5c091383269a432b336665e2
   languageName: node
   linkType: hard
 
@@ -6949,7 +6949,7 @@ __metadata:
     "@tanstack/react-query-devtools": ^4.12.0
     "@types/cookie": ^0.5.1
     "@types/js-cookie": ^3.0.2
-    "@types/node": 16.11.66
+    "@types/node": ^18.11.7
     "@types/react": ^18.0.21
     "@types/react-dom": ^18.0.6
     "@typescript-eslint/eslint-plugin": ^5.38.0
