@@ -42,6 +42,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@tanstack/react-query-devtools", "virtual:804ff26d610d54aa38bd28c972bd24abb171bac3818efeed327583ab550161b4742c407fbd84e07faf14642448024e8c66a18f93ab081b96d45f0e96fc46ca8c#npm:4.12.0"],\
             ["@types/cookie", "npm:0.5.1"],\
             ["@types/js-cookie", "npm:3.0.2"],\
+            ["@types/lodash", "npm:4.14.187"],\
             ["@types/node", "npm:18.11.7"],\
             ["@types/react", "npm:18.0.21"],\
             ["@types/react-dom", "npm:18.0.6"],\
@@ -59,6 +60,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["framer-motion", "virtual:804ff26d610d54aa38bd28c972bd24abb171bac3818efeed327583ab550161b4742c407fbd84e07faf14642448024e8c66a18f93ab081b96d45f0e96fc46ca8c#npm:7.5.3"],\
             ["jest", "virtual:804ff26d610d54aa38bd28c972bd24abb171bac3818efeed327583ab550161b4742c407fbd84e07faf14642448024e8c66a18f93ab081b96d45f0e96fc46ca8c#npm:29.2.0"],\
             ["js-cookie", "npm:3.0.1"],\
+            ["lodash", "npm:4.17.21"],\
             ["msw", "npm:0.36.5"],\
             ["next", "virtual:804ff26d610d54aa38bd28c972bd24abb171bac3818efeed327583ab550161b4742c407fbd84e07faf14642448024e8c66a18f93ab081b96d45f0e96fc46ca8c#npm:13.0.0"],\
             ["prettier", "npm:2.7.1"],\
@@ -2897,6 +2899,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-json5-npm-0.0.29-f63a7916bd-e60b153664.zip/node_modules/@types/json5/",\
           "packageDependencies": [\
             ["@types/json5", "npm:0.0.29"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/lodash", [\
+        ["npm:4.14.187", {\
+          "packageLocation": "./.yarn/cache/@types-lodash-npm-4.14.187-9197558232-5f8a4fe6d8.zip/node_modules/@types/lodash/",\
+          "packageDependencies": [\
+            ["@types/lodash", "npm:4.14.187"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -8879,6 +8890,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@tanstack/react-query-devtools", "virtual:804ff26d610d54aa38bd28c972bd24abb171bac3818efeed327583ab550161b4742c407fbd84e07faf14642448024e8c66a18f93ab081b96d45f0e96fc46ca8c#npm:4.12.0"],\
             ["@types/cookie", "npm:0.5.1"],\
             ["@types/js-cookie", "npm:3.0.2"],\
+            ["@types/lodash", "npm:4.14.187"],\
             ["@types/node", "npm:18.11.7"],\
             ["@types/react", "npm:18.0.21"],\
             ["@types/react-dom", "npm:18.0.6"],\
@@ -8896,6 +8908,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["framer-motion", "virtual:804ff26d610d54aa38bd28c972bd24abb171bac3818efeed327583ab550161b4742c407fbd84e07faf14642448024e8c66a18f93ab081b96d45f0e96fc46ca8c#npm:7.5.3"],\
             ["jest", "virtual:804ff26d610d54aa38bd28c972bd24abb171bac3818efeed327583ab550161b4742c407fbd84e07faf14642448024e8c66a18f93ab081b96d45f0e96fc46ca8c#npm:29.2.0"],\
             ["js-cookie", "npm:3.0.1"],\
+            ["lodash", "npm:4.17.21"],\
             ["msw", "npm:0.36.5"],\
             ["next", "virtual:804ff26d610d54aa38bd28c972bd24abb171bac3818efeed327583ab550161b4742c407fbd84e07faf14642448024e8c66a18f93ab081b96d45f0e96fc46ca8c#npm:13.0.0"],\
             ["prettier", "npm:2.7.1"],\
