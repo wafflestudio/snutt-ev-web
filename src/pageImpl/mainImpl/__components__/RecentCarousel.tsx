@@ -17,7 +17,7 @@ export const RecentCarousel = ({ lectureList }: Props) => {
       <CarouselHeader>
         <Title01>지난 학기 강의평을 남겨주세요</Title01>
         <RecentLink href="/recent">
-          <RecentLinkText data-testid="main-recent-more-link" as="a">
+          <RecentLinkText data-testid="main-recent-more-link">
             강의 목록 <SvgChevron />
           </RecentLinkText>
         </RecentLink>
