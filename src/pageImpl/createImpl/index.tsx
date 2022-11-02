@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { Button, Dialog, DialogActions, DialogTitle } from '@mui/material';
+import get from 'lodash/get';
 import { useRouter } from 'next/router';
 import { Fragment, useEffect, useState } from 'react';
 
@@ -111,7 +112,9 @@ export const CreateImpl = () => {
           body: query,
         });
         router.replace(`/detail?id=${id}`);
-      } catch (errorCode) {
+      } catch (err) {
+        const errorCode = get(err, ['response', 'data', 'error', 'code']);
+
         if (errorCode === 29001) {
           setIsDialogOpen((status) => !status);
           setDialogErrorMessage('이미 작성한 강의평이 존재합니다');
