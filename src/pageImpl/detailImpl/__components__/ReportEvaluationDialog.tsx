@@ -1,5 +1,5 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 interface Props {
   isOpen: boolean;
@@ -10,14 +10,15 @@ interface Props {
 export const ReportEvaluationDialog = ({ isOpen, close, report }: Props) => {
   const [reason, setReason] = useState('');
 
-  useEffect(() => {
-    if (!isOpen && reason) setReason('');
-  }, [isOpen, reason]);
+  const handleClose = () => {
+    setReason('');
+    close();
+  };
 
   const isReasonEmpty = reason.length === 0;
 
   return (
-    <Dialog open={isOpen} onClose={close}>
+    <Dialog open={isOpen} onClose={handleClose}>
       <DialogTitle>강의평 신고</DialogTitle>
       <DialogContent>
         <DialogContentText>강의평 신고 사유를 적어주세요.</DialogContentText>
@@ -31,7 +32,7 @@ export const ReportEvaluationDialog = ({ isOpen, close, report }: Props) => {
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={close}>취소</Button>
+        <Button onClick={handleClose}>취소</Button>
         <Button disabled={isReasonEmpty} onClick={() => report(reason)}>
           신고
         </Button>
