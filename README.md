@@ -30,6 +30,9 @@ NEXT_PUBLIC_REACT_QUERY_DEVTOOL=true
 
 # app env (local / dev / prod / test)
 NEXT_PUBLIC_APP_ENV=local
+
+# bundle analyze (true / false)
+ANALYZE=false
 ```
 
 <br/>
@@ -48,13 +51,13 @@ x-access-token
 ## Deployments
 
 - [github actions](./.github/workflows/)
-- Using [**_Elastic Beanstalk_**](https://aws.amazon.com/ko/elasticbeanstalk/) (docker)
+- wafflestudio k8s (작성 필요)
 
 <br/><br/>
 
 ## Package Manager
 
-`yarn berry` 를 이용하고 있습니다. (zero-install)
+`yarn berry` P'n'P 를 이용하고 있습니다. (zero-install)
 
 <br/><br/>
 
@@ -81,8 +84,6 @@ npx playwright@{package.json에 명시된 버전} install
 ### unit test
 
 [jest](https://jestjs.io/) 를 이용하고 있습니다.
-
-비즈니스 계산 로직이 들어 있는 [usecase](./src/usecases/) 들에 대해, 함수별로 파일 바로 옆에 unit 테스트코드를 **`{usecase}.test.ts`** 파일에 작성합니다.
 
 ```sh
 yarn test:unit
