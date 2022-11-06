@@ -14,6 +14,8 @@ export const ReportEvaluationDialog = ({ isOpen, close, report }: Props) => {
     if (!isOpen && reason) setReason('');
   }, [isOpen, reason]);
 
+  const isReasonEmpty = reason.length === 0;
+
   return (
     <Dialog open={isOpen} onClose={close}>
       <DialogTitle>강의평 신고</DialogTitle>
@@ -30,7 +32,9 @@ export const ReportEvaluationDialog = ({ isOpen, close, report }: Props) => {
       </DialogContent>
       <DialogActions>
         <Button onClick={close}>취소</Button>
-        <Button onClick={() => report(reason)}>신고</Button>
+        <Button disabled={isReasonEmpty} onClick={() => report(reason)}>
+          신고
+        </Button>
       </DialogActions>
     </Dialog>
   );
