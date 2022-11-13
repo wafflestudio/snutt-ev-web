@@ -5,7 +5,7 @@ const PORT = 3001;
 
 const config: PlaywrightTestConfig = {
   testDir: './e2e',
-  timeout: 30 * 1000,
+  timeout: 10 * 1000,
 
   expect: { timeout: 5000 },
 

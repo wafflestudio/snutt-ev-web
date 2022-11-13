@@ -42,20 +42,12 @@ test(
       const cat = main.findByTestId('my-evaluations-empty');
       const ev = main.findByTestId('my-evaluations-evaluation-card');
       const firstEv = ev.first();
-      const secondEv = ev.nth(1);
 
       // 고양이는 안 보여야 한다
       await expect(cat).toHaveCount(0);
 
       // 첫 번째 강의평의 교수명이 잘 나타나야 한다
       await expect(firstEv).toContainText('염헌영');
-
-      // 첫 번째 강의평에 좋아요 개수가 325개로 나타나야 한다
-      await expect(firstEv.locator('[data-testid=like-button-count]')).toHaveText('325');
-
-      // 좋아요 여부가 잘 나타나야 한다
-      await expect(firstEv.locator('[data-testid=like-button]')).toHaveAttribute('aria-checked', 'false');
-      await expect(secondEv.locator('[data-testid=like-button]')).toHaveAttribute('aria-checked', 'true');
 
       // 내가 작성한 강의평 개수 영역이 잘 나타나야 한다
       const tc = main.findByTestId(totalCountTestId);
@@ -64,6 +56,46 @@ test(
       // 첫 번째 강의평을 클릭하면 해당하는 페이지로 이동해야 한다
       await firstEv.locator('text=시스템프로그래밍').click();
       await expect(main.getPage()).toHaveURL('/detail?id=2896');
+    },
+  ),
+);
+
+test(
+  '좋아요 기능이 정상 동작한다',
+  withCookie(
+    // 강의평 목록이 비어있지 않을 경우
+    [getTestCookie('TEST_MY_EVALUATION_EXIST', 'true')],
+    async ({ page }) => {
+      // 페이지에 접속하면
+      const main = new MyEvaluationsPage(page);
+      await main.goto();
+
+      const ev = main.findByTestId('my-evaluations-evaluation-card');
+      const firstEv = ev.first();
+      const secondEv = ev.nth(1);
+
+      // 첫 번째 강의평에 좋아요 개수가 325개로 나타나야 한다
+      await expect(firstEv.locator('[data-testid=like-button-count]')).toHaveText('325');
+
+      // 좋아요 여부가 잘 나타나야 한다
+      await expect(firstEv.locator('[data-testid=like-button]')).toHaveAttribute('aria-checked', 'false');
+      await expect(secondEv.locator('[data-testid=like-button]')).toHaveAttribute('aria-checked', 'true');
+
+      // 좋아요 기능이 잘 동작해야 한다 (좋아요)
+      await Promise.all([
+        page.waitForRequest((req) => req.method() === 'POST'),
+        page.waitForResponse((res) => res.url().includes(`/v1/evaluations/6259/likes`)),
+        page.waitForRequest((req) => req.method() === 'GET' && req.url().includes(`/v1/evaluations/users/me`)),
+        firstEv.locator('[data-testid=like-button]').click(),
+      ]);
+
+      // 좋아요 기능이 잘 동작해야 한다 (취소)
+      await Promise.all([
+        page.waitForRequest((req) => req.method() === 'DELETE'),
+        page.waitForResponse((res) => res.url().includes(`/v1/evaluations/6258/likes`)),
+        page.waitForRequest((req) => req.method() === 'GET' && req.url().includes(`/v1/evaluations/users/me`)),
+        secondEv.locator('[data-testid=like-button]').click(),
+      ]);
     },
   ),
 );

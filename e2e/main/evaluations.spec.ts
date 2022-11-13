@@ -38,7 +38,6 @@ test(
       const cat = main.findByTestId('main-empty-review');
       const ev = main.findByTestId('main-evaluation-card');
       const firstEv = ev.first();
-      const secondEv = ev.nth(1);
 
       // 고양이는 안 보여야 한다
       await expect(cat).toHaveCount(0);
@@ -46,17 +45,49 @@ test(
       // 첫 번째 강의평의 교수명이 잘 나타나야 한다
       await expect(firstEv).toContainText('박재욱');
 
+      // 첫 번째 강의평을 클릭하면 해당하는 페이지로 이동해야 한다
+      await firstEv.locator('text=서양문명의 역사 1').click();
+      await expect(main.getPage()).toHaveURL('/detail?id=353');
+    },
+  ),
+);
+
+test(
+  '좋아요 기능이 정상 동작한다',
+  withCookie(
+    // 강의평 목록이 비어있지 않을 경우
+    [getTestCookie('TEST_MAIN_EVALUATION_EXIST', 'true')],
+    async ({ page }) => {
+      // 페이지에 접속하면
+      const main = new MainPage(page);
+      await main.goto();
+
+      const ev = main.findByTestId('main-evaluation-card');
+      const firstEv = ev.first();
+      const secondEv = ev.nth(1);
+
       // 첫 번째 강의평에 좋아요 개수가 2개로 나타나야 한다
-      const countSpan = firstEv.locator('[data-testid=like-button-count]');
-      await expect(countSpan).toHaveText('2');
+      await expect(firstEv.locator('[data-testid=like-button-count]')).toHaveText('2');
 
       // 좋아요 여부가 잘 나타나야 한다
       await expect(firstEv.locator('[data-testid=like-button]')).toHaveAttribute('aria-checked', 'true');
       await expect(secondEv.locator('[data-testid=like-button]')).toHaveAttribute('aria-checked', 'false');
 
-      // 첫 번째 강의평을 클릭하면 해당하는 페이지로 이동해야 한다
-      await firstEv.locator('text=서양문명의 역사 1').click();
-      await expect(main.getPage()).toHaveURL('/detail?id=353');
+      // 좋아요 기능이 잘 동작해야 한다 (취소)
+      await Promise.all([
+        page.waitForRequest((req) => req.method() === 'DELETE'),
+        page.waitForResponse((res) => res.url().includes(`/v1/evaluations/6260/likes`)),
+        page.waitForRequest((req) => req.method() === 'GET' && req.url().includes(`/v1/tags/main/1/evaluations`)),
+        firstEv.locator('[data-testid=like-button]').click(),
+      ]);
+
+      // 좋아요 기능이 잘 동작해야 한다 (좋아요)
+      await Promise.all([
+        page.waitForRequest((req) => req.method() === 'POST'),
+        page.waitForResponse((res) => res.url().includes(`/v1/evaluations/6257/likes`)),
+        page.waitForRequest((req) => req.method() === 'GET' && req.url().includes(`/v1/tags/main/1/evaluations`)),
+        secondEv.locator('[data-testid=like-button]').click(),
+      ]);
     },
   ),
 );

@@ -116,4 +116,12 @@ export const evHandlers = [
     const paginatedResult = getPaginatedResult(mockLectureEvaluations, req.url.searchParams.get('cursor') ?? undefined);
     return res(ctx.json(paginatedResult));
   }),
+
+  rest.post<never, never>(`*/v1/evaluations/:id/likes`, (req, res, ctx) => {
+    return res(ctx.delay(300), ctx.status(200));
+  }),
+
+  rest.delete<never, never>(`*/v1/evaluations/:id/likes`, (req, res, ctx) => {
+    return res(ctx.delay(300), ctx.status(200));
+  }),
 ];

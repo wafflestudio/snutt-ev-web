@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
+import { likeEvaluation, unlikeEvaluation } from '@/lib/apis/ev';
 import { CollapsableText } from '@/lib/components/CollapsableText';
 import { SvgFossil } from '@/lib/components/Icons/SvgFossil';
 import SvgMaximize from '@/lib/components/Icons/SvgMaximize';
@@ -13,13 +15,28 @@ import { COLORS } from '@/lib/styles/colors';
 import { semesterToString } from '@/lib/util/semesterToString';
 
 interface Props {
+  lectureId: number;
   review: EvaluationDTO;
   onMoreClick: () => void;
   onScoreDetailClick: () => void;
   isMyReview?: boolean;
 }
 
-export const LectureReviewCard = ({ review, onMoreClick, isMyReview = false, onScoreDetailClick }: Props) => {
+export const LectureReviewCard = ({
+  review,
+  onMoreClick,
+  isMyReview = false,
+  onScoreDetailClick,
+  lectureId,
+}: Props) => {
+  const { mutate: toggleLike, isLoading: isMutating } = useToggleLikeEvaluation(review.id, review.is_liked, lectureId);
+
+  const onClickLike = () => {
+    if (isMutating) return;
+
+    toggleLike();
+  };
+
   return (
     <Wrapper isMintColor={isMyReview} data-testid="detail-evaluation-card">
       <Contents>
@@ -58,12 +75,22 @@ export const LectureReviewCard = ({ review, onMoreClick, isMyReview = false, onS
         {LIKE_FEATURE && (
           <LikeWrapper>
             <LikeText>강의평이 도움이 되었나요?</LikeText>
-            <LikeButton likeCount={review.like_count} likebyMe={review.is_liked} />
+            <LikeButton likeCount={review.like_count} likebyMe={review.is_liked} onClick={onClickLike} />
           </LikeWrapper>
         )}
       </Contents>
     </Wrapper>
   );
+};
+
+const useToggleLikeEvaluation = (id: number, liked: boolean, lectureId: number) => {
+  const queryClient = useQueryClient();
+
+  return useMutation(() => (liked ? unlikeEvaluation({ params: { id } }) : likeEvaluation({ params: { id } })), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['lectureEvaluation', lectureId]);
+    },
+  });
 };
 
 const Wrapper = styled.div<{ isMintColor: boolean }>`
