@@ -38,6 +38,7 @@ test(
       const cat = main.findByTestId('main-empty-review');
       const ev = main.findByTestId('main-evaluation-card');
       const firstEv = ev.first();
+      const secondEv = ev.nth(1);
 
       // 고양이는 안 보여야 한다
       await expect(cat).toHaveCount(0);
@@ -45,20 +46,13 @@ test(
       // 첫 번째 강의평의 교수명이 잘 나타나야 한다
       await expect(firstEv).toContainText('박재욱');
 
-      // 초기 강의평은 6개가 보여야 한다
-      await expect(ev).toHaveCount(6);
+      // 첫 번째 강의평에 좋아요 개수가 2개로 나타나야 한다
+      const countSpan = firstEv.locator('[data-testid=like-button-count]');
+      await expect(countSpan).toHaveText('2');
 
-      // 끝까지 스크롤하면 9개가 보여져야 한다
-      await main.scrollToBottom(50);
-      await expect(ev).toHaveCount(9);
-
-      // 끝까지 스크롤하면 12개가 보여져야 한다
-      await main.scrollToBottom(50);
-      await expect(ev).toHaveCount(12);
-
-      // 끝까지 스크롤해도 12개가 보여져야 한다 (마지막 페이지)
-      await main.scrollToBottom(50);
-      await expect(ev).toHaveCount(12);
+      // 좋아요 여부가 잘 나타나야 한다
+      await expect(firstEv.locator('[data-testid=like-button]')).toHaveAttribute('aria-checked', 'true');
+      await expect(secondEv.locator('[data-testid=like-button]')).toHaveAttribute('aria-checked', 'false');
 
       // 첫 번째 강의평을 클릭하면 해당하는 페이지로 이동해야 한다
       await firstEv.locator('text=서양문명의 역사 1').click();

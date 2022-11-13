@@ -27,6 +27,9 @@ export const themeObject: ThemeObject = {
           stroke: COLORS.black,
         },
       },
+      border: {
+        light: COLORS.lightGray,
+      },
     },
   },
   dark: {
@@ -48,6 +51,9 @@ export const themeObject: ThemeObject = {
           fill: COLORS.black,
           stroke: COLORS.white,
         },
+      },
+      border: {
+        light: COLORS.lightGray,
       },
     },
   },

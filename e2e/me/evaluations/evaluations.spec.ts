@@ -4,8 +4,6 @@ import { getTestCookie } from '../../utils/cookie';
 import { withCookie } from '../../utils/withCookiePage';
 import { MyEvaluationsPage } from './_page';
 
-const totalCountTestId = 'my-evaluations-total-count';
-
 test(
   '강의평 목록이 비어있을 경우',
   withCookie(
@@ -44,12 +42,20 @@ test(
       const cat = main.findByTestId('my-evaluations-empty');
       const ev = main.findByTestId('my-evaluations-evaluation-card');
       const firstEv = ev.first();
+      const secondEv = ev.nth(1);
 
       // 고양이는 안 보여야 한다
       await expect(cat).toHaveCount(0);
 
       // 첫 번째 강의평의 교수명이 잘 나타나야 한다
       await expect(firstEv).toContainText('염헌영');
+
+      // 첫 번째 강의평에 좋아요 개수가 325개로 나타나야 한다
+      await expect(firstEv.locator('[data-testid=like-button-count]')).toHaveText('325');
+
+      // 좋아요 여부가 잘 나타나야 한다
+      await expect(firstEv.locator('[data-testid=like-button]')).toHaveAttribute('aria-checked', 'false');
+      await expect(secondEv.locator('[data-testid=like-button]')).toHaveAttribute('aria-checked', 'true');
 
       // 내가 작성한 강의평 개수 영역이 잘 나타나야 한다
       const tc = main.findByTestId(totalCountTestId);
@@ -87,3 +93,5 @@ test(
     },
   ),
 );
+
+const totalCountTestId = 'my-evaluations-total-count';
