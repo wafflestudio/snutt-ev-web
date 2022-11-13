@@ -14,6 +14,9 @@ declare module '@emotion/react' {
         desc: Color; // 설명 텍스트
       };
       icon: { filled: { fill: Color; stroke: Color }; outlined: { fill: Color; stroke: Color } };
+      border: {
+        light: Color;
+      };
     };
   }
 }

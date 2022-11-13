@@ -2,9 +2,11 @@ import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 
 import { CollapsableText } from '@/lib/components/CollapsableText';
+import { LikeButton } from '@/lib/components/Miscellaneous/LikeButton';
 import { Rating } from '@/lib/components/Rating';
 import { Detail, Subheading01 } from '@/lib/components/Text';
 import { MainEvaluationDTO } from '@/lib/dto/mainEvaluation';
+import { LIKE_FEATURE } from '@/lib/features/flags';
 import { COLORS } from '@/lib/styles/colors';
 import { semesterToString } from '@/lib/util/semesterToString';
 
@@ -40,6 +42,13 @@ export const EvaluationCard = ({ evaluation }: Props) => {
         <Review>
           <CollapsableText text={evaluation.content} />
         </Review>
+
+        {LIKE_FEATURE && (
+          <LikeWrapper>
+            <LikeText>강의평이 도움이 되었나요?</LikeText>
+            <LikeButton likeCount={1} />
+          </LikeWrapper>
+        )}
       </Contents>
     </Wrapper>
   );
@@ -55,7 +64,7 @@ const Contents = styled.div`
   border-bottom: 1px solid ${COLORS.gray};
   display: flex;
   flex-direction: column;
-  padding-bottom: 15px;
+  padding-bottom: 20px;
 `;
 
 const Header = styled.div`
@@ -94,3 +103,18 @@ const RatingSemester = styled.div`
 `;
 
 const Review = styled.div``;
+
+const LikeWrapper = styled.div`
+  margin-top: 12px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const LikeText = styled.p`
+  margin: 8px 0;
+  font-size: 10px;
+  line-height: 11px;
+  color: ${({ theme }) => theme.colors.text.desc};
+`;
