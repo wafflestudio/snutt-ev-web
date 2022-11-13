@@ -12,7 +12,7 @@ export interface EvaluationDTO {
   life_balance: number | null;
   rating: number;
   like_count: number;
-  dislike_count: number;
+  is_liked: boolean;
   is_hidden: boolean;
   is_reportable: boolean;
   year: number;

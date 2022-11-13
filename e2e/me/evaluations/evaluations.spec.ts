@@ -51,6 +51,9 @@ test(
       // 첫 번째 강의평의 교수명이 잘 나타나야 한다
       await expect(firstEv).toContainText('염헌영');
 
+      // 첫 번째 강의평에 좋아요 개수가 325개로 나타나야 한다
+      await expect(firstEv.locator('[data-testid=like-button-count]')).toHaveText('325');
+
       // 내가 작성한 강의평 개수 영역이 잘 나타나야 한다
       const tc = main.findByTestId(totalCountTestId);
       await expect(tc).toHaveText('(12개)');

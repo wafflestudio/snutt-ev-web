@@ -45,6 +45,10 @@ test(
       // 첫 번째 강의평의 교수명이 잘 나타나야 한다
       await expect(firstEv).toContainText('박재욱');
 
+      // 첫 번째 강의평에 좋아요 개수가 2개로 나타나야 한다
+      const countSpan = firstEv.locator('[data-testid=like-button-count]');
+      await expect(countSpan).toHaveText('2');
+
       // 첫 번째 강의평을 클릭하면 해당하는 페이지로 이동해야 한다
       await firstEv.locator('text=서양문명의 역사 1').click();
       await expect(main.getPage()).toHaveURL('/detail?id=353');
