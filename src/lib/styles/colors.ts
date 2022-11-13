@@ -9,4 +9,5 @@ export const COLORS = {
   blue: '#1BD0C8',
   white: '#FFFFFF',
   lightGray: '#EDEDED',
+  mint: '#1BD0C8',
 } as const;

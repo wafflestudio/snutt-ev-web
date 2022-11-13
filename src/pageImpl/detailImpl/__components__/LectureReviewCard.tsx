@@ -58,7 +58,7 @@ export const LectureReviewCard = ({ review, onMoreClick, isMyReview = false, onS
         {LIKE_FEATURE && (
           <LikeWrapper>
             <LikeText>강의평이 도움이 되었나요?</LikeText>
-            <LikeButton likeCount={review.like_count} />
+            <LikeButton likeCount={review.like_count} likebyMe={review.is_liked} />
           </LikeWrapper>
         )}
       </Contents>

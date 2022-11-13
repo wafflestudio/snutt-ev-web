@@ -17,15 +17,18 @@ test(
       const detail = new DetailPage(page);
       await detail.visit();
 
+      const myEv = detail.findByTestId('detail-evaluation-card').first();
+      const otherEv = detail.findByTestId('detail-evaluation-card').nth(1);
+
       // 내 강의평의 좋아요 개수 19개
-      await expect(
-        detail.findByTestId('detail-evaluation-card').first().locator('[data-testid=like-button-count]'),
-      ).toHaveText('19');
+      await expect(myEv.locator('[data-testid=like-button-count]')).toHaveText('19');
 
       // 다른 사람 첫번째 강의평의 좋아요 개수 107개
-      await expect(
-        detail.findByTestId('detail-evaluation-card').nth(1).locator('[data-testid=like-button-count]'),
-      ).toHaveText('107');
+      await expect(otherEv.locator('[data-testid=like-button-count]')).toHaveText('107');
+
+      // 좋아요 여부가 잘 나타나야 한다
+      await expect(myEv.locator('[data-testid=like-button]')).toHaveAttribute('aria-checked', 'false');
+      await expect(otherEv.locator('[data-testid=like-button]')).toHaveAttribute('aria-checked', 'true');
 
       // TODO: 강의평 신고 기능 테스트
 
