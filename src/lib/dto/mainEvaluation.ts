@@ -9,7 +9,7 @@ export interface MainEvaluationDTO {
   life_balance: number;
   rating: number;
   like_count: number;
-  dislike_count: number;
+  is_liked: boolean;
   is_hidden: boolean;
   year: number;
   semester: Semester;

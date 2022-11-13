@@ -39,7 +39,7 @@ export type PostEvaluationResult = {
   life_balance: number;
   rating: number;
   like_count: number;
-  dislike_count: number;
+  is_liked: boolean;
   is_hidden: boolean;
   is_reported: boolean;
 };

@@ -16,7 +16,7 @@ export const LikeButton = forwardRef<HTMLButtonElement, Props>(function LB(
   return (
     <Wrapper type={type} ref={ref} {...props}>
       <LikeIcon />
-      {likeCount}
+      <span data-testid="like-button-count">{likeCount}</span>
     </Wrapper>
   );
 });

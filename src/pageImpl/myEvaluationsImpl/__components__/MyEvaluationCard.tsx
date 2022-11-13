@@ -46,7 +46,7 @@ export const MyEvaluationCard = ({ evaluation }: Props) => {
         {LIKE_FEATURE && (
           <LikeWrapper>
             <LikeText>강의평이 도움이 되었나요?</LikeText>
-            <LikeButton likeCount={1} />
+            <LikeButton likeCount={evaluation.like_count} />
           </LikeWrapper>
         )}
       </Contents>
