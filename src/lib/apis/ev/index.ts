@@ -139,3 +139,19 @@ export async function listMyEvaluations(args: Args<undefined, { cursor?: string 
   const response = await evClient.get<ListMyEvaluationsResponse>(endpoint, { headers, params: query });
   return response.data;
 }
+
+export async function likeEvaluation(args: Args<{ id: number }>) {
+  const endpoint = `/v1/evaluations/${args.params.id}/likes`;
+  const headers = getServerSideHeaders(args.context);
+
+  const response = await evClient.post<never>(endpoint, { headers });
+  return response.data;
+}
+
+export async function unlikeEvaluation(args: Args<{ id: number }>) {
+  const endpoint = `/v1/evaluations/${args.params.id}/likes`;
+  const headers = getServerSideHeaders(args.context);
+
+  const response = await evClient.delete<never>(endpoint, { headers });
+  return response.data;
+}

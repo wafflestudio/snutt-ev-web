@@ -115,6 +115,7 @@ export const DetailImpl = () => {
             <ReviewList>
               {myLectureEvaluations?.map((content) => (
                 <LectureReviewCard
+                  lectureId={lectureId}
                   review={content}
                   key={content.id}
                   onMoreClick={() => setMoreSheetItemId(content.id)}
@@ -125,6 +126,7 @@ export const DetailImpl = () => {
               <>
                 {lectureEvaluations?.map((it) => (
                   <LectureReviewCard
+                    lectureId={lectureId}
                     review={it}
                     key={it.id}
                     onMoreClick={() => setMoreSheetItemId(it.id)}

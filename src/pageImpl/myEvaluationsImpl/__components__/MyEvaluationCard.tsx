@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 
+import { likeEvaluation, unlikeEvaluation } from '@/lib/apis/ev';
 import { CollapsableText } from '@/lib/components/CollapsableText';
 import { LikeButton } from '@/lib/components/Miscellaneous/LikeButton';
 import { Rating } from '@/lib/components/Rating';
@@ -17,10 +19,18 @@ interface Props {
 export const MyEvaluationCard = ({ evaluation }: Props) => {
   const router = useRouter();
 
+  const { isLoading: isMutating, mutate: toggleLike } = useToggleLikeEvaluation(evaluation.id, evaluation.is_liked);
+
   const goToEvaluation = () => {
     const query = new URLSearchParams();
     query.set('id', `${evaluation.lecture.id}`);
     router.push(`/detail?${query}`);
+  };
+
+  const onClickLike = () => {
+    if (isMutating) return;
+
+    toggleLike();
   };
 
   return (
@@ -46,12 +56,22 @@ export const MyEvaluationCard = ({ evaluation }: Props) => {
         {LIKE_FEATURE && (
           <LikeWrapper>
             <LikeText>강의평이 도움이 되었나요?</LikeText>
-            <LikeButton likeCount={evaluation.like_count} likebyMe={evaluation.is_liked} />
+            <LikeButton likeCount={evaluation.like_count} likebyMe={evaluation.is_liked} onClick={onClickLike} />
           </LikeWrapper>
         )}
       </Contents>
     </Wrapper>
   );
+};
+
+const useToggleLikeEvaluation = (id: number, liked: boolean) => {
+  const queryClient = useQueryClient();
+
+  return useMutation(() => (liked ? unlikeEvaluation({ params: { id } }) : likeEvaluation({ params: { id } })), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['evaluations', 'list', 'my']);
+    },
+  });
 };
 
 const Wrapper = styled.div`

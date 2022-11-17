@@ -74,7 +74,7 @@ export const MainImpl = () => {
             {searchResult?.pages?.map((content, i) => (
               <Fragment key={i}>
                 {content.content.map((it) => (
-                  <EvaluationCard evaluation={it} key={it.id} />
+                  <EvaluationCard evaluation={it} key={it.id} selectedTagId={selectedTagId} />
                 ))}
               </Fragment>
             ))}

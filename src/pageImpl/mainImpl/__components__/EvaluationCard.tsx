@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 
+import { likeEvaluation, unlikeEvaluation } from '@/lib/apis/ev';
 import { CollapsableText } from '@/lib/components/CollapsableText';
 import { LikeButton } from '@/lib/components/Miscellaneous/LikeButton';
 import { Rating } from '@/lib/components/Rating';
@@ -11,16 +13,29 @@ import { COLORS } from '@/lib/styles/colors';
 import { semesterToString } from '@/lib/util/semesterToString';
 
 interface Props {
+  selectedTagId?: number;
   evaluation: MainEvaluationDTO;
 }
 
-export const EvaluationCard = ({ evaluation }: Props) => {
+export const EvaluationCard = ({ evaluation, selectedTagId }: Props) => {
   const router = useRouter();
+
+  const { isLoading: isMutating, mutate: toggleLike } = useToggleLikeEvaluation(
+    evaluation.id,
+    evaluation.is_liked,
+    selectedTagId,
+  );
 
   const goToEvaluation = () => {
     const query = new URLSearchParams();
     query.set('id', `${evaluation.lecture.id}`);
     router.push(`/detail?${query}`);
+  };
+
+  const onClickLike = () => {
+    if (isMutating) return;
+
+    toggleLike();
   };
 
   return (
@@ -46,12 +61,22 @@ export const EvaluationCard = ({ evaluation }: Props) => {
         {LIKE_FEATURE && (
           <LikeWrapper>
             <LikeText>강의평이 도움이 되었나요?</LikeText>
-            <LikeButton likeCount={evaluation.like_count} likebyMe={evaluation.is_liked} />
+            <LikeButton likeCount={evaluation.like_count} likebyMe={evaluation.is_liked} onClick={onClickLike} />
           </LikeWrapper>
         )}
       </Contents>
     </Wrapper>
   );
+};
+
+const useToggleLikeEvaluation = (id: number, liked: boolean, selectedTagId: number | undefined) => {
+  const queryClient = useQueryClient();
+
+  return useMutation(() => (liked ? unlikeEvaluation({ params: { id } }) : likeEvaluation({ params: { id } })), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['tagEvaluations', selectedTagId]);
+    },
+  });
 };
 
 const Wrapper = styled.div`
