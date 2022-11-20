@@ -8,14 +8,14 @@ const appleSDGothicNeoBUrl = `${assetBaseURL}/fonts/AppleSDGothicNeoB.ttf`;
 export const appleSDGNeo = css`
   @font-face {
     font-family: 'AppleSDGothicNeo';
-    src: url(${appleSDGothicNeoLUrl});
+    src: local(-apple-system), url(${appleSDGothicNeoLUrl});
     font-weight: normal;
     font-display: swap;
   }
 
   @font-face {
     font-family: 'AppleSDGothicNeo';
-    src: url(${appleSDGothicNeoBUrl});
+    src: local(-apple-system), url(${appleSDGothicNeoBUrl});
     font-weight: bold;
     font-display: swap;
   }
