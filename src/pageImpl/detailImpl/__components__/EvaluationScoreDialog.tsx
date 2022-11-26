@@ -33,6 +33,8 @@ export const EvaluationScoreDialog = ({ isOpen, close, evaluation }: Props) => {
 const Wrapper = styled.div`
   padding: 35px 25px;
   position: relative;
+
+  background-color: ${({ theme }) => theme.colors.bg.default};
 `;
 
 const CloseButton = styled(SvgExit)`
