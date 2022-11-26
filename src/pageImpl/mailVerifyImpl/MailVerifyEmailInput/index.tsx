@@ -16,6 +16,7 @@ export const MailVerifyEmailInput = ({ email, onChangeEmail, onRequest, hasReque
       <Subheading01>이메일</Subheading01>
       <EmailInputBar>
         <TransparentInput
+          data-testid="verify-email-input"
           placeholder="이메일을 입력하세요"
           value={email}
           onChange={(e) => onChangeEmail(e.target.value)}
@@ -23,7 +24,7 @@ export const MailVerifyEmailInput = ({ email, onChangeEmail, onRequest, hasReque
         <MailAddress>
           <Subheading02>@snu.ac.kr</Subheading02>
         </MailAddress>
-        <RequestVerificationButton onClick={onRequest} disabled={email === ''}>
+        <RequestVerificationButton onClick={onRequest} disabled={email === ''} data-testid="verify-request-code-button">
           {hasRequested ? '다시 요청' : '인증요청'}
         </RequestVerificationButton>
       </EmailInputBar>

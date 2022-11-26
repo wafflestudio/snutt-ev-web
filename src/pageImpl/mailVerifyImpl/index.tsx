@@ -11,12 +11,15 @@ import { Title01 } from '@/lib/components/Text';
 import { ApiError } from '@/lib/dto/error';
 import { useInterval } from '@/lib/hooks/useInterval';
 import { useRerender } from '@/lib/hooks/useRerender';
+import { APP_ENV } from '@/lib/util/env';
 import { SECOND } from '@/lib/util/time';
 
 import { MailVerifyCodeInput } from './MailVerifyCodeInput';
 import { MailVerifyEmailInput } from './MailVerifyEmailInput';
 import { MailVerifyHeader } from './MailVerifyHeader';
 import { MailVerifyWarning } from './MailVerifyWarning';
+
+const TIMER_DURATION = APP_ENV === 'test' ? 3 * SECOND : 180 * SECOND;
 
 export const MailVerifyImpl = () => {
   const router = useRouter();
@@ -48,7 +51,7 @@ export const MailVerifyImpl = () => {
 
       setVerificationState(MailVerificationState.READY);
       setIsVerificationNumberRequested(true);
-      setTimeoutDeadline(Date.now() + 180 * SECOND);
+      setTimeoutDeadline(Date.now() + TIMER_DURATION);
     } catch (e) {
       if (axios.isAxiosError(e)) {
         const errcode = (e as AxiosError<ApiError>).response?.data.errcode;
@@ -99,8 +102,12 @@ export const MailVerifyImpl = () => {
 
         <MailVerifyWarning state={verificationState} />
 
-        <CompleteButton onClick={onVerify} disabled={verificationState !== MailVerificationState.READY}>
-          <Title01 style={{ color: 'white' }}>완료</Title01>
+        <CompleteButton
+          onClick={onVerify}
+          disabled={verificationState !== MailVerificationState.READY}
+          data-testid="verify-submit-button"
+        >
+          완료
         </CompleteButton>
       </Content>
     </Wrapper>

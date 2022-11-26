@@ -19,7 +19,9 @@ export const MailVerifyWarning = ({ state }: Props) => {
 
   return (
     <WarningText>
-      <Detail style={{ color: COLORS.red }}>{WARINING[state]}</Detail>
+      <Detail style={{ color: COLORS.red }} data-testid="verify-warning-text">
+        {WARINING[state]}
+      </Detail>
     </WarningText>
   );
 };

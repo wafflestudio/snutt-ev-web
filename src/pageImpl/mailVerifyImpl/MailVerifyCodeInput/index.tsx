@@ -18,6 +18,7 @@ export const MailVerifyCodeInput = ({ code, onChangeCode, timeoutDeadline, isVer
       <Subheading01>인증번호</Subheading01>
       <VerificationNumberInputBar>
         <TransparentInput
+          data-testid="verify-code-input"
           type="number"
           value={code}
           placeholder="인증번호 6자리를 입력하세요"
