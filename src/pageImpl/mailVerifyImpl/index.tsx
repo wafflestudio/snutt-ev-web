@@ -9,6 +9,8 @@ import { Button } from '@/lib/components/Button';
 import SvgTimetableOn from '@/lib/components/Icons/SvgTimetableOn';
 import { Title01 } from '@/lib/components/Text';
 import { ApiError } from '@/lib/dto/error';
+import { useInterval } from '@/lib/hooks/useInterval';
+import { useRerender } from '@/lib/hooks/useRerender';
 import { SECOND } from '@/lib/util/time';
 
 import { MailVerifyCodeInput } from './MailVerifyCodeInput';
@@ -23,8 +25,22 @@ export const MailVerifyImpl = () => {
   const [code, setCode] = useState('');
 
   const [isVerificationNumberRequested, setIsVerificationNumberRequested] = useState(false);
-  const [timeoutDeadline, setTimeoutDeadline] = useState(0);
+  const [timeoutDeadline, setTimeoutDeadline] = useState<number | null>(null);
   const [verificationState, setVerificationState] = useState(MailVerificationState.NONE);
+
+  const rerender = useRerender();
+
+  useInterval(
+    () => {
+      if (timeoutDeadline !== null && timeoutDeadline < Date.now()) {
+        setTimeoutDeadline(null);
+        setVerificationState(MailVerificationState.TIMEOUT);
+      }
+
+      rerender();
+    },
+    { delay: 250, enabled: timeoutDeadline !== null },
+  );
 
   const onRequestCode = async () => {
     try {
@@ -32,7 +48,7 @@ export const MailVerifyImpl = () => {
 
       setVerificationState(MailVerificationState.READY);
       setIsVerificationNumberRequested(true);
-      setTimeoutDeadline(Date.now() + 179 * SECOND);
+      setTimeoutDeadline(Date.now() + 180 * SECOND);
     } catch (e) {
       if (axios.isAxiosError(e)) {
         const errcode = (e as AxiosError<ApiError>).response?.data.errcode;
@@ -75,12 +91,9 @@ export const MailVerifyImpl = () => {
           onChangeCode={(c) => {
             if (verificationState === MailVerificationState.INVALID_NUMBER)
               setVerificationState(MailVerificationState.READY);
-
             setCode(c);
           }}
           timeoutDeadline={timeoutDeadline}
-          verificationState={verificationState}
-          setVerificationState={setVerificationState}
           isVerificationNumberRequested={isVerificationNumberRequested}
         />
 

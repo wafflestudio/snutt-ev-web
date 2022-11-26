@@ -1,30 +1,18 @@
 import styled from '@emotion/styled';
-import CountDown, { CountdownRenderProps, zeroPad } from 'react-countdown';
 
 import { Subheading01 } from '@/lib/components/Text';
 import { COLORS } from '@/lib/styles/colors';
-
-import { MailVerificationState } from '..';
+import { toMinuteSecondFormat } from '@/lib/util/time';
 
 type Props = {
   code: string;
   onChangeCode: (code: string) => void;
 
-  verificationState: MailVerificationState;
-  setVerificationState: (state: MailVerificationState) => void;
-
-  timeoutDeadline: number;
+  timeoutDeadline: number | null;
   isVerificationNumberRequested: boolean;
 };
 
-export const MailVerifyCodeInput = ({
-  code,
-  onChangeCode,
-  timeoutDeadline,
-  verificationState,
-  setVerificationState,
-  isVerificationNumberRequested,
-}: Props) => {
+export const MailVerifyCodeInput = ({ code, onChangeCode, timeoutDeadline, isVerificationNumberRequested }: Props) => {
   return (
     <VerificationNumberInputWrapper>
       <Subheading01>인증번호</Subheading01>
@@ -35,21 +23,11 @@ export const MailVerifyCodeInput = ({
           placeholder="인증번호 6자리를 입력하세요"
           onChange={(e) => onChangeCode(e.target.value)}
         />
-        {isVerificationNumberRequested && (
+        {isVerificationNumberRequested && timeoutDeadline && (
           <CountDownWrapper>
-            <CountDown
-              date={timeoutDeadline}
-              onTick={({ completed }) => {
-                if (!completed && verificationState === MailVerificationState.TIMEOUT)
-                  setVerificationState(MailVerificationState.READY);
-              }}
-              onComplete={() => setVerificationState(MailVerificationState.TIMEOUT)}
-              renderer={({ minutes, seconds, completed }: CountdownRenderProps) => (
-                <Subheading01 style={{ color: COLORS.red }}>
-                  {completed ? '00:00' : `${zeroPad(minutes)}:${zeroPad(seconds)}`}
-                </Subheading01>
-              )}
-            />
+            <Subheading01 style={{ color: COLORS.red }}>
+              {toMinuteSecondFormat(timeoutDeadline - Date.now())}
+            </Subheading01>
           </CountDownWrapper>
         )}
       </VerificationNumberInputBar>
