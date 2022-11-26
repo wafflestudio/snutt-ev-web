@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import { TagGroupWithColor } from '@/lib/dto/tagGroup';
+import { COLORS } from '@/lib/styles/colors';
 
 interface Props {
   tagGroups: TagGroupWithColor[];
@@ -30,7 +31,7 @@ const TagGroupItem = styled.div<{ isSelected: boolean }>`
   font-family: 'AppleSDGothicNeo';
   font-size: 17px;
   font-weight: 700;
-  color: ${(props) => (props.isSelected ? '#000000' : '#b3b3b3')};
+  color: ${({ isSelected, theme }) => (isSelected ? theme.colors.text.default : COLORS.gray2)};
   transition: 0.2s color;
 `;
 

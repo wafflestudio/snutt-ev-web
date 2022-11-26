@@ -33,5 +33,5 @@ const TagItemText = styled.div`
   margin-left: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
-  color: '#000000';
+  color: ${({ theme }) => theme.colors.text.default};
 `;

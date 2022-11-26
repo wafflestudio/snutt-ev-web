@@ -39,7 +39,7 @@ export const Searchbar = ({ toggleOpenSearchSheet, textQuery, onChangeTextQuery,
 const InputBar = styled.div`
   height: 36px;
   width: 100%;
-  background: #f2f2f2;
+  background: ${({ theme }) => theme.colors.bg.form};
   border-radius: 6px;
   border-width: 0px;
   margin: 5px 20px 5px 6px;
@@ -54,7 +54,7 @@ const Input = styled.input`
   font-weight: normal;
   font-size: 18px;
 
-  background: #f2f2f2;
+  background: transparent;
   border: 0px;
   height: 100%;
   width: 100%;
@@ -63,10 +63,12 @@ const Input = styled.input`
   margin-right: 8px;
 
   padding: 0 0 0 0;
+
+  color: ${({ theme }) => theme.colors.text.form};
 `;
 
 const SearchButton = styled.button`
-  background: #f2f2f2;
+  background: transparent;
   border-radius: 6px 0px 0px 6px;
   margin-left: 6px;
   padding: 0 0 0 0;
@@ -77,7 +79,7 @@ const SearchButton = styled.button`
 `;
 
 const TagButton = styled.button`
-  background: #f2f2f2;
+  background: transparent;
   border-radius: 0px 6px 6px 0px;
   margin-right: 6px;
   border: 0px;
