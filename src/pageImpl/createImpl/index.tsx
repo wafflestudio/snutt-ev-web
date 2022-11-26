@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Button, Dialog, DialogActions, DialogTitle } from '@mui/material';
+import { Button as MuiButton, Dialog, DialogActions, DialogTitle } from '@mui/material';
 import get from 'lodash/get';
 import { useRouter } from 'next/router';
 import { Fragment, useEffect, useState } from 'react';
@@ -7,8 +7,8 @@ import { Fragment, useEffect, useState } from 'react';
 import { postLectureEvaluation } from '@/lib/apis/ev';
 import { PostEvaluationQuery } from '@/lib/apis/ev/types';
 import { AppBar } from '@/lib/components/Appbar';
+import { Button } from '@/lib/components/Button';
 import { SemesterLectureDTO } from '@/lib/dto/semesterLecture';
-import { COLORS } from '@/lib/styles/colors';
 
 import { EvalBasic, EvalPolygon, Header } from './__components__';
 import { useLectureSemesters, usePolygon } from './__containers__';
@@ -68,13 +68,13 @@ export const CreateImpl = () => {
     >
       <DialogTitle>{dialogErrorMessage}</DialogTitle>
       <DialogActions>
-        <Button
+        <MuiButton
           onClick={() => {
             setIsDialogOpen((status) => !status);
           }}
         >
           확인
-        </Button>
+        </MuiButton>
       </DialogActions>
     </Dialog>
   );
@@ -202,20 +202,7 @@ const Container = styled.div`
   /* height: 100vh; */
 `;
 
-const Complete = styled.button`
+const Complete = styled(Button)`
   position: fixed;
   bottom: 0;
-  width: 100vw;
-  height: 60px;
-  background-color: #1bd0c8;
-  font-family: AppleSDGothicNeo;
-  font-weight: bold;
-  font-size: 17px;
-  line-height: 20.5px;
-  color: #ffffff;
-  border: none;
-
-  &:disabled {
-    background-color: ${COLORS.gray20};
-  }
 `;

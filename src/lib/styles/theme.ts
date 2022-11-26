@@ -37,6 +37,16 @@ export const themeObject: ThemeObject = {
         form: COLORS.gray2,
         info: COLORS.gray20,
       },
+      button: {
+        primary: {
+          default: { bg: COLORS.mint, text: COLORS.white },
+          disabled: { bg: COLORS.gray20, text: COLORS.white },
+        },
+        secondary: {
+          default: { bg: COLORS.transparent, text: COLORS.mint },
+          disabled: { bg: COLORS.transparent, text: COLORS.gray2 },
+        },
+      },
     },
   },
   dark: {
@@ -68,6 +78,16 @@ export const themeObject: ThemeObject = {
         light: COLORS.lightGray,
         form: COLORS.darkGray,
         info: COLORS.darkGray,
+      },
+      button: {
+        primary: {
+          default: { bg: COLORS.darkMint, text: COLORS.white },
+          disabled: { bg: COLORS.gray2, text: COLORS.white },
+        },
+        secondary: {
+          default: { bg: COLORS.transparent, text: COLORS.darkMint },
+          disabled: { bg: COLORS.transparent, text: COLORS.gray2 },
+        },
       },
     },
   },

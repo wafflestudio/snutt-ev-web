@@ -6,6 +6,7 @@ import CountDown, { CountdownRenderProps, zeroPad } from 'react-countdown';
 
 import { postEmailVerification, postEmailVerificationCode } from '@/lib/apis/core';
 import { AppBar } from '@/lib/components/Appbar';
+import { Button } from '@/lib/components/Button';
 import SvgTimetableOn from '@/lib/components/Icons/SvgTimetableOn';
 import { Detail, Subheading01, Subheading02, Title01 } from '@/lib/components/Text';
 import { ApiError } from '@/lib/dto/error';
@@ -127,12 +128,7 @@ export const MailVerifyImpl = () => {
         <EmailInputWrapper>
           <Subheading01>이메일</Subheading01>
           <EmailInputBar>
-            <EmailInput
-              placeholder={'이메일을 입력하세요'}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-            />
+            <EmailInput placeholder={'이메일을 입력하세요'} onChange={(e) => setEmail(e.target.value)} />
             <MailAddress>
               <Subheading02>@snu.ac.kr</Subheading02>
             </MailAddress>
@@ -240,17 +236,17 @@ const MailAddress = styled.div`
 const RequestVerificationButton = styled.button`
   width: 85px;
   height: 100%;
-  background-color: white;
+  background-color: transparent;
   border: none;
 
   font-family: AppleSDGothicNeo;
   font-weight: bold;
   font-size: 14px;
   line-height: 17px;
-  color: #1bd0c8;
+  color: ${({ theme }) => theme.colors.button.secondary.default.text};
 
   &:disabled {
-    color: #b3b3b3;
+    color: ${({ theme }) => theme.colors.button.secondary.disabled.text};
   }
 `;
 
@@ -262,16 +258,8 @@ const CountDownWrapper = styled.div`
   justify-content: center;
 `;
 
-const CompleteButton = styled.button`
-  height: 60px;
-  width: 100%;
+const CompleteButton = styled(Button)`
   margin-top: 40px;
-  background-color: ${COLORS.blue};
-  border: none;
-
-  &:disabled {
-    background-color: #c4c4c4;
-  }
 `;
 
 const TransparentInput = styled.input`
@@ -279,11 +267,14 @@ const TransparentInput = styled.input`
   flex-grow: 1;
   line-height: 15px;
   padding-left: 0;
+  background-color: transparent;
 
   font-family: AppleSDGothicNeo;
   font-weight: normal;
   font-size: 14px;
   line-height: 15px;
+
+  color: ${({ theme }) => theme.colors.text.form};
 
   ::placeholder {
     color: #c4c4c4;
