@@ -5,7 +5,7 @@ import { Fragment } from 'react';
 
 import SvgChevron from '@/lib/components/Icons/SvgChevronRight';
 import { EmptyReviewPlaceholder } from '@/lib/components/Miscellaneous/EmptyReviewPlaceholder';
-import { SearchResultLoading } from '@/lib/components/Miscellaneous/Loading';
+import { LoadingIndicator } from '@/lib/components/molecules/LoadingIndicator';
 import { Subheading02, Title01 } from '@/lib/components/Text';
 import useScrollLoader from '@/lib/hooks/useScrollLoader';
 
@@ -79,11 +79,11 @@ export const MainImpl = () => {
               </Fragment>
             ))}
             {hasNextPage && !isFetchingNextPage && <div ref={loaderRef} />}
-            {isFetchingNextPage && <SearchResultLoading />}
+            {isFetchingNextPage && <LoadingIndicator />}
           </>
         )
       ) : (
-        <SearchResultLoading />
+        <LoadingIndicator />
       )}
     </Wrapper>
   );
