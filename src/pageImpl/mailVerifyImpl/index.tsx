@@ -127,12 +127,7 @@ export const MailVerifyImpl = () => {
         <EmailInputWrapper>
           <Subheading01>이메일</Subheading01>
           <EmailInputBar>
-            <EmailInput
-              placeholder={'이메일을 입력하세요'}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-            />
+            <EmailInput placeholder={'이메일을 입력하세요'} onChange={(e) => setEmail(e.target.value)} />
             <MailAddress>
               <Subheading02>@snu.ac.kr</Subheading02>
             </MailAddress>
@@ -240,7 +235,7 @@ const MailAddress = styled.div`
 const RequestVerificationButton = styled.button`
   width: 85px;
   height: 100%;
-  background-color: white;
+  background-color: transparent;
   border: none;
 
   font-family: AppleSDGothicNeo;
@@ -279,11 +274,14 @@ const TransparentInput = styled.input`
   flex-grow: 1;
   line-height: 15px;
   padding-left: 0;
+  background-color: transparent;
 
   font-family: AppleSDGothicNeo;
   font-weight: normal;
   font-size: 14px;
   line-height: 15px;
+
+  color: ${({ theme }) => theme.colors.text.form};
 
   ::placeholder {
     color: #c4c4c4;
