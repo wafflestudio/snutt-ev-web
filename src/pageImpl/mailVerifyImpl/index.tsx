@@ -6,6 +6,7 @@ import CountDown, { CountdownRenderProps, zeroPad } from 'react-countdown';
 
 import { postEmailVerification, postEmailVerificationCode } from '@/lib/apis/core';
 import { AppBar } from '@/lib/components/Appbar';
+import { Button } from '@/lib/components/Button';
 import SvgTimetableOn from '@/lib/components/Icons/SvgTimetableOn';
 import { Detail, Subheading01, Subheading02, Title01 } from '@/lib/components/Text';
 import { ApiError } from '@/lib/dto/error';
@@ -242,10 +243,10 @@ const RequestVerificationButton = styled.button`
   font-weight: bold;
   font-size: 14px;
   line-height: 17px;
-  color: #1bd0c8;
+  color: ${({ theme }) => theme.colors.button.secondary.default.text};
 
   &:disabled {
-    color: #b3b3b3;
+    color: ${({ theme }) => theme.colors.button.secondary.disabled.text};
   }
 `;
 
@@ -257,16 +258,8 @@ const CountDownWrapper = styled.div`
   justify-content: center;
 `;
 
-const CompleteButton = styled.button`
-  height: 60px;
-  width: 100%;
+const CompleteButton = styled(Button)`
   margin-top: 40px;
-  background-color: ${COLORS.blue};
-  border: none;
-
-  &:disabled {
-    background-color: #c4c4c4;
-  }
 `;
 
 const TransparentInput = styled.input`

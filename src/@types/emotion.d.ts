@@ -24,6 +24,16 @@ declare module '@emotion/react' {
         form: Color;
         info: Color;
       };
+      button: {
+        primary: {
+          default: { bg: Color; text: Color };
+          disabled: { bg: Color; text: Color };
+        };
+        secondary: {
+          default: { bg: Color; text: Color };
+          disabled: { bg: Color; text: Color };
+        };
+      };
     };
   }
 }

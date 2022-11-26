@@ -1,4 +1,5 @@
 export const COLORS = {
+  transparent: '#00000000',
   black: '#000000',
   lightBlack: '#0E0E0E',
   gray: '#F2F2F2',
@@ -8,8 +9,8 @@ export const COLORS = {
   darkGray: '#777777',
   darkerGray: '#505050',
   red: '#E54459',
-  blue: '#1BD0C8',
   white: '#FFFFFF',
   lightGray: '#EDEDED',
   mint: '#1BD0C8',
+  darkMint: '#58C1B7',
 } as const;
