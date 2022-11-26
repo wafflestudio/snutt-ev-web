@@ -24,8 +24,8 @@ export const TootTipContent = () => {
 const Wrapper = styled.div`
   & {
     position: absolute;
-    background: #f2f2f2;
-    border: 1px solid #c4c4c4;
+    background-color: ${({ theme }) => theme.colors.bg.info};
+    border: 1px solid ${({ theme }) => theme.colors.border.info};
     padding: 14px;
     width: 248px;
     right: 0;
@@ -40,7 +40,7 @@ const WrapperTriangle = styled.div`
   content: '';
   border-right: 11px solid transparent;
   border-left: 11px solid transparent;
-  border-bottom: 24px solid #f2f2f2;
+  border-bottom: 24px solid ${({ theme }) => theme.colors.bg.info};
   position: absolute;
   z-index: 100;
 `;
@@ -51,7 +51,7 @@ const WrapperTriangleBorder = styled.div`
   content: '';
   border-right: 13px solid transparent;
   border-left: 13px solid transparent;
-  border-bottom: 26px solid #c4c4c4;
+  border-bottom: 26px solid ${({ theme }) => theme.colors.border.info};
   position: absolute;
   z-index: -10;
 `;

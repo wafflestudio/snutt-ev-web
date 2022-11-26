@@ -109,7 +109,7 @@ const RatingButton = styled.button`
 const ContentTextarea = styled.textarea`
   width: 100%;
   height: 400px;
-  background-color: #f9f9f9;
+  background-color: ${({ theme }) => theme.colors.bg.form};
   border: 1px solid rgba(98, 98, 98, 0.5);
   box-sizing: border-box;
   border-radius: 12px;
@@ -118,8 +118,12 @@ const ContentTextarea = styled.textarea`
   line-height: 19px;
   padding: 12px;
   overflow-y: scroll;
-  color: #777777;
+  color: ${({ theme }) => theme.colors.text.form};
   outline: none;
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.text.desc};
+  }
 `;
 
 const WarningContainer = styled.div`

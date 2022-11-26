@@ -27,7 +27,7 @@ const Wrapper = styled.header`
   position: sticky;
   top: 0;
 
-  background-color: ${({ theme }) => theme.colors.bg};
+  background-color: ${({ theme }) => theme.colors.bg.default};
   border-bottom: solid 1px rgba(179, 179, 179, 0.3);
   z-index: 99;
 `;

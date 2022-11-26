@@ -92,7 +92,7 @@ const SemesterSelectorContainer = styled.div`
   margin-top: 10px;
   height: fit-content;
   width: fit-content;
-  background-color: #ffffff;
+  background: ${({ theme }) => theme.colors.bg.form};
   margin-left: 10px;
   align-self: center;
 `;
@@ -117,7 +117,8 @@ const SemesterSelector = styled.button`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #ffffff;
+  background: ${({ theme }) => theme.colors.bg.form};
+  color: ${({ theme }) => theme.colors.text.default};
   box-sizing: border-box;
   border: none;
   border-radius: 6px;
@@ -137,7 +138,7 @@ const SemesterButtonsContainer = styled.div`
   align-items: center;
   max-height: 200px;
   overflow-y: scroll;
-  background-color: #ffffff;
+  background: ${({ theme }) => theme.colors.bg.form};
 `;
 
 const SemesterButton = styled.button`
@@ -153,4 +154,5 @@ const SemesterButton = styled.button`
   padding: 8px 14px;
   border: none;
   background-color: transparent;
+  color: ${({ theme }) => theme.colors.text.default};
 `;

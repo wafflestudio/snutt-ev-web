@@ -14,7 +14,7 @@ export const GlobalStyles = () => {
           margin: 0 auto;
           ${appleSDGNeo};
           max-width: 768px;
-          background-color: ${theme.colors.bg};
+          background-color: ${theme.colors.bg.default};
         }
 
         * {

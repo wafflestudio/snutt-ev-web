@@ -36,7 +36,7 @@ export const RatingTooltip = () => {
 
 const TooltipButton = styled.button`
   border: none;
-  background-color: white;
+  background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;

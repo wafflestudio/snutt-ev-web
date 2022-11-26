@@ -95,7 +95,7 @@ const CategoryPicker = styled.div`
   padding: 20px 20px 0 20px;
   position: sticky;
   top: 45px;
-  background-color: ${({ theme }) => theme.colors.bg};
+  background-color: ${({ theme }) => theme.colors.bg.default};
   z-index: 50;
 `;
 
