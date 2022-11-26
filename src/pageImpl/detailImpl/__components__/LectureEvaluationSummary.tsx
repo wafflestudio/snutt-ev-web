@@ -37,7 +37,7 @@ const ReviewSummary = styled.div`
   justify-content: space-between;
 
   padding: 10px 0 10px 0;
-  border-bottom: solid 1px rgb(232, 232, 232);
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border.divider};
 `;
 
 const ReviewSummaryLeft = styled.div`

@@ -106,7 +106,7 @@ const Contents = styled.div`
   flex-direction: column;
   padding: 20px 0;
   margin: 0 20px;
-  border-bottom: 1px solid ${COLORS.gray};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border.divider};
 `;
 
 const Header = styled.div`

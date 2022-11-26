@@ -1,3 +1,4 @@
+import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Button as MuiButton, Dialog, DialogActions, DialogTitle } from '@mui/material';
 import get from 'lodash/get';
@@ -15,6 +16,7 @@ import { useLectureSemesters, usePolygon } from './__containers__';
 
 export const CreateImpl = () => {
   const router = useRouter();
+  const theme = useTheme();
   const id = Number(router.query['id']);
 
   const { data: lectureSemesters } = useLectureSemesters(id);
@@ -62,19 +64,12 @@ export const CreateImpl = () => {
   const InvalidationDialog = () => (
     <Dialog
       open={isDialogOpen}
-      onClose={() => {
-        setIsDialogOpen((status) => !status);
-      }}
+      PaperProps={{ style: { backgroundColor: theme.colors.bg.default } }}
+      onClose={() => setIsDialogOpen((status) => !status)}
     >
-      <DialogTitle>{dialogErrorMessage}</DialogTitle>
+      <DialogTitle sx={{ color: theme.colors.text.default }}>{dialogErrorMessage}</DialogTitle>
       <DialogActions>
-        <MuiButton
-          onClick={() => {
-            setIsDialogOpen((status) => !status);
-          }}
-        >
-          확인
-        </MuiButton>
+        <MuiButton onClick={() => setIsDialogOpen((status) => !status)}>확인</MuiButton>
       </DialogActions>
     </Dialog>
   );
