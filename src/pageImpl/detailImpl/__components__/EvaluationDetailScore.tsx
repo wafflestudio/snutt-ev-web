@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { Box } from '@mui/material';
 
 import { RatingGraph, RatingGraphAxis } from '@/lib/components/RatingGraph';
 import { EvaluationDTO } from '@/lib/dto/evaluation';
@@ -28,15 +27,15 @@ export const EvaluationDetailScore = ({ score, isSnuevWarning = false, size = 28
         )}
       </GraphWrapper>
 
-      <AxisLabel sx={{ left: '0%', top: 'calc(50% + 4px)' }}>강의력</AxisLabel>
-      <AxisLabel sx={{ left: '50%', top: '8px', transform: 'translateX(-50%)' }}>성적 만족도</AxisLabel>
-      <AxisLabel sx={{ right: '0%', top: 'calc(50% + 4px)' }}>수라밸</AxisLabel>
-      <AxisLabel sx={{ left: '50%', bottom: '12px', transform: 'translateX(-50%)' }}>얻어가는 것</AxisLabel>
+      <AxisLabel style={{ left: '0%', top: 'calc(50% + 4px)' }}>강의력</AxisLabel>
+      <AxisLabel style={{ left: '50%', top: '8px', transform: 'translateX(-50%)' }}>성적 만족도</AxisLabel>
+      <AxisLabel style={{ right: '0%', top: 'calc(50% + 4px)' }}>수라밸</AxisLabel>
+      <AxisLabel style={{ left: '50%', bottom: '12px', transform: 'translateX(-50%)' }}>얻어가는 것</AxisLabel>
     </ReviewDiagram>
   );
 };
 
-const AxisLabel = styled(Box)`
+const AxisLabel = styled.div`
   position: absolute;
 
   font-family: AppleSDGothicNeo;
