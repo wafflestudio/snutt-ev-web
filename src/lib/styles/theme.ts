@@ -13,6 +13,7 @@ export const themeObject: ThemeObject = {
         default: COLORS.white,
         form: COLORS.lighterGray,
         info: COLORS.gray,
+        divider: COLORS.black03,
       },
       text: {
         default: COLORS.black,
@@ -55,6 +56,7 @@ export const themeObject: ThemeObject = {
         default: '#2B2B2B',
         form: COLORS.darkerGray,
         info: COLORS.darkerGray,
+        divider: COLORS.darkerGray,
       },
       text: {
         default: COLORS.white,

@@ -9,6 +9,7 @@ declare module '@emotion/react' {
         default: Color; // 기본
         form: Color; // 폼컨트롤
         info: Color; // 정보 안내
+        divider: Color; // 디버이더
       };
       text: {
         default: Color; // 기본
