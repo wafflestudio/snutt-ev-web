@@ -32,7 +32,7 @@ export const RecentCarousel = ({ lectureList }: Props) => {
 };
 
 const Wrapper = styled.div`
-  border-bottom: 12px solid rgb(0, 0, 0, 0.03);
+  border-bottom: 12px solid ${({ theme }) => theme.colors.bg.divider};
   padding: 0 20px 20px 20px;
 `;
 
