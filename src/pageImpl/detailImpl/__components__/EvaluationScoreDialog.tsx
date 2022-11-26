@@ -1,3 +1,4 @@
+import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Dialog } from '@mui/material';
 
@@ -13,8 +14,10 @@ interface Props {
 }
 
 export const EvaluationScoreDialog = ({ isOpen, close, evaluation }: Props) => {
+  const theme = useTheme();
+
   return (
-    <Dialog open={isOpen} onClose={close}>
+    <Dialog open={isOpen} onClose={close} PaperProps={{ style: { backgroundColor: theme.colors.bg.default } }}>
       {evaluation && (
         <Wrapper data-testid="detail-evaluation-score-dialog" data-id={evaluation.id}>
           <CloseButton
@@ -33,8 +36,6 @@ export const EvaluationScoreDialog = ({ isOpen, close, evaluation }: Props) => {
 const Wrapper = styled.div`
   padding: 35px 25px;
   position: relative;
-
-  background-color: ${({ theme }) => theme.colors.bg.default};
 `;
 
 const CloseButton = styled(SvgExit)`
