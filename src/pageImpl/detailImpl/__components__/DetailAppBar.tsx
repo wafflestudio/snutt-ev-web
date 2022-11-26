@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 
 import { AppBar } from '@/lib/components/Appbar';
-import SvgArrowBack from '@/lib/components/Icons/SvgArrowBack';
 import SvgWrite from '@/lib/components/Icons/SvgWrite';
 import { Title01 } from '@/lib/components/Text';
 
@@ -15,13 +14,7 @@ export const DetailAppBar = ({ id, goBack }: Props) => {
   const router = useRouter();
 
   return (
-    <AppBar
-      leftImage={
-        <BackButton onClick={goBack}>
-          <SvgArrowBack width={30} height={30} />
-        </BackButton>
-      }
-    >
+    <AppBar left={<AppBar.BackButton onClick={goBack} />}>
       <AppBarContent>
         <Title01 style={{ marginLeft: 12 }}>강의평</Title01>
         <WriteButton onClick={() => router.push(`/create?id=${id}`)}>
@@ -31,14 +24,6 @@ export const DetailAppBar = ({ id, goBack }: Props) => {
     </AppBar>
   );
 };
-
-const BackButton = styled.button`
-  width: 30px;
-  height: 30px;
-  background: transparent;
-  border: none;
-  padding: 0;
-`;
 
 const WriteButton = styled.button`
   width: 30px;

@@ -9,7 +9,7 @@ import { Title01, Title02 } from '@/lib/components/Text';
 export default function Custom404() {
   return (
     <>
-      <AppBar leftImage={<SvgTimetableOn height={30} width={30} />}>
+      <AppBar left={<SvgTimetableOn height={30} width={30} />}>
         <Title01 style={{ marginLeft: 12 }}>강의평</Title01>
       </AppBar>
       <Container>

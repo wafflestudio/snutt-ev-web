@@ -7,7 +7,6 @@ import { Fragment, useEffect, useState } from 'react';
 import { postLectureEvaluation } from '@/lib/apis/ev';
 import { PostEvaluationQuery } from '@/lib/apis/ev/types';
 import { AppBar } from '@/lib/components/Appbar';
-import SvgArrowBack from '@/lib/components/Icons/SvgArrowBack';
 import { SemesterLectureDTO } from '@/lib/dto/semesterLecture';
 import { COLORS } from '@/lib/styles/colors';
 
@@ -161,17 +160,7 @@ export const CreateImpl = () => {
     <>
       <InvalidationDialog />
       <Wrapper>
-        <AppBar
-          leftImage={
-            <BackButton
-              onClick={() => {
-                step === 1 ? stepPrev() : router.back();
-              }}
-            >
-              <SvgArrowBack width={30} height={30} />
-            </BackButton>
-          }
-        />
+        <AppBar left={<AppBar.BackButton onClick={() => (step === 1 ? stepPrev() : router.back())} />} />
         <Container>
           <Header
             lectureName={lectureSemesters?.title}
@@ -201,14 +190,6 @@ export const CreateImpl = () => {
 
 const Wrapper = styled.div`
   margin-bottom: 90px;
-`;
-
-const BackButton = styled.button`
-  width: 30px;
-  height: 30px;
-  background: transparent;
-  border: none;
-  padding: 0;
 `;
 
 const Container = styled.div`

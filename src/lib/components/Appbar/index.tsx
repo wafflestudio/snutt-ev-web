@@ -1,18 +1,22 @@
 import styled from '@emotion/styled';
 import { PropsWithChildren, ReactNode } from 'react';
 
+import { AppBarBackButton } from './BackButton';
+
 interface Props {
-  leftImage: ReactNode;
+  left: ReactNode;
 }
 
-export const AppBar = ({ leftImage, children }: PropsWithChildren<Props>) => {
+export const AppBar = ({ left, children }: PropsWithChildren<Props>) => {
   return (
     <Wrapper data-testid="app-bar">
-      <AppBarLeft>{leftImage}</AppBarLeft>
+      <AppBarLeft>{left}</AppBarLeft>
       {children}
     </Wrapper>
   );
 };
+
+AppBar.BackButton = AppBarBackButton;
 
 const Wrapper = styled.header`
   display: flex;
