@@ -86,7 +86,7 @@ const Wrapper = styled.div`
 `;
 
 const Contents = styled.div`
-  border-bottom: 1px solid ${COLORS.gray};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border.divider};
   display: flex;
   flex-direction: column;
   padding-bottom: 20px;
