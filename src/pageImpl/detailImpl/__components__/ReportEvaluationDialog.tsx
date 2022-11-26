@@ -1,7 +1,9 @@
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
 import { useState } from 'react';
+
+import { Button } from '@/lib/components/atoms/Button';
 
 interface Props {
   isOpen: boolean;
@@ -36,8 +38,10 @@ export const ReportEvaluationDialog = ({ isOpen, close, report }: Props) => {
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>취소</Button>
-        <Button disabled={isReasonEmpty} onClick={() => report(reason)}>
+        <Button variant="text" size="small" onClick={handleClose}>
+          취소
+        </Button>
+        <Button variant="text" size="small" disabled={isReasonEmpty} onClick={() => report(reason)}>
           신고
         </Button>
       </DialogActions>
