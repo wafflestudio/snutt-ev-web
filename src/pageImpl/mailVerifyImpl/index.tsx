@@ -113,7 +113,7 @@ export const MailVerifyImpl = () => {
 
   return (
     <Wrapper>
-      <AppBar leftImage={<SvgTimetableOn height={30} width={30} />}>
+      <AppBar left={<SvgTimetableOn height={30} width={30} />}>
         <Title01 style={{ marginLeft: 12 }}>이메일 인증</Title01>
       </AppBar>
       <Content>

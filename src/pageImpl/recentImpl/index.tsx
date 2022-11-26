@@ -1,8 +1,6 @@
 import styled from '@emotion/styled';
-import { useRouter } from 'next/router';
 
 import { AppBar } from '@/lib/components/Appbar';
-import SvgArrowBack from '@/lib/components/Icons/SvgArrowBack';
 import { Title01, Title02 } from '@/lib/components/Text';
 import { semesterToString } from '@/lib/util/semesterToString';
 
@@ -10,19 +8,11 @@ import { RecentLectureItem } from './__components__';
 import { useLatestLectures } from './__containers__';
 
 export const RecentImpl = () => {
-  const router = useRouter();
-
   const { data: recentLectureData } = useLatestLectures();
 
   return (
     <Wrapper>
-      <AppBar
-        leftImage={
-          <BackButton onClick={() => router.back()}>
-            <SvgArrowBack width={30} height={30} />
-          </BackButton>
-        }
-      >
+      <AppBar left={<AppBar.BackButton />}>
         <Title01 style={{ marginLeft: 12 }}>최근 강의 목록</Title01>
       </AppBar>
       <RecentLectureList>
@@ -49,14 +39,6 @@ export const RecentImpl = () => {
 };
 
 const Wrapper = styled.div``;
-
-const BackButton = styled.button`
-  width: 30px;
-  height: 30px;
-  background: transparent;
-  border: none;
-  padding: 0;
-`;
 
 const RecentLectureList = styled.div``;
 

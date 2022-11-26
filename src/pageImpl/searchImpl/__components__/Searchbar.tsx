@@ -1,8 +1,6 @@
 import styled from '@emotion/styled';
-import { useRouter } from 'next/router';
 
 import { AppBar } from '@/lib/components/Appbar';
-import SvgArrowBack from '@/lib/components/Icons/SvgArrowBack';
 import SvgFilter from '@/lib/components/Icons/SvgFilter';
 import SvgSearchOff from '@/lib/components/Icons/SvgSearchOff';
 
@@ -14,16 +12,8 @@ interface Props {
 }
 
 export const Searchbar = ({ toggleOpenSearchSheet, textQuery, onChangeTextQuery, onRefreshQuery }: Props) => {
-  const router = useRouter();
-
   return (
-    <AppBar
-      leftImage={
-        <BackButton onClick={() => router.back()}>
-          <SvgArrowBack width={30} height={30} />
-        </BackButton>
-      }
-    >
+    <AppBar left={<AppBar.BackButton />}>
       <InputBar>
         <SearchButton>
           <SvgSearchOff height={30} width={30} stroke-witdh={1} onClick={onRefreshQuery} />
@@ -73,13 +63,6 @@ const Input = styled.input`
   margin-right: 8px;
 
   padding: 0 0 0 0;
-`;
-const BackButton = styled.button`
-  width: 30px;
-  height: 30px;
-  background: transparent;
-  border: none;
-  padding: 0;
 `;
 
 const SearchButton = styled.button`
