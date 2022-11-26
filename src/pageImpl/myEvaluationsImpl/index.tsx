@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { SearchResultLoading } from '@/lib/components/Miscellaneous/Loading';
+import { LoadingIndicator } from '@/lib/components/molecules/LoadingIndicator';
 import useScrollLoader from '@/lib/hooks/useScrollLoader';
 
 import { MyEvaluationCard, MyEvaluationEmpty, MyEvaluationsAppBar } from './__components__';
@@ -18,7 +18,7 @@ export const MyEvaluationsImpl = () => {
     <Wrapper>
       <MyEvaluationsAppBar totalCount={evaluationPages?.pages[0]?.total_count} />
       {isLoading || !evaluations ? (
-        <SearchResultLoading />
+        <LoadingIndicator />
       ) : isEmpty ? (
         <StyledMyEvaluationEmpty />
       ) : (
@@ -26,7 +26,7 @@ export const MyEvaluationsImpl = () => {
           {evaluations.map((e) => (
             <MyEvaluationCard key={e.id} evaluation={e} />
           ))}
-          {isFetchingNextPage && <SearchResultLoading />}
+          {isFetchingNextPage && <LoadingIndicator />}
           {hasNextPage && !isFetchingNextPage && <div ref={loaderRef} />}
         </>
       )}

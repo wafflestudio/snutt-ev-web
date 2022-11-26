@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Fragment, useMemo, useState } from 'react';
 
-import { SearchResultLoading } from '@/lib/components/Miscellaneous/Loading';
+import { LoadingIndicator } from '@/lib/components/molecules/LoadingIndicator';
 import useScrollLoader from '@/lib/hooks/useScrollLoader';
 
 import {
@@ -70,7 +70,7 @@ export const SearchImpl = () => {
               </Fragment>
             ))}
             {hasNextPage && !isFetchingNextPage && <div ref={loaderRef} />}
-            {isFetchingNextPage && <SearchResultLoading />}
+            {isFetchingNextPage && <LoadingIndicator />}
           </>
         ) : (
           <SearchNoResult />

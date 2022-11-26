@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { SvgFossil } from '@/lib/components/Icons/SvgFossil';
 import { EmptyReviewPlaceholder } from '@/lib/components/Miscellaneous/EmptyReviewPlaceholder';
-import { SearchResultLoading } from '@/lib/components/Miscellaneous/Loading';
+import { LoadingIndicator } from '@/lib/components/molecules/LoadingIndicator';
 import { RatingTooltip } from '@/lib/components/Tooltip';
 import useScrollLoader from '@/lib/hooks/useScrollLoader';
 import { COLORS } from '@/lib/styles/colors';
@@ -134,7 +134,7 @@ export const DetailImpl = () => {
                   />
                 ))}
                 {hasNextPage && !isFetchingNextPage && <div ref={loaderRef} />}
-                {isFetchingNextPage && <SearchResultLoading />}
+                {isFetchingNextPage && <LoadingIndicator />}
               </>
             </ReviewList>
           </EvaluationDetail>

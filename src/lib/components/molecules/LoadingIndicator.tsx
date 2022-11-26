@@ -1,10 +1,11 @@
 import styled from '@emotion/styled';
-import { CircularProgress } from '@mui/material';
 
-export const SearchResultLoading = () => {
+import { CircularLoader } from '../atoms/CircularLoader';
+
+export const LoadingIndicator = () => {
   return (
     <Wrapper>
-      <CircularProgress sx={{ color: '#cccccc' }} />
+      <Loader />
     </Wrapper>
   );
 };
@@ -15,4 +16,8 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+const Loader = styled(CircularLoader)`
+  color: #cccccc;
 `;
