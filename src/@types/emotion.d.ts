@@ -21,7 +21,7 @@ declare module '@emotion/react' {
       };
       icon: { filled: { fill: Color; stroke: Color }; outlined: { fill: Color; stroke: Color } };
       border: {
-        light: Color;
+        divider: Color;
         form: Color;
         info: Color;
       };

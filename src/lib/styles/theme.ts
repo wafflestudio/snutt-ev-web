@@ -34,7 +34,7 @@ export const themeObject: ThemeObject = {
         },
       },
       border: {
-        light: COLORS.lightGray,
+        divider: COLORS.lightGray,
         form: COLORS.gray2,
         info: COLORS.gray20,
       },
@@ -77,7 +77,7 @@ export const themeObject: ThemeObject = {
         },
       },
       border: {
-        light: COLORS.lightGray,
+        divider: COLORS.darkGray,
         form: COLORS.darkGray,
         info: COLORS.darkGray,
       },
