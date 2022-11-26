@@ -12,7 +12,7 @@ export const AppBarBackButton = (props: Props) => {
 
   return (
     <BackButton onClick={onClick}>
-      <SvgArrowBack width={30} height={30} />
+      <ArrowBackIcon width={30} height={30} />
     </BackButton>
   );
 };
@@ -23,4 +23,10 @@ const BackButton = styled.button`
   background: transparent;
   border: none;
   padding: 0;
+`;
+
+const ArrowBackIcon = styled(SvgArrowBack)`
+  path {
+    fill: ${({ theme }) => theme.colors.icon.outlined.stroke};
+  }
 `;

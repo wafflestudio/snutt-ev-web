@@ -1,3 +1,4 @@
+import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import Sheet from 'react-modal-sheet';
 
@@ -22,10 +23,14 @@ export const EvaluationModifySheet = ({
   isModifiable,
   isReportable,
 }: Props) => {
-  return isOpened ? (
+  const theme = useTheme();
+
+  if (!isOpened) return null;
+
+  return (
     <Sheet isOpen={isOpened} onClose={onClose} snapPoints={[75]} disableDrag>
       <Sheet.Container>
-        <Sheet.Content>
+        <Sheet.Content style={{ backgroundColor: theme.colors.bg.default }}>
           <Wrapper>
             {isModifiable && (
               <DeleteContainer onClick={onDeleteClicked}>
@@ -42,18 +47,14 @@ export const EvaluationModifySheet = ({
           </Wrapper>
         </Sheet.Content>
       </Sheet.Container>
-      <Sheet.Backdrop
-        onTap={() => {
-          onClose();
-        }}
-      />
+      <Sheet.Backdrop style={{ border: 'none' }} onTap={() => onClose()} />
     </Sheet>
-  ) : null;
+  );
 };
 
 const Wrapper = styled.div`
   display: flex;
-  margin: 20px;
+  padding: 20px;
   justify-content: space-around;
   flex-direction: column;
 `;

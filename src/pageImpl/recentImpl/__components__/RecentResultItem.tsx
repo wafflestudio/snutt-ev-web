@@ -113,6 +113,8 @@ const InfoText = styled.div`
 
   font-size: 12px;
   line-height: 16.5px;
+
+  color: ${({ theme }) => theme.colors.text.default};
 `;
 
 const LecturerText = styled.div`
@@ -121,6 +123,8 @@ const LecturerText = styled.div`
 
   font-size: 12px;
   line-height: 16.5px;
+
+  color: ${({ theme }) => theme.colors.text.default};
 `;
 
 const WriteButton = styled.button`

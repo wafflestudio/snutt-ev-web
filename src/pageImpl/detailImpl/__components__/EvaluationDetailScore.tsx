@@ -43,6 +43,8 @@ const AxisLabel = styled(Box)`
   font-weight: bold;
   font-size: 10px;
   line-height: 11px;
+
+  color: ${({ theme }) => theme.colors.text.default};
 `;
 
 const ReviewDiagram = styled.div<{ $size: number }>`

@@ -1,3 +1,4 @@
+import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { useState } from 'react';
 import Sheet from 'react-modal-sheet';
@@ -26,6 +27,7 @@ export const SearchOptionSheet = ({
   onClose: onClose,
   onClickSubmit,
 }: Props) => {
+  const theme = useTheme();
   const [selectedTagGroupId, setSelectedTagGroupId] = useState<number>(tagGroups[0]?.id);
 
   const selectedTagGroup = tagGroups.find((tg) => tg.id === selectedTagGroupId);
@@ -37,7 +39,7 @@ export const SearchOptionSheet = ({
   return (
     <Sheet isOpen={isOpened} onClose={onClose} snapPoints={[420]}>
       <Sheet.Container>
-        <Sheet.Content>
+        <Sheet.Content style={{ backgroundColor: theme.colors.bg.default }}>
           <Wrapper>
             <HeaderArea>
               <SvgExit width={30} height={30} onClick={onClose} />
@@ -54,7 +56,7 @@ export const SearchOptionSheet = ({
           </Wrapper>
         </Sheet.Content>
       </Sheet.Container>
-      <Sheet.Backdrop onTap={onClose} />
+      <Sheet.Backdrop onTap={onClose} style={{ border: 'none' }} />
     </Sheet>
   );
 };

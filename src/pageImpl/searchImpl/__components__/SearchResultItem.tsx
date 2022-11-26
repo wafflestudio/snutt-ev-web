@@ -91,6 +91,8 @@ const Texts = styled.div`
   align-items: flex-start;
   margin-left: 10px;
   justify-content: space-between;
+
+  color: ${({ theme }) => theme.colors.text.default};
 `;
 
 const SubjectText = styled(Subheading01)`
