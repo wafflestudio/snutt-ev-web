@@ -1,5 +1,6 @@
+import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Button as MuiButton, Dialog, DialogActions, DialogTitle } from '@mui/material';
+import { Dialog, DialogActions, DialogTitle } from '@mui/material';
 import get from 'lodash/get';
 import { useRouter } from 'next/router';
 import { Fragment, useEffect, useState } from 'react';
@@ -7,7 +8,7 @@ import { Fragment, useEffect, useState } from 'react';
 import { postLectureEvaluation } from '@/lib/apis/ev';
 import { PostEvaluationQuery } from '@/lib/apis/ev/types';
 import { AppBar } from '@/lib/components/Appbar';
-import { Button } from '@/lib/components/Button';
+import { Button } from '@/lib/components/atoms/Button';
 import { SemesterLectureDTO } from '@/lib/dto/semesterLecture';
 
 import { EvalBasic, EvalPolygon, Header } from './__components__';
@@ -15,6 +16,7 @@ import { useLectureSemesters, usePolygon } from './__containers__';
 
 export const CreateImpl = () => {
   const router = useRouter();
+  const theme = useTheme();
   const id = Number(router.query['id']);
 
   const { data: lectureSemesters } = useLectureSemesters(id);
@@ -62,19 +64,14 @@ export const CreateImpl = () => {
   const InvalidationDialog = () => (
     <Dialog
       open={isDialogOpen}
-      onClose={() => {
-        setIsDialogOpen((status) => !status);
-      }}
+      PaperProps={{ style: { backgroundColor: theme.colors.bg.default } }}
+      onClose={() => setIsDialogOpen((status) => !status)}
     >
-      <DialogTitle>{dialogErrorMessage}</DialogTitle>
+      <DialogTitle sx={{ color: theme.colors.text.default }}>{dialogErrorMessage}</DialogTitle>
       <DialogActions>
-        <MuiButton
-          onClick={() => {
-            setIsDialogOpen((status) => !status);
-          }}
-        >
+        <Button variant="text" size="small" onClick={() => setIsDialogOpen((status) => !status)}>
           확인
-        </MuiButton>
+        </Button>
       </DialogActions>
     </Dialog>
   );
@@ -205,4 +202,6 @@ const Container = styled.div`
 const Complete = styled(Button)`
   position: fixed;
   bottom: 0;
+  width: 100%;
+  height: 60px;
 `;

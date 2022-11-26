@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 import { postEmailVerification, postEmailVerificationCode } from '@/lib/apis/core';
 import { AppBar } from '@/lib/components/Appbar';
-import { Button } from '@/lib/components/Button';
+import { Button } from '@/lib/components/atoms/Button';
 import SvgTimetableOn from '@/lib/components/Icons/SvgTimetableOn';
 import { Title01 } from '@/lib/components/Text';
 import { ApiError } from '@/lib/dto/error';
@@ -132,4 +132,6 @@ const Content = styled.div`
 
 const CompleteButton = styled(Button)`
   margin-top: 25px;
+  width: 100%;
+  height: 60px;
 `;

@@ -1,6 +1,8 @@
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Button, Dialog, DialogActions, DialogTitle } from '@mui/material';
+import { Dialog, DialogActions, DialogTitle } from '@mui/material';
+
+import { Button } from '@/lib/components/atoms/Button';
 
 interface Props {
   isOpen: boolean;
@@ -15,8 +17,12 @@ export const DeleteEvaluationDialog = ({ isOpen, close, confirmDelete }: Props) 
     <Dialog open={isOpen} onClose={close} PaperProps={{ style: { backgroundColor: theme.colors.bg.default } }}>
       <Title>이 강의평을 삭제하시겠습니까?</Title>
       <DialogActions>
-        <Button onClick={close}>취소</Button>
-        <Button onClick={confirmDelete}>삭제</Button>
+        <Button variant="text" size="small" onClick={close}>
+          취소
+        </Button>
+        <Button variant="text" size="small" onClick={confirmDelete}>
+          삭제
+        </Button>
       </DialogActions>
     </Dialog>
   );
