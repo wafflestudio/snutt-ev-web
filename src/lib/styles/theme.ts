@@ -20,7 +20,7 @@ export const themeObject: ThemeObject = {
         link: COLORS.darkGray,
         toggle: COLORS.darkGray,
         desc: COLORS.darkGray,
-        form: COLORS.darkGray,
+        form: COLORS.darkerGray,
       },
       icon: {
         filled: {
