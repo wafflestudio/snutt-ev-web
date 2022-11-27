@@ -17,10 +17,10 @@ export const EvaluationDetailScore = ({ score, isSnuevWarning = false, size = 28
           <RatingGraphAxis height={size} width={size} />
         ) : (
           <RatingGraph
-            gradeSatisfaction={score.grade_satisfaction ?? 0}
-            lifeBalance={score.life_balance ?? 0}
-            gains={score.gains ?? 0}
-            teachingSkill={score.teaching_skill ?? 0}
+            top={score.grade_satisfaction ?? 0}
+            right={score.life_balance ?? 0}
+            bottom={score.gains ?? 0}
+            left={score.teaching_skill ?? 0}
             height={size}
             width={size}
           />

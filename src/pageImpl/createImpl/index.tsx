@@ -37,7 +37,7 @@ export const CreateImpl = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [dialogErrorMessage, setDialogErrorMessage] = useState('');
 
-  const { defaultValue, score, updateScore } = usePolygon();
+  const { score, updateScore } = usePolygon();
 
   const [contentsUnsatisfied, setContentsUnsatisfied] = useState(true);
 
@@ -140,7 +140,7 @@ export const CreateImpl = () => {
   };
 
   const stepComponents = [
-    <EvalPolygon key={1} defaultValue={defaultValue} score={score} handleUpdateScore={updateScore} />,
+    <EvalPolygon key={1} score={score} handleUpdateScore={updateScore} />,
     <EvalBasic
       key={2}
       handleRating={handleRating}
