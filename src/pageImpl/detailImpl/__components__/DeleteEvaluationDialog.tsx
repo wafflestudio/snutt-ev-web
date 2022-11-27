@@ -1,8 +1,5 @@
-import { useTheme } from '@emotion/react';
-import styled from '@emotion/styled';
-import { Dialog, DialogActions, DialogTitle } from '@mui/material';
-
 import { Button } from '@/lib/components/atoms/Button';
+import { Dialog } from '@/lib/components/templates/Dialog';
 
 interface Props {
   isOpen: boolean;
@@ -11,23 +8,17 @@ interface Props {
 }
 
 export const DeleteEvaluationDialog = ({ isOpen, close, confirmDelete }: Props) => {
-  const theme = useTheme();
-
   return (
-    <Dialog open={isOpen} onClose={close} PaperProps={{ style: { backgroundColor: theme.colors.bg.default } }}>
-      <Title>이 강의평을 삭제하시겠습니까?</Title>
-      <DialogActions>
+    <Dialog open={isOpen} onClose={close}>
+      <Dialog.Title>이 강의평을 삭제하시겠습니까?</Dialog.Title>
+      <Dialog.Actions>
         <Button variant="text" size="small" onClick={close}>
           취소
         </Button>
         <Button variant="text" size="small" onClick={confirmDelete}>
           삭제
         </Button>
-      </DialogActions>
+      </Dialog.Actions>
     </Dialog>
   );
 };
-
-const Title = styled(DialogTitle)`
-  color: ${({ theme }) => theme.colors.text.default};
-`;

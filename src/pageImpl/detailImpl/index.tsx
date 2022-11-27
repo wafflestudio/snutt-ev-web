@@ -84,7 +84,6 @@ export const DetailImpl = () => {
   return (
     <Wrapper>
       <DetailAppBar id={lectureId} goBack={goBack} />
-
       <Content>
         <LectureEvaluationSummary summaryData={summaryData} isEmpty={isEmpty} count={count} />
 
