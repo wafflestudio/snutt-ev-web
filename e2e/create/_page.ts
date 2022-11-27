@@ -12,4 +12,15 @@ export class CreatePage extends SnuttPage {
     query.set('id', `${id}`);
     return super.goto(`/create?${query}`);
   }
+
+  get(
+    key:
+      | `header-${'lecture-name' | 'lecture-detail' | 'semester-button' | 'semester-list' | 'semester-listitem'}`
+      | 'cta-button'
+      | `rating-${'star'}`
+      | `score-${'slider-top' | 'slider-left' | 'slider-bottom' | 'slider-right'}`
+      | `content-${'input'}`,
+  ) {
+    return super.findByTestId(`create-${key}`);
+  }
 }

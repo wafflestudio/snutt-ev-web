@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
+import { RatingTooltip } from '@/lib/components/organisms/RatingTooltip';
 import { RatingGraph } from '@/lib/components/RatingGraph';
 import { DetailHighlight, Title01 } from '@/lib/components/Text';
-import { RatingTooltip } from '@/lib/components/Tooltip';
 import { COLORS } from '@/lib/styles/colors';
 
 interface Props {
@@ -15,7 +15,7 @@ interface Props {
   handleUpdateScore: (value: number, direction: 'top' | 'left' | 'bottom' | 'right') => void;
 }
 
-export const EvalPolygon = ({ score, handleUpdateScore }: Props) => {
+export const CreateScoreStep = ({ score, handleUpdateScore }: Props) => {
   return (
     <Container>
       <Row>
@@ -35,6 +35,7 @@ export const EvalPolygon = ({ score, handleUpdateScore }: Props) => {
 
         {(['top', 'left', 'right', 'bottom'] as const).map((d) => (
           <ScoreSlider
+            data-testid={`create-score-slider-${d}`}
             key={d}
             $direction={d}
             type="range"
@@ -90,9 +91,7 @@ const ScoreSlider = styled.input<{ $direction: keyof Props['score'] }>`
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-  }
 
-  &::-webkit-slider-thumb {
     cursor: pointer;
     transform: translateX(-9px);
     width: 18px;

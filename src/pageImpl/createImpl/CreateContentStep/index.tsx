@@ -9,65 +9,43 @@ import { COLORS } from '@/lib/styles/colors';
 
 interface Props {
   handleRating: (rating: number) => void;
-  rating: number;
+  rating: number | undefined;
   content: string;
   handleContent: (content: string) => void;
-  contentsUnsatisfied: boolean;
+  isContentValid: boolean;
 }
 
-export const EvalBasic = ({ handleRating, rating, handleContent, content, contentsUnsatisfied }: Props) => {
-  const ratingImage = {
-    empty: <SvgStarSmallEmpty width={30} height={30} />,
-    filled: <SvgStarSmallFilled width={30} height={30} />,
-  };
+const RATINGS = Array(5).fill({
+  empty: <SvgStarSmallEmpty width={30} height={30} />,
+  filled: <SvgStarSmallFilled width={30} height={30} />,
+});
 
-  const ratings = [
-    {
-      empty: ratingImage.empty,
-      filled: ratingImage.filled,
-    },
-    {
-      empty: ratingImage.empty,
-      filled: ratingImage.filled,
-    },
-    {
-      empty: ratingImage.empty,
-      filled: ratingImage.filled,
-    },
-    {
-      empty: ratingImage.empty,
-      filled: ratingImage.filled,
-    },
-    {
-      empty: ratingImage.empty,
-      filled: ratingImage.filled,
-    },
-  ];
+const placeholder = '강의에 대한 솔직한 리뷰를 남겨주세요. \nex) 과제, 출석, 교수님, 시험 난이도, 팀플 유무 등';
 
-  const placeHolder = '강의에 대한 솔직한 리뷰를 남겨주세요. \nex) 과제, 출석, 교수님, 시험 난이도, 팀플 유무 등';
-
-  const WARNING = {
-    unsatisfiedContents: '강의평을 30자 이상 남겨주세요',
-  };
-
+export const CreateContentStep = ({ handleRating, rating = -1, handleContent, content, isContentValid }: Props) => {
   return (
     <>
       <Container>
         <Title02>별점</Title02>
         <SubTitle>수업에 대한 별점을 남겨주세요.</SubTitle>
         <RatingContainer>
-          {ratings.map((star, index) => (
-            <RatingButton key={index} onClick={() => handleRating(index)}>
-              {rating < index ? star.empty : star.filled}
+          {RATINGS.map(({ empty, filled }, index) => (
+            <RatingButton key={index} onClick={() => handleRating(index)} data-testid="create-rating-star">
+              {rating < index ? empty : filled}
             </RatingButton>
           ))}
         </RatingContainer>
-        <ContentTextarea value={content} onChange={(e) => handleContent(e.target.value)} placeholder={placeHolder} />
+        <ContentTextarea
+          data-testid="create-content-input"
+          value={content}
+          onChange={(e) => handleContent(e.target.value)}
+          placeholder={placeholder}
+        />
       </Container>
-      {contentsUnsatisfied && (
+      {!isContentValid && (
         <WarningContainer>
           <SvgWarning color={COLORS.red} width={15} height={15} style={{ marginRight: '2px', marginTop: '2px' }} />
-          <Detail style={{ color: COLORS.red }}>{WARNING.unsatisfiedContents}</Detail>
+          <Detail style={{ color: COLORS.red }}>강의평을 30자 이상 남겨주세요</Detail>
         </WarningContainer>
       )}
     </>
