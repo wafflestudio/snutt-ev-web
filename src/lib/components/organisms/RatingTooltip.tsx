@@ -1,9 +1,8 @@
 import styled from '@emotion/styled';
 import { Fragment, useEffect, useRef, useState } from 'react';
 
-import SvgTooltip from '@/lib/components/Icons/SvgTooltip';
-
-import { Title01, Title02 } from '../Text';
+import SvgTooltip from '@/lib/components/atoms/Icons/SvgTooltip';
+import { Title01, Title02 } from '@/lib/components/atoms/Typography';
 
 export const RatingTooltip = () => {
   const [tooltipOpen, setTooltipOpen] = useState(false);

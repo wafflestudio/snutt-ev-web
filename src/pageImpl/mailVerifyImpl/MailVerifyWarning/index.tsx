@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { Detail } from '@/lib/components/Text';
+import { Detail } from '@/lib/components/atoms/Typography';
 import { COLORS } from '@/lib/styles/colors';
 import { MailVerificationState } from '@/pageImpl/mailVerifyImpl';
 

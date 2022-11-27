@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 import { GetStaticProps } from 'next';
 
-import { AppBar } from '@/lib/components/Appbar';
-import SvgTimetableOn from '@/lib/components/Icons/SvgTimetableOn';
-import { SvgWaffleCat } from '@/lib/components/Icons/SvgWaffleCat';
-import { Title01, Title02 } from '@/lib/components/Text';
+import SvgTimetableOn from '@/lib/components/atoms/Icons/SvgTimetableOn';
+import { SvgWaffleCat } from '@/lib/components/atoms/Icons/SvgWaffleCat';
+import { Title01, Title02 } from '@/lib/components/atoms/Typography';
+import { AppBar } from '@/lib/components/molecules/AppBar';
 
 export default function Custom500() {
   return (

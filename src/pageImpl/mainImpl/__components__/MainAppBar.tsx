@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 
-import { AppBar } from '@/lib/components/Appbar';
-import SvgSearchOff from '@/lib/components/Icons/SvgSearchOff';
-import SvgTimetableOn from '@/lib/components/Icons/SvgTimetableOn';
-import { Title01 } from '@/lib/components/Text';
+import SvgSearchOff from '@/lib/components/atoms/Icons/SvgSearchOff';
+import SvgTimetableOn from '@/lib/components/atoms/Icons/SvgTimetableOn';
+import { Title01 } from '@/lib/components/atoms/Typography';
+import { AppBar } from '@/lib/components/molecules/AppBar';
 
 export const MainAppBar = () => {
   const router = useRouter();

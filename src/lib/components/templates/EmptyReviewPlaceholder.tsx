@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
-import { SvgSurprisedCat } from '@/lib/components/Icons/SvgSurprisedCat';
-import { Subheading02 } from '@/lib/components/Text';
+import { SvgSurprisedCat } from '@/lib/components/atoms/Icons/SvgSurprisedCat';
+import { Subheading02 } from '@/lib/components/atoms/Typography';
 
 interface Props {
   'data-testid'?: string;

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { forwardRef, HTMLProps } from 'react';
 
-import { SvgLike } from '@/lib/components/Icons/SvgLike';
+import { SvgLike } from '@/lib/components/atoms/Icons/SvgLike';
 import { COLORS } from '@/lib/styles/colors';
 
 interface Props extends HTMLProps<HTMLButtonElement> {

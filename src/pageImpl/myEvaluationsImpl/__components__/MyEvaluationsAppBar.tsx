@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 
-import { AppBar } from '@/lib/components/Appbar';
-import { Detail, Title01 } from '@/lib/components/Text';
+import { Detail, Title01 } from '@/lib/components/atoms/Typography';
+import { AppBar } from '@/lib/components/molecules/AppBar';
 import { COLORS } from '@/lib/styles/colors';
 
 interface Props {

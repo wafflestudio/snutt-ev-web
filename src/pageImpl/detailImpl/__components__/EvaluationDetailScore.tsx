@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { RatingGraph, RatingGraphAxis } from '@/lib/components/RatingGraph';
+import { RatingGraph, RatingGraphAxis } from '@/lib/components/organisms/RatingGraph';
 import { EvaluationDTO } from '@/lib/dto/evaluation';
 
 interface Props {

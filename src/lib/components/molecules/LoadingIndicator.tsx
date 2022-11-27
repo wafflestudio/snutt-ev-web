@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { CircularLoader } from '../atoms/CircularLoader';
+import { CircularLoader } from '@/lib/components/atoms/CircularLoader';
 
 export const LoadingIndicator = () => {
   return (

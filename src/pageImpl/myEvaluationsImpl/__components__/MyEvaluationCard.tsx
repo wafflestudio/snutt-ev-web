@@ -3,10 +3,10 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 
 import { likeEvaluation, unlikeEvaluation } from '@/lib/apis/ev';
-import { CollapsableText } from '@/lib/components/CollapsableText';
-import { LikeButton } from '@/lib/components/Miscellaneous/LikeButton';
-import { Rating } from '@/lib/components/Rating';
-import { Detail, Subheading01 } from '@/lib/components/Text';
+import { LikeButton } from '@/lib/components/atoms/LikeButton';
+import { Detail, Subheading01 } from '@/lib/components/atoms/Typography';
+import { Rating } from '@/lib/components/molecules/Rating';
+import { CollapsableText } from '@/lib/components/organisms/CollapsableText';
 import { MainEvaluationDTO } from '@/lib/dto/mainEvaluation';
 import { LIKE_FEATURE } from '@/lib/features/flags';
 import { COLORS } from '@/lib/styles/colors';

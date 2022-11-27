@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import SvgExit from '@/lib/components/Icons/SvgExit';
+import SvgExit from '@/lib/components/atoms/Icons/SvgExit';
 import { Dialog } from '@/lib/components/templates/Dialog';
 import { EvaluationDTO } from '@/lib/dto/evaluation';
 

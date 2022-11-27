@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { Subheading01 } from '@/lib/components/Text';
+import { Subheading01 } from '@/lib/components/atoms/Typography';
 import { COLORS } from '@/lib/styles/colors';
 import { toMinuteSecondFormat } from '@/lib/util/time';
 

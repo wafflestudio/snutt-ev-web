@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
-import { AppBar } from '@/lib/components/Appbar';
-import { Title01, Title02 } from '@/lib/components/Text';
+import { Title01, Title02 } from '@/lib/components/atoms/Typography';
+import { AppBar } from '@/lib/components/molecules/AppBar';
 import { semesterToString } from '@/lib/util/semesterToString';
 
 import { RecentLectureItem } from './__components__';

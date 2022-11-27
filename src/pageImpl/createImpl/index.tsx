@@ -4,8 +4,8 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 import { postLectureEvaluation } from '@/lib/apis/ev';
-import { AppBar } from '@/lib/components/Appbar';
 import { Button } from '@/lib/components/atoms/Button';
+import { AppBar } from '@/lib/components/molecules/AppBar';
 import { Dialog } from '@/lib/components/templates/Dialog';
 import { SemesterLectureDTO } from '@/lib/dto/semesterLecture';
 import { get } from '@/lib/util/object/get';

@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 
-import SvgStarSmallEmpty from '@/lib/components/Icons/SvgStarSmallEmpty';
-import SvgStarSmallFilled from '@/lib/components/Icons/SvgStarSmallFilled';
-import SvgWarning from '@/lib/components/Icons/SvgWarning';
-import { Detail, Title02 } from '@/lib/components/Text';
+import SvgStarSmallEmpty from '@/lib/components/atoms/Icons/SvgStarSmallEmpty';
+import SvgStarSmallFilled from '@/lib/components/atoms/Icons/SvgStarSmallFilled';
+import SvgWarning from '@/lib/components/atoms/Icons/SvgWarning';
+import { Detail, Title02 } from '@/lib/components/atoms/Typography';
 import { resetMarPad } from '@/lib/styles';
 import { COLORS } from '@/lib/styles/colors';
 

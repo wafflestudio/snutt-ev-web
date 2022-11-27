@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 
-import { SvgReviewIcon } from '@/lib/components/Icons/SvgReviewIcon';
-import { SvgSurprisedCat } from '@/lib/components/Icons/SvgSurprisedCat';
-import { Title02 } from '@/lib/components/Text/Title';
+import { SvgReviewIcon } from '@/lib/components/atoms/Icons/SvgReviewIcon';
+import { SvgSurprisedCat } from '@/lib/components/atoms/Icons/SvgSurprisedCat';
+import { Title02 } from '@/lib/components/atoms/Typography';
 
-export const ErrorView = () => {
+export const ErrorTemplate = () => {
   return (
     <Container>
       <SvgSurprisedCat />

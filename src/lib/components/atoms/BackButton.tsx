@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 
-import SvgArrowBack from '../Icons/SvgArrowBack';
+import SvgArrowBack from './Icons/SvgArrowBack';
 
 type Props = { onClick?: () => void };
 
