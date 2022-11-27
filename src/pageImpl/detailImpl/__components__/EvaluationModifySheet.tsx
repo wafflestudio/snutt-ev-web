@@ -1,9 +1,8 @@
-import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
-import Sheet from 'react-modal-sheet';
 
 import { SvgReport } from '@/lib/components/Icons/SvgReport';
 import { SvgTrash } from '@/lib/components/Icons/SvgTrash';
+import { Bottomsheet } from '@/lib/components/templates/Bottomsheet';
 import { Subheading02 } from '@/lib/components/Text';
 
 interface Props {
@@ -23,32 +22,25 @@ export const EvaluationModifySheet = ({
   isModifiable,
   isReportable,
 }: Props) => {
-  const theme = useTheme();
-
-  if (!isOpened) return null;
-
   return (
-    <Sheet isOpen={isOpened} onClose={onClose} snapPoints={[75]} disableDrag>
-      <Sheet.Container>
-        <Sheet.Content style={{ backgroundColor: theme.colors.bg.default }}>
-          <Wrapper>
-            {isModifiable && (
-              <DeleteContainer onClick={onDeleteClicked}>
-                <SvgTrash />
-                <Subheading02 style={{ marginLeft: '25px' }}>강의평 삭제</Subheading02>
-              </DeleteContainer>
-            )}
-            {isReportable && (
-              <ReportContainer onClick={onReportClicked}>
-                <SvgReport />
-                <Subheading02 style={{ marginLeft: '25px' }}>강의평 신고하기</Subheading02>
-              </ReportContainer>
-            )}
-          </Wrapper>
-        </Sheet.Content>
-      </Sheet.Container>
-      <Sheet.Backdrop style={{ border: 'none' }} onTap={() => onClose()} />
-    </Sheet>
+    <Bottomsheet isOpen={isOpened} close={onClose}>
+      <Bottomsheet.Content>
+        <Wrapper>
+          {isModifiable && (
+            <DeleteContainer onClick={onDeleteClicked}>
+              <SvgTrash />
+              <Subheading02 style={{ marginLeft: '25px' }}>강의평 삭제</Subheading02>
+            </DeleteContainer>
+          )}
+          {isReportable && (
+            <ReportContainer onClick={onReportClicked}>
+              <SvgReport />
+              <Subheading02 style={{ marginLeft: '25px' }}>강의평 신고하기</Subheading02>
+            </ReportContainer>
+          )}
+        </Wrapper>
+      </Bottomsheet.Content>
+    </Bottomsheet>
   );
 };
 

@@ -46,6 +46,9 @@ const ContentText = styled.div`
 
 const Dimmer = styled(Backdrop)`
   z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Container = styled.div`
