@@ -16,7 +16,7 @@ jobs:
       - name: Install dependencies
         run: yarn
       - name: Install Playwright Browsers
-        run: npx playwright@1.27.1 install --with-deps # note: package.json 과 버전 맞춰야 함
+        run: npx playwright@1.28.1 install --with-deps # note: package.json 과 버전 맞춰야 함
       - name: Run Playwright tests
         run: yarn test:e2e
       - uses: actions/upload-artifact@v2
