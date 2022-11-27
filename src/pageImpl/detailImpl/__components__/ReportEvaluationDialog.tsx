@@ -1,10 +1,9 @@
-import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import { useState } from 'react';
 
 import { Button } from '@/lib/components/atoms/Button';
 import { Input } from '@/lib/components/atoms/Input';
+import { Dialog } from '@/lib/components/templates/Dialog';
 
 interface Props {
   isOpen: boolean;
@@ -14,7 +13,6 @@ interface Props {
 
 export const ReportEvaluationDialog = ({ isOpen, close, report }: Props) => {
   const [reason, setReason] = useState('');
-  const theme = useTheme();
 
   const handleClose = () => {
     setReason('');
@@ -24,31 +22,23 @@ export const ReportEvaluationDialog = ({ isOpen, close, report }: Props) => {
   const isReasonEmpty = reason.length === 0;
 
   return (
-    <Dialog open={isOpen} onClose={handleClose} PaperProps={{ style: { backgroundColor: theme.colors.bg.default } }}>
-      <Title>강의평 신고</Title>
-      <DialogContent>
-        <ContentText>강의평 신고 사유를 적어주세요.</ContentText>
+    <Dialog open={isOpen} onClose={handleClose}>
+      <Dialog.Title>강의평 신고</Dialog.Title>
+      <Dialog.Content>
+        <Dialog.ContentText>강의평 신고 사유를 적어주세요.</Dialog.ContentText>
         <StyledInput variant="standard" value={reason} onChange={(e) => setReason(e.target.value)} />
-      </DialogContent>
-      <DialogActions>
+      </Dialog.Content>
+      <Dialog.Actions>
         <Button variant="text" size="small" onClick={handleClose}>
           취소
         </Button>
         <Button variant="text" size="small" disabled={isReasonEmpty} onClick={() => report(reason)}>
           신고
         </Button>
-      </DialogActions>
+      </Dialog.Actions>
     </Dialog>
   );
 };
-
-const Title = styled(DialogTitle)`
-  color: ${({ theme }) => theme.colors.text.default};
-`;
-
-const ContentText = styled(DialogContentText)`
-  color: ${({ theme }) => theme.colors.text.default};
-`;
 
 const StyledInput = styled(Input)`
   margin-top: 16px;

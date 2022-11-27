@@ -19,6 +19,31 @@ export const Dialog = ({ children, open, onClose }: PropsWithChildren<Props>) =>
   );
 };
 
+const Title = styled.div`
+  font-family: AppleSDGothicNeo;
+  padding: 16px 24px;
+  color: ${({ theme }) => theme.colors.text.default};
+  font-size: 1.25rem;
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+`;
+
+const Actions = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding: 8px 16px;
+`;
+
+const Content = styled.div`
+  padding: 0 24px 20px;
+`;
+
+const ContentText = styled.div`
+  font-family: AppleSDGothicNeo;
+  color: ${({ theme }) => theme.colors.text.default};
+`;
+
 const Dimmer = styled(Backdrop)`
   z-index: 9999;
 `;
@@ -36,3 +61,8 @@ const Container = styled.div`
   overflow-y: auto;
   max-width: 600px;
 `;
+
+Dialog.Title = Title;
+Dialog.Actions = Actions;
+Dialog.Content = Content;
+Dialog.ContentText = ContentText;

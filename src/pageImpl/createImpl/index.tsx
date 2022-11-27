@@ -1,6 +1,4 @@
-import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Dialog, DialogActions, DialogTitle } from '@mui/material';
 import get from 'lodash/get';
 import { useRouter } from 'next/router';
 import { Fragment, useEffect, useState } from 'react';
@@ -9,6 +7,7 @@ import { postLectureEvaluation } from '@/lib/apis/ev';
 import { PostEvaluationQuery } from '@/lib/apis/ev/types';
 import { AppBar } from '@/lib/components/Appbar';
 import { Button } from '@/lib/components/atoms/Button';
+import { Dialog } from '@/lib/components/templates/Dialog';
 import { SemesterLectureDTO } from '@/lib/dto/semesterLecture';
 
 import { EvalBasic, EvalPolygon, Header } from './__components__';
@@ -16,7 +15,6 @@ import { useLectureSemesters, usePolygon } from './__containers__';
 
 export const CreateImpl = () => {
   const router = useRouter();
-  const theme = useTheme();
   const id = Number(router.query['id']);
 
   const { data: lectureSemesters } = useLectureSemesters(id);
@@ -60,21 +58,6 @@ export const CreateImpl = () => {
     setSelectedSemester(semesterLecture);
     setIsSemesterSelectorOpen((status) => !status);
   };
-
-  const InvalidationDialog = () => (
-    <Dialog
-      open={isDialogOpen}
-      PaperProps={{ style: { backgroundColor: theme.colors.bg.default } }}
-      onClose={() => setIsDialogOpen((status) => !status)}
-    >
-      <DialogTitle sx={{ color: theme.colors.text.default }}>{dialogErrorMessage}</DialogTitle>
-      <DialogActions>
-        <Button variant="text" size="small" onClick={() => setIsDialogOpen((status) => !status)}>
-          확인
-        </Button>
-      </DialogActions>
-    </Dialog>
-  );
 
   const validateRatings = () => {
     if (rating === -1) {
@@ -155,7 +138,6 @@ export const CreateImpl = () => {
 
   return (
     <>
-      <InvalidationDialog />
       <Wrapper>
         <AppBar left={<AppBar.BackButton onClick={() => (step === 1 ? stepPrev() : router.back())} />} />
         <Container>
@@ -181,6 +163,14 @@ export const CreateImpl = () => {
           </Complete>
         </Container>
       </Wrapper>
+      <Dialog open={isDialogOpen} onClose={() => setIsDialogOpen((status) => !status)}>
+        <Dialog.Title>{dialogErrorMessage}</Dialog.Title>
+        <Dialog.Actions>
+          <Button variant="text" size="small" onClick={() => setIsDialogOpen((status) => !status)}>
+            확인
+          </Button>
+        </Dialog.Actions>
+      </Dialog>
     </>
   );
 };
