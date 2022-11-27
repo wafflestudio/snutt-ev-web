@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import Link from 'next/link';
 
-import SvgChevron from '@/lib/components/Icons/SvgChevronRight';
-import { Subheading02, Title01 } from '@/lib/components/Text';
+import SvgChevron from '@/lib/components/atoms/Icons/SvgChevronRight';
+import { Subheading02, Title01 } from '@/lib/components/atoms/Typography';
 import { LatestLectureDTO } from '@/lib/dto/latestLecture';
 
 import { LectureCard } from './LectureCard';

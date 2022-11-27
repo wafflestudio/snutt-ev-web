@@ -6,7 +6,7 @@ import Head from 'next/head';
 import { Suspense, useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
-import { ErrorView } from '@/lib/components/Error';
+import { ErrorTemplate } from '@/lib/components/templates/ErrorTemplate';
 import { useApplicationThemeType } from '@/lib/hooks/useApplicationThemeType';
 import { GlobalStyles } from '@/lib/styles/global';
 import { themeObject, ThemeType } from '@/lib/styles/theme';
@@ -59,7 +59,7 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: unknown; th
         <Hydrate state={pageProps.dehydratedState}>
           <QueryErrorResetBoundary>
             {({ reset }) => (
-              <ErrorBoundary onReset={reset} fallbackRender={() => <ErrorView />}>
+              <ErrorBoundary onReset={reset} fallbackRender={() => <ErrorTemplate />}>
                 <Suspense fallback={null}>
                   <Component {...pageProps} />
                 </Suspense>

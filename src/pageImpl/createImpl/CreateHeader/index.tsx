@@ -3,8 +3,8 @@ import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 
 import { fetchSemesterLectures } from '@/lib/apis/ev';
-import SvgArrowDown from '@/lib/components/Icons/SvgArrowDown';
-import { Subheading02, Title01 } from '@/lib/components/Text';
+import SvgArrowDown from '@/lib/components/atoms/Icons/SvgArrowDown';
+import { Subheading02, Title01 } from '@/lib/components/atoms/Typography';
 import { SemesterLectureDTO } from '@/lib/dto/semesterLecture';
 import { semesterToString } from '@/lib/util/semesterToString';
 

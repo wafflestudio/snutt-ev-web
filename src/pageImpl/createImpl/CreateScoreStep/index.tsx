@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
+import { DetailHighlight, Title01 } from '@/lib/components/atoms/Typography';
+import { RatingGraph } from '@/lib/components/organisms/RatingGraph';
 import { RatingTooltip } from '@/lib/components/organisms/RatingTooltip';
-import { RatingGraph } from '@/lib/components/RatingGraph';
-import { DetailHighlight, Title01 } from '@/lib/components/Text';
 import { COLORS } from '@/lib/styles/colors';
 
 interface Props {

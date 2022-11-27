@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
-import SvgStarSmallEmpty from '@/lib/components/Icons/SvgStarSmallEmpty';
-import SvgStarSmallFilled from '@/lib/components/Icons/SvgStarSmallFilled';
-import { Detail, Subheading02, Title01 } from '@/lib/components/Text';
+import SvgStarSmallEmpty from '@/lib/components/atoms/Icons/SvgStarSmallEmpty';
+import SvgStarSmallFilled from '@/lib/components/atoms/Icons/SvgStarSmallFilled';
+import { Detail, Subheading02, Title01 } from '@/lib/components/atoms/Typography';
 import { EvaluationSummaryDTO } from '@/lib/dto/evaluationSummary';
 
 interface Props {

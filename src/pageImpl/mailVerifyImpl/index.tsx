@@ -4,10 +4,10 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 import { postEmailVerification, postEmailVerificationCode } from '@/lib/apis/core';
-import { AppBar } from '@/lib/components/Appbar';
 import { Button } from '@/lib/components/atoms/Button';
-import SvgTimetableOn from '@/lib/components/Icons/SvgTimetableOn';
-import { Title01 } from '@/lib/components/Text';
+import SvgTimetableOn from '@/lib/components/atoms/Icons/SvgTimetableOn';
+import { Title01 } from '@/lib/components/atoms/Typography';
+import { AppBar } from '@/lib/components/molecules/AppBar';
 import { ApiError } from '@/lib/dto/error';
 import { useInterval } from '@/lib/hooks/useInterval';
 import { useRerender } from '@/lib/hooks/useRerender';

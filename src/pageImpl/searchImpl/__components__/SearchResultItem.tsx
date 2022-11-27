@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 
-import SvgPersonBlack from '@/lib/components/Icons/SvgPersonBlack';
-import SvgStarCyan from '@/lib/components/Icons/SvgStarCyan';
-import SvgTagBlack from '@/lib/components/Icons/SvgTagBlack';
-import { Subheading01 } from '@/lib/components/Text';
+import SvgPersonBlack from '@/lib/components/atoms/Icons/SvgPersonBlack';
+import SvgStarCyan from '@/lib/components/atoms/Icons/SvgStarCyan';
+import SvgTagBlack from '@/lib/components/atoms/Icons/SvgTagBlack';
+import { Subheading01 } from '@/lib/components/atoms/Typography';
 import { LectureDTO } from '@/lib/dto/lecture';
 
 interface Props {

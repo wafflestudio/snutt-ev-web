@@ -3,10 +3,10 @@ import Link from 'next/link';
 import { Fragment } from 'react';
 
 import { Chip } from '@/lib/components/atoms/Chip';
-import SvgChevron from '@/lib/components/Icons/SvgChevronRight';
-import { EmptyReviewPlaceholder } from '@/lib/components/Miscellaneous/EmptyReviewPlaceholder';
+import SvgChevron from '@/lib/components/atoms/Icons/SvgChevronRight';
+import { Subheading02, Title01 } from '@/lib/components/atoms/Typography';
 import { LoadingIndicator } from '@/lib/components/molecules/LoadingIndicator';
-import { Subheading02, Title01 } from '@/lib/components/Text';
+import { EmptyReviewPlaceholder } from '@/lib/components/templates/EmptyReviewPlaceholder';
 import useScrollLoader from '@/lib/hooks/useScrollLoader';
 
 import { EvaluationCard, MainAppBar, RecentCarousel } from './__components__';

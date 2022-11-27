@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
-import { Detail } from '@/lib/components/Text';
+import { Detail } from '@/lib/components/atoms/Typography';
 
 interface Props {
   text: string;

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { Subheading01, Subheading02 } from '@/lib/components/Text';
+import { Subheading01, Subheading02 } from '@/lib/components/atoms/Typography';
 
 type Props = {
   email: string;

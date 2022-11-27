@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 
-import { SvgReport } from '@/lib/components/Icons/SvgReport';
-import { SvgTrash } from '@/lib/components/Icons/SvgTrash';
+import { SvgReport } from '@/lib/components/atoms/Icons/SvgReport';
+import { SvgTrash } from '@/lib/components/atoms/Icons/SvgTrash';
+import { Subheading02 } from '@/lib/components/atoms/Typography';
 import { Bottomsheet } from '@/lib/components/templates/Bottomsheet';
-import { Subheading02 } from '@/lib/components/Text';
 
 interface Props {
   isOpened: boolean;

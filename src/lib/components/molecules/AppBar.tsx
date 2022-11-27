@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { PropsWithChildren, ReactNode } from 'react';
 
-import { AppBarBackButton } from './BackButton';
+import { AppBarBackButton } from '@/lib/components/atoms/BackButton';
 
 interface Props {
   left: ReactNode;

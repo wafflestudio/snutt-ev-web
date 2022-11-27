@@ -1,9 +1,8 @@
 import styled from '@emotion/styled';
 import { PropsWithChildren } from 'react';
 
+import { Backdrop } from '@/lib/components/atoms/Backdrop';
 import { Portal } from '@/lib/components/organisms/Portal';
-
-import { Backdrop } from '../atoms/Backdrop';
 
 interface Props {
   isOpen: boolean;

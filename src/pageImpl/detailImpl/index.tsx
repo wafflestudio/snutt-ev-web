@@ -2,10 +2,10 @@ import styled from '@emotion/styled';
 import { Router, useRouter } from 'next/router';
 import { useState } from 'react';
 
-import { SvgFossil } from '@/lib/components/Icons/SvgFossil';
-import { EmptyReviewPlaceholder } from '@/lib/components/Miscellaneous/EmptyReviewPlaceholder';
+import { SvgFossil } from '@/lib/components/atoms/Icons/SvgFossil';
 import { LoadingIndicator } from '@/lib/components/molecules/LoadingIndicator';
 import { RatingTooltip } from '@/lib/components/organisms/RatingTooltip';
+import { EmptyReviewPlaceholder } from '@/lib/components/templates/EmptyReviewPlaceholder';
 import useScrollLoader from '@/lib/hooks/useScrollLoader';
 import { COLORS } from '@/lib/styles/colors';
 

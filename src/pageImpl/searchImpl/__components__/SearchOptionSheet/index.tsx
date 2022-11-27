@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
-import SvgExit from '@/lib/components/Icons/SvgExit';
+import SvgExit from '@/lib/components/atoms/Icons/SvgExit';
 import { Bottomsheet } from '@/lib/components/templates/Bottomsheet';
 import { TagWithColor } from '@/lib/dto/tag';
 import { TagGroupWithColor } from '@/lib/dto/tagGroup';

@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 
-import { AppBar } from '@/lib/components/Appbar';
-import SvgWrite from '@/lib/components/Icons/SvgWrite';
-import { Title01 } from '@/lib/components/Text';
+import SvgWrite from '@/lib/components/atoms/Icons/SvgWrite';
+import { Title01 } from '@/lib/components/atoms/Typography';
+import { AppBar } from '@/lib/components/molecules/AppBar';
 
 interface Props {
   id: number;

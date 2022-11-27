@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { Title01 } from '@/lib/components/Text';
+import { Title01 } from '@/lib/components/atoms/Typography';
 
 export const MailVerifyHeader = () => {
   return (
