@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
-import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 import Link from 'next/link';
 import { Fragment } from 'react';
 
+import { Chip } from '@/lib/components/atoms/Chip';
 import SvgChevron from '@/lib/components/Icons/SvgChevronRight';
 import { EmptyReviewPlaceholder } from '@/lib/components/Miscellaneous/EmptyReviewPlaceholder';
 import { LoadingIndicator } from '@/lib/components/molecules/LoadingIndicator';
@@ -43,26 +43,24 @@ export const MainImpl = () => {
             </CategoryPickerText>
           </CategoryPickerLink>
         </CategoryPickerTitleWrapper>
-        <StyledToggleButtonGroup
-          value={selectedTagId}
-          exclusive
-          onChange={(e, tagId) => {
-            if (tagId === null) return;
-            onClickTag(tagId);
-          }}
-        >
-          {recommendationTags.map(({ id, name }) => (
-            <ToggleButton
-              value={id}
-              key={id}
-              style={{ whiteSpace: 'nowrap', marginTop: '6px' }}
-              data-testid="main-category-toggle-chip"
-              aria-selected={id === selectedTagId}
-            >
-              {name}
-            </ToggleButton>
-          ))}
-        </StyledToggleButtonGroup>
+        <ChipsWrapper>
+          {recommendationTags.map(({ id, name }) => {
+            const isSelected = id === selectedTagId;
+
+            return (
+              <ToggleChip
+                value={id}
+                key={id}
+                data-testid="main-category-toggle-chip"
+                selected={isSelected}
+                aria-selected={isSelected}
+                onClick={() => onClickTag(id)}
+              >
+                {name}
+              </ToggleChip>
+            );
+          })}
+        </ChipsWrapper>
         <CategoryDetail data-testid="main-category-detail">{selectedTag?.description}</CategoryDetail>
       </CategoryPicker>
 
@@ -105,38 +103,13 @@ const CategoryDetail = styled(Subheading02)`
   color: ${({ theme }) => theme.colors.text.desc};
 `;
 
-const StyledToggleButtonGroup = styled(ToggleButtonGroup)`
-  flex-wrap: wrap;
+const ChipsWrapper = styled.div`
+  padding-top: 6px;
+`;
 
-  .MuiToggleButtonGroup-grouped {
-    margin-right: 10px;
-    border: 0;
-    color: ${({ theme }) => theme.colors.text.toggle};
-
-    &.Mui-disabled {
-      border: 1px solid #777777;
-      height: 30px;
-    }
-    &.Mui-selected {
-      border: 1px solid #777777;
-      background-color: rgb(119, 119, 119, 1);
-      color: #ffffff;
-    }
-    &:not(:first-of-type) {
-      border: 1px solid #777777;
-      border-radius: 15px;
-      height: 30px;
-    }
-    &:first-of-type {
-      border: 1px solid #777777;
-      border-radius: 15px;
-      height: 30px;
-    }
-    &.Mui-selected:hover {
-      border: 1px solid #777777;
-      background-color: #777777;
-      color: #ffffff;
-    }
+const ToggleChip = styled(Chip)`
+  &:not(:first-of-type) {
+    margin-left: 10px;
   }
 `;
 
