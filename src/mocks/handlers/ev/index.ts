@@ -124,4 +124,8 @@ export const evHandlers = [
   rest.delete<never, never>(`*/v1/evaluations/:id/likes`, (req, res, ctx) => {
     return res(ctx.delay(300), ctx.status(200));
   }),
+
+  rest.post(`*/v1/semester-lectures/:id/evaluations`, (req, res, ctx) => {
+    return res(ctx.json({})); // TODO: 실패 케이스
+  }),
 ];

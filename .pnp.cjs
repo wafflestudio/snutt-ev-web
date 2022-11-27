@@ -42,7 +42,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@tanstack/react-query-devtools", "virtual:804ff26d610d54aa38bd28c972bd24abb171bac3818efeed327583ab550161b4742c407fbd84e07faf14642448024e8c66a18f93ab081b96d45f0e96fc46ca8c#npm:4.12.0"],\
             ["@types/cookie", "npm:0.5.1"],\
             ["@types/js-cookie", "npm:3.0.2"],\
-            ["@types/lodash", "npm:4.14.190"],\
             ["@types/node", "npm:18.11.9"],\
             ["@types/react", "npm:18.0.25"],\
             ["@types/react-dom", "npm:18.0.9"],\
@@ -59,7 +58,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-simple-import-sort", "virtual:804ff26d610d54aa38bd28c972bd24abb171bac3818efeed327583ab550161b4742c407fbd84e07faf14642448024e8c66a18f93ab081b96d45f0e96fc46ca8c#npm:8.0.0"],\
             ["jest", "virtual:804ff26d610d54aa38bd28c972bd24abb171bac3818efeed327583ab550161b4742c407fbd84e07faf14642448024e8c66a18f93ab081b96d45f0e96fc46ca8c#npm:29.3.1"],\
             ["js-cookie", "npm:3.0.1"],\
-            ["lodash", "npm:4.17.21"],\
             ["msw", "npm:0.36.5"],\
             ["next", "virtual:804ff26d610d54aa38bd28c972bd24abb171bac3818efeed327583ab550161b4742c407fbd84e07faf14642448024e8c66a18f93ab081b96d45f0e96fc46ca8c#npm:13.0.0"],\
             ["next-compose-plugins", "npm:2.2.1"],\
@@ -2191,15 +2189,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-json5-npm-0.0.29-f63a7916bd-e60b153664.zip/node_modules/@types/json5/",\
           "packageDependencies": [\
             ["@types/json5", "npm:0.0.29"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@types/lodash", [\
-        ["npm:4.14.190", {\
-          "packageLocation": "./.yarn/cache/@types-lodash-npm-4.14.190-068271a372-353a55a122.zip/node_modules/@types/lodash/",\
-          "packageDependencies": [\
-            ["@types/lodash", "npm:4.14.190"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -8258,7 +8247,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@tanstack/react-query-devtools", "virtual:804ff26d610d54aa38bd28c972bd24abb171bac3818efeed327583ab550161b4742c407fbd84e07faf14642448024e8c66a18f93ab081b96d45f0e96fc46ca8c#npm:4.12.0"],\
             ["@types/cookie", "npm:0.5.1"],\
             ["@types/js-cookie", "npm:3.0.2"],\
-            ["@types/lodash", "npm:4.14.190"],\
             ["@types/node", "npm:18.11.9"],\
             ["@types/react", "npm:18.0.25"],\
             ["@types/react-dom", "npm:18.0.9"],\
@@ -8275,7 +8263,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-simple-import-sort", "virtual:804ff26d610d54aa38bd28c972bd24abb171bac3818efeed327583ab550161b4742c407fbd84e07faf14642448024e8c66a18f93ab081b96d45f0e96fc46ca8c#npm:8.0.0"],\
             ["jest", "virtual:804ff26d610d54aa38bd28c972bd24abb171bac3818efeed327583ab550161b4742c407fbd84e07faf14642448024e8c66a18f93ab081b96d45f0e96fc46ca8c#npm:29.3.1"],\
             ["js-cookie", "npm:3.0.1"],\
-            ["lodash", "npm:4.17.21"],\
             ["msw", "npm:0.36.5"],\
             ["next", "virtual:804ff26d610d54aa38bd28c972bd24abb171bac3818efeed327583ab550161b4742c407fbd84e07faf14642448024e8c66a18f93ab081b96d45f0e96fc46ca8c#npm:13.0.0"],\
             ["next-compose-plugins", "npm:2.2.1"],\

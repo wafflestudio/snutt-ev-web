@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { SvgFossil } from '@/lib/components/Icons/SvgFossil';
 import { EmptyReviewPlaceholder } from '@/lib/components/Miscellaneous/EmptyReviewPlaceholder';
 import { LoadingIndicator } from '@/lib/components/molecules/LoadingIndicator';
-import { RatingTooltip } from '@/lib/components/Tooltip';
+import { RatingTooltip } from '@/lib/components/organisms/RatingTooltip';
 import useScrollLoader from '@/lib/hooks/useScrollLoader';
 import { COLORS } from '@/lib/styles/colors';
 
