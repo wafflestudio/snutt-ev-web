@@ -1,9 +1,8 @@
-import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { useState } from 'react';
-import Sheet from 'react-modal-sheet';
 
 import SvgExit from '@/lib/components/Icons/SvgExit';
+import { Bottomsheet } from '@/lib/components/templates/Bottomsheet';
 import { TagWithColor } from '@/lib/dto/tag';
 import { TagGroupWithColor } from '@/lib/dto/tagGroup';
 
@@ -27,43 +26,36 @@ export const SearchOptionSheet = ({
   onClose: onClose,
   onClickSubmit,
 }: Props) => {
-  const theme = useTheme();
   const [selectedTagGroupId, setSelectedTagGroupId] = useState<number>(tagGroups[0]?.id);
 
   const selectedTagGroup = tagGroups.find((tg) => tg.id === selectedTagGroupId);
-
   const visibleTags = selectedTagGroup?.tags;
 
   const onTagGroupChange = (id: number) => setSelectedTagGroupId(id);
 
   return (
-    <Sheet isOpen={isOpened} onClose={onClose} snapPoints={[420]}>
-      <Sheet.Container>
-        <Sheet.Content style={{ backgroundColor: theme.colors.bg.default }}>
-          <Wrapper>
-            <HeaderArea>
-              <SvgExit width={30} height={30} onClick={onClose} />
-            </HeaderArea>
-            <TagSelectWrapper>
-              <TagGroupList
-                tagGroups={tagGroups}
-                selectedTagGroup={selectedTagGroup}
-                onTagGroupSelectionChange={onTagGroupChange}
-              />
-              <TagList tags={visibleTags} selectedTags={selectedTags} onToggleTag={onToggleTag} />
-            </TagSelectWrapper>
-            <SubmitButton onClick={onClickSubmit}>필터 적용</SubmitButton>
-          </Wrapper>
-        </Sheet.Content>
-      </Sheet.Container>
-      <Sheet.Backdrop onTap={onClose} style={{ border: 'none' }} />
-    </Sheet>
+    <Bottomsheet isOpen={isOpened} close={onClose}>
+      <Content>
+        <HeaderArea>
+          <SvgExit width={30} height={30} onClick={onClose} />
+        </HeaderArea>
+        <TagSelectWrapper>
+          <TagGroupList
+            tagGroups={tagGroups}
+            selectedTagGroup={selectedTagGroup}
+            onTagGroupSelectionChange={onTagGroupChange}
+          />
+          <TagList tags={visibleTags} selectedTags={selectedTags} onToggleTag={onToggleTag} />
+        </TagSelectWrapper>
+        <SubmitButton onClick={onClickSubmit}>필터 적용</SubmitButton>
+      </Content>
+    </Bottomsheet>
   );
 };
 
-const Wrapper = styled.div`
+const Content = styled(Bottomsheet.Content)`
   display: flex;
-  height: 100%;
+  height: 420px;
   flex-direction: column;
 `;
 
@@ -79,7 +71,8 @@ const TagSelectWrapper = styled.div`
   flex-grow: 1;
   display: flex;
   flex-direction: row;
-  height: calc(100% - 50px - 64px); // subtract height of header and height of button
+  max-height: calc(100% - 50px - 64px - 20px); // subtract height of header and height of button
+  margin-bottom: 20px;
 `;
 
 const SubmitButton = styled.div`

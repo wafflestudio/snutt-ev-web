@@ -140,6 +140,14 @@ export const DetailImpl = () => {
         )}
       </Content>
 
+      <EvaluationModifySheet
+        isOpened={moreSheetItemId !== undefined}
+        onClose={() => setMoreSheetItemId(undefined)}
+        onReportClicked={handleReportEvaluation}
+        onDeleteClicked={handleDeleteEvaluation}
+        isModifiable={moreSheetItem?.is_modifiable ?? false}
+        isReportable={moreSheetItem?.is_reportable ?? false}
+      />
       <DeleteEvaluationDialog
         isOpen={deleteTargetId !== undefined}
         close={() => setDeleteTargetId(undefined)}
@@ -154,14 +162,6 @@ export const DetailImpl = () => {
         isOpen={scoreDetailPopupItemId !== undefined}
         close={() => setScoreDetailPopupItemId(undefined)}
         evaluation={scoreDetailPopupItem}
-      />
-      <EvaluationModifySheet
-        isOpened={moreSheetItemId !== undefined}
-        onClose={() => setMoreSheetItemId(undefined)}
-        onReportClicked={handleReportEvaluation}
-        onDeleteClicked={handleDeleteEvaluation}
-        isModifiable={moreSheetItem?.is_modifiable ?? false}
-        isReportable={moreSheetItem?.is_reportable ?? false}
       />
     </Wrapper>
   );

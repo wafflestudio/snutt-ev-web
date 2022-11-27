@@ -22,10 +22,6 @@ const Wrapper = styled.div<{ $visible: boolean }>`
   right: 0;
   background-color: rgba(0, 0, 0, 0.5);
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   pointer-events: ${({ $visible }) => ($visible ? 'auto' : 'none')};
   touch-action: ${({ $visible }) => ($visible ? 'auto' : 'none')};
   opacity: ${({ $visible }) => ($visible ? 1 : 0)};
