@@ -1,9 +1,10 @@
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import { useState } from 'react';
 
 import { Button } from '@/lib/components/atoms/Button';
+import { Input } from '@/lib/components/atoms/Input';
 
 interface Props {
   isOpen: boolean;
@@ -27,15 +28,7 @@ export const ReportEvaluationDialog = ({ isOpen, close, report }: Props) => {
       <Title>강의평 신고</Title>
       <DialogContent>
         <ContentText>강의평 신고 사유를 적어주세요.</ContentText>
-        <TextField
-          sx={{ input: { color: theme.colors.text.form } }}
-          autoFocus
-          margin="dense"
-          fullWidth
-          variant="standard"
-          value={reason}
-          onChange={(e) => setReason(e.target.value)}
-        />
+        <StyledInput variant="standard" value={reason} onChange={(e) => setReason(e.target.value)} />
       </DialogContent>
       <DialogActions>
         <Button variant="text" size="small" onClick={handleClose}>
@@ -55,4 +48,9 @@ const Title = styled(DialogTitle)`
 
 const ContentText = styled(DialogContentText)`
   color: ${({ theme }) => theme.colors.text.default};
+`;
+
+const StyledInput = styled(Input)`
+  margin-top: 16px;
+  width: 100%;
 `;
