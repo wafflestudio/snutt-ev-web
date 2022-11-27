@@ -1,14 +1,11 @@
 import { useState } from 'react';
 
-export function usePolygon() {
-  const defaultValue = 3;
+const defaultValue = 3;
 
-  const [score, setScore] = useState<{
-    top: number;
-    left: number;
-    bottom: number;
-    right: number;
-  }>({
+type Score = { top: number; left: number; bottom: number; right: number };
+
+export function usePolygon() {
+  const [score, setScore] = useState<Score>({
     top: defaultValue,
     left: defaultValue,
     bottom: defaultValue,
@@ -18,15 +15,8 @@ export function usePolygon() {
   const updateScore = (value: number, direction: 'top' | 'left' | 'bottom' | 'right') => {
     const realValue = value;
     const nextValue = realValue < 1 ? 1 : realValue;
-    setScore((prev) => ({
-      ...prev,
-      [direction]: nextValue,
-    }));
+    setScore((prev) => ({ ...prev, [direction]: nextValue }));
   };
 
-  return {
-    defaultValue,
-    score,
-    updateScore,
-  };
+  return { score, updateScore };
 }
