@@ -1,27 +1,27 @@
 interface Props {
-  gradeSatisfaction: number; // int 1~5
-  lifeBalance: number; // int 1~5
-  gains: number; // int 1~5
-  teachingSkill: number; // int 1~5
+  top: number; // int 1~5
+  right: number; // int 1~5
+  bottom: number; // int 1~5
+  left: number; // int 1~5
   height: number;
   width: number;
 }
 
-export const RatingGraph = ({ gradeSatisfaction, lifeBalance, gains, teachingSkill, height, width }: Props) => {
+export const RatingGraph = ({ top, right, bottom, left, height, width }: Props) => {
   const xMid = width / 2;
   const yMid = height / 2;
 
-  const gradeSatisfactionY = yMid - gradeSatisfaction * (yMid / 5);
-  const lifeBalanceX = xMid + lifeBalance * (xMid / 5);
-  const gainsY = yMid + gains * (yMid / 5);
-  const teachingSkillX = xMid - teachingSkill * (xMid / 5);
+  const topY = yMid - top * (yMid / 5);
+  const rightX = xMid + right * (xMid / 5);
+  const bottomY = yMid + bottom * (yMid / 5);
+  const leftX = xMid - left * (xMid / 5);
 
   return (
     <svg width={width} height={height} viewBox={`0 0 ${height} ${width}`} fill="none">
       <path d={`M 0 ${yMid} L ${width} ${yMid}`} stroke="rgb(194, 194, 194)" />
       <path d={`M ${xMid} 0 L ${xMid} ${height}`} stroke="rgb(194, 194, 194)" />
       <path
-        d={`M ${teachingSkillX} ${yMid} L ${xMid} ${gradeSatisfactionY} L ${lifeBalanceX} ${yMid} L ${xMid} ${gainsY} L ${teachingSkillX} ${yMid} Z`}
+        d={`M ${leftX} ${yMid} L ${xMid} ${topY} L ${rightX} ${yMid} L ${xMid} ${bottomY} L ${leftX} ${yMid} Z`}
         fill="#1BD0C8"
         fillOpacity="0.4"
         stroke="#1BD0C8"

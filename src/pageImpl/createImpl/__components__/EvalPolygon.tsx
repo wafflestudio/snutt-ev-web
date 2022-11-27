@@ -16,8 +16,6 @@ interface Props {
 }
 
 export const EvalPolygon = ({ score, handleUpdateScore }: Props) => {
-  const { top, left, bottom, right } = score;
-
   return (
     <Container>
       <Row>
@@ -26,14 +24,7 @@ export const EvalPolygon = ({ score, handleUpdateScore }: Props) => {
       </Row>
 
       <GraphWrapper>
-        <RatingGraph
-          gradeSatisfaction={top}
-          lifeBalance={right}
-          gains={bottom}
-          teachingSkill={left}
-          height={300}
-          width={300}
-        />
+        <RatingGraph height={300} width={300} {...score} />
 
         <AxisLabel>
           <YAxisPositive>성적 만족도</YAxisPositive>
