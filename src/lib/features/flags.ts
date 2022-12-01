@@ -1,3 +1,5 @@
-import { APP_ENV } from '@/lib/util/env';
+/**
+ * 피쳐플래그 모음
+ */
 
-export const LIKE_FEATURE = APP_ENV === 'prod' ? false : true;
+export {};

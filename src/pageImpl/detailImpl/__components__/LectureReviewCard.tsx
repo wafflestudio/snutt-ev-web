@@ -10,7 +10,6 @@ import { Detail } from '@/lib/components/atoms/Typography';
 import { Rating } from '@/lib/components/molecules/Rating';
 import { CollapsableText } from '@/lib/components/organisms/CollapsableText';
 import { EvaluationDTO } from '@/lib/dto/evaluation';
-import { LIKE_FEATURE } from '@/lib/features/flags';
 import { COLORS } from '@/lib/styles/colors';
 import { semesterToString } from '@/lib/util/semesterToString';
 
@@ -72,12 +71,10 @@ export const LectureReviewCard = ({
           </Review>
         )}
 
-        {LIKE_FEATURE && (
-          <LikeWrapper>
-            <LikeText>강의평이 도움이 되었나요?</LikeText>
-            <LikeButton likeCount={review.like_count} likebyMe={review.is_liked} onClick={onClickLike} />
-          </LikeWrapper>
-        )}
+        <LikeWrapper>
+          <LikeText>강의평이 도움이 되었나요?</LikeText>
+          <LikeButton likeCount={review.like_count} likebyMe={review.is_liked} onClick={onClickLike} />
+        </LikeWrapper>
       </Contents>
     </Wrapper>
   );
