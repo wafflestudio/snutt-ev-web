@@ -8,7 +8,6 @@ import { Detail, Subheading01 } from '@/lib/components/atoms/Typography';
 import { Rating } from '@/lib/components/molecules/Rating';
 import { CollapsableText } from '@/lib/components/organisms/CollapsableText';
 import { MainEvaluationDTO } from '@/lib/dto/mainEvaluation';
-import { LIKE_FEATURE } from '@/lib/features/flags';
 import { COLORS } from '@/lib/styles/colors';
 import { semesterToString } from '@/lib/util/semesterToString';
 
@@ -58,12 +57,10 @@ export const EvaluationCard = ({ evaluation, selectedTagId }: Props) => {
           <CollapsableText text={evaluation.content} />
         </Review>
 
-        {LIKE_FEATURE && (
-          <LikeWrapper>
-            <LikeText>강의평이 도움이 되었나요?</LikeText>
-            <LikeButton likeCount={evaluation.like_count} likebyMe={evaluation.is_liked} onClick={onClickLike} />
-          </LikeWrapper>
-        )}
+        <LikeWrapper>
+          <LikeText>강의평이 도움이 되었나요?</LikeText>
+          <LikeButton likeCount={evaluation.like_count} likebyMe={evaluation.is_liked} onClick={onClickLike} />
+        </LikeWrapper>
       </Contents>
     </Wrapper>
   );
