@@ -16,8 +16,8 @@ export const LikeButton = forwardRef<HTMLButtonElement, Props>(function LB(
   ref,
 ) {
   return (
-    <Wrapper type={type} ref={ref} $likeByMe={false} aria-checked={likebyMe} data-testid="like-button" {...props}>
-      <LikeIcon $likeByMe={false} />
+    <Wrapper type={type} ref={ref} $likeByMe={likebyMe} aria-checked={likebyMe} data-testid="like-button" {...props}>
+      <LikeIcon $likeByMe={likebyMe} />
       <span data-testid="like-button-count">{likeCount}</span>
     </Wrapper>
   );
@@ -31,7 +31,8 @@ const Wrapper = styled.button<{ $likeByMe: boolean }>`
   margin: 0;
   border-radius: 14px;
   border: ${({ $likeByMe }) => ($likeByMe ? 'none' : `1px solid ${COLORS.lightGray}`)};
-  background-color: ${({ $likeByMe, theme }) => ($likeByMe ? COLORS.mint : theme.colors.bg.default)};
+  background-color: ${({ $likeByMe, theme }) =>
+    $likeByMe ? theme.colors.button.primary.default.bg : theme.colors.bg.default};
 
   color: ${({ $likeByMe, theme }) => ($likeByMe ? COLORS.white : theme.colors.text.default)};
   font-size: 14px;
