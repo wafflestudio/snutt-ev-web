@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Router, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 import { SvgFossil } from '@/lib/components/atoms/Icons/SvgFossil';
@@ -27,7 +27,9 @@ import {
   useReportEvaluation,
 } from './__queries__';
 
-export const DetailImpl = () => {
+type Props = { onBack: 'back' | 'close' };
+
+export const DetailImpl = ({ onBack }: Props) => {
   const router = useRouter();
   const lectureId = Number(router.query.id);
 
@@ -73,17 +75,10 @@ export const DetailImpl = () => {
     setReportTargetId(undefined);
   };
 
-  const goBack = () => {
-    if (((router as Router).components['/detail'] as { initial?: true }).initial) {
-      router.replace('/main');
-    } else {
-      router.back();
-    }
-  };
-
   return (
     <Wrapper>
-      <DetailAppBar id={lectureId} goBack={goBack} />
+      <DetailAppBar id={lectureId} onBack={onBack} />
+
       <Content>
         <LectureEvaluationSummary summaryData={summaryData} isEmpty={isEmpty} count={count} />
 

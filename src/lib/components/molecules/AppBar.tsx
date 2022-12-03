@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 import { PropsWithChildren, ReactNode } from 'react';
 
-import { AppBarBackButton } from '@/lib/components/atoms/BackButton';
+import { AppBarBackButton } from '@/lib/components/atoms/AppBarBackButton';
+import { AppBarCloseButton } from '@/lib/components/atoms/AppBarCloseButton';
 
 interface Props {
   left: ReactNode;
@@ -17,6 +18,7 @@ export const AppBar = ({ left, children }: PropsWithChildren<Props>) => {
 };
 
 AppBar.BackButton = AppBarBackButton;
+AppBar.CloseButton = AppBarCloseButton;
 
 const Wrapper = styled.header`
   display: flex;
