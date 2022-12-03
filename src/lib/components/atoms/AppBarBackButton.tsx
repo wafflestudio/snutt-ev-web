@@ -1,17 +1,18 @@
 import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
+import { ButtonHTMLAttributes } from 'react';
 
 import SvgArrowBack from './Icons/SvgArrowBack';
 
-type Props = { onClick?: () => void };
+type Props = ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const AppBarBackButton = (props: Props) => {
   const router = useRouter();
 
-  const { onClick = () => router.back() } = props;
+  const { onClick = () => router.back(), ...restProps } = props;
 
   return (
-    <BackButton onClick={onClick}>
+    <BackButton onClick={onClick} {...restProps}>
       <ArrowBackIcon width={30} height={30} />
     </BackButton>
   );

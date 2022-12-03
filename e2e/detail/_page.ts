@@ -7,7 +7,8 @@ export class DetailPage extends SnuttPage {
     super(page);
   }
 
-  visit(id = 353) {
-    return super.goto(`/detail?id=${id}`);
+  visit(id = 353, query?: URLSearchParams) {
+    const queryString = query ? `&${query}` : '';
+    return super.goto(`/detail?id=${id}${queryString}`);
   }
 }

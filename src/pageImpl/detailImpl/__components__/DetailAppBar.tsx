@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useRouter } from 'next/router';
+import { Router, useRouter } from 'next/router';
 
 import SvgWrite from '@/lib/components/atoms/Icons/SvgWrite';
 import { Title01 } from '@/lib/components/atoms/Typography';
@@ -7,14 +7,22 @@ import { AppBar } from '@/lib/components/molecules/AppBar';
 
 interface Props {
   id: number;
-  goBack: () => void;
+  onBack: 'back' | 'close';
 }
 
-export const DetailAppBar = ({ id, goBack }: Props) => {
+export const DetailAppBar = ({ id, onBack }: Props) => {
   const router = useRouter();
 
+  const goBack = () => {
+    // TODO: remove
+    // 아래 if문은 구클라 대응 로직. 아래 태스크가 끝나고 충분한 시간이 지나면 제거하고, else 문만 남겨서 무조건 뒤로가기하게 처리하면 된다.
+    // https://www.notion.so/wafflestudio/d291fe606ec0407ea1292120b070db90
+    if (((router as Router).components['/detail'] as { initial?: true }).initial) router.replace('/main');
+    else router.back();
+  };
+
   return (
-    <AppBar left={<AppBar.BackButton onClick={goBack} />}>
+    <AppBar left={{ back: <AppBar.BackButton onClick={goBack} />, close: <AppBar.CloseButton /> }[onBack]}>
       <AppBarContent>
         <Title01 style={{ marginLeft: 12 }}>강의평</Title01>
         <WriteButton onClick={() => router.push(`/create?id=${id}`)}>
