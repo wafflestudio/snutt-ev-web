@@ -2,11 +2,11 @@ import { ThemeProvider } from '@emotion/react';
 import { Hydrate, QueryClient, QueryClientProvider, QueryErrorResetBoundary } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import type { AppProps } from 'next/app';
-import Head from 'next/head';
 import { Suspense, useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import { ErrorTemplate } from '@/lib/components/templates/ErrorTemplate';
+import { NativeBridgeProvider } from '@/lib/contexts/nativeBridge';
 import { useApplicationThemeType } from '@/lib/hooks/useApplicationThemeType';
 import { GlobalStyles } from '@/lib/styles/global';
 import { themeObject, ThemeType } from '@/lib/styles/theme';
@@ -50,26 +50,25 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: unknown; th
   if (isMSW && !isMSWEnabled) return;
 
   return (
-    <ThemeProvider theme={themeObject[themeType]}>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-      </Head>
-      <GlobalStyles />
-      <QueryClientProvider client={queryClient}>
-        <Hydrate state={pageProps.dehydratedState}>
-          <QueryErrorResetBoundary>
-            {({ reset }) => (
-              <ErrorBoundary onReset={reset} fallbackRender={() => <ErrorTemplate />}>
-                <Suspense fallback={null}>
-                  <Component {...pageProps} />
-                </Suspense>
-              </ErrorBoundary>
-            )}
-          </QueryErrorResetBoundary>
-          {isDevtool && <ReactQueryDevtools initialIsOpen={false} />}
-        </Hydrate>
-      </QueryClientProvider>
-    </ThemeProvider>
+    <NativeBridgeProvider>
+      <ThemeProvider theme={themeObject[themeType]}>
+        <GlobalStyles />
+        <QueryClientProvider client={queryClient}>
+          <Hydrate state={pageProps.dehydratedState}>
+            <QueryErrorResetBoundary>
+              {({ reset }) => (
+                <ErrorBoundary onReset={reset} fallbackRender={() => <ErrorTemplate />}>
+                  <Suspense fallback={null}>
+                    <Component {...pageProps} />
+                  </Suspense>
+                </ErrorBoundary>
+              )}
+            </QueryErrorResetBoundary>
+            {isDevtool && <ReactQueryDevtools initialIsOpen={false} />}
+          </Hydrate>
+        </QueryClientProvider>
+      </ThemeProvider>
+    </NativeBridgeProvider>
   );
 }
 
