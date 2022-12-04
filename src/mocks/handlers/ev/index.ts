@@ -8,6 +8,7 @@ import {
   GetMainTagInfosResult,
   GetMyLectureEvaluationsResult,
   GetSemesterLecturesResult,
+  GetTagInfosProcessedResult,
   ListMyEvaluationsResponse,
 } from '@/lib/apis/ev/types';
 
@@ -127,5 +128,9 @@ export const evHandlers = [
 
   rest.post(`*/v1/semester-lectures/:id/evaluations`, (req, res, ctx) => {
     return res(ctx.json({})); // TODO: 실패 케이스
+  }),
+
+  rest.get<never, never, GetTagInfosProcessedResult>(`*/v1/tags/search`, (req, res, ctx) => {
+    return res(ctx.json({ tag_groups: [] })); // TODO: 제대로
   }),
 ];

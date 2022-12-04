@@ -1,5 +1,7 @@
 import { createContext, PropsWithChildren, useContext, useMemo } from 'react';
 
+import { useNativeDevice } from './nativeDevice';
+
 interface NativeBridge {
   close(): void;
 }
@@ -12,12 +14,13 @@ const nativeBridgeContext = createContext<NativeBridge>({ close: notReachableErr
 
 export const NativeBridgeProvider = ({ children }: PropsWithChildren<unknown>) => {
   const { Provider } = nativeBridgeContext;
+  const { nativeDeviceType } = useNativeDevice();
 
   const value = useMemo(
     () => ({
-      close: () => console.log('not implemented'),
+      close: () => console.log(`${nativeDeviceType} close bridge call: not implemented`),
     }),
-    [],
+    [nativeDeviceType],
   );
 
   return <Provider value={value}>{children}</Provider>;
