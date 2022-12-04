@@ -1,20 +1,15 @@
 import styled from '@emotion/styled';
 import { ButtonHTMLAttributes } from 'react';
 
+import { useNativeBridge } from '@/lib/contexts/nativeBridge';
+
 import SvgExit from './Icons/SvgExit';
 
 type Props = ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const AppBarCloseButton = (props: Props) => {
-  const {
-    onClick = () => {
-      // TODO: implement
-      // 닫는 브릿지 호출
-      // postMessage({ name: "close" })
-      // https://www.notion.so/wafflestudio/d291fe606ec0407ea1292120b070db90
-    },
-    ...restProps
-  } = props;
+  const { close } = useNativeBridge();
+  const { onClick = close, ...restProps } = props;
 
   return (
     <CloseButton onClick={onClick} data-testid="close-button" {...restProps}>
