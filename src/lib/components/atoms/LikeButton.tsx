@@ -38,6 +38,10 @@ const Wrapper = styled.button<{ $likeByMe: boolean }>`
   font-size: 14px;
   line-height: 20px;
   font-family: AppleSDGothicNeo;
+
+  &:active {
+    opacity: 0.7;
+  }
 `;
 
 const LikeIcon = styled(SvgLike)<{ $likeByMe: boolean }>`
