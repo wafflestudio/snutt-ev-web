@@ -18,8 +18,14 @@ export const GlobalStyles = () => {
         }
 
         * {
-          /* tab 하이라이트 색 제거 */
+          /* iOS에서 버튼 tab 하이라이트 색 제거 */
           -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+
+          /* iOS에서 링크 롱터치시 미리보기 되는 거 방지 */
+          -webkit-touch-callout: none;
+
+          /* iOS에서 text 롱터치로 선택되는 거 방지 */
+          -webkit-touch-callout: none;
         }
 
         input:focus {
