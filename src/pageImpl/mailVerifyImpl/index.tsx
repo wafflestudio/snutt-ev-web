@@ -55,11 +55,17 @@ export const MailVerifyImpl = () => {
     } catch (e) {
       if (axios.isAxiosError(e)) {
         const errcode = (e as AxiosError<ApiError>).response?.data.errcode;
-        if (errcode === 36864) setVerificationState(MailVerificationState.ALREADY_VERIFIED);
-        if (errcode === 36865) setVerificationState(MailVerificationState.VERFIED_FROM_OTHER_MAIL);
-        if (errcode === 40960) setVerificationState(MailVerificationState.TOO_MANY_REQUEST);
-      }
-      setVerificationState(MailVerificationState.TIMEOUT);
+
+        const newState = errcode
+          ? {
+              36864: MailVerificationState.ALREADY_VERIFIED,
+              36865: MailVerificationState.VERFIED_FROM_OTHER_MAIL,
+              40960: MailVerificationState.TOO_MANY_REQUEST,
+            }[errcode] ?? MailVerificationState.TIMEOUT
+          : MailVerificationState.TIMEOUT;
+
+        setVerificationState(newState);
+      } else setVerificationState(MailVerificationState.TIMEOUT);
     }
   };
 
