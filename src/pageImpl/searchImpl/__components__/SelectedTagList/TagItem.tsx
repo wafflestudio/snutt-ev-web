@@ -1,8 +1,8 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import SvgExitWhite from '@/lib/components/atoms/Icons/SvgExitWhite';
-import { TagWithColor } from '@/lib/dto/tag';
+import SvgExitWhite from '@/components/atoms/Icons/SvgExitWhite';
+import { TagWithColor } from '@/dto/tag';
 
 interface Props {
   tag: TagWithColor;

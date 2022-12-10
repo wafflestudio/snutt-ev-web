@@ -1,5 +1,5 @@
-import { Button } from '@/lib/components/atoms/Button';
-import { Dialog } from '@/lib/components/templates/Dialog';
+import { Button } from '@/components/atoms/Button';
+import { Dialog } from '@/components/templates/Dialog';
 
 interface Props {
   isOpen: boolean;

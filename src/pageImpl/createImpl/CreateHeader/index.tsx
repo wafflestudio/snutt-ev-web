@@ -2,11 +2,11 @@ import styled from '@emotion/styled';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 
-import { fetchSemesterLectures } from '@/lib/apis/ev';
-import SvgArrowDown from '@/lib/components/atoms/Icons/SvgArrowDown';
-import { Subheading02, Title01 } from '@/lib/components/atoms/Typography';
-import { SemesterLectureDTO } from '@/lib/dto/semesterLecture';
-import { semesterToString } from '@/lib/util/semesterToString';
+import { fetchSemesterLectures } from '@/apis/ev';
+import SvgArrowDown from '@/components/atoms/Icons/SvgArrowDown';
+import { Subheading02, Title01 } from '@/components/atoms/Typography';
+import { SemesterLectureDTO } from '@/dto/semesterLecture';
+import { semesterToString } from '@/utils/semesterToString';
 
 interface Props {
   lectureId: number;

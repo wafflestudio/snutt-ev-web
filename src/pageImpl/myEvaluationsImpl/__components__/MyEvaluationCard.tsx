@@ -2,14 +2,14 @@ import styled from '@emotion/styled';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 
-import { likeEvaluation, unlikeEvaluation } from '@/lib/apis/ev';
-import { LikeButton } from '@/lib/components/atoms/LikeButton';
-import { Detail, Subheading01 } from '@/lib/components/atoms/Typography';
-import { Rating } from '@/lib/components/molecules/Rating';
-import { CollapsableText } from '@/lib/components/organisms/CollapsableText';
-import { MainEvaluationDTO } from '@/lib/dto/mainEvaluation';
-import { COLORS } from '@/lib/styles/colors';
-import { semesterToString } from '@/lib/util/semesterToString';
+import { likeEvaluation, unlikeEvaluation } from '@/apis/ev';
+import { LikeButton } from '@/components/atoms/LikeButton';
+import { Detail, Subheading01 } from '@/components/atoms/Typography';
+import { Rating } from '@/components/molecules/Rating';
+import { CollapsableText } from '@/components/organisms/CollapsableText';
+import { MainEvaluationDTO } from '@/dto/mainEvaluation';
+import { COLORS } from '@/styles/colors';
+import { semesterToString } from '@/utils/semesterToString';
 
 interface Props {
   evaluation: MainEvaluationDTO;

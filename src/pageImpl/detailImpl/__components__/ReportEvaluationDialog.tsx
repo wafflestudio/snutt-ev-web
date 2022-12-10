@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
-import { Button } from '@/lib/components/atoms/Button';
-import { Input } from '@/lib/components/atoms/Input';
-import { Dialog } from '@/lib/components/templates/Dialog';
+import { Button } from '@/components/atoms/Button';
+import { Input } from '@/components/atoms/Input';
+import { Dialog } from '@/components/templates/Dialog';
 
 interface Props {
   isOpen: boolean;

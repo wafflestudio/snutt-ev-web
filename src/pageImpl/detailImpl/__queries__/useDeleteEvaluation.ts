@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { deleteEvaluation } from '@/lib/apis/ev';
+import { deleteEvaluation } from '@/apis/ev';
 
 export const useDeleteEvaluation = (lectureId: number) => {
   const queryClient = useQueryClient();

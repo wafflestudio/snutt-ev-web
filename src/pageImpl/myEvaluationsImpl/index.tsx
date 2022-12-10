@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
-import { LoadingIndicator } from '@/lib/components/molecules/LoadingIndicator';
-import useScrollLoader from '@/lib/hooks/useScrollLoader';
+import { LoadingIndicator } from '@/components/molecules/LoadingIndicator';
+import useScrollLoader from '@/hooks/useScrollLoader';
 
 import { MyEvaluationCard, MyEvaluationEmpty, MyEvaluationsAppBar } from './__components__';
 import { useMyEvaluations } from './__queries__';

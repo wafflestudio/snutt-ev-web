@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import { Fragment, useMemo, useState } from 'react';
 
-import { LoadingIndicator } from '@/lib/components/molecules/LoadingIndicator';
-import useScrollLoader from '@/lib/hooks/useScrollLoader';
+import { LoadingIndicator } from '@/components/molecules/LoadingIndicator';
+import useScrollLoader from '@/hooks/useScrollLoader';
 
 import {
   ActiveTagList,

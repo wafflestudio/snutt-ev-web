@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { fetchEvaluationSummary } from '@/lib/apis/ev';
+import { fetchEvaluationSummary } from '@/apis/ev';
 
 export function useEvaluationSummary(id: number) {
   return useQuery(

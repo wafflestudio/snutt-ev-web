@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 
-import { Detail, Title01 } from '@/lib/components/atoms/Typography';
-import { AppBar } from '@/lib/components/molecules/AppBar';
-import { COLORS } from '@/lib/styles/colors';
+import { Detail, Title01 } from '@/components/atoms/Typography';
+import { AppBar } from '@/components/molecules/AppBar';
+import { COLORS } from '@/styles/colors';
 
 interface Props {
   totalCount?: number;

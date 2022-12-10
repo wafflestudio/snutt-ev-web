@@ -2,12 +2,12 @@ import styled from '@emotion/styled';
 import Link from 'next/link';
 import { Fragment } from 'react';
 
-import { Chip } from '@/lib/components/atoms/Chip';
-import SvgChevron from '@/lib/components/atoms/Icons/SvgChevronRight';
-import { Subheading02, Title01 } from '@/lib/components/atoms/Typography';
-import { LoadingIndicator } from '@/lib/components/molecules/LoadingIndicator';
-import { EmptyReviewPlaceholder } from '@/lib/components/templates/EmptyReviewPlaceholder';
-import useScrollLoader from '@/lib/hooks/useScrollLoader';
+import { Chip } from '@/components/atoms/Chip';
+import SvgChevron from '@/components/atoms/Icons/SvgChevronRight';
+import { Subheading02, Title01 } from '@/components/atoms/Typography';
+import { LoadingIndicator } from '@/components/molecules/LoadingIndicator';
+import { EmptyReviewPlaceholder } from '@/components/templates/EmptyReviewPlaceholder';
+import useScrollLoader from '@/hooks/useScrollLoader';
 
 import { EvaluationCard, MainAppBar, RecentCarousel } from './__components__';
 import { useSelectTag } from './__containers__';

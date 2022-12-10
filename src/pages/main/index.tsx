@@ -1,6 +1,6 @@
-import { fetchLatestLectures, getMainTagInfos } from '@/lib/apis/ev';
-import { withGetServerSideProps } from '@/lib/util/withGetServersideProps';
+import { fetchLatestLectures, getMainTagInfos } from '@/apis/ev';
 import { MainImpl } from '@/pageImpl/mainImpl';
+import { withGetServerSideProps } from '@/utils/withGetServersideProps';
 
 export default function MainView() {
   return <MainImpl />;

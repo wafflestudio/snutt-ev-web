@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { fetchTagInfos } from '@/lib/apis/ev';
-import { TagGroupDTO } from '@/lib/dto/tagGroup';
+import { fetchTagInfos } from '@/apis/ev';
+import { TagGroupDTO } from '@/dto/tagGroup';
 
 const select = ({ tag_groups }: { tag_groups: TagGroupDTO[] }) =>
   tag_groups.map(({ color, tags, ...group }) => ({

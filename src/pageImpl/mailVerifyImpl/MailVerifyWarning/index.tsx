@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
-import { Detail } from '@/lib/components/atoms/Typography';
-import { COLORS } from '@/lib/styles/colors';
+import { Detail } from '@/components/atoms/Typography';
 import { MailVerificationState } from '@/pageImpl/mailVerifyImpl';
+import { COLORS } from '@/styles/colors';
 
 type Props = { state: MailVerificationState };
 

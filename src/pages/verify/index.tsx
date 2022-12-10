@@ -1,5 +1,5 @@
-import { withGetServerSideProps } from '@/lib/util/withGetServersideProps';
 import { MailVerifyImpl } from '@/pageImpl/mailVerifyImpl';
+import { withGetServerSideProps } from '@/utils/withGetServersideProps';
 
 export default function Verify() {
   return <MailVerifyImpl />;

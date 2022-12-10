@@ -1,6 +1,6 @@
-import { fetchTagInfos } from '@/lib/apis/ev';
-import { withGetServerSideProps } from '@/lib/util/withGetServersideProps';
+import { fetchTagInfos } from '@/apis/ev';
 import { SearchImpl } from '@/pageImpl/searchImpl';
+import { withGetServerSideProps } from '@/utils/withGetServersideProps';
 
 export default function SearchView() {
   return <SearchImpl />;

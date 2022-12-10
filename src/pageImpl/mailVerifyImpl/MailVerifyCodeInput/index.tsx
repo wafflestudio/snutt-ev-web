@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
-import { Subheading01 } from '@/lib/components/atoms/Typography';
-import { COLORS } from '@/lib/styles/colors';
-import { toMinuteSecondFormat } from '@/lib/util/time';
+import { Subheading01 } from '@/components/atoms/Typography';
+import { COLORS } from '@/styles/colors';
+import { toMinuteSecondFormat } from '@/utils/time';
 
 type Props = {
   code: string;

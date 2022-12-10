@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
-import SvgChecked from '@/lib/components/atoms/Icons/SvgChecked';
-import SvgUnchecked from '@/lib/components/atoms/Icons/SvgUnchecked';
+import SvgChecked from '@/components/atoms/Icons/SvgChecked';
+import SvgUnchecked from '@/components/atoms/Icons/SvgUnchecked';
 
 interface Props {
   isSelected: boolean;

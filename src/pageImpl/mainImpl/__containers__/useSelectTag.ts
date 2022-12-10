@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useCallback, useEffect } from 'react';
 
-import { TagDTO } from '@/lib/dto/tag';
+import { TagDTO } from '@/dto/tag';
 
 type RouterQuery = {
   tag?: string;

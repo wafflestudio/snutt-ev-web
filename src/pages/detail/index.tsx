@@ -1,6 +1,6 @@
-import { fetchEvaluationSummary, fetchLectureEvaluations, fetchMyLectureEvaluations } from '@/lib/apis/ev';
-import { withGetServerSideProps } from '@/lib/util/withGetServersideProps';
+import { fetchEvaluationSummary, fetchLectureEvaluations, fetchMyLectureEvaluations } from '@/apis/ev';
 import { DetailImpl } from '@/pageImpl/detailImpl';
+import { withGetServerSideProps } from '@/utils/withGetServersideProps';
 
 type PageProps = { onBack: 'close' | 'back' };
 

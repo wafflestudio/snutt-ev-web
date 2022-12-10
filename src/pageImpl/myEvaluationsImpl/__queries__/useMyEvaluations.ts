@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-import { listMyEvaluations } from '@/lib/apis/ev';
+import { listMyEvaluations } from '@/apis/ev';
 
 export const useMyEvaluations = () =>
   useInfiniteQuery(

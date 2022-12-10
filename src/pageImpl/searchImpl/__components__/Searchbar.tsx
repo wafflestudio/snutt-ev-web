@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
-import SvgFilter from '@/lib/components/atoms/Icons/SvgFilter';
-import SvgSearchOff from '@/lib/components/atoms/Icons/SvgSearchOff';
-import { AppBar } from '@/lib/components/molecules/AppBar';
+import SvgFilter from '@/components/atoms/Icons/SvgFilter';
+import SvgSearchOff from '@/components/atoms/Icons/SvgSearchOff';
+import { AppBar } from '@/components/molecules/AppBar';
 
 interface Props {
   toggleOpenSearchSheet: () => void;

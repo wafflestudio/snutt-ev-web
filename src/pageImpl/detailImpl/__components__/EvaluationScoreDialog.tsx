@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
-import SvgExit from '@/lib/components/atoms/Icons/SvgExit';
-import { Dialog } from '@/lib/components/templates/Dialog';
-import { EvaluationDTO } from '@/lib/dto/evaluation';
+import SvgExit from '@/components/atoms/Icons/SvgExit';
+import { Dialog } from '@/components/templates/Dialog';
+import { EvaluationDTO } from '@/dto/evaluation';
 
 import { EvaluationDetailScore } from './EvaluationDetailScore';
 

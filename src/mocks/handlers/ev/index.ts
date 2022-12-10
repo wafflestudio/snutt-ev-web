@@ -10,7 +10,7 @@ import {
   GetSemesterLecturesResult,
   GetTagInfosProcessedResult,
   ListMyEvaluationsResponse,
-} from '@/lib/apis/ev/types';
+} from '@/apis/ev/types';
 
 import {
   mockEvaluationSummary,

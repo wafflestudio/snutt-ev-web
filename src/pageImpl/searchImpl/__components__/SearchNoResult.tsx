@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
-import { SvgImgSearchBig } from '@/lib/components/atoms/Icons/SvgImgSearchBig';
-import { Title02 } from '@/lib/components/atoms/Typography';
+import { SvgImgSearchBig } from '@/components/atoms/Icons/SvgImgSearchBig';
+import { Title02 } from '@/components/atoms/Typography';
 
 export const SearchNoResult = () => {
   return (
