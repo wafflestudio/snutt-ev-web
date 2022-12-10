@@ -5,7 +5,29 @@ import { withCookie } from '../utils/withCookiePage';
 import { VerifyPage } from './_page';
 
 test(
-  '인증번호가 틀렸을 경우',
+  '요청 시 다른 계정으로 인증된 메일일 경우',
+  withCookie(
+    // 메일 인증 안 된 유저
+    [
+      getTestCookie('TEST_USER_EMAIL_VERIFIED', 'false'),
+      getTestCookie('TEST_USER_EMAIL_VERIFICATION_STATUS', 'ALREADY_VERIFIED'),
+    ],
+    async ({ page }) => {
+      const vp = new VerifyPage(page);
+      await vp.goto();
+
+      await vp.get('email-input').type('woohm402');
+      await vp.get('request-code-button').click();
+
+      // 잘못 입력 결과
+      await expect(vp.get('warning-text')).toHaveText('이미 인증된 계정입니다');
+      await expect(vp.get('submit-button')).toBeDisabled();
+    },
+  ),
+);
+
+test(
+  '제출 시 인증번호가 틀렸을 경우',
   withCookie(
     // 메일 인증 안 된 유저
     [getTestCookie('TEST_USER_EMAIL_VERIFIED', 'false'), getTestCookie('TEST_USER_EMAIL_VERIFICATION_CODE', '937702')],
@@ -33,7 +55,7 @@ test(
 );
 
 test(
-  '시간초과됐을 경우',
+  '제출 시 시간초과됐을 경우',
   withCookie(
     // 메일 인증 안 된 유저
     [getTestCookie('TEST_USER_EMAIL_VERIFIED', 'false'), getTestCookie('TEST_USER_EMAIL_VERIFICATION_CODE', '937702')],
