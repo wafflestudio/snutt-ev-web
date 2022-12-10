@@ -6,14 +6,14 @@ import Head from 'next/head';
 import { Suspense, useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
-import { ErrorTemplate } from '@/lib/components/templates/ErrorTemplate';
-import { NativeBridgeProvider } from '@/lib/contexts/nativeBridge';
-import { NativeDeviceProvider } from '@/lib/contexts/nativeDevice';
-import { useApplicationThemeType } from '@/lib/hooks/useApplicationThemeType';
-import { GlobalStyles } from '@/lib/styles/global';
-import { themeObject, ThemeType } from '@/lib/styles/theme';
-import { APP_ENV, IS_SERVER } from '@/lib/util/env';
+import { ErrorTemplate } from '@/components/templates/ErrorTemplate';
+import { NativeBridgeProvider } from '@/contexts/nativeBridge';
+import { NativeDeviceProvider } from '@/contexts/nativeDevice';
+import { useApplicationThemeType } from '@/hooks/useApplicationThemeType';
 import { useMSW } from '@/mocks/integrations/browser';
+import { GlobalStyles } from '@/styles/global';
+import { themeObject, ThemeType } from '@/styles/theme';
+import { APP_ENV, IS_SERVER } from '@/utils/env';
 
 const isDevtool = process.env.NEXT_PUBLIC_REACT_QUERY_DEVTOOL === 'true';
 const isMSW = APP_ENV === 'test';

@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 
-import { DetailHighlight, Title01 } from '@/lib/components/atoms/Typography';
-import { RatingGraph } from '@/lib/components/organisms/RatingGraph';
-import { RatingTooltip } from '@/lib/components/organisms/RatingTooltip';
-import { COLORS } from '@/lib/styles/colors';
+import { DetailHighlight, Title01 } from '@/components/atoms/Typography';
+import { RatingGraph } from '@/components/organisms/RatingGraph';
+import { RatingTooltip } from '@/components/organisms/RatingTooltip';
+import { COLORS } from '@/styles/colors';
 
 interface Props {
   score: {

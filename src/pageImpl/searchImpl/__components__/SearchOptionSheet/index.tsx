@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
-import SvgExit from '@/lib/components/atoms/Icons/SvgExit';
-import { Bottomsheet } from '@/lib/components/templates/Bottomsheet';
-import { TagWithColor } from '@/lib/dto/tag';
-import { TagGroupWithColor } from '@/lib/dto/tagGroup';
+import SvgExit from '@/components/atoms/Icons/SvgExit';
+import { Bottomsheet } from '@/components/templates/Bottomsheet';
+import { TagWithColor } from '@/dto/tag';
+import { TagGroupWithColor } from '@/dto/tagGroup';
 
 import { TagGroupList } from './TagGroupList';
 import { TagList } from './TagList';

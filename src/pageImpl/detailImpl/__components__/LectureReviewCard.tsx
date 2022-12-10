@@ -1,17 +1,17 @@
 import styled from '@emotion/styled';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { likeEvaluation, unlikeEvaluation } from '@/lib/apis/ev';
-import { SvgFossil } from '@/lib/components/atoms/Icons/SvgFossil';
-import SvgMaximize from '@/lib/components/atoms/Icons/SvgMaximize';
-import { SvgMoreVertical } from '@/lib/components/atoms/Icons/SvgMoreVertical';
-import { LikeButton } from '@/lib/components/atoms/LikeButton';
-import { Detail } from '@/lib/components/atoms/Typography';
-import { Rating } from '@/lib/components/molecules/Rating';
-import { CollapsableText } from '@/lib/components/organisms/CollapsableText';
-import { EvaluationDTO } from '@/lib/dto/evaluation';
-import { COLORS } from '@/lib/styles/colors';
-import { semesterToString } from '@/lib/util/semesterToString';
+import { likeEvaluation, unlikeEvaluation } from '@/apis/ev';
+import { SvgFossil } from '@/components/atoms/Icons/SvgFossil';
+import SvgMaximize from '@/components/atoms/Icons/SvgMaximize';
+import { SvgMoreVertical } from '@/components/atoms/Icons/SvgMoreVertical';
+import { LikeButton } from '@/components/atoms/LikeButton';
+import { Detail } from '@/components/atoms/Typography';
+import { Rating } from '@/components/molecules/Rating';
+import { CollapsableText } from '@/components/organisms/CollapsableText';
+import { EvaluationDTO } from '@/dto/evaluation';
+import { COLORS } from '@/styles/colors';
+import { semesterToString } from '@/utils/semesterToString';
 
 interface Props {
   lectureId: number;

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { postReportEvaluation } from '@/lib/apis/ev';
+import { postReportEvaluation } from '@/apis/ev';
 
 export const useReportEvaluation = (lectureId: number) => {
   const queryClient = useQueryClient();

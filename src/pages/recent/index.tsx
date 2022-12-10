@@ -1,5 +1,5 @@
-import { withGetServerSideProps } from '@/lib/util/withGetServersideProps';
 import { RecentImpl } from '@/pageImpl/recentImpl';
+import { withGetServerSideProps } from '@/utils/withGetServersideProps';
 
 export default function RecentView() {
   return <RecentImpl />;

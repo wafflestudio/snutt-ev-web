@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-import { IS_SERVER } from '@/lib/util/env';
+import { IS_SERVER } from '@/utils/env';
 
 export const evClient = axios.create(
   IS_SERVER

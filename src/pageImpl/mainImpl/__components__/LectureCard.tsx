@@ -1,13 +1,13 @@
 import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 
-import { SvgClockBlack } from '@/lib/components/atoms/Icons/SvgClockBlack';
-import SvgPersonBlack from '@/lib/components/atoms/Icons/SvgPersonBlack';
-import SvgTagBlack from '@/lib/components/atoms/Icons/SvgTagBlack';
-import SvgWrite from '@/lib/components/atoms/Icons/SvgWrite';
-import { Detail, Subheading01 } from '@/lib/components/atoms/Typography';
-import { LatestLectureDTO } from '@/lib/dto/latestLecture';
-import { semesterToString } from '@/lib/util/semesterToString';
+import { SvgClockBlack } from '@/components/atoms/Icons/SvgClockBlack';
+import SvgPersonBlack from '@/components/atoms/Icons/SvgPersonBlack';
+import SvgTagBlack from '@/components/atoms/Icons/SvgTagBlack';
+import SvgWrite from '@/components/atoms/Icons/SvgWrite';
+import { Detail, Subheading01 } from '@/components/atoms/Typography';
+import { LatestLectureDTO } from '@/dto/latestLecture';
+import { semesterToString } from '@/utils/semesterToString';
 
 interface Props {
   lecture: LatestLectureDTO;

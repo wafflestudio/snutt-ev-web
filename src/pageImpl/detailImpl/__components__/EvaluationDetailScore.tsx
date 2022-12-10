@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
-import { RatingGraph, RatingGraphAxis } from '@/lib/components/organisms/RatingGraph';
-import { EvaluationDTO } from '@/lib/dto/evaluation';
+import { RatingGraph, RatingGraphAxis } from '@/components/organisms/RatingGraph';
+import { EvaluationDTO } from '@/dto/evaluation';
 
 interface Props {
   score: Pick<EvaluationDTO, 'grade_satisfaction' | 'teaching_skill' | 'gains' | 'life_balance'>;

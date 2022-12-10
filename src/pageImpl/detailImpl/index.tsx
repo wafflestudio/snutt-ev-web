@@ -2,12 +2,12 @@ import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
-import { SvgFossil } from '@/lib/components/atoms/Icons/SvgFossil';
-import { LoadingIndicator } from '@/lib/components/molecules/LoadingIndicator';
-import { RatingTooltip } from '@/lib/components/organisms/RatingTooltip';
-import { EmptyReviewPlaceholder } from '@/lib/components/templates/EmptyReviewPlaceholder';
-import useScrollLoader from '@/lib/hooks/useScrollLoader';
-import { COLORS } from '@/lib/styles/colors';
+import { SvgFossil } from '@/components/atoms/Icons/SvgFossil';
+import { LoadingIndicator } from '@/components/molecules/LoadingIndicator';
+import { RatingTooltip } from '@/components/organisms/RatingTooltip';
+import { EmptyReviewPlaceholder } from '@/components/templates/EmptyReviewPlaceholder';
+import useScrollLoader from '@/hooks/useScrollLoader';
+import { COLORS } from '@/styles/colors';
 
 import {
   DeleteEvaluationDialog,

@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { fetchMyLectureEvaluations } from '@/lib/apis/ev';
+import { fetchMyLectureEvaluations } from '@/apis/ev';
 
 export function useLectureMyEvaluations(id: number) {
   return useQuery(

@@ -3,16 +3,16 @@ import axios, { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
-import { postEmailVerification, postEmailVerificationCode } from '@/lib/apis/core';
-import { Button } from '@/lib/components/atoms/Button';
-import SvgTimetableOn from '@/lib/components/atoms/Icons/SvgTimetableOn';
-import { Title01 } from '@/lib/components/atoms/Typography';
-import { AppBar } from '@/lib/components/molecules/AppBar';
-import { ApiError } from '@/lib/dto/error';
-import { useInterval } from '@/lib/hooks/useInterval';
-import { useRerender } from '@/lib/hooks/useRerender';
-import { APP_ENV } from '@/lib/util/env';
-import { SECOND } from '@/lib/util/time';
+import { postEmailVerification, postEmailVerificationCode } from '@/apis/core';
+import { Button } from '@/components/atoms/Button';
+import SvgTimetableOn from '@/components/atoms/Icons/SvgTimetableOn';
+import { Title01 } from '@/components/atoms/Typography';
+import { AppBar } from '@/components/molecules/AppBar';
+import { ApiError } from '@/dto/error';
+import { useInterval } from '@/hooks/useInterval';
+import { useRerender } from '@/hooks/useRerender';
+import { APP_ENV } from '@/utils/env';
+import { SECOND } from '@/utils/time';
 
 import { MailVerifyCodeInput } from './MailVerifyCodeInput';
 import { MailVerifyEmailInput } from './MailVerifyEmailInput';

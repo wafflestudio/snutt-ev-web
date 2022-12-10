@@ -1,4 +1,4 @@
-import { ThemeType } from '@/lib/styles/theme';
+import { ThemeType } from '@/styles/theme';
 
 declare global {
   interface Window {

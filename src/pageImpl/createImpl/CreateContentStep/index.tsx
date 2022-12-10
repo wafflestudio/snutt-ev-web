@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 
-import SvgStarSmallEmpty from '@/lib/components/atoms/Icons/SvgStarSmallEmpty';
-import SvgStarSmallFilled from '@/lib/components/atoms/Icons/SvgStarSmallFilled';
-import SvgWarning from '@/lib/components/atoms/Icons/SvgWarning';
-import { Detail, Title02 } from '@/lib/components/atoms/Typography';
-import { resetMarPad } from '@/lib/styles';
-import { COLORS } from '@/lib/styles/colors';
+import SvgStarSmallEmpty from '@/components/atoms/Icons/SvgStarSmallEmpty';
+import SvgStarSmallFilled from '@/components/atoms/Icons/SvgStarSmallFilled';
+import SvgWarning from '@/components/atoms/Icons/SvgWarning';
+import { Detail, Title02 } from '@/components/atoms/Typography';
+import { resetMarPad } from '@/styles';
+import { COLORS } from '@/styles/colors';
 
 interface Props {
   handleRating: (rating: number) => void;

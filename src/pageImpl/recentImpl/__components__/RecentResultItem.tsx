@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 
-import SvgPersonBlack from '@/lib/components/atoms/Icons/SvgPersonBlack';
-import SvgTagBlack from '@/lib/components/atoms/Icons/SvgTagBlack';
-import SvgWrite from '@/lib/components/atoms/Icons/SvgWrite';
-import { Subheading01 } from '@/lib/components/atoms/Typography';
-import { LatestLectureDTO } from '@/lib/dto/latestLecture';
+import SvgPersonBlack from '@/components/atoms/Icons/SvgPersonBlack';
+import SvgTagBlack from '@/components/atoms/Icons/SvgTagBlack';
+import SvgWrite from '@/components/atoms/Icons/SvgWrite';
+import { Subheading01 } from '@/components/atoms/Typography';
+import { LatestLectureDTO } from '@/dto/latestLecture';
 
 interface Props {
   className?: string;

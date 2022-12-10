@@ -1,6 +1,6 @@
-import { listMyEvaluations } from '@/lib/apis/ev';
-import { withGetServerSideProps } from '@/lib/util/withGetServersideProps';
+import { listMyEvaluations } from '@/apis/ev';
 import { MyEvaluationsImpl } from '@/pageImpl/myEvaluationsImpl';
+import { withGetServerSideProps } from '@/utils/withGetServersideProps';
 
 export default function MyEvaluationsView() {
   return <MyEvaluationsImpl />;
