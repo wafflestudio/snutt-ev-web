@@ -24,7 +24,7 @@ test(
         detail.getPage().waitForEvent('console'),
         detail.findByTestId('close-button').click(),
       ]);
-      await expect(msg.text()).toBe('android close bridge call: not implemented');
+      await expect(msg.text()).toBe('android native bridge message handler not defined: call {"name":"close"}');
       await expect(detail.getPage()).toHaveURL('/detail?id=353&on_back=close');
     },
   ),
@@ -47,7 +47,7 @@ test(
         detail.getPage().waitForEvent('console'),
         detail.findByTestId('close-button').click(),
       ]);
-      await expect(msg.text()).toBe('ios close bridge call: not implemented');
+      await expect(msg.text()).toBe('ios native bridge message handler not defined: call {"name":"close"}');
       await expect(detail.getPage()).toHaveURL('/detail?id=353&on_back=close');
     },
   ),

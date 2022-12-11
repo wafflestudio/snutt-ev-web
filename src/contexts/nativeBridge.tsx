@@ -16,12 +16,27 @@ export const NativeBridgeProvider = ({ children }: PropsWithChildren<unknown>) =
   const { Provider } = nativeBridgeContext;
   const { nativeDeviceType } = useNativeDevice();
 
-  const value = useMemo(
-    () => ({
-      close: () => console.log(`${nativeDeviceType} close bridge call: not implemented`),
-    }),
-    [nativeDeviceType],
-  );
+  const value = useMemo(() => {
+    const postMessage = (value: unknown) => {
+      // TODO: add testcode for bridge call
+      const windowPostMessage = {
+        android: window.Snutt?.postMessage,
+        ios: window.webkit?.messageHandlers?.snutt.postMessage,
+      }[nativeDeviceType];
+
+      const message = JSON.stringify(value);
+
+      if (windowPostMessage) windowPostMessage(message);
+      else {
+        // TODO: capture sentry
+        console.error(`${nativeDeviceType} native bridge message handler not defined: call ${message}`);
+      }
+    };
+
+    return {
+      close: () => postMessage({ name: 'close' }),
+    };
+  }, [nativeDeviceType]);
 
   return <Provider value={value}>{children}</Provider>;
 };
