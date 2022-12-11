@@ -7,5 +7,13 @@ declare global {
 
     // native -> webview 통신을 위한 함수들
     changeTheme(theme: ThemeType): void;
+
+    // android bridge
+    Snutt?: { postMessage: NativeBridgePostMessage };
+
+    // iOS bridge
+    webkit?: { messageHandlers?: { snutt: { postMessage: NativeBridgePostMessage } } };
   }
 }
+
+type NativeBridgePostMessage = (value: string) => void;
