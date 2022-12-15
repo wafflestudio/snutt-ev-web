@@ -61,6 +61,7 @@ test(
         page.waitForRequest((req) => req.method() === 'GET' && req.url().includes(`/v1/lectures/353/evaluations`)),
         myEv.locator('[data-testid=like-button]').click(),
       ]);
+      // TODO: 좋아요됐는지 테스트 필요
 
       // 좋아요 기능이 잘 동작해야 한다 (취소)
       await Promise.all([
@@ -69,6 +70,7 @@ test(
         page.waitForRequest((req) => req.method() === 'GET' && req.url().includes(`/v1/lectures/353/evaluations`)),
         otherEv.locator('[data-testid=like-button]').click(),
       ]);
+      // TODO: 좋아요됐는지 테스트 필요
     },
   ),
 );
