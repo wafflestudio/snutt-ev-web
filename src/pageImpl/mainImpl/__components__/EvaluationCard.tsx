@@ -59,6 +59,7 @@ export const EvaluationCard = ({ evaluation, selectedTagId }: Props) => {
 
         <LikeWrapper>
           <LikeText>강의평이 도움이 되었나요?</LikeText>
+          {/* TODO: optimistic update */}
           <LikeButton likeCount={evaluation.like_count} likebyMe={evaluation.is_liked} onClick={onClickLike} />
         </LikeWrapper>
       </Contents>

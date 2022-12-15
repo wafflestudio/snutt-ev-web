@@ -34,8 +34,14 @@ export const DetailImpl = ({ onBack }: Props) => {
   const lectureId = Number(router.query.id);
 
   const { data: summaryData } = useEvaluationSummary(lectureId);
-  const { data: myReviewResult } = useLectureMyEvaluations(lectureId);
-  const { data: searchResult, fetchNextPage, isFetchingNextPage, hasNextPage } = useLectureEvaluations(lectureId);
+  const { data: myReviewResult, isFetching: isFetchingMyEvaluation } = useLectureMyEvaluations(lectureId);
+  const {
+    data: searchResult,
+    fetchNextPage,
+    isFetchingNextPage,
+    hasNextPage,
+    isFetching,
+  } = useLectureEvaluations(lectureId);
 
   const { mutateAsync: deleteEvaluation } = useDeleteEvaluation(lectureId);
   const { mutateAsync: reportEvaluation } = useReportEvaluation(lectureId);
@@ -109,6 +115,7 @@ export const DetailImpl = ({ onBack }: Props) => {
             <ReviewList>
               {myLectureEvaluations?.map((content) => (
                 <LectureReviewCard
+                  isFetching={isFetchingMyEvaluation}
                   lectureId={lectureId}
                   review={content}
                   key={content.id}
@@ -120,6 +127,7 @@ export const DetailImpl = ({ onBack }: Props) => {
               <>
                 {lectureEvaluations?.map((it) => (
                   <LectureReviewCard
+                    isFetching={isFetching}
                     lectureId={lectureId}
                     review={it}
                     key={it.id}

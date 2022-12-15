@@ -11,9 +11,11 @@ import { Rating } from '@/components/molecules/Rating';
 import { CollapsableText } from '@/components/organisms/CollapsableText';
 import { EvaluationDTO } from '@/dto/evaluation';
 import { COLORS } from '@/styles/colors';
+import { getOptimisticLikeButton } from '@/utils/getOptimisticLikeButton';
 import { semesterToString } from '@/utils/semesterToString';
 
 interface Props {
+  isFetching: boolean;
   lectureId: number;
   review: EvaluationDTO;
   onMoreClick: () => void;
@@ -27,11 +29,19 @@ export const LectureReviewCard = ({
   isMyReview = false,
   onScoreDetailClick,
   lectureId,
+  isFetching,
 }: Props) => {
-  const { mutate: toggleLike, isLoading: isMutating } = useToggleLikeEvaluation(review.id, review.is_liked, lectureId);
+  const { mutate: toggleLike, isLoading: isMutating } = useToggleLikeEvaluation(
+    review.id,
+    review.is_liked,
+    lectureId,
+    isMyReview,
+  );
+
+  const { likeCount, likeByMe } = getOptimisticLikeButton(review.like_count, review.is_liked, isMutating);
 
   const onClickLike = () => {
-    if (isMutating) return;
+    if (isMutating || isFetching) return;
 
     toggleLike();
   };
@@ -73,19 +83,21 @@ export const LectureReviewCard = ({
 
         <LikeWrapper>
           <LikeText>강의평이 도움이 되었나요?</LikeText>
-          <LikeButton likeCount={review.like_count} likebyMe={review.is_liked} onClick={onClickLike} />
+          <LikeButton likeCount={likeCount} likebyMe={likeByMe} onClick={onClickLike} />
         </LikeWrapper>
       </Contents>
     </Wrapper>
   );
 };
 
-const useToggleLikeEvaluation = (id: number, liked: boolean, lectureId: number) => {
+const useToggleLikeEvaluation = (id: number, liked: boolean, lectureId: number, isMyReview: boolean) => {
   const queryClient = useQueryClient();
 
   return useMutation(() => (liked ? unlikeEvaluation({ params: { id } }) : likeEvaluation({ params: { id } })), {
     onSuccess: () => {
-      queryClient.invalidateQueries(['lectureEvaluation', lectureId]);
+      return queryClient.invalidateQueries(
+        isMyReview ? ['myLectureEvaluation', lectureId] : ['lectureEvaluation', lectureId],
+      );
     },
   });
 };
