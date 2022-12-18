@@ -87,6 +87,16 @@ export const mockMainTags = {
   tags: [
     { id: 1, name: '최신', description: '최근 등록된 강의평', ordering: 1 },
     { id: 2, name: '추천', description: '학우들의 추천 강의', ordering: 2 },
+    { id: 3, name: '테스트1', description: '학우들의 추천 강의', ordering: 3 },
+    {
+      id: 4,
+      name: '테스트2',
+      description:
+        '학우들의 추천 강의학우들의 추천 강의학우들의 추천 강의학우들의 추천 강의학우들의 추천 강의학우들의 추천 강의학우들의 추천 강의',
+      ordering: 4,
+    },
+    { id: 5, name: '테스트3', description: '학우들의 추천 강의', ordering: 5 },
+    { id: 6, name: '테스트4', description: '학우들의 추천 강의', ordering: 6 },
   ],
 };
 
