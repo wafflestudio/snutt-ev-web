@@ -48,7 +48,7 @@ export const MainImpl = () => {
             const isSelected = id === selectedTagId;
 
             return (
-              <ToggleChip
+              <Chip
                 value={id}
                 key={id}
                 data-testid="main-category-toggle-chip"
@@ -57,7 +57,7 @@ export const MainImpl = () => {
                 onClick={() => onClickTag(id)}
               >
                 {name}
-              </ToggleChip>
+              </Chip>
             );
           })}
         </ChipsWrapper>
@@ -105,12 +105,9 @@ const CategoryDetail = styled(Subheading02)`
 
 const ChipsWrapper = styled.div`
   padding-top: 6px;
-`;
-
-const ToggleChip = styled(Chip)`
-  &:not(:first-of-type) {
-    margin-left: 10px;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 `;
 
 const CategoryPickerTitleWrapper = styled.div`
