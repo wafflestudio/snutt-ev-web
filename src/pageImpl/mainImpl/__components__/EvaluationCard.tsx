@@ -9,6 +9,7 @@ import { Rating } from '@/components/molecules/Rating';
 import { CollapsableText } from '@/components/organisms/CollapsableText';
 import { MainEvaluationDTO } from '@/dto/mainEvaluation';
 import { COLORS } from '@/styles/colors';
+import { getOptimisticLikeButton } from '@/utils/getOptimisticLikeButton';
 import { semesterToString } from '@/utils/semesterToString';
 
 interface Props {
@@ -24,6 +25,8 @@ export const EvaluationCard = ({ evaluation, selectedTagId }: Props) => {
     evaluation.is_liked,
     selectedTagId,
   );
+
+  const { likeByMe, likeCount } = getOptimisticLikeButton(evaluation.like_count, evaluation.is_liked, isMutating);
 
   const goToEvaluation = () => {
     const query = new URLSearchParams();
@@ -60,7 +63,7 @@ export const EvaluationCard = ({ evaluation, selectedTagId }: Props) => {
         <LikeWrapper>
           <LikeText>강의평이 도움이 되었나요?</LikeText>
           {/* TODO: optimistic update */}
-          <LikeButton likeCount={evaluation.like_count} likebyMe={evaluation.is_liked} onClick={onClickLike} />
+          <LikeButton likeCount={likeCount} likebyMe={likeByMe} onClick={onClickLike} />
         </LikeWrapper>
       </Contents>
     </Wrapper>
@@ -71,9 +74,7 @@ const useToggleLikeEvaluation = (id: number, liked: boolean, selectedTagId: numb
   const queryClient = useQueryClient();
 
   return useMutation(() => (liked ? unlikeEvaluation({ params: { id } }) : likeEvaluation({ params: { id } })), {
-    onSuccess: () => {
-      queryClient.invalidateQueries(['tagEvaluations', selectedTagId]);
-    },
+    onSuccess: () => queryClient.invalidateQueries(['tagEvaluations', selectedTagId]),
   });
 };
 
