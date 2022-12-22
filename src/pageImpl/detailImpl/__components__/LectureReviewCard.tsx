@@ -94,11 +94,8 @@ const useToggleLikeEvaluation = (id: number, liked: boolean, lectureId: number, 
   const queryClient = useQueryClient();
 
   return useMutation(() => (liked ? unlikeEvaluation({ params: { id } }) : likeEvaluation({ params: { id } })), {
-    onSuccess: () => {
-      return queryClient.invalidateQueries(
-        isMyReview ? ['myLectureEvaluation', lectureId] : ['lectureEvaluation', lectureId],
-      );
-    },
+    onSuccess: () =>
+      queryClient.invalidateQueries(isMyReview ? ['myLectureEvaluation', lectureId] : ['lectureEvaluation', lectureId]),
   });
 };
 
