@@ -27,6 +27,7 @@ export const MainImpl = () => {
 
   const recentLectureData = latestLectures?.content;
   const selectedTag = recommendationTags.find((tag) => tag.id === selectedTagId);
+  const evaluationList = searchResult?.pages.flatMap((p) => p.content);
 
   return (
     <Wrapper>
@@ -64,17 +65,13 @@ export const MainImpl = () => {
         <CategoryDetail data-testid="main-category-detail">{selectedTag?.description}</CategoryDetail>
       </CategoryPicker>
 
-      {searchResult?.pages ? (
-        searchResult?.pages[0].content.length === 0 ? (
+      {evaluationList ? (
+        evaluationList.length === 0 ? (
           <EmptyReviewPlaceholder data-testid="main-empty-review" />
         ) : (
           <>
-            {searchResult?.pages?.map((content, i) => (
-              <Fragment key={i}>
-                {content.content.map((it) => (
-                  <EvaluationCard evaluation={it} key={it.id} selectedTagId={selectedTagId} />
-                ))}
-              </Fragment>
+            {evaluationList.map((evaluation) => (
+              <EvaluationCard evaluation={evaluation} key={evaluation.id} selectedTagId={selectedTagId} />
             ))}
             {hasNextPage && !isFetchingNextPage && <div ref={loaderRef} />}
             {isFetchingNextPage && <LoadingIndicator />}
