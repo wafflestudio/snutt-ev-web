@@ -1,4 +1,4 @@
-import { evClient } from '@/clients/axiosEvClient';
+import { evClient } from '@/clients/evClient';
 import { Args } from '@/utils/apiArgs';
 import { getServerSideHeaders } from '@/utils/getServerSideHeaders';
 
