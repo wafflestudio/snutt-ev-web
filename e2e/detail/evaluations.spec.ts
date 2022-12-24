@@ -17,8 +17,6 @@ test(
       const detail = new DetailPage(page);
       await detail.visit();
 
-      // TODO: 강의평 신고 기능 테스트
-
       // TODO: 강의평 삭제 기능 테스트
 
       // 강의평 점수 자세히 보기 기능 테스트

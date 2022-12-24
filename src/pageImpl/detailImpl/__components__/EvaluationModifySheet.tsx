@@ -33,7 +33,7 @@ export const EvaluationModifySheet = ({
             </DeleteContainer>
           )}
           {isReportable && (
-            <ReportContainer onClick={onReportClicked}>
+            <ReportContainer onClick={onReportClicked} data-testid="detail-evaluation-sheet-report">
               <SvgReport />
               <Subheading02 style={{ marginLeft: '25px' }}>강의평 신고하기</Subheading02>
             </ReportContainer>

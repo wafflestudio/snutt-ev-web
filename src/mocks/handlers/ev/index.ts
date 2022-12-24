@@ -10,6 +10,7 @@ import {
   GetSemesterLecturesResult,
   GetTagInfosProcessedResult,
   ListMyEvaluationsResponse,
+  PostReportEvaluationResult,
 } from '@/apis/ev/types';
 
 import {
@@ -133,4 +134,22 @@ export const evHandlers = [
   rest.get<never, never, GetTagInfosProcessedResult>(`*/v1/tags/search`, (req, res, ctx) => {
     return res(ctx.json({ tag_groups: [] })); // TODO: 제대로
   }),
+
+  rest.post<{ content: string }, { id: string }, PostReportEvaluationResult>(
+    `*/v1/evaluations/:id/report`,
+    (req, res, ctx) => {
+      const evaluationId = req.params.id;
+      const body = req.body;
+
+      return res(
+        ctx.json({
+          content: body.content,
+          id: Number(evaluationId),
+          is_hidden: false,
+          lecture_evaluation_id: Number(evaluationId),
+          user: { email: 'woohm402@snu.ac.kr', id: '1', local_id: '2' },
+        }),
+      );
+    },
+  ),
 ];

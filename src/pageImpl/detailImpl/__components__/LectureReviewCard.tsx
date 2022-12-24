@@ -70,7 +70,7 @@ export const LectureReviewCard = ({
               <SvgMaximize />
             </div>
 
-            <MoreButtonWrapper onClick={onMoreClick}>
+            <MoreButtonWrapper onClick={onMoreClick} data-testid="detail-evaluation-more-button">
               <SvgMoreVertical />
             </MoreButtonWrapper>
           </SideInfo>

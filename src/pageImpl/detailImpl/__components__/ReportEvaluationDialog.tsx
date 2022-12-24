@@ -8,7 +8,7 @@ import { Dialog } from '@/components/templates/Dialog';
 interface Props {
   isOpen: boolean;
   close: () => void;
-  report: (reason: string) => void;
+  report: (reason: string) => Promise<void>;
 }
 
 export const ReportEvaluationDialog = ({ isOpen, close, report }: Props) => {
@@ -26,13 +26,24 @@ export const ReportEvaluationDialog = ({ isOpen, close, report }: Props) => {
       <Dialog.Title>강의평 신고</Dialog.Title>
       <Dialog.Content>
         <Dialog.ContentText>강의평 신고 사유를 적어주세요.</Dialog.ContentText>
-        <StyledInput variant="standard" value={reason} onChange={(e) => setReason(e.target.value)} />
+        <StyledInput
+          variant="standard"
+          value={reason}
+          onChange={(e) => setReason(e.target.value)}
+          data-testid="detail-evaluation-report-reason"
+        />
       </Dialog.Content>
       <Dialog.Actions>
         <Button variant="text" size="small" onClick={handleClose}>
           취소
         </Button>
-        <Button variant="text" size="small" disabled={isReasonEmpty} onClick={() => report(reason)}>
+        <Button
+          variant="text"
+          size="small"
+          disabled={isReasonEmpty}
+          onClick={() => report(reason).then(() => setReason(''))}
+          data-testid="detail-evaluation-report-confirm"
+        >
           신고
         </Button>
       </Dialog.Actions>
