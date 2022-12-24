@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
@@ -68,7 +67,7 @@ export const CreateImpl = () => {
       });
       router.replace(`/detail?id=${id}`);
     } catch (err) {
-      const isDuplicateError = axios.isAxiosError(err) && get(err, ['response', 'data', 'error', 'code']) === 29001;
+      const isDuplicateError = get(err, ['error', 'code']) === 29001;
       setDialogErrorMessage(isDuplicateError ? '이미 작성한 강의평이 존재합니다' : '에러가 발생했습니다');
     }
   };

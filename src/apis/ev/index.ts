@@ -1,4 +1,4 @@
-import { evClient } from '@/clients/axiosEvClient';
+import { evClient } from '@/clients/evClient';
 import { Args } from '@/utils/apiArgs';
 import { getServerSideHeaders } from '@/utils/getServerSideHeaders';
 
@@ -28,7 +28,10 @@ export async function fetchLatestLectures(args: Args<undefined, { filter?: 'no-m
   const endpoint = `/v1/users/me/lectures/latest`;
   const headers = getServerSideHeaders(args.context);
 
-  const response = await evClient.get<GetLatestLecturesResult>(endpoint, { headers, params: args.query });
+  const params = new URLSearchParams();
+  if (args.query.filter) params.set('filter', args.query.filter);
+
+  const response = await evClient.get<GetLatestLecturesResult>(endpoint, { headers, params });
   return response.data;
 }
 
@@ -61,10 +64,13 @@ export async function postLectureEvaluation(args: Args<{ id: number }, undefined
 
 // 강좌의 강의평 목록 api
 export async function fetchLectureEvaluations(args: Args<{ id: number }, GetEvaluationsQuery>) {
-  const endpoint = `v1/lectures/${args.params.id}/evaluations`;
+  const endpoint = `/v1/lectures/${args.params.id}/evaluations`;
   const headers = getServerSideHeaders(args.context);
 
-  const response = await evClient.get<GetEvaluationsResult>(endpoint, { params: args.query, headers });
+  const params = new URLSearchParams();
+  if (args.query.cursor) params.set('cursor', args.query.cursor);
+
+  const response = await evClient.get<GetEvaluationsResult>(endpoint, { params, headers });
   return response.data;
 }
 
@@ -88,7 +94,10 @@ export async function getLectures(args: Args<undefined, GetLecturesQuery>) {
   const endpoint = `/v1/lectures`;
   const headers = getServerSideHeaders(args.context);
 
-  const params = { ...args.query, tags: args.query.tags.join(',') };
+  const params = new URLSearchParams();
+  if (args.query.page) params.set('page', `${args.query.page}`);
+  if (args.query.tags) params.set('tags', args.query.tags.join(','));
+  if (args.query.query) params.set('query', args.query.query);
 
   const response = await evClient.get<GetLecturesResult>(endpoint, { params, headers });
   return response.data;
@@ -106,7 +115,10 @@ export async function getMainTagEvaluations(args: Args<{ id: number }, GetMainTa
   const endpoint = `/v1/tags/main/${args.params.id}/evaluations`;
   const headers = getServerSideHeaders(args.context);
 
-  const response = await evClient.get<GetMainTagEvaluationsResult>(endpoint, { params: args.query, headers });
+  const params = new URLSearchParams();
+  if (args.query.cursor) params.set('cursor', args.query.cursor);
+
+  const response = await evClient.get<GetMainTagEvaluationsResult>(endpoint, { params, headers });
   return response.data;
 }
 
@@ -140,7 +152,7 @@ export async function likeEvaluation(args: Args<{ id: number }>) {
   const endpoint = `/v1/evaluations/${args.params.id}/likes`;
   const headers = getServerSideHeaders(args.context);
 
-  const response = await evClient.post<never>(endpoint, { headers });
+  const response = await evClient.post<never>(endpoint, undefined, { headers });
   return response.data;
 }
 

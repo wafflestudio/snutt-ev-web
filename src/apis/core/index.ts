@@ -1,4 +1,4 @@
-import { coreClient } from '@/clients/axiosCoreClient';
+import { coreClient } from '@/clients/coreClient';
 import { Args } from '@/utils/apiArgs';
 import { getServerSideHeaders } from '@/utils/getServerSideHeaders';
 

@@ -1,9 +1,10 @@
-import axios from 'axios';
 import Cookies from 'js-cookie';
 
 import { IS_SERVER } from '@/utils/env';
 
-export const evClient = axios.create(
+import { createClient } from './utils';
+
+export const evClient = createClient(
   IS_SERVER
     ? { baseURL: process.env.SERVER_SIDE_EV_API_URL }
     : {
