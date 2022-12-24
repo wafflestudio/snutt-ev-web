@@ -1,6 +1,8 @@
 type Url = string;
-type Config = { headers: {}; params: {} };
+type Config = { headers: { [key: string]: string }; params: URLSearchParams };
 
 export interface Client {
-  get<T = unknown>(url: Url, config: Partial<Config>): Promise<{ data: T }>;
+  get<D = unknown>(url: Url, config: Partial<Config>): Promise<{ data: D }>;
+  post<D = unknown, B = unknown>(url: Url, body: B, config: Partial<Config>): Promise<{ data: D }>;
+  delete<D = unknown>(url: Url, config: Partial<Config>): Promise<{ data: D }>;
 }
