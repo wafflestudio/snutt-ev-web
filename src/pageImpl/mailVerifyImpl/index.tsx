@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import axios, { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
@@ -8,10 +7,10 @@ import { Button } from '@/components/atoms/Button';
 import SvgTimetableOn from '@/components/atoms/Icons/SvgTimetableOn';
 import { Title01 } from '@/components/atoms/Typography';
 import { AppBar } from '@/components/molecules/AppBar';
-import { ApiError } from '@/dto/error';
 import { useInterval } from '@/hooks/useInterval';
 import { useRerender } from '@/hooks/useRerender';
 import { APP_ENV } from '@/utils/env';
+import { get } from '@/utils/object/get';
 import { SECOND } from '@/utils/time';
 
 import { MailVerifyCodeInput } from './MailVerifyCodeInput';
@@ -53,19 +52,17 @@ export const MailVerifyImpl = () => {
       setIsVerificationNumberRequested(true);
       setTimeoutDeadline(Date.now() + TIMER_DURATION);
     } catch (e) {
-      if (axios.isAxiosError(e)) {
-        const errcode = (e as AxiosError<ApiError>).response?.data.errcode;
+      const errcode = get(e, ['errcode']) as number;
 
-        const newState = errcode
-          ? {
-              36864: MailVerificationState.ALREADY_VERIFIED,
-              36865: MailVerificationState.VERFIED_FROM_OTHER_MAIL,
-              40960: MailVerificationState.TOO_MANY_REQUEST,
-            }[errcode] ?? MailVerificationState.TIMEOUT
-          : MailVerificationState.TIMEOUT;
+      const newState = errcode
+        ? {
+            36864: MailVerificationState.ALREADY_VERIFIED,
+            36865: MailVerificationState.VERFIED_FROM_OTHER_MAIL,
+            40960: MailVerificationState.TOO_MANY_REQUEST,
+          }[errcode] ?? MailVerificationState.TIMEOUT
+        : MailVerificationState.TIMEOUT;
 
-        setVerificationState(newState);
-      } else setVerificationState(MailVerificationState.TIMEOUT);
+      setVerificationState(newState);
     }
   };
 

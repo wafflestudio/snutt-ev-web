@@ -64,7 +64,7 @@ export async function postLectureEvaluation(args: Args<{ id: number }, undefined
 
 // 강좌의 강의평 목록 api
 export async function fetchLectureEvaluations(args: Args<{ id: number }, GetEvaluationsQuery>) {
-  const endpoint = `v1/lectures/${args.params.id}/evaluations`;
+  const endpoint = `/v1/lectures/${args.params.id}/evaluations`;
   const headers = getServerSideHeaders(args.context);
 
   const params = new URLSearchParams();

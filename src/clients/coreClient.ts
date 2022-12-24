@@ -1,11 +1,10 @@
-import axios from 'axios';
 import Cookies from 'js-cookie';
 
 import { IS_SERVER } from '@/utils/env';
 
-import { Client } from './utils';
+import { createClient } from './utils';
 
-export const coreClient = axios.create(
+export const coreClient = createClient(
   IS_SERVER
     ? { baseURL: process.env.SERVER_SIDE_CORE_API_URL }
     : {
@@ -15,4 +14,4 @@ export const coreClient = axios.create(
           'x-access-apikey': Cookies.get('x-access-apikey') ?? '',
         },
       },
-) as Client;
+);
