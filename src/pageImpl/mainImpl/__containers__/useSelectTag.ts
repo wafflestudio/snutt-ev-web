@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 
 import { TagDTO } from '@/dto/tag';
 
@@ -10,8 +10,7 @@ type RouterQuery = {
 export const useSelectTag = (tags: TagDTO[]) => {
   const router = useRouter();
 
-  const selectedTagId = (router.query as RouterQuery).tag;
-  const firstTagId = tags[0]?.id;
+  const selectedTagId = (router.query as RouterQuery).tag || tags[0]?.id;
 
   const setSelectedTagId = useCallback(
     (tagId: number) => {
@@ -23,13 +22,6 @@ export const useSelectTag = (tags: TagDTO[]) => {
     },
     [router, selectedTagId],
   );
-
-  useEffect(() => {
-    if (selectedTagId !== undefined) return;
-    if (typeof firstTagId !== 'number') return;
-
-    setSelectedTagId(firstTagId);
-  }, [firstTagId, setSelectedTagId, selectedTagId]);
 
   const onClickTag = (tagId: number) => {
     setSelectedTagId(tagId);
