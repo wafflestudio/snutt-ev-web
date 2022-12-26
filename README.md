@@ -21,7 +21,9 @@ yarn dlx @yarnpkg/sdks vscode
 루트 디렉토리의 `.env.local`에 아래와 같이 세팅한다.
 
 ```
-# server endpoint
+# server endpoints
+SERVER_SIDE_CORE_API_URL=https://snutt-api-dev.wafflestudio.com
+SERVER_SIDE_EV_API_URL=https://snutt-api-dev.wafflestudio.com/ev-service
 NEXT_PUBLIC_CORE_API_URL=https://snutt-api-dev.wafflestudio.com
 NEXT_PUBLIC_EV_API_URL=https://snutt-api-dev.wafflestudio.com/ev-service
 
