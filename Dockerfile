@@ -1,5 +1,5 @@
 # Builder
-FROM node:18-alpine AS builder
+FROM node:18.11.0-alpine AS builder
 ARG APP_ENV
 ARG GIT_SHA
 ENV NODE_ENV production
@@ -13,7 +13,7 @@ RUN echo "NEXT_PUBLIC_GIT_SHA=${GIT_SHA}" >> .env
 RUN yarn rebuild && yarn build
 
 # Runner
-FROM node:18-alpine AS runner
+FROM node:18.11.0-alpine AS runner
 
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nextjs -u 1001
