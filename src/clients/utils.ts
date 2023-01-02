@@ -22,6 +22,8 @@ export const createClient = (options: Partial<CreateClientOptions> = {}): Client
       const response = await fetch(fetchUrl, { headers: fetchHeaders, method: 'GET' });
       const responseBody = await response.json().catch(() => null);
 
+      console.log('asdf', response, 'qwer', responseBody);
+
       if (response.ok) {
         return { data: responseBody as D };
       } else {
