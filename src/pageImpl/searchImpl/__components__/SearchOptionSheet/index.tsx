@@ -26,9 +26,9 @@ export const SearchOptionSheet = ({
   onClose: onClose,
   onClickSubmit,
 }: Props) => {
-  const [selectedTagGroupId, setSelectedTagGroupId] = useState<number>(tagGroups[0]?.id);
+  const [selectedTagGroupId, setSelectedTagGroupId] = useState(tagGroups[0]?.id as number | undefined);
 
-  const selectedTagGroup = tagGroups.find((tg) => tg.id === selectedTagGroupId);
+  const selectedTagGroup = tagGroups.find((tg) => tg.id === (selectedTagGroupId ?? tagGroups[0]?.id));
   const visibleTags = selectedTagGroup?.tags;
 
   const onTagGroupChange = (id: number) => setSelectedTagGroupId(id);
