@@ -5,4 +5,12 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
 
-module.exports = withPlugins([[withBundleAnalyzer], { reactStrictMode: true }]);
+module.exports = withPlugins([
+  [withBundleAnalyzer],
+  {
+    reactStrictMode: true,
+    experimental: {
+      scrollRestoration: true,
+    },
+  },
+]);
