@@ -3,8 +3,14 @@ import styled from '@emotion/styled';
 import { SvgReviewIcon } from '@/components/atoms/Icons/SvgReviewIcon';
 import { SvgSurprisedCat } from '@/components/atoms/Icons/SvgSurprisedCat';
 import { Title02 } from '@/components/atoms/Typography';
+import { useLog } from '@/hooks/useLog';
+import { truffleClient } from '@/truffle';
 
 export const ErrorTemplate = () => {
+  useLog(() => {
+    truffleClient.capture(new Error('error template view'));
+  });
+
   return (
     <Container>
       <SvgSurprisedCat />
