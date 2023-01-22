@@ -5,8 +5,14 @@ import SvgTimetableOn from '@/components/atoms/Icons/SvgTimetableOn';
 import { SvgWaffleCat } from '@/components/atoms/Icons/SvgWaffleCat';
 import { Title01, Title02 } from '@/components/atoms/Typography';
 import { AppBar } from '@/components/molecules/AppBar';
+import { useLog } from '@/hooks/useLog';
+import { truffleClient } from '@/truffle';
 
 export default function Custom404() {
+  useLog(() => {
+    truffleClient.capture(new Error('404 view'));
+  });
+
   return (
     <>
       <AppBar left={<SvgTimetableOn height={30} width={30} />}>
