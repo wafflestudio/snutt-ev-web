@@ -14,6 +14,7 @@ export const getServerSideProps = withGetServerSideProps(
         fetchLatestLectures({ context, query: { filter: 'no-my-evaluations' } }),
       ),
     ]);
+
     return { props: {} };
   },
   { emailVerification: 'verified' },
