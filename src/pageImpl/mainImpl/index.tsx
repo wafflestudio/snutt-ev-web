@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import Link from 'next/link';
-import { Fragment } from 'react';
 
 import { Chip } from '@/components/atoms/Chip';
 import SvgChevron from '@/components/atoms/Icons/SvgChevronRight';
