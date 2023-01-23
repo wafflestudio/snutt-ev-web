@@ -7,7 +7,7 @@ export interface TruffleClient {
 const baseUrl = 'https://truffle-api.wafflestudio.com';
 const apiKey = 'abcdef';
 const runtime = IS_SERVER ? { name: 'nodejs', version: process.versions.node } : { name: 'browser', version: '' };
-const enabled = process.env.NODE_ENV === 'production';
+const enabled = process.env.NODE_ENV === 'production' && process.env.NEXT_PUBLIC_ENABLE_TRUFFLE === 'true';
 
 const getTruffleClient = (): TruffleClient => {
   return {
