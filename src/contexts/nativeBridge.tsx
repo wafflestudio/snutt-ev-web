@@ -1,5 +1,7 @@
 import { createContext, PropsWithChildren, useContext, useMemo } from 'react';
 
+import { truffleClient } from '@/truffle';
+
 import { useNativeDevice } from './nativeDevice';
 
 interface NativeBridge {
@@ -8,6 +10,7 @@ interface NativeBridge {
 
 const notReachableErrorFunction = () => {
   if (process.env.NODE_ENV === 'development') throw Error('cannot reach here');
+  else truffleClient.capture(new Error('reached NativeBridgeProvider not reachable erorr function'));
 };
 
 const nativeBridgeContext = createContext<NativeBridge>({ close: notReachableErrorFunction });
@@ -27,15 +30,16 @@ export const NativeBridgeProvider = ({ children }: PropsWithChildren<unknown>) =
 
         const message = JSON.stringify(value);
 
-        if (bridgeCaller) bridgeCaller.postMessage(message);
-        else {
-          // TODO: capture sentry
-          console.error(`${nativeDeviceType} native bridge message handler not defined: call ${message}`);
+        if (!bridgeCaller) {
+          truffleClient.capture(
+            new Error(`${nativeDeviceType} native bridge message handler not defined: call ${message}`),
+          );
+          return;
         }
+
+        bridgeCaller.postMessage(message);
       } catch (err) {
-        // TODO: capture sentry
-        console.log('snutt bridge call exception occurred');
-        console.log(err);
+        truffleClient.capture(new Error(`snutt bridge call exception occurred, native: ${nativeDeviceType}`));
       }
     };
 

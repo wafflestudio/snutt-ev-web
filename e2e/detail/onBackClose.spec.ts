@@ -20,11 +20,8 @@ test(
       await detail.visit(353, params);
 
       await detail.getPage().waitForTimeout(1000);
-      const [msg] = await Promise.all([
-        detail.getPage().waitForEvent('console'),
-        detail.findByTestId('close-button').click(),
-      ]);
-      await expect(msg.text()).toBe('android native bridge message handler not defined: call {"name":"close"}');
+      await Promise.all([detail.findByTestId('close-button').click()]);
+
       await expect(detail.getPage()).toHaveURL('/detail?id=353&on_back=close');
     },
   ),
@@ -43,11 +40,7 @@ test(
       await detail.visit(353, params);
 
       await detail.getPage().waitForTimeout(1000);
-      const [msg] = await Promise.all([
-        detail.getPage().waitForEvent('console'),
-        detail.findByTestId('close-button').click(),
-      ]);
-      await expect(msg.text()).toBe('ios native bridge message handler not defined: call {"name":"close"}');
+      await Promise.all([detail.findByTestId('close-button').click()]);
       await expect(detail.getPage()).toHaveURL('/detail?id=353&on_back=close');
     },
   ),
