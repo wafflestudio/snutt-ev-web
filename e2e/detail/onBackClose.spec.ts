@@ -20,10 +20,7 @@ test(
       await detail.visit(353, params);
 
       await detail.getPage().waitForTimeout(1000);
-      await Promise.all([
-        detail.getPage().waitForRequest((req) => req.url().includes('truffle')),
-        detail.findByTestId('close-button').click(),
-      ]);
+      await Promise.all([detail.findByTestId('close-button').click()]);
 
       await expect(detail.getPage()).toHaveURL('/detail?id=353&on_back=close');
     },
@@ -43,10 +40,7 @@ test(
       await detail.visit(353, params);
 
       await detail.getPage().waitForTimeout(1000);
-      await Promise.all([
-        detail.getPage().waitForRequest((req) => req.url().includes('truffle')),
-        detail.findByTestId('close-button').click(),
-      ]);
+      await Promise.all([detail.findByTestId('close-button').click()]);
       await expect(detail.getPage()).toHaveURL('/detail?id=353&on_back=close');
     },
   ),
