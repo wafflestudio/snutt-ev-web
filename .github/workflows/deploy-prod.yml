@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -36,6 +36,7 @@ jobs:
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
             --build-arg APP_ENV=prod \
             --build-arg GIT_SHA=$(git rev-parse HEAD) \
+            --build-arg GIT_TAG=$(git describe --tags) \
             --build-arg TRUFFLE_APIKEY=${{ secrets.TRUFFLE_APIKEY }} \
             .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
