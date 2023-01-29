@@ -36,6 +36,7 @@ jobs:
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
             --build-arg APP_ENV=dev \
             --build-arg GIT_SHA=$(git rev-parse HEAD) \
+            --build-arg GIT_TAG=$(git describe --tags) \
             --build-arg TRUFFLE_APIKEY=${{ secrets.TRUFFLE_APIKEY }} \
             .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG

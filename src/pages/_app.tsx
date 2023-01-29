@@ -21,7 +21,7 @@ const isBrowserMSW = !IS_SERVER && isMSW;
 const isServerMSW = IS_SERVER && isMSW;
 
 if (!IS_SERVER) {
-  window.git = process.env.NEXT_PUBLIC_GIT_SHA ?? '';
+  window.git = { sha: process.env.NEXT_PUBLIC_GIT_SHA ?? '', tag: process.env.NEXT_PUBLIC_GIT_TAG ?? '' };
 }
 
 if (isServerMSW) {

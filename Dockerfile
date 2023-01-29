@@ -11,6 +11,7 @@ COPY . .
 RUN cd /app && echo 'YARN VERSION IN BUILDER: ' && yarn --version
 RUN if [ ${APP_ENV} = "dev" ] ; then cp .env.dev .env.production ; elif [ ${APP_ENV} = "prod" ] ; then cp .env.prod .env.production ; elif [ ${APP_ENV} = "test" ] ; then cp .env.test .env.production ; else exit 1 ; fi
 RUN echo "NEXT_PUBLIC_GIT_SHA=${GIT_SHA}" >> .env
+RUN echo "NEXT_PUBLIC_GIT_TAG=${GIT_TAG}" >> .env
 RUN echo "NEXT_PUBLIC_TRUFFLE_APIKEY=${TRUFFLE_APIKEY}" >> .env
 RUN yarn rebuild && yarn build
 
