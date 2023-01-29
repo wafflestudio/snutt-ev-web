@@ -23,7 +23,7 @@ export const LikeButton = forwardRef<HTMLButtonElement, Props>(function LB(
   );
 });
 
-const Wrapper = styled.button<{ $likeByMe: boolean }>`
+const Wrapper = styled('button', { shouldForwardProp: (p) => p !== '$likeByMe' })<{ $likeByMe: boolean }>`
   width: 55px;
   height: 28px;
   display: block;
@@ -40,7 +40,7 @@ const Wrapper = styled.button<{ $likeByMe: boolean }>`
   font-family: AppleSDGothicNeo;
 `;
 
-const LikeIcon = styled(SvgLike)<{ $likeByMe: boolean }>`
+const LikeIcon = styled(SvgLike, { shouldForwardProp: (p) => p !== '$likeByMe' })<{ $likeByMe: boolean }>`
   margin-right: 8px;
 
   path {
