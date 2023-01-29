@@ -9,6 +9,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { ErrorTemplate } from '@/components/templates/ErrorTemplate';
 import { NativeBridgeProvider } from '@/contexts/nativeBridge';
 import { NativeDeviceProvider } from '@/contexts/nativeDevice';
+import { useApplicationScrollRestoration } from '@/hooks/useApplicationScrollRestoration';
 import { useApplicationThemeType } from '@/hooks/useApplicationThemeType';
 import { useMSW } from '@/mocks/integrations/browser';
 import { GlobalStyles } from '@/styles/global';
@@ -48,6 +49,8 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: unknown; th
   useEffect(() => {
     window.changeTheme = changeThemeType;
   }, [changeThemeType]);
+
+  useApplicationScrollRestoration();
 
   if (isMSW && !isMSWEnabled) return;
 
