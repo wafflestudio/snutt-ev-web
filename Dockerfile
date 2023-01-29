@@ -2,6 +2,7 @@
 FROM node:18-alpine AS builder
 ARG APP_ENV
 ARG GIT_SHA
+ARG GIT_TAG
 ARG TRUFFLE_APIKEY
 ENV NODE_ENV production
 RUN apk add --no-cache libc6-compat
