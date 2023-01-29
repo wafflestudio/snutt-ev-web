@@ -36,9 +36,9 @@ export const MyEvaluationCard = ({ evaluation }: Props) => {
   };
 
   return (
-    <Wrapper data-testid="my-evaluations-evaluation-card">
+    <Wrapper data-testid="my-evaluations-evaluation-card" onClick={goToEvaluation}>
       <Contents>
-        <Header onClick={goToEvaluation}>
+        <Header>
           <HeaderLeft>
             <LectureName>{evaluation.lecture.title}</LectureName>
             <RatingSemester>
@@ -52,12 +52,19 @@ export const MyEvaluationCard = ({ evaluation }: Props) => {
           <HeaderRight>{evaluation.lecture.instructor}</HeaderRight>
         </Header>
         <Review>
-          <CollapsableText text={evaluation.content} />
+          <CollapsableText text={evaluation.content} onClickMoreLess={(e) => e.stopPropagation()} />
         </Review>
 
         <LikeWrapper>
           <LikeText>강의평이 도움이 되었나요?</LikeText>
-          <LikeButton likeCount={likeCount} likebyMe={likeByMe} onClick={onClickLike} />
+          <LikeButton
+            likeCount={likeCount}
+            likebyMe={likeByMe}
+            onClick={(e) => {
+              e.stopPropagation();
+              onClickLike();
+            }}
+          />
         </LikeWrapper>
       </Contents>
     </Wrapper>
