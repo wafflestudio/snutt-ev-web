@@ -8,7 +8,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 
 import { ErrorTemplate } from '@/components/templates/ErrorTemplate';
 import { NativeBridgeProvider } from '@/contexts/nativeBridge';
-import { NativeDeviceProvider } from '@/contexts/nativeDevice';
+import { NativeDeviceProvider, useNativeDevice } from '@/contexts/nativeDevice';
 import { useApplicationThemeType } from '@/hooks/useApplicationThemeType';
 import { useMSW } from '@/mocks/integrations/browser';
 import { GlobalStyles } from '@/styles/global';
@@ -75,8 +75,21 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: unknown; th
           </QueryClientProvider>
         </ThemeProvider>
       </NativeBridgeProvider>
+      <DangerousIosScrollRestorationHelper />
     </NativeDeviceProvider>
   );
 }
 
 export default MyApp;
+
+// https://wafflestudio.slack.com/archives/C0PAVPS5T/p1675007677638799?thread_ts=1673436263.985449&cid=C0PAVPS5T
+const DangerousIosScrollRestorationHelper = () => {
+  const { nativeDeviceType } = useNativeDevice();
+
+  useEffect(() => {
+    if (nativeDeviceType === 'ios') window.history.scrollRestoration = 'auto';
+    else window.history.scrollRestoration = 'manual';
+  }, [nativeDeviceType]);
+
+  return null;
+};
