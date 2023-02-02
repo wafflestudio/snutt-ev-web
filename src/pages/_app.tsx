@@ -88,6 +88,7 @@ const DangerousIosScrollRestorationHelper = () => {
 
   useEffect(() => {
     if (nativeDeviceType === 'ios') window.history.scrollRestoration = 'auto';
+    else window.history.scrollRestoration = 'manual';
   }, [nativeDeviceType]);
 
   return null;
