@@ -22,6 +22,8 @@ export const NativeBridgeProvider = ({ children }: PropsWithChildren<unknown>) =
   const value = useMemo(() => {
     const postMessage = (value: unknown) => {
       try {
+        if (nativeDeviceType === null) throw new Error('device type is null');
+
         // TODO: add testcode for bridge call
         const bridgeCaller = {
           android: window.Snutt,
