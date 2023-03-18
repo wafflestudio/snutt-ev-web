@@ -25,8 +25,6 @@ export const withGetServerSideProps = <P extends { [key: string]: unknown }>(
   options: Partial<Options> = {},
 ): GetServerSideProps => {
   return async (context) => {
-    const cookie = parse(context.req.headers.cookie ?? ''); // experimental. TODO: 제대로
-
     try {
       const { emailVerification } = options;
 
@@ -42,6 +40,7 @@ export const withGetServerSideProps = <P extends { [key: string]: unknown }>(
           return { redirect: { destination: '/main', permanent: false } };
       }
 
+      const cookie = parse(context.req.headers.cookie ?? ''); // experimental. TODO: 제대로
       const theme: ThemeType = cookie.theme === 'dark' ? 'dark' : 'light';
 
       const queryClient = new QueryClient();
@@ -60,8 +59,9 @@ export const withGetServerSideProps = <P extends { [key: string]: unknown }>(
       if (err instanceof Error) truffleClient.capture(err);
       else {
         const errorString = `${err}` === `${{}}` ? JSON.stringify(err) : `${err}`;
-        const versionString = `(os: ${cookie['x-os-type']}, app: ${cookie['x-app-version']})`;
-        truffleClient.capture(new Error(`unknown withGetServerSideProps error: ${errorString} ${versionString}`));
+        truffleClient.capture(
+          new Error(`unknown withGetServerSideProps error: ${errorString} ${context.req.headers.cookie}`),
+        );
       }
       throw err;
     }
