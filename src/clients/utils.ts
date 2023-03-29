@@ -29,7 +29,9 @@ export const createClient = (options: Partial<CreateClientOptions> = {}): Client
       } else {
         truffleClient.capture(
           new Error(
-            `GET ${url} -(=)- ${JSON.stringify(options)} -_=_- ${JSON.stringify(config)} -^=^- ${responseBody}`,
+            `GET ${url} -(=)- ${JSON.stringify(options)} -_=_- ${JSON.stringify(config)} -^=^- ${JSON.stringify(
+              responseBody,
+            )}`,
           ),
         );
         throw responseBody;
@@ -47,7 +49,9 @@ export const createClient = (options: Partial<CreateClientOptions> = {}): Client
       } else {
         truffleClient.capture(
           new Error(
-            `POST ${url} -(=)- ${JSON.stringify(options)} -_=_- ${JSON.stringify(config)} -^=^- ${responseBody}`,
+            `POST ${url} -(=)- ${JSON.stringify(options)} -_=_- ${JSON.stringify(config)} -^=^- ${JSON.stringify(
+              responseBody,
+            )}`,
           ),
         );
         throw responseBody;
@@ -65,7 +69,9 @@ export const createClient = (options: Partial<CreateClientOptions> = {}): Client
       } else {
         truffleClient.capture(
           new Error(
-            `DELETE ${url} -(=)- ${JSON.stringify(options)} -_=_- ${JSON.stringify(config)} -^=^- ${responseBody}`,
+            `DELETE ${url} -(=)- ${JSON.stringify(options)} -_=_- ${JSON.stringify(config)} -^=^- ${JSON.stringify(
+              responseBody,
+            )}`,
           ),
         );
         throw responseBody;
