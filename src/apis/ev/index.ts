@@ -1,4 +1,5 @@
 import { evClient } from '@/clients/evClient';
+import { EvaluationDTO } from '@/dto/evaluation';
 import { Args } from '@/utils/apiArgs';
 import { getServerSideHeaders } from '@/utils/getServerSideHeaders';
 
@@ -161,5 +162,13 @@ export async function unlikeEvaluation(args: Args<{ id: number }>) {
   const headers = getServerSideHeaders(args.context);
 
   const response = await evClient.delete<never>(endpoint, { headers });
+  return response.data;
+}
+
+export async function fetchEvaluation(args: Args<{ id: number }>) {
+  const endpoint = `/v1/evaluations/${args.params.id}`;
+  const headers = getServerSideHeaders(args.context);
+
+  const response = await evClient.get<EvaluationDTO>(endpoint, { headers });
   return response.data;
 }
