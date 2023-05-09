@@ -59,9 +59,7 @@ export const withGetServerSideProps = <P extends { [key: string]: unknown }>(
       if (err instanceof Error) truffleClient.capture(err);
       else {
         const errorString = `${err}` === `${{}}` ? JSON.stringify(err) : `${err}`;
-        truffleClient.capture(
-          new Error(`unknown withGetServerSideProps error: ${errorString} ${context.req.headers.cookie}`),
-        );
+        truffleClient.capture(new Error(`unknown withGetServerSideProps error: ${errorString}`));
       }
       throw err;
     }

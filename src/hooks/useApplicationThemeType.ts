@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { ThemeType } from '@/styles/theme';
 
 // _app.tsx 에서만 이용하도록 한다.
-export const useApplicationThemeType = (initialTheme: ThemeType) => {
+export const useApplicationThemeType = (initialTheme: ThemeType = 'light') => {
   const [themeType, setThemeType] = useState(initialTheme);
 
   // 테마가 변경될 경우 브라우저 쿠키와 동기화해 준다.
