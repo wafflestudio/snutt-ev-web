@@ -17,7 +17,7 @@ import { APP_ENV, IS_SERVER } from '@/utils/env';
 const isDevtool = process.env.NEXT_PUBLIC_REACT_QUERY_DEVTOOL === 'true';
 const isMSW = APP_ENV === 'test';
 
-if (isMSW) require('../mocks');
+if (isMSW) await import('../mocks');
 
 if (!IS_SERVER) {
   window.git = { sha: process.env.NEXT_PUBLIC_GIT_SHA ?? '', tag: process.env.NEXT_PUBLIC_GIT_TAG ?? '' };
