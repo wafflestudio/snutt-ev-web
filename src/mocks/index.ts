@@ -3,7 +3,7 @@ import { IS_SERVER } from '@/utils/env';
 async function initMocks() {
   if (IS_SERVER) {
     const { server } = await import('./integrations/server');
-    server.listen();
+    server.listen({ onUnhandledRequest: 'bypass' });
     console.log('server worker started');
   } else {
     const { worker } = await import('./integrations/browser');
