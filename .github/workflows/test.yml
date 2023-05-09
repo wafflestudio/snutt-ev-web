@@ -25,6 +25,10 @@ jobs:
       - name: Build Application
         run: docker build -t snutt-ev-web-pr-test --build-arg APP_ENV=test .
       - name: Start Application
-        run: docker run -dp 3000:3000 snutt-ev-web-pr-test
+        run: docker run -dp 3000:3000 --name snutt-ev-web-pr-test-container snutt-ev-web-pr-test
+      - name: Some Dirty Code # TODO: remove this. 첫 로딩 때 msw가 안 켜져서 핑 한번 날려주는 매우 더러운 로직
+        run: sleep 5 && curl http://localhost:3000
       - name: Run Playwright tests
         run: yarn test:e2e
+      - name: Stop and remove the container
+        run: docker stop snutt-ev-web-pr-test-container && docker rm snutt-ev-web-pr-test-container
