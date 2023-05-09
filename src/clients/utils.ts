@@ -1,5 +1,3 @@
-import { truffleClient } from '@/truffle';
-
 type Url = string;
 type Headers = { [key: string]: string };
 type Config = { headers: Headers; params: URLSearchParams };
@@ -27,13 +25,6 @@ export const createClient = (options: Partial<CreateClientOptions> = {}): Client
       if (response.ok) {
         return { data: responseBody as D };
       } else {
-        truffleClient.capture(
-          new Error(
-            `GET ${url} -(=)- ${JSON.stringify(options)} -_=_- ${JSON.stringify(config)} -^=^- ${JSON.stringify(
-              responseBody,
-            )}`,
-          ),
-        );
         throw responseBody;
       }
     },
@@ -47,13 +38,6 @@ export const createClient = (options: Partial<CreateClientOptions> = {}): Client
       if (response.ok) {
         return { data: responseBody as D };
       } else {
-        truffleClient.capture(
-          new Error(
-            `POST ${url} -(=)- ${JSON.stringify(options)} -_=_- ${JSON.stringify(config)} -^=^- ${JSON.stringify(
-              responseBody,
-            )}`,
-          ),
-        );
         throw responseBody;
       }
     },
@@ -67,13 +51,6 @@ export const createClient = (options: Partial<CreateClientOptions> = {}): Client
       if (response.ok) {
         return { data: responseBody as D };
       } else {
-        truffleClient.capture(
-          new Error(
-            `DELETE ${url} -(=)- ${JSON.stringify(options)} -_=_- ${JSON.stringify(config)} -^=^- ${JSON.stringify(
-              responseBody,
-            )}`,
-          ),
-        );
         throw responseBody;
       }
     },

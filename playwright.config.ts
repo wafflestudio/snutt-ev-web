@@ -1,7 +1,7 @@
 import type { PlaywrightTestConfig } from '@playwright/test';
 import { devices } from '@playwright/test';
 
-const PORT = 3001;
+const PORT = 3000;
 
 const config: PlaywrightTestConfig = {
   testDir: './e2e',
@@ -25,12 +25,6 @@ const config: PlaywrightTestConfig = {
   /* Configure projects for major browsers */
   /* 사파리에서 되면 되는거아닐까? */
   projects: [{ name: 'Mobile Safari', use: { ...devices['iPhone 12'] } }],
-
-  /* Run your local dev server before starting the tests */
-  webServer: {
-    command: `PORT=${PORT} yarn dev:test`,
-    port: PORT,
-  },
 };
 
 export default config;

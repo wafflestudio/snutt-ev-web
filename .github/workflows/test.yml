@@ -1,0 +1,34 @@
+name: test pr
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+      # unit test
+      - name: Run tests
+        run: yarn test:unit
+
+      # integration test ( also tests build success)
+      - name: Install Playwright
+        run: yarn add playwright@1.29.1
+      - name: Install Playwright Browsers
+        run: npx playwright@1.29.1 install --with-deps # note: package.json 과 버전 맞춰야 함
+      - name: Build Application
+        run: docker build -t snutt-ev-web-pr-test --build-arg APP_ENV=test .
+      - name: Start Application
+        run: docker run -dp 3000:3000 --name snutt-ev-web-pr-test-container snutt-ev-web-pr-test
+      - name: Some Dirty Code # TODO: remove this. 첫 로딩 때 msw가 안 켜져서 핑 한번 날려주는 매우 더러운 로직
+        run: sleep 5 && curl http://localhost:3000
+      - name: Run Playwright tests
+        run: yarn test:e2e
+      - name: Stop and remove the container
+        run: docker stop snutt-ev-web-pr-test-container && docker rm snutt-ev-web-pr-test-container
