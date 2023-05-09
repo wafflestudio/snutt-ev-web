@@ -47,6 +47,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typescript-eslint/eslint-plugin", "virtual:804ff26d610d54aa38bd28c972bd24abb171bac3818efeed327583ab550161b4742c407fbd84e07faf14642448024e8c66a18f93ab081b96d45f0e96fc46ca8c#npm:5.44.0"],\
             ["@typescript-eslint/parser", "virtual:804ff26d610d54aa38bd28c972bd24abb171bac3818efeed327583ab550161b4742c407fbd84e07faf14642448024e8c66a18f93ab081b96d45f0e96fc46ca8c#npm:5.44.0"],\
             ["cookie", "npm:0.5.0"],\
+            ["env-cmd", "npm:10.1.0"],\
             ["eslint", "npm:8.28.0"],\
             ["eslint-config-next", "virtual:804ff26d610d54aa38bd28c972bd24abb171bac3818efeed327583ab550161b4742c407fbd84e07faf14642448024e8c66a18f93ab081b96d45f0e96fc46ca8c#npm:13.0.5"],\
             ["eslint-config-prettier", "virtual:804ff26d610d54aa38bd28c972bd24abb171bac3818efeed327583ab550161b4742c407fbd84e07faf14642448024e8c66a18f93ab081b96d45f0e96fc46ca8c#npm:8.5.0"],\
@@ -3417,6 +3418,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["commander", [\
+        ["npm:4.1.1", {\
+          "packageLocation": "./.yarn/cache/commander-npm-4.1.1-22a0fe921b-d7b9913ff9.zip/node_modules/commander/",\
+          "packageDependencies": [\
+            ["commander", "npm:4.1.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["concat-map", [\
         ["npm:0.0.1", {\
           "packageLocation": "./.yarn/cache/concat-map-npm-0.0.1-85a921b7ee-902a9f5d89.zip/node_modules/concat-map/",\
@@ -3836,6 +3846,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["enhanced-resolve", "npm:5.12.0"],\
             ["graceful-fs", "npm:4.2.10"],\
             ["tapable", "npm:2.2.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["env-cmd", [\
+        ["npm:10.1.0", {\
+          "packageLocation": "./.yarn/cache/env-cmd-npm-10.1.0-85470635d6-efef550742.zip/node_modules/env-cmd/",\
+          "packageDependencies": [\
+            ["env-cmd", "npm:10.1.0"],\
+            ["commander", "npm:4.1.1"],\
+            ["cross-spawn", "npm:7.0.3"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -8115,6 +8136,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typescript-eslint/eslint-plugin", "virtual:804ff26d610d54aa38bd28c972bd24abb171bac3818efeed327583ab550161b4742c407fbd84e07faf14642448024e8c66a18f93ab081b96d45f0e96fc46ca8c#npm:5.44.0"],\
             ["@typescript-eslint/parser", "virtual:804ff26d610d54aa38bd28c972bd24abb171bac3818efeed327583ab550161b4742c407fbd84e07faf14642448024e8c66a18f93ab081b96d45f0e96fc46ca8c#npm:5.44.0"],\
             ["cookie", "npm:0.5.0"],\
+            ["env-cmd", "npm:10.1.0"],\
             ["eslint", "npm:8.28.0"],\
             ["eslint-config-next", "virtual:804ff26d610d54aa38bd28c972bd24abb171bac3818efeed327583ab550161b4742c407fbd84e07faf14642448024e8c66a18f93ab081b96d45f0e96fc46ca8c#npm:13.0.5"],\
             ["eslint-config-prettier", "virtual:804ff26d610d54aa38bd28c972bd24abb171bac3818efeed327583ab550161b4742c407fbd84e07faf14642448024e8c66a18f93ab081b96d45f0e96fc46ca8c#npm:8.5.0"],\
