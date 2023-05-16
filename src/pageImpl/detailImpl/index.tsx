@@ -67,7 +67,7 @@ export const DetailImpl = ({ onBack }: Props) => {
     setMoreSheetItemId(undefined);
   };
   const handleEditEvaluation = () => {
-    router.push(`/edit?evaluation_id=${moreSheetItemId}`);
+    router.push(`/lectures/${lectureId}/evaluations/edit/${moreSheetItemId}`);
   };
   const handleDeleteEvaluationConfirm = async () => {
     if (deleteTargetId === undefined) return;

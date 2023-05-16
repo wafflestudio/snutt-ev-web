@@ -3,12 +3,14 @@ import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
-import { fetchEvaluation } from '@/apis/ev';
+import { fetchEvaluation, patchEvaluation } from '@/apis/ev';
 import { Button } from '@/components/atoms/Button';
 import SvgWarning from '@/components/atoms/Icons/SvgWarning';
 import { AppBar } from '@/components/molecules/AppBar';
+import { Dialog } from '@/components/templates/Dialog';
 import { SemesterLectureDTO } from '@/dto/semesterLecture';
 import { COLORS } from '@/styles/colors';
+import { get } from '@/utils/object/get';
 
 import { CreateContentStep } from './CreateContentStep';
 import { CreateHeader } from './CreateHeader';
@@ -21,7 +23,8 @@ type Score = { top: number; left: number; bottom: number; right: number };
 
 const EditImpl = () => {
   const router = useRouter();
-  const evaluationId = Number(router.query['evaluation_id']);
+  const lectureId = Number(router.query['lectureId']);
+  const evaluationId = Number(router.query['evaluationId']);
 
   const { data: evaluation } = useEvaluation(evaluationId);
 
@@ -33,6 +36,9 @@ const EditImpl = () => {
   const [rating, setRating] = useState<number>();
   const [content, setContent] = useState('');
 
+  const [dialogErrorMessage, setDialogErrorMessage] = useState<string | null>(null);
+
+  const isDialogOpen = dialogErrorMessage !== null;
   const isContentValid = content.trim().length >= contentMinLength;
 
   useEffect(() => {
@@ -55,13 +61,43 @@ const EditImpl = () => {
     setScore((prev) => ({ ...prev, [direction]: value }));
   };
 
+  const editEvaluation = async () => {
+    if (!selectedSemesterId || !rating) {
+      setDialogErrorMessage('에러가 발생했습니다');
+      return;
+    }
+
+    try {
+      await patchEvaluation({
+        params: { id: evaluationId },
+        body: {
+          content: content,
+          grade_satisfaction: score.top,
+          teaching_skill: score.left,
+          gains: score.bottom,
+          life_balance: score.right,
+          rating: rating + 1,
+          semester_lecture_id: selectedSemesterId,
+        },
+      });
+      router.replace(`/detail?id=${lectureId}`);
+    } catch (err) {
+      console.log(err);
+
+      const isDuplicateError = get(err, ['error', 'code']) === 29001;
+      setDialogErrorMessage(isDuplicateError ? '이미 작성한 강의평이 존재합니다' : '에러가 발생했습니다');
+    }
+  };
+
+  const closeDialog = () => setDialogErrorMessage(null);
+
   return (
     <Wrapper>
       <AppBar left={<AppBar.BackButton onClick={() => (step === 1 ? setStep(0) : router.back())} />} />
       <Container>
         {evaluation && (
           <CreateHeader
-            lectureId={evaluation.lecture_id}
+            lectureId={lectureId}
             selectedSemesterId={selectedSemesterId}
             onChangeSelectedSemester={(id) => setSelectedSemesterId(id)}
           />
@@ -70,7 +106,6 @@ const EditImpl = () => {
           <SvgWarning width={18} height={18} color={COLORS.red} />
           <span>강의평 수정시 공감 내용은 초기화됩니다.</span>
         </Warning>
-        {/* {isEditable && '강의평 초기화 됨'} */}
         {
           [
             <CreateScoreStep key={1} score={score} handleUpdateScore={updateScore} />,
@@ -88,7 +123,7 @@ const EditImpl = () => {
           data-testid="create-cta-button"
           onClick={() => {
             if (step < 1) setStep((step) => step + 1);
-            // else postEvaluation();
+            else editEvaluation();
           }}
           disabled={step === 1 && !isContentValid}
         >
@@ -96,14 +131,14 @@ const EditImpl = () => {
         </Complete>
         <SvgWarning />
       </Container>
-      {/* <Diallg open={isDialogOpen} onClose={closeDialog}>
+      <Dialog open={isDialogOpen} onClose={closeDialog}>
         <Dialog.Title>{dialogErrorMessage}</Dialog.Title>
         <Dialog.Actions>
           <Button variant="text" size="small" onClick={closeDialog}>
             확인
           </Button>
         </Dialog.Actions>
-      </Diallg> */}
+      </Dialog>
     </Wrapper>
   );
 };
