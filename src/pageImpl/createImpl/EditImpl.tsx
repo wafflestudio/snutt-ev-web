@@ -129,7 +129,6 @@ const EditImpl = () => {
         >
           {['다음', '완료'][step]}
         </Complete>
-        <SvgWarning />
       </Container>
       <Dialog open={isDialogOpen} onClose={closeDialog}>
         <Dialog.Title>{dialogErrorMessage}</Dialog.Title>
@@ -179,6 +178,7 @@ const Warning = styled.div`
   line-height: 19px;
   text-align: center;
   color: ${COLORS.red};
+  margin-top: 10px;
 
   span {
     position: relative;

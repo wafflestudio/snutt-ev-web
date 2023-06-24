@@ -58,6 +58,7 @@ const Wrapper = styled.div`
   padding: 20px;
   justify-content: space-around;
   flex-direction: column;
+  gap: 12px;
 `;
 
 const BottomSheetRow = styled.div`
