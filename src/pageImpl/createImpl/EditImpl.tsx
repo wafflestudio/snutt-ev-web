@@ -62,7 +62,7 @@ const EditImpl = () => {
   };
 
   const editEvaluation = async () => {
-    if (!selectedSemesterId || !rating) {
+    if (!selectedSemesterId || rating === undefined) {
       setDialogErrorMessage('에러가 발생했습니다');
       return;
     }
