@@ -182,7 +182,7 @@ const Warning = styled.div`
 
   span {
     position: relative;
-    height: 21px;
+    height: 20px;
     font-family: AppleSDGothicNeo;
     font-style: normal;
     font-weight: 400;
