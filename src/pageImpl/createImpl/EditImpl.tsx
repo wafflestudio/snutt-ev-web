@@ -182,15 +182,12 @@ const Warning = styled.div`
 
   span {
     position: relative;
-    height: 100%;
-    top: 1px;
+    height: 21px;
     font-family: AppleSDGothicNeo;
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
     display: inline-block;
-    vertical-align: middle;
-    line-height: normal;
   }
 `;
 
