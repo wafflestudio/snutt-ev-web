@@ -1,4 +1,5 @@
 import { evClient } from '@/clients/evClient';
+import { EvaluationDTO } from '@/dto/evaluation';
 import { Args } from '@/utils/apiArgs';
 import { getServerSideHeaders } from '@/utils/getServerSideHeaders';
 
@@ -17,6 +18,8 @@ import type {
   GetSemesterLecturesResult,
   GetTagInfosProcessedResult,
   ListMyEvaluationsResponse,
+  PatchEvaluationQuery,
+  PatchEvaluationResult,
   PostEvaluationQuery,
   PostEvaluationResult,
   PostReportEvaluationParams,
@@ -59,6 +62,15 @@ export async function postLectureEvaluation(args: Args<{ id: number }, undefined
   const headers = getServerSideHeaders(args.context);
 
   const response = await evClient.post<PostEvaluationResult>(endpoint, args.body, { headers });
+  return response.data;
+}
+
+// 강의평 수정 api
+export async function patchEvaluation(args: Args<{ id: number }, undefined, PatchEvaluationQuery>) {
+  const endpoint = `/v1/evaluations/${args.params.id}`;
+  const headers = getServerSideHeaders(args.context);
+
+  const response = await evClient.patch<PatchEvaluationResult>(endpoint, args.body, { headers });
   return response.data;
 }
 
@@ -161,5 +173,13 @@ export async function unlikeEvaluation(args: Args<{ id: number }>) {
   const headers = getServerSideHeaders(args.context);
 
   const response = await evClient.delete<never>(endpoint, { headers });
+  return response.data;
+}
+
+export async function fetchEvaluation(args: Args<{ id: number }>) {
+  const endpoint = `/v1/evaluations/${args.params.id}`;
+  const headers = getServerSideHeaders(args.context);
+
+  const response = await evClient.get<EvaluationDTO>(endpoint, { headers });
   return response.data;
 }

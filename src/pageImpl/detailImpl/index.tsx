@@ -66,6 +66,9 @@ export const DetailImpl = ({ onBack }: Props) => {
     setDeleteTargetId(moreSheetItemId);
     setMoreSheetItemId(undefined);
   };
+  const handleEditEvaluation = () => {
+    router.push(`/lectures/${lectureId}/evaluations/edit/${moreSheetItemId}`);
+  };
   const handleDeleteEvaluationConfirm = async () => {
     if (deleteTargetId === undefined) return;
     await deleteEvaluation(deleteTargetId);
@@ -148,6 +151,7 @@ export const DetailImpl = ({ onBack }: Props) => {
         onClose={() => setMoreSheetItemId(undefined)}
         onReportClicked={handleReportEvaluation}
         onDeleteClicked={handleDeleteEvaluation}
+        onEditClicked={handleEditEvaluation}
         isModifiable={moreSheetItem?.is_modifiable ?? false}
         isReportable={moreSheetItem?.is_reportable ?? false}
       />

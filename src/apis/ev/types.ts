@@ -43,6 +43,16 @@ export type PostEvaluationResult = {
   is_hidden: boolean;
   is_reported: boolean;
 };
+export type PatchEvaluationQuery = {
+  content: string;
+  grade_satisfaction: number;
+  teaching_skill: number;
+  gains: number;
+  life_balance: number;
+  rating: number;
+  semester_lecture_id: number;
+};
+export type PatchEvaluationResult = PostEvaluationResult;
 export type GetEvaluationSummaryResponse = EvaluationSummaryDTO;
 export type PostReportEvaluationParams = { content: string };
 export type PostReportEvaluationResult = {
