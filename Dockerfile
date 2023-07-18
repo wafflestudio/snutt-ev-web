@@ -1,5 +1,5 @@
 # Builder
-FROM node:16.17.0-alpine AS builder
+FROM node:14.21-alpine AS builder
 ARG APP_ENV
 ARG GIT_SHA
 ARG GIT_TAG
