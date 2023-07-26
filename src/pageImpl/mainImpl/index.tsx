@@ -103,7 +103,7 @@ const ChipsWrapper = styled.div`
   padding-top: 6px;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 7px;
 `;
 
 const CategoryPickerTitleWrapper = styled.div`
