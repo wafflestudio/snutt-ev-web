@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { postLectureEvaluation } from '@/apis/ev';
 import { Button } from '@/components/atoms/Button';
@@ -36,6 +36,8 @@ const CreateImpl = ({ isEditable }: Props) => {
 
   const [dialogErrorMessage, setDialogErrorMessage] = useState<string | null>(null);
 
+  const isPostingRef = useRef<boolean>(false);
+
   const isDialogOpen = dialogErrorMessage !== null;
   const isContentValid = content.trim().length >= contentMinLength;
 
@@ -57,7 +59,11 @@ const CreateImpl = ({ isEditable }: Props) => {
       return;
     }
 
+    if (isPostingRef.current) return;
+
     try {
+      isPostingRef.current = true;
+
       await postLectureEvaluation({
         params: { id: selectedSemesterId },
         body: {
@@ -73,6 +79,8 @@ const CreateImpl = ({ isEditable }: Props) => {
     } catch (err) {
       const isDuplicateError = get(err, ['error', 'code']) === 29001;
       setDialogErrorMessage(isDuplicateError ? '이미 작성한 강의평이 존재합니다' : '에러가 발생했습니다');
+    } finally {
+      isPostingRef.current = false;
     }
   };
 
