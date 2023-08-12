@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 
+import { COLORS } from '@/styles/colors';
+
 export const MailVerifyGuide = () => {
   return (
     <GuideText>
@@ -22,7 +24,7 @@ const GuideText = styled.div`
   font-family: Apple SD Gothic Neo;
   font-size: 12px;
   text-align: left;
-  color: #777777;
+  color: ${COLORS.darkGray};
   word-break: keep-all;
 `;
 
