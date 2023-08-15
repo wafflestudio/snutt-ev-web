@@ -21,7 +21,6 @@ export const MailVerifyGuide = () => {
 
 const GuideText = styled.div`
   margin-top: 36px;
-  font-family: Apple SD Gothic Neo;
   font-size: 12px;
   text-align: left;
   color: ${COLORS.darkGray};
