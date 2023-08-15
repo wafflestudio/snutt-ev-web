@@ -15,6 +15,7 @@ import { SECOND } from '@/utils/time';
 
 import { MailVerifyCodeInput } from './MailVerifyCodeInput';
 import { MailVerifyEmailInput } from './MailVerifyEmailInput';
+import { MailVerifyGuide } from './MailVerifyGuide';
 import { MailVerifyHeader } from './MailVerifyHeader';
 import { MailVerifyWarning } from './MailVerifyWarning';
 
@@ -112,6 +113,7 @@ export const MailVerifyImpl = () => {
         >
           완료
         </CompleteButton>
+        {verificationState == MailVerificationState.VERFIED_FROM_OTHER_MAIL && <MailVerifyGuide />}
       </Content>
     </Wrapper>
   );
