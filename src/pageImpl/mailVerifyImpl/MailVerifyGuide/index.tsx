@@ -1,7 +1,5 @@
 import styled from '@emotion/styled';
 
-import { COLORS } from '@/styles/colors';
-
 export const MailVerifyGuide = () => {
   return (
     <GuideText>
@@ -23,7 +21,7 @@ const GuideText = styled.div`
   margin-top: 36px;
   font-size: 12px;
   text-align: left;
-  color: ${COLORS.darkGray};
+  color: ${({ theme }) => theme.colors.text.caption};
   word-break: keep-all;
 `;
 
