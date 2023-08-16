@@ -18,6 +18,7 @@ declare module '@emotion/react' {
         toggle: Color; // 메인 페이지 토글 칩스버튼
         desc: Color; // 설명 텍스트
         form: Color; // 폼 텍스트
+        caption: Color;
       };
       icon: { filled: { fill: Color; stroke: Color }; outlined: { fill: Color; stroke: Color } };
       border: {

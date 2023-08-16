@@ -22,6 +22,7 @@ export const themeObject: ThemeObject = {
         toggle: COLORS.darkGray,
         desc: COLORS.darkGray,
         form: COLORS.darkerGray,
+        caption: COLORS.darkGray,
       },
       icon: {
         filled: {
@@ -65,6 +66,7 @@ export const themeObject: ThemeObject = {
         toggle: COLORS.gray,
         desc: COLORS.darkGray,
         form: COLORS.gray,
+        caption: COLORS.gray20,
       },
       icon: {
         filled: {
