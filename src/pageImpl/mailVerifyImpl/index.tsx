@@ -113,7 +113,7 @@ export const MailVerifyImpl = () => {
         >
           완료
         </CompleteButton>
-        {verificationState == MailVerificationState.VERFIED_FROM_OTHER_MAIL && <MailVerifyGuide />}
+        {verificationState === MailVerificationState.VERFIED_FROM_OTHER_MAIL && <MailVerifyGuide />}
       </Content>
     </Wrapper>
   );
