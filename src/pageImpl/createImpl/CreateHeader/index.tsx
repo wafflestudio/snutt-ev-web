@@ -1,11 +1,12 @@
 import styled from '@emotion/styled';
 import { useQuery } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { fetchSemesterLectures } from '@/apis/ev';
 import SvgArrowDown from '@/components/atoms/Icons/SvgArrowDown';
 import { Subheading02, Title01 } from '@/components/atoms/Typography';
 import { SemesterLectureDTO } from '@/dto/semesterLecture';
+import { useOutsideClick } from '@/hooks/useOutsideClick';
 import { semesterToString } from '@/utils/semesterToString';
 
 interface Props {
@@ -17,6 +18,9 @@ interface Props {
 export const CreateHeader = ({ lectureId, selectedSemesterId, onChangeSelectedSemester }: Props) => {
   const { data: semesterLectures } = useSemesterLectures(lectureId);
   const [isSemesterSelectorOpen, setIsSemesterSelectorOpen] = useState(false);
+  const semesterListRef = useRef<HTMLDivElement>(null);
+
+  useOutsideClick({ ref: semesterListRef, handler: () => setIsSemesterSelectorOpen(false) });
 
   useEffect(() => {
     if (!semesterLectures || selectedSemesterId || semesterLectures.semester_lectures.length === 0) return;
@@ -47,7 +51,7 @@ export const CreateHeader = ({ lectureId, selectedSemesterId, onChangeSelectedSe
         </LectureInstructor>
       </Column>
       <SelectorWrapper>
-        <SemesterSelectorContainer>
+        <SemesterSelectorContainer ref={semesterListRef}>
           <SemesterSelector onClick={handleSemesterSelector} data-testid="create-header-semester-button">
             {selectedSemester
               ? `${selectedSemester.year}-${semesterToString(selectedSemester.semester)}학기`
