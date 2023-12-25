@@ -1,5 +1,5 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query';
-import { parse } from 'cookie';
+import Cookies from 'cookie';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 
 import { getEmailVerification } from '@/apis/core';
@@ -26,10 +26,23 @@ export const withGetServerSideProps = <P extends { [key: string]: unknown }>(
 ): GetServerSideProps => {
   return async (context) => {
     try {
+      const cookie = Cookies.parse(context.req.headers.cookie ?? ''); // experimental. TODO: 제대로
+      const alreadyEmailVerified = Boolean(cookie.emailVerified);
+
       const { emailVerification } = options;
 
       if (emailVerification) {
-        const { is_email_verified } = await getEmailVerification({ context });
+        const { is_email_verified } = alreadyEmailVerified
+          ? { is_email_verified: true }
+          : await getEmailVerification({ context });
+
+        if (is_email_verified) {
+          const emailVerifiedCookie = Cookies.serialize('emailVerified', String(is_email_verified), {
+            httpOnly: true,
+          });
+
+          context.res.setHeader('set-Cookie', emailVerifiedCookie);
+        }
 
         // 인증되어야 하는데 인증 안됐으면 인증 페이지로
         if (!is_email_verified && emailVerification === 'verified')
@@ -40,7 +53,6 @@ export const withGetServerSideProps = <P extends { [key: string]: unknown }>(
           return { redirect: { destination: '/main', permanent: false } };
       }
 
-      const cookie = parse(context.req.headers.cookie ?? ''); // experimental. TODO: 제대로
       const theme: ThemeType = cookie.theme === 'dark' ? 'dark' : 'light';
 
       const queryClient = new QueryClient();
