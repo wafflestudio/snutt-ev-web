@@ -1,5 +1,5 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query';
-import Cookies from 'cookie';
+import { parse, serialize } from 'cookie';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 
 import { getEmailVerification } from '@/apis/core';
@@ -20,14 +20,16 @@ type Callback<P extends { [key: string]: unknown }> = (
   clients: Clients,
 ) => ReturnType<GetServerSideProps<P>>;
 
+const EMAIL_VERIFICATION_COOKIE = 'is-email-verified';
+
 export const withGetServerSideProps = <P extends { [key: string]: unknown }>(
   callback: Callback<P>,
   options: Partial<Options> = {},
 ): GetServerSideProps => {
   return async (context) => {
     try {
-      const cookie = Cookies.parse(context.req.headers.cookie ?? ''); // experimental. TODO: 제대로
-      const alreadyEmailVerified = Boolean(cookie.emailVerified);
+      const cookie = parse(context.req.headers.cookie ?? ''); // experimental. TODO: 제대로
+      const alreadyEmailVerified = Boolean(cookie[EMAIL_VERIFICATION_COOKIE]);
 
       const { emailVerification } = options;
 
@@ -37,11 +39,11 @@ export const withGetServerSideProps = <P extends { [key: string]: unknown }>(
           : await getEmailVerification({ context });
 
         if (is_email_verified) {
-          const emailVerifiedCookie = Cookies.serialize('emailVerified', String(is_email_verified), {
+          const emailVerifiedCookie = serialize(EMAIL_VERIFICATION_COOKIE, String(is_email_verified), {
             httpOnly: true,
           });
 
-          context.res.setHeader('set-Cookie', emailVerifiedCookie);
+          context.res.setHeader('Set-Cookie', emailVerifiedCookie);
         }
 
         // 인증되어야 하는데 인증 안됐으면 인증 페이지로
