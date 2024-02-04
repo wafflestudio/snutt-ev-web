@@ -46,6 +46,6 @@ jobs:
     needs: deploy
     uses: wafflestudio/snutt-internal/.github/workflows/dispatch-github-release-deploy-notifier.yml@main
     with:
-      title: '강의평 웹뷰'
+      title: '강의평-웹뷰'
     secrets:
       PAT: ${{ secrets.GHP_ACCESS_TOKEN }}
