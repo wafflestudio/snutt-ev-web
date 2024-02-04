@@ -42,13 +42,10 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-      - name: Slack Notify
-        uses: rtCamp/action-slack-notify@v2.1.2
-        env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_CHANNEL: team-snutt-deploy
-          SLACK_TITLE: NEW RELEASE
-          SLACK_USERNAME: snutt-ev-web
-          SLACK_ICON: https://user-images.githubusercontent.com/39977696/191924403-3a26618c-5568-4c22-b592-aedc77323e8d.png
-          SLACK_MESSAGE: Check <https://argocd.wafflestudio.com|Argo CD> for updated environment
-          SLACK_FOOTER: https://snutt-ev-web.wafflestudio.com
+  notify:
+    needs: deploy
+    uses: wafflestudio/snutt-internal/.github/workflows/dispatch-github-release-deploy-notifier.yml@main
+    with:
+      title: '강의평 웹뷰'
+    secrets:
+      PAT: ${{ secrets.GHP_ACCESS_TOKEN }}
