@@ -41,11 +41,3 @@ jobs:
             .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-
-  notify:
-    needs: deploy
-    uses: wafflestudio/snutt-internal/.github/workflows/dispatch-github-release-deploy-notifier.yml@main
-    with:
-      title: '강의평-웹뷰'
-    secrets:
-      PAT: ${{ secrets.GHP_ACCESS_TOKEN }}
