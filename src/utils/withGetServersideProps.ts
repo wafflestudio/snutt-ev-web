@@ -47,8 +47,13 @@ export const withGetServerSideProps = <P extends { [key: string]: unknown }>(
         }
 
         // 인증되어야 하는데 인증 안됐으면 인증 페이지로
-        if (!is_email_verified && emailVerification === 'verified')
-          return { redirect: { destination: '/verify', permanent: false } };
+        if (!is_email_verified && emailVerification === 'verified') {
+          const url = context.req.url;
+          const params = new URLSearchParams();
+          url && !url.startsWith('/main') && params.set('from', url);
+
+          return { redirect: { destination: `/verify?${params}`, permanent: false } };
+        }
 
         // 인증되었으면 안되는데 인증됐으면 메인 페이지로
         if (is_email_verified && emailVerification === 'not-verified')
