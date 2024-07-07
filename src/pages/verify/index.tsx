@@ -1,8 +1,8 @@
 // import { MailVerifyImpl } from '@/pageImpl/mailVerifyImpl';
 import styled from '@emotion/styled';
 
+import { SvgSurprisedCat } from '@/components/atoms/Icons/SvgSurprisedCat';
 import SvgTimetableOn from '@/components/atoms/Icons/SvgTimetableOn';
-import { SvgWaffleCat } from '@/components/atoms/Icons/SvgWaffleCat';
 import { Highlight, Subheading02Temp, Title01 } from '@/components/atoms/Typography';
 import { AppBar } from '@/components/molecules/AppBar';
 import { withGetServerSideProps } from '@/utils/withGetServersideProps';
@@ -14,7 +14,7 @@ export default function Verify() {
         <Title01 style={{ marginLeft: 12 }}>강의평</Title01>
       </AppBar>
       <Container>
-        <SvgWaffleCat />
+        <SvgSurprisedCat />
         <Subheading02Temp style={{ marginBottom: 40, marginTop: 48, textAlign: 'center' }}>
           현재 강의평 서비스 이용을 위한
           <br />
