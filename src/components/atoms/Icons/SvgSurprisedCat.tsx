@@ -118,8 +118,8 @@ export const SvgSurprisedCat = (props: SVGProps<SVGSVGElement>) => (
     <rect x="12.6084" y="28.3466" width="5.04348" height="2.52174" fill="#B3B3B3" />
     <rect x="5.04297" y="48.5205" width="2.52174" height="7.56522" fill="#B3B3B3" />
     <rect x="17.5" y="11.4845" width="2.18753" height="2.18753" fill="#B3B3B3" />
-    <rect x="16.4062" y="11.4845" width="2.18753" height="2.18753" fill="#353535" />
+    <rect x="16.4062" y="11.4845" width="2.18753" height="2.18753" fill="#E54459" />
     <rect x="17.5" width="2.18753" height="10.3908" fill="#B3B3B3" />
-    <rect x="16.4062" width="2.18753" height="10.3908" fill="#353535" />
+    <rect x="16.4062" width="2.18753" height="10.3908" fill="#E54459" />
   </svg>
 );
