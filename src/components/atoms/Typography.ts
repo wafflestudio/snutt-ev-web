@@ -38,6 +38,15 @@ export const DetailHighlight = styled.p`
   color: ${({ theme }) => theme.colors.text.default};
 `;
 
+export const Highlight = styled.span`
+  ${resetMarPad}
+  font-family: AppleSDGothicNeo;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16.8px;
+  color: ${({ theme }) => theme.colors.text.default};
+`;
+
 export const Subheading01 = styled.h2`
   ${resetMarPad}
   font-family: AppleSDGothicNeo;
@@ -53,5 +62,14 @@ export const Subheading02 = styled.h2`
   font-weight: normal;
   font-size: 14px;
   line-height: 15px;
+  color: ${({ theme }) => theme.colors.text.default};
+`;
+
+export const Subheading02Temp = styled.h2`
+  ${resetMarPad}
+  font-family: AppleSDGothicNeo;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
   color: ${({ theme }) => theme.colors.text.default};
 `;
