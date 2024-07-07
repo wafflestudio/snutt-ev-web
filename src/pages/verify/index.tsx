@@ -11,7 +11,7 @@ export default function Verify() {
   return (
     <>
       <AppBar left={<SvgTimetableOn height={30} width={30} />}>
-        <Title01 style={{ marginLeft: 12 }}>강의평</Title01>
+        <Title01 style={{ marginLeft: 12 }}>이메일 인증</Title01>
       </AppBar>
       <Container>
         <SvgSurprisedCat />
