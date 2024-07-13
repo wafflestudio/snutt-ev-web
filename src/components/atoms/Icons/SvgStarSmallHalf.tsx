@@ -23,7 +23,7 @@ const SvgStarSmallHalf = (props: SVGProps<SVGSVGElement>) => (
       />
     </mask>
     <g mask="url(#star_small_half_svg__a)">
-      <path fill="#C4C4C4" d="M12.5-2h24.167v27.067H12.5z" />
+      <path fill="#F2F2F2" d="M12.5-2h24.167v27.067H12.5z" />
     </g>
   </svg>
 );
