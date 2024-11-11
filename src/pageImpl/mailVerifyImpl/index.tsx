@@ -30,6 +30,7 @@ export const MailVerifyImpl = () => {
   const [isVerificationNumberRequested, setIsVerificationNumberRequested] = useState(false);
   const [timeoutDeadline, setTimeoutDeadline] = useState<number | null>(null);
   const [verificationState, setVerificationState] = useState(MailVerificationState.NONE);
+  const [errorMessage, setErrorMessage] = useState<string>();
 
   const rerender = useRerender();
 
@@ -38,6 +39,7 @@ export const MailVerifyImpl = () => {
       if (timeoutDeadline !== null && timeoutDeadline < Date.now()) {
         setTimeoutDeadline(null);
         setVerificationState(MailVerificationState.TIMEOUT);
+        setErrorMessage('');
       }
 
       rerender();
@@ -52,18 +54,11 @@ export const MailVerifyImpl = () => {
       setVerificationState(MailVerificationState.READY);
       setIsVerificationNumberRequested(true);
       setTimeoutDeadline(Date.now() + TIMER_DURATION);
+      setErrorMessage('');
     } catch (e) {
-      const errcode = get(e, ['errcode']) as number;
+      const errorMessage = get(e, ['displayMessage']) as string;
 
-      const newState = errcode
-        ? {
-            36864: MailVerificationState.ALREADY_VERIFIED,
-            36865: MailVerificationState.VERFIED_FROM_OTHER_MAIL,
-            40960: MailVerificationState.TOO_MANY_REQUEST,
-          }[errcode] ?? MailVerificationState.TIMEOUT
-        : MailVerificationState.TIMEOUT;
-
-      setVerificationState(newState);
+      setErrorMessage(errorMessage);
     }
   };
 
@@ -74,6 +69,7 @@ export const MailVerifyImpl = () => {
       router.replace('/main');
     } catch (e) {
       setVerificationState(MailVerificationState.INVALID_NUMBER);
+      setErrorMessage('');
     }
   };
 
@@ -96,15 +92,17 @@ export const MailVerifyImpl = () => {
         <MailVerifyCodeInput
           code={code}
           onChangeCode={(c) => {
-            if (verificationState === MailVerificationState.INVALID_NUMBER)
+            if (verificationState === MailVerificationState.INVALID_NUMBER) {
               setVerificationState(MailVerificationState.READY);
+              setErrorMessage('');
+            }
             setCode(c);
           }}
           timeoutDeadline={timeoutDeadline}
           isVerificationNumberRequested={isVerificationNumberRequested}
         />
 
-        <MailVerifyWarning state={verificationState} />
+        <MailVerifyWarning state={verificationState} errorMessage={errorMessage} />
 
         <CompleteButton
           onClick={onVerify}

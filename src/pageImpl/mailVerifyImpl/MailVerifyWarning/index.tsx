@@ -4,9 +4,9 @@ import { Detail } from '@/components/atoms/Typography';
 import { MailVerificationState } from '@/pageImpl/mailVerifyImpl';
 import { COLORS } from '@/styles/colors';
 
-type Props = { state: MailVerificationState };
+type Props = { state: MailVerificationState; errorMessage?: string };
 
-export const MailVerifyWarning = ({ state }: Props) => {
+export const MailVerifyWarning = ({ state, errorMessage }: Props) => {
   const WARINING = {
     [MailVerificationState.TIMEOUT]: '인증요청에 실패했습니다. 다시 시도해주세요',
     [MailVerificationState.INVALID_NUMBER]: '인증번호가 틀렸습니다. 다시 시도해주세요',
@@ -20,7 +20,7 @@ export const MailVerifyWarning = ({ state }: Props) => {
   return (
     <WarningText>
       <Detail style={{ color: COLORS.red }} data-testid="verify-warning-text">
-        {WARINING[state]}
+        {errorMessage || WARINING[state]}
       </Detail>
     </WarningText>
   );
