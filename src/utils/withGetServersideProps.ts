@@ -20,7 +20,7 @@ type Callback<P extends { [key: string]: unknown }> = (
   clients: Clients,
 ) => ReturnType<GetServerSideProps<P>>;
 
-const EMAIL_VERIFICATION_COOKIE = 'is-email-verified';
+const EMAIL_VERIFICATION_COOKIE = 'email-verified-token';
 
 export const withGetServerSideProps = <P extends { [key: string]: unknown }>(
   callback: Callback<P>,
@@ -29,17 +29,17 @@ export const withGetServerSideProps = <P extends { [key: string]: unknown }>(
   return async (context) => {
     try {
       const cookie = parse(context.req.headers.cookie ?? ''); // experimental. TODO: 제대로
-      const alreadyEmailVerified = Boolean(cookie[EMAIL_VERIFICATION_COOKIE]);
+      const accessToken = cookie['x-access-token'];
+      const emailVerifiedToken = cookie[EMAIL_VERIFICATION_COOKIE];
 
       const { emailVerification } = options;
 
       if (emailVerification) {
-        const { is_email_verified } = alreadyEmailVerified
-          ? { is_email_verified: true }
-          : await getEmailVerification({ context });
+        const { is_email_verified } =
+          emailVerifiedToken === accessToken ? { is_email_verified: true } : await getEmailVerification({ context });
 
         if (is_email_verified) {
-          const emailVerifiedCookie = serialize(EMAIL_VERIFICATION_COOKIE, String(is_email_verified), {
+          const emailVerifiedCookie = serialize(EMAIL_VERIFICATION_COOKIE, accessToken, {
             httpOnly: true,
           });
 
