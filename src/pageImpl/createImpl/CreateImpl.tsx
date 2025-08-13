@@ -113,7 +113,7 @@ const CreateImpl = ({ isEditable }: Props) => {
             if (step < 1) setStep((step) => step + 1);
             else postEvaluation();
           }}
-          disabled={step === 1 && !isContentValid}
+          disabled={(step === 1 && !isContentValid) || selectedSemesterId === undefined}
         >
           {['다음', '완료'][step]}
         </Complete>
