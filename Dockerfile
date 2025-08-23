@@ -38,12 +38,13 @@ COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
 COPY --from=builder --chown=nextjs:nodejs /app/.env ./.env
 COPY --from=builder --chown=nextjs:nodejs /app/.env.production ./.env.production
 
-USER nextjs
 
 RUN rm -rf /app/.yarn/unplugged && yarn rebuild
 RUN chown -R nextjs:nodejs /app/.next
+RUN chown -R nextjs:nodejs .yarn
 RUN echo "YARN VERSION IN RUNNER: " && yarn --version
 
+USER nextjs
 
 EXPOSE 3000
 
