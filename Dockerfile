@@ -1,5 +1,5 @@
 # Builder
-FROM node:20-alpine AS builder
+FROM node:22-alpine AS builder
 ARG APP_ENV
 ARG GIT_SHA
 ARG GIT_TAG
@@ -17,7 +17,7 @@ RUN echo "NEXT_PUBLIC_TRUFFLE_APIKEY=${TRUFFLE_APIKEY}" >> .env
 RUN yarn rebuild && yarn build
 
 # Runner
-FROM node:20-alpine AS runner
+FROM node:22-alpine AS runner
 
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nextjs -u 1001
