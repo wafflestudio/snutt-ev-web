@@ -8,6 +8,8 @@ ENV NODE_ENV production
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY . .
+# yarn.lock에 명시된 버전 그대로 의존성을 설치합니다.
+RUN yarn install --frozen-lockfile
 
 RUN cd /app && echo 'YARN VERSION IN BUILDER: ' && yarn --version
 RUN if [ ${APP_ENV} = "dev" ] ; then cp .env.dev .env.production ; elif [ ${APP_ENV} = "prod" ] ; then cp .env.prod .env.production ; elif [ ${APP_ENV} = "test" ] ; then cp .env.test .env.production ; else exit 1 ; fi
@@ -25,22 +27,23 @@ RUN adduser -S nextjs -u 1001
 ENV NODE_ENV production
 WORKDIR /app
 
-COPY --from=builder /app/next.config.js ./
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/.yarn ./.yarn
-COPY --from=builder /app/yarn.lock ./yarn.lock
-COPY --from=builder /app/.yarnrc.yml ./.yarnrc.yml
-COPY --from=builder /app/.pnp.cjs ./.pnp.cjs
-COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/.env ./.env
-COPY --from=builder /app/.env.production ./.env.production
+COPY --from=builder --chown=nextjs:nodejs /app/next.config.js ./
+COPY --from=builder --chown=nextjs:nodejs /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
+COPY --from=builder --chown=nextjs:nodejs /app/.yarn ./.yarn
+COPY --from=builder --chown=nextjs:nodejs /app/yarn.lock ./yarn.lock
+COPY --from=builder --chown=nextjs:nodejs /app/.yarnrc.yml ./.yarnrc.yml
+COPY --from=builder --chown=nextjs:nodejs /app/.pnp.cjs ./.pnp.cjs
+COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
+COPY --from=builder --chown=nextjs:nodejs /app/.env ./.env
+COPY --from=builder --chown=nextjs:nodejs /app/.env.production ./.env.production
+
+USER nextjs
 
 RUN rm -rf /app/.yarn/unplugged && yarn rebuild
 RUN chown -R nextjs:nodejs /app/.next
 RUN echo "YARN VERSION IN RUNNER: " && yarn --version
 
-USER nextjs
 
 EXPOSE 3000
 
