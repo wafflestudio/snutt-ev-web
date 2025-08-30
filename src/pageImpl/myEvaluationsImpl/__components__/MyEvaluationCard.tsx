@@ -141,6 +141,7 @@ const LikeWrapper = styled.div`
 const LikeText = styled.p`
   margin: 8px 0;
   font-size: 10px;
+  font-family: AppleSDGothicNeo;
   line-height: 11px;
   color: ${({ theme }) => theme.colors.text.desc};
 `;
