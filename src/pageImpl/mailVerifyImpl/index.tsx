@@ -30,6 +30,7 @@ export const MailVerifyImpl = () => {
   const [isVerificationNumberRequested, setIsVerificationNumberRequested] = useState(false);
   const [timeoutDeadline, setTimeoutDeadline] = useState<number | null>(null);
   const [verificationState, setVerificationState] = useState(MailVerificationState.NONE);
+  const [verificationErrorMessage, setVerificationErrorMessage] = useState<string | null>(null);
 
   const rerender = useRerender();
 
@@ -53,17 +54,15 @@ export const MailVerifyImpl = () => {
       setIsVerificationNumberRequested(true);
       setTimeoutDeadline(Date.now() + TIMER_DURATION);
     } catch (e) {
+      const displayMessage = get(e, ['displayMessage']) as string;
       const errcode = get(e, ['errcode']) as number;
 
       const newState = errcode
-        ? {
-            36864: MailVerificationState.ALREADY_VERIFIED,
-            36865: MailVerificationState.VERFIED_FROM_OTHER_MAIL,
-            40960: MailVerificationState.TOO_MANY_REQUEST,
-          }[errcode] ?? MailVerificationState.TIMEOUT
+        ? { 40901: MailVerificationState.VERFIED_FROM_OTHER_MAIL }[errcode] ?? MailVerificationState.TIMEOUT
         : MailVerificationState.TIMEOUT;
 
       setVerificationState(newState);
+      setVerificationErrorMessage(displayMessage || '인증요청에 실패했습니다. 다시 시도해주세요');
     }
   };
 
@@ -104,7 +103,7 @@ export const MailVerifyImpl = () => {
           isVerificationNumberRequested={isVerificationNumberRequested}
         />
 
-        <MailVerifyWarning state={verificationState} />
+        <MailVerifyWarning message={verificationErrorMessage} />
 
         <CompleteButton
           onClick={onVerify}
