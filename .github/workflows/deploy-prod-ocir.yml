@@ -14,7 +14,7 @@ jobs:
       BUILD_NUMBER: ${{ github.run_number }}
       OCIR_REGISTRY: yny.ocir.io
       OCIR_NAMESPACE: ax1dvc8vmenm
-      ECR_REPOSITORY: snutt-prod/snutt-ev-web
+      OCIR_REPOSITORY: snutt-prod/snutt-ev-web
 
     steps:
       - name: Checkout
@@ -22,17 +22,6 @@ jobs:
 
       - name: Login to OCIR
         run: echo "${{ secrets.OCI_AUTH_TOKEN }}" | docker login $OCIR_REGISTRY -u $OCIR_NAMESPACE/members/waffle-deployer --password-stdin
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
-
-      - name: Login to ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
 
       - name: Docker Build, tag, and push image to OCIR
         id: build-image
