@@ -39,7 +39,7 @@ export const LectureCard = ({ lecture }: Props) => {
         </Icons>
         <Texts>
           <TruncatedDetail>
-            {lecture.department}, {lecture.academic_year} 111
+            {lecture.department}, {lecture.academic_year}
           </TruncatedDetail>
           <TruncatedDetail>{lecture.instructor}</TruncatedDetail>
           <TruncatedDetail>{`${lecture.taken_year}년 ${semesterToString(lecture.taken_semester)}학기`}</TruncatedDetail>
