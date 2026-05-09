@@ -38,11 +38,11 @@ export const LectureCard = ({ lecture }: Props) => {
           <SvgClockBlack height={15} width={15} />
         </Icons>
         <Texts>
-          <Detail>
+          <TruncatedDetail>
             {lecture.department}, {lecture.academic_year}
-          </Detail>
-          <Detail>{lecture.instructor}</Detail>
-          <Detail>{`${lecture.taken_year}년 ${semesterToString(lecture.taken_semester)}학기`}</Detail>
+          </TruncatedDetail>
+          <TruncatedDetail>{lecture.instructor}</TruncatedDetail>
+          <TruncatedDetail>{`${lecture.taken_year}년 ${semesterToString(lecture.taken_semester)}학기`}</TruncatedDetail>
         </Texts>
       </CardBottom>
     </Card>
@@ -106,6 +106,15 @@ const Texts = styled.div`
   align-items: flex-start;
   margin-left: 10px;
   justify-content: space-between;
+  min-width: 0;
+  overflow: hidden;
+`;
+
+const TruncatedDetail = styled(Detail)`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 `;
 
 const LectureName = styled(Subheading01)`
