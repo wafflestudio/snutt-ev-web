@@ -4,6 +4,7 @@ ARG APP_ENV
 ARG GIT_SHA
 ARG GIT_TAG
 ARG TRUFFLE_APIKEY
+ARG BUILD_NUMBER
 ENV NODE_ENV production
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
@@ -16,6 +17,7 @@ RUN if [ ${APP_ENV} = "dev" ] ; then cp .env.dev .env.production ; elif [ ${APP_
 RUN echo "NEXT_PUBLIC_GIT_SHA=${GIT_SHA}" >> .env
 RUN echo "NEXT_PUBLIC_GIT_TAG=${GIT_TAG}" >> .env
 RUN echo "NEXT_PUBLIC_TRUFFLE_APIKEY=${TRUFFLE_APIKEY}" >> .env
+RUN echo "NEXT_PUBLIC_BUILD_NUMBER=${BUILD_NUMBER}" >> .env
 RUN yarn rebuild && yarn build
 
 # Runner

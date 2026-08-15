@@ -60,6 +60,11 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: unknown; th
         </ThemeProvider>
       </NativeBridgeProvider>
       <DangerousIosScrollRestorationHelper />
+      {process.env.NEXT_PUBLIC_BUILD_NUMBER && (
+        <div style={{ position: 'fixed', bottom: 4, right: 8, fontSize: 10, opacity: 0.4, pointerEvents: 'none' }}>
+          #{process.env.NEXT_PUBLIC_BUILD_NUMBER}
+        </div>
+      )}
     </NativeDeviceProvider>
   );
 }
