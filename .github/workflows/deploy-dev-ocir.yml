@@ -31,6 +31,15 @@ jobs:
             --build-arg GIT_SHA=$(git rev-parse HEAD) \
             --build-arg GIT_TAG=$(git describe --tags) \
             --build-arg TRUFFLE_APIKEY=${{ secrets.TRUFFLE_APIKEY }} \
+            --build-arg BUILD_NUMBER=$BUILD_NUMBER \
             .
           docker push $OCIR_REGISTRY/$OCIR_NAMESPACE/$OCIR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$OCIR_REGISTRY/$OCIR_NAMESPACE/$OCIR_REPOSITORY:$IMAGE_TAG"
+
+      - name: Update GitOps image tag
+        uses: wafflestudio/waffle-world-oci/.github/actions/update-image@main
+        with:
+          image: ${{ env.OCIR_REGISTRY }}/${{ env.OCIR_NAMESPACE }}/${{ env.OCIR_REPOSITORY }}
+          tag: ${{ env.IMAGE_TAG }}
+          overlay-path: argocd/${{ env.OCIR_REPOSITORY }}
+          private-key: ${{ secrets.DEPLOYER_APP_PRIVATE_KEY }}
