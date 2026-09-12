@@ -39,6 +39,7 @@ export const MailVerifyGuide = ({ lang }: { lang: Lang }) => {
 
 const GuideText = styled.div`
   margin-top: 36px;
+  font-family: AppleSDGothicNeo;
   font-size: 12px;
   text-align: left;
   color: ${({ theme }) => theme.colors.text.caption};
