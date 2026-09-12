@@ -4,14 +4,17 @@ import { GetServerSidePropsContext } from 'next';
 import { APP_ENV } from '@/utils/env';
 
 type ServerSideHeaders =
-  | { Cookie: string } // test 환경일 때
-  | { 'x-access-token': string; 'x-access-apikey': string }; // test 아닐 때
+  | { Cookie: string; 'Accept-Language'?: string } // test 환경일 때
+  | { 'x-access-token': string; 'x-access-apikey': string; 'Accept-Language'?: string }; // test 아닐 때
 
 export const getServerSideHeaders = (context?: GetServerSidePropsContext): ServerSideHeaders | undefined => {
   if (context === undefined) return;
   if (context.req.headers.cookie === undefined) return;
 
-  if (APP_ENV === 'test' && context.req.headers.cookie) return { Cookie: context.req.headers.cookie };
+  const acceptLanguage = context.req.headers['accept-language'];
+
+  if (APP_ENV === 'test' && context.req.headers.cookie)
+    return { Cookie: context.req.headers.cookie, ...(acceptLanguage && { 'Accept-Language': acceptLanguage }) };
 
   const cookies = parse(context.req.headers.cookie);
 
@@ -23,5 +26,6 @@ export const getServerSideHeaders = (context?: GetServerSidePropsContext): Serve
   return {
     'x-access-token': token,
     'x-access-apikey': apikey,
+    ...(acceptLanguage && { 'Accept-Language': acceptLanguage }),
   };
 };

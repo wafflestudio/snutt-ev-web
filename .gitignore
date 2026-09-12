@@ -45,6 +45,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# typescript
+tsconfig.tsbuildinfo
+
 # vscode
 .vscode
 /test-results/
