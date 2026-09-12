@@ -1,7 +1,5 @@
 export type { Lang } from '@/utils/lang';
 
-import type { Lang } from '@/utils/lang';
-
 export const strings = {
   ko: {
     appBarTitle: '이메일 인증',

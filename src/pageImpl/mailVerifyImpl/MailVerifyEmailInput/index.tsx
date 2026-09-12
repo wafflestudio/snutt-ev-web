@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import { Subheading01, Subheading02 } from '@/components/atoms/Typography';
+
 import { Lang, strings } from '../locale';
 
 type Props = {

@@ -10,16 +10,16 @@ import { AppBar } from '@/components/molecules/AppBar';
 import { useInterval } from '@/hooks/useInterval';
 import { useRerender } from '@/hooks/useRerender';
 import { APP_ENV } from '@/utils/env';
+import { Lang } from '@/utils/lang';
 import { get } from '@/utils/object/get';
 import { SECOND } from '@/utils/time';
 
+import { strings } from './locale';
 import { MailVerifyCodeInput } from './MailVerifyCodeInput';
 import { MailVerifyEmailInput } from './MailVerifyEmailInput';
 import { MailVerifyGuide } from './MailVerifyGuide';
 import { MailVerifyHeader } from './MailVerifyHeader';
 import { MailVerifyWarning } from './MailVerifyWarning';
-import { strings } from './locale';
-import { Lang } from '@/utils/lang';
 
 const TIMER_DURATION = APP_ENV === 'test' ? 3 * SECOND : 180 * SECOND;
 

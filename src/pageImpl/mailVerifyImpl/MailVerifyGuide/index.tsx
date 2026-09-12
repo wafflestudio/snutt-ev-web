@@ -16,8 +16,8 @@ export const MailVerifyGuide = ({ lang }: { lang: Lang }) => {
           </GuideDetail>
           <GuideDetail>
             If you have difficulty finding the account this way, please send an email from your{' '}
-            <GuideDetailBold>SNU mail</GuideDetailBold> to{' '}
-            <GuideDetailBold>snutt@wafflestudio.com</GuideDetailBold> and we will help you find your account.
+            <GuideDetailBold>SNU mail</GuideDetailBold> to <GuideDetailBold>snutt@wafflestudio.com</GuideDetailBold> and
+            we will help you find your account.
           </GuideDetail>
         </>
       ) : (
