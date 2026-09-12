@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { Subheading01 } from '@/components/atoms/Typography';
 import { COLORS } from '@/styles/colors';
 import { toMinuteSecondFormat } from '@/utils/time';
+import { Lang, strings } from '../locale';
 
 type Props = {
   code: string;
@@ -10,18 +11,21 @@ type Props = {
 
   timeoutDeadline: number | null;
   isVerificationNumberRequested: boolean;
+
+  lang: Lang;
 };
 
-export const MailVerifyCodeInput = ({ code, onChangeCode, timeoutDeadline, isVerificationNumberRequested }: Props) => {
+export const MailVerifyCodeInput = ({ code, onChangeCode, timeoutDeadline, isVerificationNumberRequested, lang }: Props) => {
+  const s = strings[lang];
   return (
     <VerificationNumberInputWrapper>
-      <Subheading01>인증번호</Subheading01>
+      <Subheading01>{s.codeLabel}</Subheading01>
       <VerificationNumberInputBar>
         <TransparentInput
           data-testid="verify-code-input"
           type="number"
           value={code}
-          placeholder="인증번호 6자리를 입력하세요"
+          placeholder={s.codePlaceholder}
           onChange={(e) => onChangeCode(e.target.value)}
         />
         {isVerificationNumberRequested && timeoutDeadline && (

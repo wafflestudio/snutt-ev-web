@@ -18,10 +18,13 @@ import { MailVerifyEmailInput } from './MailVerifyEmailInput';
 import { MailVerifyGuide } from './MailVerifyGuide';
 import { MailVerifyHeader } from './MailVerifyHeader';
 import { MailVerifyWarning } from './MailVerifyWarning';
+import { strings } from './locale';
+import { Lang } from '@/utils/lang';
 
 const TIMER_DURATION = APP_ENV === 'test' ? 3 * SECOND : 180 * SECOND;
 
-export const MailVerifyImpl = () => {
+export const MailVerifyImpl = ({ lang }: { lang: Lang }) => {
+  const s = strings[lang];
   const router = useRouter();
 
   const [email, setEmail] = useState('');
@@ -62,7 +65,7 @@ export const MailVerifyImpl = () => {
         : MailVerificationState.TIMEOUT;
 
       setVerificationState(newState);
-      setVerificationErrorMessage(displayMessage || '인증요청에 실패했습니다. 다시 시도해주세요');
+      setVerificationErrorMessage(displayMessage || s.requestFailed);
     }
   };
 
@@ -79,17 +82,18 @@ export const MailVerifyImpl = () => {
   return (
     <Wrapper>
       <AppBar left={<SvgTimetableOn height={30} width={30} />}>
-        <Title01 style={{ marginLeft: 12 }}>이메일 인증</Title01>
+        <Title01 style={{ marginLeft: 12 }}>{s.appBarTitle}</Title01>
       </AppBar>
 
       <Content>
-        <MailVerifyHeader />
+        <MailVerifyHeader lang={lang} />
 
         <MailVerifyEmailInput
           email={email}
           hasRequested={isVerificationNumberRequested}
           onRequest={onRequestCode}
           onChangeEmail={setEmail}
+          lang={lang}
         />
 
         <MailVerifyCodeInput
@@ -101,6 +105,7 @@ export const MailVerifyImpl = () => {
           }}
           timeoutDeadline={timeoutDeadline}
           isVerificationNumberRequested={isVerificationNumberRequested}
+          lang={lang}
         />
 
         <MailVerifyWarning message={verificationErrorMessage} />
@@ -110,9 +115,9 @@ export const MailVerifyImpl = () => {
           disabled={verificationState !== MailVerificationState.READY}
           data-testid="verify-submit-button"
         >
-          완료
+          {s.complete}
         </CompleteButton>
-        {verificationState === MailVerificationState.VERFIED_FROM_OTHER_MAIL && <MailVerifyGuide />}
+        {verificationState === MailVerificationState.VERFIED_FROM_OTHER_MAIL && <MailVerifyGuide lang={lang} />}
       </Content>
     </Wrapper>
   );
