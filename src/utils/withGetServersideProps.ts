@@ -5,6 +5,7 @@ import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { getEmailVerification } from '@/apis/core';
 import { ThemeType } from '@/styles/theme';
 import { truffleClient } from '@/truffle';
+import { APP_ENV } from '@/utils/env';
 
 type Clients = { queryClient: QueryClient };
 
@@ -30,6 +31,12 @@ export const withGetServerSideProps = <P extends { [key: string]: unknown }>(
     try {
       const cookie = parse(context.req.headers.cookie ?? ''); // experimental. TODO: 제대로
       const alreadyEmailVerified = Boolean(cookie[EMAIL_VERIFICATION_COOKIE]);
+
+      // 앱 웹뷰 밖(브라우저 직접 접근, 크롤러 등)에서 인증 쿠키 없이 들어오면 core 를 호출하지 않는다.
+      // 호출하면 WRONG_API_KEY(8192) 에러가 나서 500 으로 떨어진다.
+      // test 환경은 msw 가 쿠키 없이도 응답해 주므로 제외한다.
+      const hasAuthCookies = Boolean(cookie['x-access-token'] && cookie['x-access-apikey']);
+      if (APP_ENV !== 'test' && !hasAuthCookies) return { notFound: true };
 
       const { emailVerification } = options;
 
