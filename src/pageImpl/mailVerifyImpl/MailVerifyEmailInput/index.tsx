@@ -2,22 +2,27 @@ import styled from '@emotion/styled';
 
 import { Subheading01, Subheading02 } from '@/components/atoms/Typography';
 
+import { Lang, strings } from '../locale';
+
 type Props = {
   email: string;
   onChangeEmail: (email: string) => void;
 
   hasRequested: boolean;
   onRequest: () => void;
+
+  lang: Lang;
 };
 
-export const MailVerifyEmailInput = ({ email, onChangeEmail, onRequest, hasRequested }: Props) => {
+export const MailVerifyEmailInput = ({ email, onChangeEmail, onRequest, hasRequested, lang }: Props) => {
+  const s = strings[lang];
   return (
     <EmailInputWrapper>
-      <Subheading01>이메일</Subheading01>
+      <Subheading01>{s.emailLabel}</Subheading01>
       <EmailInputBar>
         <TransparentInput
           data-testid="verify-email-input"
-          placeholder="이메일을 입력하세요"
+          placeholder={s.emailPlaceholder}
           value={email}
           onChange={(e) => onChangeEmail(e.target.value)}
         />
@@ -25,7 +30,7 @@ export const MailVerifyEmailInput = ({ email, onChangeEmail, onRequest, hasReque
           <Subheading02>@snu.ac.kr</Subheading02>
         </MailAddress>
         <RequestVerificationButton onClick={onRequest} disabled={email === ''} data-testid="verify-request-code-button">
-          {hasRequested ? '다시 요청' : '인증요청'}
+          {hasRequested ? s.requestCodeAgain : s.requestCode}
         </RequestVerificationButton>
       </EmailInputBar>
     </EmailInputWrapper>

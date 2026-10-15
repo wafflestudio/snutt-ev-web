@@ -2,12 +2,15 @@ import styled from '@emotion/styled';
 
 import { Title01 } from '@/components/atoms/Typography';
 
-export const MailVerifyHeader = () => {
+import { Lang, strings } from '../locale';
+
+export const MailVerifyHeader = ({ lang }: { lang: Lang }) => {
+  const s = strings[lang];
   return (
     <DescriptionTextWrapper data-testid="verify-header">
       <div>
-        <Title01>강의평 서비스 이용을 위해</Title01>
-        <Title01>이메일 인증이 필요합니다.</Title01>
+        <Title01>{s.headerLine1}</Title01>
+        <Title01>{s.headerLine2}</Title01>
       </div>
     </DescriptionTextWrapper>
   );
