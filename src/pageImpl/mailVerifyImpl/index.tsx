@@ -26,6 +26,7 @@ const TIMER_DURATION = APP_ENV === 'test' ? 3 * SECOND : 180 * SECOND;
 export const MailVerifyImpl = ({ lang }: { lang: Lang }) => {
   const s = strings[lang];
   const router = useRouter();
+  const from = router.query.from as string;
 
   const [email, setEmail] = useState('');
   const [code, setCode] = useState('');
@@ -73,7 +74,7 @@ export const MailVerifyImpl = ({ lang }: { lang: Lang }) => {
     try {
       const res = await postEmailVerificationCode({ body: { code: Number(code) } });
       if (!res.is_email_verified) throw Error();
-      router.replace('/main');
+      router.replace(from || '/main');
     } catch (e) {
       setVerificationState(MailVerificationState.INVALID_NUMBER);
     }
